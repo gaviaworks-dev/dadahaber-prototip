@@ -261,3 +261,7 @@ em.y{color:var(--artis)}em.d{color:var(--azalis)}
 .sw-tablo:has(>table~table) table{table-layout:fixed}
 .sw-tablo:has(>table~table) th:first-child{inline-size:40%}
 .sw-tablo td.say em,.sw-puan td.say em{justify-content:flex-end}
+/* takım hücresi tablo hücresi olarak kalır (flex satır çizgisini kaydırıyordu); arma ve ad satır içinde hizalı */
+.sw-tablo td.sw-tkh,.sw-puan td.sw-tkh{display:table-cell;white-space:nowrap;vertical-align:middle}
+.sw-tablo td.sw-tkh>*,.sw-puan td.sw-tkh>*{vertical-align:middle}
+.sw-tablo td.sw-tkh>.sw-arma,.sw-puan td.sw-tkh>.sw-arma{display:inline-grid;margin-inline-end:10px}
