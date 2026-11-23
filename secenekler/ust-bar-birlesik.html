@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Seçenek · Üst bar birleşik</title>
+<link rel="stylesheet" href="_vendor/fontawesome-6.5.2/css/all.min.css">
+<style>
+/* TASLAK — Beyar'ın birleşik üst bar kararı + tablet davranışı seçenekleri. Kök ekranlara taşınmaz. */
+@font-face{font-family:"Gilroy";src:url("_font/gilroy/Gilroy-Medium.woff2") format("woff2");font-weight:400 600;font-display:swap}
+@font-face{font-family:"Gilroy";src:url("_font/gilroy/Gilroy-ExtraBold.woff2") format("woff2");font-weight:700 800;font-display:swap}
+:root{--marka:#FCB623;--siyah:#121212;--gri-50:#EFEFEF;--gri-100:#DEDEDE;--gri-400:#6B6B6B;--gri-600:#494949;--k:12px;--kart:16px;
+  --gastro:#DC3D17;--fit:#009D4F;--diet:#009A44;--gourmet:#742982;--artis:#7fd17f;--azalis:#ff8a8a}
+*{box-sizing:border-box;margin:0}
+body{font-family:"Gilroy",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:#d9d9d9;color:var(--siyah);padding:24px 16px 48px;line-height:1.5}
+.sayfa{max-width:1280px;margin-inline:auto;display:grid;gap:28px}
+.sayfa>header h1{font-size:1.5rem;font-weight:800;line-height:1.2}
+.sayfa>header p{color:var(--gri-600);margin-block-start:6px;max-width:85ch}
+.secenek{background:#fff;border-radius:var(--kart);overflow:hidden;box-shadow:0 4px 18px rgba(0,0,0,.08)}
+.etiket{padding:14px 20px;border-block-end:1px solid var(--gri-100)}
+.etiket b{font-size:1.1rem;font-weight:800}
+.etiket small{display:block;color:var(--gri-400);font-size:.82rem}
+.cerceve-ad{font-size:.7rem;font-weight:700;color:var(--gri-400);text-transform:uppercase;letter-spacing:.05em;padding:12px 20px 6px}
+.cerceve{padding:0 20px 12px;overflow-x:auto}
+.ekran{inline-size:var(--g);background:var(--gri-50);border:1px solid var(--gri-100);border-radius:var(--k);overflow:hidden}
+.masa{--g:1240px}.tablet{--g:800px}.dar{--g:1030px}.telefon{--g:390px}
+.yanyana{display:flex;gap:20px;flex-wrap:wrap;padding:12px 20px 0}
+.yanyana>div{display:grid;gap:6px}
+.yanyana .baslik-k{font-size:.78rem;font-weight:800}
+.kay{overflow-x:auto;scrollbar-width:none}
+.kay::-webkit-scrollbar{display:none}
+.kay-ipucu{position:relative}
+.kay-ipucu::after{content:"";position:absolute;inset-block:0;inset-inline-end:0;inline-size:28px;background:linear-gradient(to left,var(--siyah),transparent);pointer-events:none}
+.bar.ince{block-size:36px;padding-inline:16px;gap:14px}
+.bas.tel{padding:10px 16px;gap:12px}
+.bas.tel .logo{font-size:1.15rem}
+.cekmece-not{font-size:.72rem;color:var(--gri-600);padding:8px 16px;background:#fff;border-block-start:1px dashed var(--gri-100)}
+
+.bar{background:var(--siyah);color:#d6d6d6;font-size:.75rem;font-weight:600;display:flex;align-items:center;gap:16px;padding:0 20px;block-size:40px;white-space:nowrap;overflow:hidden}
+.bar .grup{display:flex;align-items:center;gap:16px;min-inline-size:0}
+.bar .sag{margin-inline-start:auto;gap:10px}
+.ayrac{inline-size:1px;block-size:14px;background:#3a3a3a;flex:none}
+.oge{display:flex;align-items:center;gap:7px;color:#eee}
+.oge i{color:var(--marka);font-size:.8rem}
+.fmt-ikon .oge span{display:none}
+.fmt-ikon .oge i{font-size:.9rem}
+.doviz{display:flex;gap:14px}
+.doviz b{color:#fff;font-weight:700;font-variant-numeric:tabular-nums}
+.doviz em{font-style:normal;font-size:.68rem;color:var(--artis)}
+.doviz em.d{color:var(--azalis)}
+.aile{display:flex;align-items:center;gap:6px}
+.aile .aktif{border:1px solid var(--marka);border-radius:var(--k);padding:3px 9px;color:#fff;font-weight:700}
+.aile .aktif span{font-weight:500}
+.aile .n{inline-size:22px;block-size:22px;border-radius:8px;display:grid;place-items:center;font-size:.58rem;font-weight:800;color:#fff}
+.dil{border:1px solid #3a3a3a;border-radius:var(--k);padding:2px 8px;color:#fff;display:flex;gap:5px;align-items:center}
+.dil i{font-size:.62rem;color:#9d9d9d}
+
+.bas{display:flex;align-items:center;gap:22px;background:#fff;padding:14px 20px;border-block-end:1px solid var(--gri-100);white-space:nowrap;overflow:hidden}
+.logo{font-weight:800;font-size:1.3rem}.logo i{font-style:normal;font-weight:500}
+.menu{display:flex;gap:18px;font-size:.82rem;font-weight:800;text-transform:uppercase;overflow:hidden}
+.arac{margin-inline-start:auto;display:flex;gap:8px;align-items:center;flex:none}
+.ikon{inline-size:38px;block-size:38px;border-radius:var(--k);border:1px solid var(--gri-100);display:grid;place-items:center;color:var(--gri-600)}
+.giris{background:var(--marka);font-weight:800;font-size:.8rem;padding:10px 14px;border-radius:var(--k)}
+.hamb{font-size:1.2rem}
+.not{padding:14px 20px 18px;font-size:.86rem;color:#373737;display:grid;gap:4px;border-block-start:1px solid var(--gri-100)}
+.ikonlar{display:flex;flex-wrap:wrap;gap:10px 18px;padding:12px 20px 16px;font-size:.82rem}
+.ikonlar span{display:flex;gap:8px;align-items:center}
+.ikonlar i{inline-size:28px;block-size:28px;border-radius:8px;background:var(--siyah);color:var(--marka);display:grid;place-items:center;font-size:.8rem}
+.ikonlar code{color:var(--gri-400);font-size:.72rem}
+</style>
+</head>
+<body>
+<main class="sayfa">
+  <header>
+    <h1>En üst bar · birleşik (Beyar'ın kararı)</h1>
+    <p>Solda hava durumu, formatlar ve döviz; en sağda Dada ailesi ve dil. Formatlar ikonlu; ikonlar Font Awesome 6.5.2 Free, dolu (solid) set. 1240px'te hepsi sığıyor; ölçüme göre yaklaşık 1090px'in altında sığmıyor (1030px örneğinde döviz, aile geçişinin altına giriyor). Bar sığmadığında, yani masaüstünün dar hali ve tablette, ne olacağı için üç davranış seçeneği aşağıda.</p>
+  </header>
+
+  <section class="secenek">
+    <div class="etiket"><b>Masaüstü · seçilen düzen</b><small>Sıra: hava → formatlar → döviz · sağda aile → dil</small></div>
+    <p class="cerceve-ad">1240px</p>
+    <div class="cerceve"><div class="ekran masa">
+      <div class="bar">
+        <div class="grup">
+          <span class="oge"><i class="fa-solid fa-cloud-sun"></i>İstanbul 12°</span><span class="ayrac"></span>
+          <span class="oge"><i class="fa-solid fa-headphones"></i><span>Haber Dinle</span></span>
+          <span class="oge"><i class="fa-solid fa-camera"></i><span>Foto Fokus</span></span>
+          <span class="oge"><i class="fa-solid fa-circle-play"></i><span>Video</span></span>
+          <span class="oge"><i class="fa-solid fa-chart-simple"></i><span>İnfografik</span></span>
+          <span class="oge"><i class="fa-solid fa-podcast"></i><span>Podcast</span></span><span class="ayrac"></span>
+          <div class="doviz"><span>Dolar <b>34,52</b> <em>▲0,1</em></span><span>Euro <b>36,18</b> <em class="d">▼0,2</em></span></div>
+        </div>
+        <div class="grup sag"><div class="aile"><span class="aktif">dada <span>haber</span></span><span class="n" style="background:var(--gastro)">G</span><span class="n" style="background:var(--fit)">F</span><span class="n" style="background:var(--diet)">D</span><span class="n" style="background:var(--gourmet)">Go</span></div><span class="ayrac"></span><span class="dil"><i class="fa-solid fa-globe"></i>TR</span></div>
+      </div>
+      <div class="bas"><span class="logo">dada<i>haber</i></span><nav class="menu"><span>Gündem</span><span>Dünya</span><span>Ekonomi</span><span>Spor</span><span>Savunma</span><span>Teknoloji</span><span>Yaşam</span><span>Kampüs</span></nav><div class="arac"><span class="ikon"><i class="fa-solid fa-magnifying-glass"></i></span><span class="ikon"><i class="fa-solid fa-bell"></i></span><span class="ikon"><i class="fa-solid fa-bookmark"></i></span><span class="giris">Giriş Yap</span></div></div>
+    </div></div>
+    <p class="cerceve-ad">Masaüstünün en dar hali · 1030px · sığmıyor: döviz ile aile geçişi üst üste biniyor</p>
+    <div class="cerceve"><div class="ekran dar">
+      <div class="bar">
+        <div class="grup">
+          <span class="oge"><i class="fa-solid fa-cloud-sun"></i>İstanbul 12°</span><span class="ayrac"></span>
+          <span class="oge"><i class="fa-solid fa-headphones"></i><span>Haber Dinle</span></span>
+          <span class="oge"><i class="fa-solid fa-camera"></i><span>Foto Fokus</span></span>
+          <span class="oge"><i class="fa-solid fa-circle-play"></i><span>Video</span></span>
+          <span class="oge"><i class="fa-solid fa-chart-simple"></i><span>İnfografik</span></span>
+          <span class="oge"><i class="fa-solid fa-podcast"></i><span>Podcast</span></span><span class="ayrac"></span>
+          <div class="doviz"><span>Dolar <b>34,52</b> <em>▲0,1</em></span><span>Euro <b>36,18</b> <em class="d">▼0,2</em></span></div>
+        </div>
+        <div class="grup sag"><div class="aile"><span class="aktif">dada <span>haber</span></span><span class="n" style="background:var(--gastro)">G</span><span class="n" style="background:var(--fit)">F</span><span class="n" style="background:var(--diet)">D</span><span class="n" style="background:var(--gourmet)">Go</span></div><span class="ayrac"></span><span class="dil"><i class="fa-solid fa-globe"></i>TR</span></div>
+      </div>
+    </div></div>
+    <div class="ikonlar">
+      <span><i class="fa-solid fa-cloud-sun"></i>Hava <code>fa-cloud-sun</code></span>
+      <span><i class="fa-solid fa-headphones"></i>Haber Dinle <code>fa-headphones</code></span>
+      <span><i class="fa-solid fa-camera"></i>Foto Fokus <code>fa-camera</code></span>
+      <span><i class="fa-solid fa-circle-play"></i>Video <code>fa-circle-play</code></span>
+      <span><i class="fa-solid fa-chart-simple"></i>İnfografik <code>fa-chart-simple</code></span>
+      <span><i class="fa-solid fa-podcast"></i>Podcast <code>fa-podcast</code></span>
+      <span><i class="fa-solid fa-globe"></i>Dil <code>fa-globe</code></span>
+    </div>
+  </section>
+
+  <section class="secenek">
+    <div class="etiket"><b>Tablet · 800px · T1 · Formatlar yalnızca ikon</b><small>Hava, döviz, aile ve dil tam kalır; format adları gizlenir, ikonlar kalır (ekran okuyucu için ad korunur)</small></div>
+    <div class="cerceve" style="padding-block-start:12px"><div class="ekran tablet">
+      <div class="bar fmt-ikon">
+        <div class="grup">
+          <span class="oge"><i class="fa-solid fa-cloud-sun"></i>İstanbul 12°</span><span class="ayrac"></span>
+          <span class="oge"><i class="fa-solid fa-headphones"></i><span>Haber Dinle</span></span>
+          <span class="oge"><i class="fa-solid fa-camera"></i><span>Foto Fokus</span></span>
+          <span class="oge"><i class="fa-solid fa-circle-play"></i><span>Video</span></span>
+          <span class="oge"><i class="fa-solid fa-chart-simple"></i><span>İnfografik</span></span>
+          <span class="oge"><i class="fa-solid fa-podcast"></i><span>Podcast</span></span><span class="ayrac"></span>
+          <div class="doviz"><span>Dolar <b>34,52</b></span><span>Euro <b>36,18</b></span></div>
+        </div>
+        <div class="grup sag"><div class="aile"><span class="aktif">dada <span>haber</span></span><span class="n" style="background:var(--gastro)">G</span><span class="n" style="background:var(--diet)">D</span></div><span class="dil"><i class="fa-solid fa-globe"></i>TR</span></div>
+      </div>
+      <div class="bas"><span class="hamb"><i class="fa-solid fa-bars"></i></span><span class="logo">dada<i>haber</i></span><div class="arac"><span class="ikon"><i class="fa-solid fa-magnifying-glass"></i></span><span class="ikon"><i class="fa-solid fa-bell"></i></span><span class="giris">Giriş Yap</span></div></div>
+    </div></div>
+    <div class="not"><p><b>Artı:</b> Hiçbir öğe kaybolmuyor. <b>Eksi:</b> İkonların anlamı yazısız tahmin ediliyor; İnfografik ve Podcast ikonu ilk bakışta karışabilir.</p></div>
+  </section>
+
+  <section class="secenek">
+    <div class="etiket"><b>Tablet · 800px · T2 · Formatlar yazılı kalır, döviz çekmeceye</b><small>Hava, formatlar (ikon + ad), aile ve dil kalır; döviz menüye girer</small></div>
+    <div class="cerceve" style="padding-block-start:12px"><div class="ekran tablet">
+      <div class="bar">
+        <div class="grup">
+          <span class="oge"><i class="fa-solid fa-cloud-sun"></i>İstanbul 12°</span><span class="ayrac"></span>
+          <span class="oge"><i class="fa-solid fa-headphones"></i><span>Haber Dinle</span></span>
+          <span class="oge"><i class="fa-solid fa-camera"></i><span>Foto Fokus</span></span>
+          <span class="oge"><i class="fa-solid fa-circle-play"></i><span>Video</span></span>
+          <span class="oge"><i class="fa-solid fa-podcast"></i><span>Podcast</span></span>
+        </div>
+        <div class="grup sag"><span class="dil"><i class="fa-solid fa-globe"></i>TR</span></div>
+      </div>
+      <div class="bas"><span class="hamb"><i class="fa-solid fa-bars"></i></span><span class="logo">dada<i>haber</i></span><div class="arac"><span class="ikon"><i class="fa-solid fa-magnifying-glass"></i></span><span class="ikon"><i class="fa-solid fa-bell"></i></span><span class="giris">Giriş Yap</span></div></div>
+    </div></div>
+    <div class="not"><p><b>Artı:</b> Formatlar adıyla okunuyor. <b>Eksi:</b> 800px'te döviz, İnfografik ve aile geçişi de sığmıyor; en çok öğe kaybeden seçenek.</p></div>
+  </section>
+
+  <section class="secenek">
+    <div class="etiket"><b>Tablet · 800px · T3 · Bilgi kalır, formatlar çekmeceye</b><small>Hava, döviz, aile ve dil kalır; formatlar menüye girer</small></div>
+    <div class="cerceve" style="padding-block-start:12px"><div class="ekran tablet">
+      <div class="bar">
+        <div class="grup">
+          <span class="oge"><i class="fa-solid fa-cloud-sun"></i>İstanbul 12°</span><span class="ayrac"></span>
+          <div class="doviz"><span>Dolar <b>34,52</b> <em>▲0,1</em></span><span>Euro <b>36,18</b> <em class="d">▼0,2</em></span></div>
+        </div>
+        <div class="grup sag"><div class="aile"><span class="aktif">dada <span>haber</span></span><span class="n" style="background:var(--gastro)">G</span><span class="n" style="background:var(--fit)">F</span><span class="n" style="background:var(--diet)">D</span><span class="n" style="background:var(--gourmet)">Go</span></div><span class="ayrac"></span><span class="dil"><i class="fa-solid fa-globe"></i>TR</span></div>
+      </div>
+      <div class="bas"><span class="hamb"><i class="fa-solid fa-bars"></i></span><span class="logo">dada<i>haber</i></span><div class="arac"><span class="ikon"><i class="fa-solid fa-magnifying-glass"></i></span><span class="ikon"><i class="fa-solid fa-bell"></i></span><span class="giris">Giriş Yap</span></div></div>
+    </div></div>
+    <div class="not"><p><b>Artı:</b> Bar sade, aile tam görünüyor. <b>Eksi:</b> Barın asıl amacı olan formatlar tablette görünmüyor.</p></div>
+  </section>
+
+  <section class="secenek">
+    <div class="etiket"><b>Telefon · 390px · üç seçenek</b><small>Referanslar: dadagastro.com ve yayındaki v2'de bar telefonda gizli · v2'nin masaüstü format şeridi yatay kayıyor (<code>dh-v2-fmt__track</code>, kaydırma okları)</small></div>
+    <div class="yanyana">
+      <div><span class="baslik-k">M1 · Bar gizli, her şey menüde</span>
+        <div class="ekran telefon">
+          <div class="bas tel"><span class="hamb"><i class="fa-solid fa-bars"></i></span><span class="logo">dada<i>haber</i></span><div class="arac"><span class="ikon"><i class="fa-solid fa-magnifying-glass"></i></span></div></div>
+          <div class="cekmece-not">Menüde: hava, formatlar, döviz, Dada ailesi, dil</div>
+        </div></div>
+      <div><span class="baslik-k">M2 · İnce bar kalır, yatay kayar</span>
+        <div class="ekran telefon">
+          <div class="kay-ipucu"><div class="bar ince kay">
+            <span class="oge"><i class="fa-solid fa-cloud-sun"></i>12°</span><span class="ayrac"></span>
+            <span class="oge"><i class="fa-solid fa-headphones"></i><span>Haber Dinle</span></span>
+            <span class="oge"><i class="fa-solid fa-camera"></i><span>Foto Fokus</span></span>
+            <span class="oge"><i class="fa-solid fa-circle-play"></i><span>Video</span></span>
+            <span class="oge"><i class="fa-solid fa-chart-simple"></i><span>İnfografik</span></span>
+            <span class="oge"><i class="fa-solid fa-podcast"></i><span>Podcast</span></span><span class="ayrac"></span>
+            <div class="doviz"><span>Dolar <b>34,52</b></span><span>Euro <b>36,18</b></span></div>
+          </div></div>
+          <div class="bas tel"><span class="hamb"><i class="fa-solid fa-bars"></i></span><span class="logo">dada<i>haber</i></span><div class="arac"><span class="ikon"><i class="fa-solid fa-magnifying-glass"></i></span></div></div>
+          <div class="cekmece-not">Menüde: Dada ailesi, dil</div>
+        </div></div>
+      <div><span class="baslik-k">M3 · İnce bar: hava + format ikonları</span>
+        <div class="ekran telefon">
+          <div class="bar ince fmt-ikon">
+            <span class="oge"><i class="fa-solid fa-cloud-sun"></i>İstanbul 12°</span>
+            <span class="oge" style="margin-inline-start:auto"><i class="fa-solid fa-headphones"></i><span>Haber Dinle</span></span>
+            <span class="oge"><i class="fa-solid fa-camera"></i><span>Foto Fokus</span></span>
+            <span class="oge"><i class="fa-solid fa-circle-play"></i><span>Video</span></span>
+            <span class="oge"><i class="fa-solid fa-chart-simple"></i><span>İnfografik</span></span>
+            <span class="oge"><i class="fa-solid fa-podcast"></i><span>Podcast</span></span>
+          </div>
+          <div class="bas tel"><span class="hamb"><i class="fa-solid fa-bars"></i></span><span class="logo">dada<i>haber</i></span><div class="arac"><span class="ikon"><i class="fa-solid fa-magnifying-glass"></i></span></div></div>
+          <div class="cekmece-not">Menüde: döviz, Dada ailesi, dil · Seçilen: M3, formatlar sağa yaslı</div>
+        </div></div>
+    </div>
+    <div class="not">
+      <p><b>M1:</b> En çok içerik alanı; Gastro ve v2 ile aynı. Ama formatlar, hava ve döviz telefonda menünün arkasında kalıyor.</p>
+      <p><b>M2:</b> Hepsi ulaşılabilir, adlarıyla okunuyor. Ama ekranın üstünde 36px daha yer tutuyor; sağdaki öğeler kaydırılmadan görünmüyor.</p>
+      <p><b>M3:</b> Formatlar ve hava her zaman görünür, kaydırma yok; tabletteki T1 ile aynı dil. Ama 36px daha yer tutuyor; döviz menüye giriyor.</p>
+    </div>
+  </section>
+</main>
+</body>
+</html>

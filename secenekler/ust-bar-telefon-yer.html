@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Seçenek · Telefonda bar öğelerinin yeri</title>
+<link rel="stylesheet" href="_vendor/fontawesome-6.5.2/css/all.min.css">
+<style>
+/* TASLAK — telefonda siyah bar yok (Beyar). Bardaki öğelerin telefonda nereye gideceği. */
+@font-face{font-family:"Gilroy";src:url("_font/gilroy/Gilroy-Medium.woff2") format("woff2");font-weight:400 600;font-display:swap}
+@font-face{font-family:"Gilroy";src:url("_font/gilroy/Gilroy-ExtraBold.woff2") format("woff2");font-weight:700 800;font-display:swap}
+:root{--marka:#FCB623;--siyah:#121212;--gri-50:#EFEFEF;--gri-100:#DEDEDE;--gri-400:#6B6B6B;--gri-600:#494949;--k:12px}
+*{box-sizing:border-box;margin:0}
+body{font-family:"Gilroy",system-ui,sans-serif;background:#d9d9d9;color:var(--siyah);padding:24px 16px 48px;line-height:1.5}
+h1{font-size:1.4rem;font-weight:800;max-width:1280px;margin-inline:auto}
+.aciklama{color:var(--gri-600);max-width:1280px;margin:6px auto 20px;font-size:.92rem}
+.izgara{max-width:1280px;margin-inline:auto;display:flex;flex-wrap:wrap;gap:28px}
+.kol{display:grid;gap:8px;align-content:start}
+.kol b{font-size:1rem;font-weight:800}
+.kol small{color:var(--gri-400);font-size:.8rem;max-inline-size:820px}
+.ikili{display:flex;gap:16px;flex-wrap:wrap}
+.telefon{inline-size:390px;block-size:640px;background:var(--gri-50);border:1px solid var(--gri-100);border-radius:24px;overflow:hidden;box-shadow:0 6px 20px rgba(0,0,0,.1);position:relative}
+.bas{display:flex;align-items:center;gap:12px;background:#fff;padding:10px 16px;border-block-end:1px solid var(--gri-100);block-size:60px}
+.bas .logo{font-weight:800;font-size:1.15rem}.bas .logo i{font-style:normal;font-weight:500}
+.bas .ara{margin-inline-start:auto;inline-size:40px;block-size:40px;border-radius:var(--k);border:1px solid var(--gri-100);display:grid;place-items:center}
+.hamb{inline-size:40px;block-size:40px;display:grid;place-items:center;font-size:1.15rem}
+.serit{display:flex;gap:8px;padding:10px 16px;background:#fff;border-block-end:1px solid var(--gri-100);overflow-x:auto;white-space:nowrap;scrollbar-width:none}
+.serit span{display:flex;align-items:center;gap:6px;font-size:.78rem;font-weight:700;border:1px solid var(--gri-100);border-radius:var(--k);padding:0 12px;block-size:36px}
+.serit span i{color:var(--marka)}
+.sd{margin:12px 16px;display:flex;align-items:center;gap:10px;background:#fff;border-radius:16px;padding:4px;font-size:.8rem;white-space:nowrap;overflow:hidden}
+.sd b{background:var(--marka);border-radius:var(--k);padding:5px 10px;font-size:.7rem;font-weight:800}
+.kart{margin:0 16px 16px;border-radius:16px;aspect-ratio:4/3;background:linear-gradient(180deg,#8a929b,#121212);display:flex;align-items:flex-end;padding:14px;color:#fff;font-weight:800}
+/* çekmece */
+.cekmece{position:absolute;inset-block:0;inset-inline-start:0;inline-size:320px;background:#fff;box-shadow:8px 0 30px rgba(0,0,0,.25);display:flex;flex-direction:column;overflow:hidden}
+.perde{position:absolute;inset:0;background:rgba(0,0,0,.45)}
+.c-bas{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-block-end:1px solid var(--gri-100)}
+.c-bas .logo{font-weight:800}.c-bas .logo i{font-style:normal;font-weight:500}
+.c-grup{padding:12px 16px;border-block-end:1px solid var(--gri-100);display:grid;gap:8px}
+.c-grup h4{font-size:.68rem;text-transform:uppercase;letter-spacing:.05em;color:var(--gri-400)}
+.c-satir{display:flex;align-items:center;gap:10px;font-size:.88rem;font-weight:600;min-block-size:44px}
+.c-satir i{color:var(--marka);inline-size:18px;text-align:center}
+.c-satir em{font-style:normal;margin-inline-start:auto;font-weight:700}
+.c-iki{display:flex;gap:8px;flex-wrap:wrap}
+.c-iki span{border:1px solid var(--gri-100);border-radius:var(--k);padding:6px 10px;font-size:.78rem;font-weight:700}
+.c-iki span.aktif{border-color:var(--marka);background:#FFF4C2}
+.menu-yer{font-size:.72rem;color:var(--gri-600)}
+</style>
+</head>
+<body>
+<h1>Telefonda bar öğelerinin yeri · 390px</h1>
+<p class="aciklama">Siyah bar telefonda yok (sizin kararınız). Bardaki öğeler: hava, formatlar (Haber Dinle, Foto Fokus, Video, İnfografik, Podcast), döviz, Dada ailesi, dil. Her seçenekte solda sayfa, sağda menü (çekmece) açıkken.</p>
+<div class="izgara">
+  <div class="kol"><b>A · Hepsi menüde</b><small>Referans: dadagastro.com ve yayındaki v2 (telefonda bar yok, öğeler menüde). Sayfanın üstü sade; formatlar menü açılmadan görünmüyor.</small>
+    <div class="ikili">
+      <div class="telefon">
+        <div class="bas"><span class="hamb"><i class="fa-solid fa-bars"></i></span><span class="logo">dada<i>haber</i></span><span class="ara"><i class="fa-solid fa-magnifying-glass"></i></span></div>
+        <div class="sd"><b>SON DAKİKA</b>Merkez Bankası faizi sabit tuttu</div>
+        <div class="kart">Asgari ücret görüşmelerinde ilk toplantı 4 Aralık'ta</div>
+        <div class="kart">Meclis'te yargı paketi komisyonda</div>
+      </div>
+      <div class="telefon"><div class="perde"></div>
+        <aside class="cekmece">
+          <div class="c-bas"><span class="logo">dada<i>haber</i></span><i class="fa-solid fa-xmark"></i></div>
+          <div class="c-grup"><div class="c-satir"><i class="fa-solid fa-cloud-sun"></i>İstanbul<em>12°</em></div><div class="c-satir"><i class="fa-solid fa-dollar-sign"></i>Dolar<em>34,52</em></div><div class="c-satir"><i class="fa-solid fa-euro-sign"></i>Euro<em>36,18</em></div></div>
+          <div class="c-grup"><h4>Formatlar</h4><div class="c-satir"><i class="fa-solid fa-headphones"></i>Haber Dinle</div><div class="c-satir"><i class="fa-solid fa-camera"></i>Foto Fokus</div><div class="c-satir"><i class="fa-solid fa-circle-play"></i>Video</div><div class="c-satir"><i class="fa-solid fa-chart-simple"></i>İnfografik</div><div class="c-satir"><i class="fa-solid fa-podcast"></i>Podcast</div></div>
+          <div class="c-grup"><h4>Menü başlıkları</h4><p class="menu-yer">Gündem, Dünya, Ekonomi… (header sorusunda)</p></div>
+          <div class="c-grup"><h4>Dada ailesi · Dil</h4><div class="c-iki"><span class="aktif">Haber</span><span>Gastro</span><span>Fit</span><span>Diet</span><span>Gourmet</span></div><div class="c-iki"><span class="aktif">TR</span><span>EN</span><span>AR</span><span>DE</span></div></div>
+        </aside></div>
+    </div></div>
+
+  <div class="kol"><b>B · Formatlar sayfada şeritte, gerisi menüde</b><small>Formatlar header'ın altında yatay kayan bir şeritte kalır; bu şeridin son hali 4. parçada (format şeridi) sorulur. Hava, döviz, Dada ailesi ve dil menüde. Formatlar her zaman görünür; ama header'ın altında 56px'lik bir şerit daha var.</small>
+    <div class="ikili">
+      <div class="telefon">
+        <div class="bas"><span class="hamb"><i class="fa-solid fa-bars"></i></span><span class="logo">dada<i>haber</i></span><span class="ara"><i class="fa-solid fa-magnifying-glass"></i></span></div>
+        <div class="serit"><span><i class="fa-solid fa-headphones"></i>Haber Dinle</span><span><i class="fa-solid fa-camera"></i>Foto Fokus</span><span><i class="fa-solid fa-circle-play"></i>Video</span><span><i class="fa-solid fa-chart-simple"></i>İnfografik</span><span><i class="fa-solid fa-podcast"></i>Podcast</span></div>
+        <div class="sd"><b>SON DAKİKA</b>Merkez Bankası faizi sabit tuttu</div>
+        <div class="kart">Asgari ücret görüşmelerinde ilk toplantı 4 Aralık'ta</div>
+      </div>
+      <div class="telefon"><div class="perde"></div>
+        <aside class="cekmece">
+          <div class="c-bas"><span class="logo">dada<i>haber</i></span><i class="fa-solid fa-xmark"></i></div>
+          <div class="c-grup"><div class="c-satir"><i class="fa-solid fa-cloud-sun"></i>İstanbul<em>12°</em></div><div class="c-satir"><i class="fa-solid fa-dollar-sign"></i>Dolar<em>34,52</em></div><div class="c-satir"><i class="fa-solid fa-euro-sign"></i>Euro<em>36,18</em></div></div>
+          <div class="c-grup"><h4>Menü başlıkları</h4><p class="menu-yer">Gündem, Dünya, Ekonomi… (header sorusunda)</p></div>
+          <div class="c-grup"><h4>Dada ailesi · Dil</h4><div class="c-iki"><span class="aktif">Haber</span><span>Gastro</span><span>Fit</span><span>Diet</span><span>Gourmet</span></div><div class="c-iki"><span class="aktif">TR</span><span>EN</span><span>AR</span><span>DE</span></div></div>
+        </aside></div>
+    </div></div>
+</div>
+</body>
+</html>

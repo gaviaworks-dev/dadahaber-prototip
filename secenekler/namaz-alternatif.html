@@ -1,0 +1,145 @@
+<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex, nofollow"><title>Seçenek · Namaz vakitleri ayırıcısı</title>
+<link rel="stylesheet" href="_vendor/fontawesome-6.5.2/css/all.min.css"><link rel="stylesheet" href="_ortak/anasayfa.css"><link rel="stylesheet" href="_ortak/v2plus.css"><link rel="stylesheet" href="_ortak/gastrodili.css"><style>
+.sayfa{max-width:1340px;margin-inline:auto;padding:24px 16px 48px;display:grid;gap:24px}
+.sayfa>header h1{font-size:var(--y-lg);font-weight:800}.sayfa>header p{color:var(--gri-600);max-width:95ch;margin-block-start:6px}
+.alt-b{display:grid;gap:10px}.alt-b>b{font-size:var(--y-md);font-weight:800}.alt-b>p{font-size:var(--y-sm);color:var(--gri-400);max-width:110ch}
+.ay-kart{grid-template-columns:auto 1fr auto!important}
+/* N1 */
+.n1{background:#121212;color:#fff;box-shadow:var(--golge-md);border-inline-start:4px solid var(--marka)}
+.n1 .r{position:absolute;inset:0;background:center/cover;opacity:.45;z-index:-2}
+.n1::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(18,18,18,.96),rgba(18,18,18,.75))}
+.n1 .ay-ik{background:rgba(252,182,35,.16);border:1px solid rgba(252,182,35,.35);color:var(--marka)}
+.n1 .ay-kim small{color:var(--gri-200)}
+.n1 .ay-dugme{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);color:#fff}.n1 .ay-dugme i{color:var(--marka)}
+.cizelge{list-style:none;margin:0;padding:34px 0 0;position:relative;display:grid;grid-template-columns:repeat(6,1fr)}
+.cizelge .hat{position:absolute;inset-inline:calc(100%/12);inset-block-start:41px;block-size:2px;background:rgba(255,255,255,.18);border-radius:999px}
+.cizelge .hat i{position:absolute;inset-block:0;inset-inline-start:0;inline-size:var(--ilerleme);background:var(--marka);border-radius:999px}
+.cizelge li{display:grid;justify-items:center;gap:4px;position:relative}
+.cizelge .nk{inline-size:16px;block-size:16px;border-radius:50%;background:#121212;border:2px solid rgba(255,255,255,.4);margin-block-end:8px;z-index:1}
+.cizelge li.gecti .nk{background:var(--marka);border-color:var(--marka)}
+.cizelge li.gecti b,.cizelge li.gecti small{opacity:.55}
+.cizelge li.sira .nk{inline-size:20px;block-size:20px;margin-block:-2px 6px;background:#121212;border:4px solid var(--marka);box-shadow:0 0 0 6px rgba(252,182,35,.18)}
+.cizelge b{font-size:var(--y-md);font-weight:800;font-variant-numeric:tabular-nums}
+.cizelge small{font-size:var(--y-sm);color:var(--gri-200);font-weight:700}
+.cizelge li.sira b{color:var(--marka)}
+.balon{position:absolute;inset-block-start:-34px;display:inline-flex;align-items:center;gap:var(--ikon-bosluk);background:var(--marka);color:var(--siyah);font-size:var(--y-sm);font-weight:800;padding:4px 10px;border-radius:var(--k-kontrol);white-space:nowrap}
+/* N2 */
+.n2{background:linear-gradient(110deg,var(--marka-10),#fff 60%);border:1px solid var(--gri-50);box-shadow:var(--golge-sm);grid-template-columns:auto auto 1fr auto!important}
+.n2 .ay-ik{background:var(--marka-25);color:var(--marka-metin)}
+.n2 .ay-kim small{color:var(--gri-400)}
+.siradaki{display:flex;align-items:center;gap:16px;padding-inline-end:28px;border-inline-end:1px solid var(--gri-50)}
+.halka2{inline-size:76px;block-size:76px;border-radius:50%;background:conic-gradient(var(--marka) calc(var(--y)*1%),var(--gri-50) 0);display:grid;place-items:center}
+.halka2>span{inline-size:60px;block-size:60px;border-radius:50%;background:#fff;display:grid;place-items:center;align-content:center;line-height:1.05}
+.halka2 b{font-size:var(--y-md);font-weight:800;font-variant-numeric:tabular-nums}
+.halka2 small{font-size:var(--y-sm);color:var(--gri-400)}
+.siradaki small{font-size:var(--y-sm);color:var(--gri-400);font-weight:700}
+.siradaki>div>b{display:block;font-size:var(--y-lg);font-weight:800;letter-spacing:-.02em}
+.siradaki>div>b span{color:var(--marka-metin)}
+.liste2{display:grid;grid-template-columns:repeat(5,1fr)}
+.liste2 div{display:grid;justify-items:center;gap:2px;border-inline-start:1px solid var(--gri-50)}
+.liste2 small{font-size:var(--y-sm);color:var(--gri-400);font-weight:700}
+.liste2 b{font-size:var(--y-md);font-weight:800;font-variant-numeric:tabular-nums}
+.liste2 .gecti{opacity:.45}
+.n2 .ay-dugme{background:#fff;border:1px solid var(--gri-50);box-shadow:var(--golge-sm)}.n2 .ay-dugme i{color:var(--marka-metin)}
+/* N3 */
+.n3{color:#fff;background:linear-gradient(100deg,#1b2a4a 0%,#3b3550 45%,#a0603a 80%,#e39a4a 100%);box-shadow:var(--golge-md)}
+.n3 .ay-ik{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:var(--marka-200)}
+.n3 .ay-kim small{color:rgba(255,255,255,.75)}
+.sutun3{display:grid;grid-template-columns:repeat(6,1fr)}
+.sutun3 div{display:grid;justify-items:center;align-content:center;gap:2px;padding-block:6px;border-inline-start:1px solid rgba(255,255,255,.18)}
+.sutun3 div:first-child{border:0}
+.sutun3 small{font-size:var(--y-sm);font-weight:700;color:rgba(255,255,255,.75)}
+.sutun3 b{font-size:var(--y-lg);font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.sutun3 .gecti{opacity:.5}
+.sutun3 .s b{color:var(--marka-200)}
+.sutun3 .s small{color:#fff}
+.sutun3 em{font-style:normal;display:inline-flex;align-items:center;gap:var(--ikon-bosluk);font-size:var(--y-sm);font-weight:800;color:var(--siyah);background:var(--marka);border-radius:var(--k-kontrol);padding:2px 8px;margin-block-start:4px;white-space:nowrap}
+.n3 .ay-dugme{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);color:#fff}.n3 .ay-dugme i{color:var(--marka-200)}
+
+/* N4 */
+.n4{display:flex;align-items:center;gap:20px;background:#fff;border:1px solid var(--gri-50);border-radius:var(--k-buyuk);padding:12px 12px 12px 24px;box-shadow:var(--golge-sm);white-space:nowrap}
+.n4-ik{display:inline-flex;align-items:center;gap:var(--ikon-bosluk);font-size:var(--y-sm);font-weight:800;padding-inline-end:20px;border-inline-end:1px solid var(--gri-50)}
+.n4-ik i{color:var(--marka-metin);font-size:var(--y-md)}
+.n4-l{display:flex;align-items:center;gap:24px;flex:1;justify-content:space-between}
+.n4-l>span{display:inline-flex;align-items:baseline;gap:var(--ikon-bosluk)}
+.n4-l small{font-size:var(--y-sm);color:var(--gri-400);font-weight:700}
+.n4-l b{font-size:var(--y-md);font-weight:800;font-variant-numeric:tabular-nums}
+.n4-l .gecti{opacity:.45}
+.n4-s{align-items:center!important;background:var(--siyah);color:#fff;border-radius:var(--k-kart);padding:10px 16px}
+.n4-s i{color:var(--marka)}
+.n4-s em{font-style:normal;font-size:var(--y-sm);color:var(--marka-200);font-weight:700}
+.n4-d{display:inline-flex;align-items:center;gap:var(--ikon-bosluk);block-size:44px;padding:0 16px;border-radius:var(--k-kontrol);border:1px solid var(--gri-50);font-size:var(--y-sm);font-weight:800}
+.n4-d i{color:var(--marka-metin)}
+/* N5 */
+.n5{display:grid;grid-template-columns:240px 1fr;gap:24px;align-items:stretch}
+.n5-bas{display:grid;align-content:center;gap:12px}
+.n5-bas .ay-ik{inline-size:52px;block-size:52px;border-radius:var(--k-kart);display:grid;place-items:center;background:var(--marka-25);color:var(--marka-metin);font-size:var(--y-lg)}
+.n5-bas b{display:block;font-size:var(--y-lg);font-weight:800}
+.n5-bas small{display:block;font-size:var(--y-sm);color:var(--gri-400);margin-block:2px 10px}
+.n5-d{display:inline-flex;align-items:center;gap:var(--ikon-bosluk);font-size:var(--y-sm);font-weight:800;color:var(--marka-metin)}
+.n5-g{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+.n5-k{background:#fff;border:1px solid var(--gri-50);border-radius:var(--k-kart);box-shadow:var(--golge-sm);padding:16px;display:grid;gap:4px;align-content:start}
+.n5-k i{font-size:var(--y-md);color:var(--marka-metin);margin-block-end:6px}
+.n5-k small{font-size:var(--y-sm);color:var(--gri-400);font-weight:700}
+.n5-k b{font-size:var(--y-lg);font-weight:800;font-variant-numeric:tabular-nums}
+.n5-k.gecti{opacity:.5;box-shadow:none}
+.n5-k.s{background:var(--siyah);color:#fff;border-color:var(--siyah);box-shadow:var(--golge-md);transform:translateY(-6px)}
+.n5-k.s i{color:var(--marka)}.n5-k.s small{color:var(--gri-200)}
+.n5-bar{block-size:4px;border-radius:999px;background:rgba(255,255,255,.15);margin-block-start:8px;overflow:hidden}
+.n5-bar i{display:block;block-size:100%;background:var(--marka);margin:0}
+.n5-k em{font-style:normal;font-size:var(--y-sm);color:var(--marka-200);font-weight:700}
+/* N6 */
+.n6{background:#121212;color:#fff;box-shadow:var(--golge-md);grid-template-columns:auto 1fr auto!important}
+.n6-kad{position:relative;inline-size:150px;block-size:150px}
+.kadran{inline-size:100%;block-size:100%}
+.n6-ic{position:absolute;inset:0;display:grid;place-content:center;justify-items:center;line-height:1.1}
+.n6-ic small{font-size:var(--y-sm);color:var(--gri-200);font-weight:700}
+.n6-ic b{font-size:var(--y-lg);font-weight:800;color:var(--marka)}
+.n6-ic em{font-style:normal;font-size:var(--y-sm);font-weight:700}
+.n6-sag{display:grid;gap:14px}
+.n6 .ay-kim small{color:var(--gri-200)}
+.n6-l{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(6,1fr)}
+.n6-l li{display:grid;gap:2px;padding-inline:14px;border-inline-start:1px solid rgba(255,255,255,.14)}
+.n6-l li:first-child{border:0;padding-inline-start:0}
+.n6-l small{font-size:var(--y-sm);color:var(--gri-200);font-weight:700}
+.n6-l b{font-size:var(--y-lg);font-weight:800;font-variant-numeric:tabular-nums}
+.n6-l .gecti{opacity:.45}.n6-l .s b{color:var(--marka)}
+.n6 .ay-dugme{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);color:#fff}.n6 .ay-dugme i{color:var(--marka)}
+
+
+/* Hibritler: ortak */
+.hb{grid-template-columns:auto auto 1fr auto!important}
+.hb-sira{display:flex;align-items:center;gap:14px;padding-inline:4px 28px;border-inline-end:1px solid var(--hb-cizgi)}
+.hb-sira small{font-size:var(--y-sm);color:var(--hb-soluk);font-weight:700}
+.hb-sira>div>b{display:block;font-size:var(--y-lg);font-weight:800;letter-spacing:-.02em;white-space:nowrap}
+.hb-sira>div>b span{color:var(--hb-vurgu)}
+.hb-halka{background:conic-gradient(var(--marka) calc(var(--y)*1%),var(--hb-iz) 0)!important}
+.hb-halka>span{background:var(--hb-ic)!important}
+.hb-halka small{color:var(--hb-soluk)!important}
+.hb-cz{padding-block-start:8px!important}
+.hb-cz .hat{inset-block-start:15px!important;background:var(--hb-iz)!important}
+.hb-cz .nk{background:var(--hb-ic)!important;border-color:var(--hb-nokta)!important}
+.hb-cz li.gecti .nk{background:var(--marka)!important;border-color:var(--marka)!important}
+.hb-cz li.sira .nk{background:var(--hb-ic)!important;border-color:var(--marka)!important}
+.hb-cz small{color:var(--hb-soluk)!important}
+.hb-cz b{font-size:var(--y-lg)!important;letter-spacing:-.02em;color:inherit}
+.hb-cz li.sira b{color:var(--hb-vurgu)!important}
+.hb .ay-kim small{color:var(--hb-soluk)}
+/* H1 */
+.hb.h1{--hb-cizgi:rgba(255,255,255,.2);--hb-soluk:rgba(255,255,255,.75);--hb-vurgu:var(--marka-200);--hb-iz:rgba(255,255,255,.22);--hb-ic:#2a2b45;--hb-nokta:rgba(255,255,255,.45);color:#fff;background:linear-gradient(100deg,#1b2a4a 0%,#3b3550 40%,#a0603a 78%,#e39a4a 100%);box-shadow:var(--golge-md)}
+.hb.h1 .ay-ik{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:var(--marka-200)}
+.hb.h1 .ay-dugme{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);color:#fff}.hb.h1 .ay-dugme i{color:var(--marka-200)}
+/* H2 */
+.hb.h2{--hb-cizgi:rgba(255,255,255,.16);--hb-soluk:var(--gri-200);--hb-vurgu:var(--marka);--hb-iz:rgba(255,255,255,.18);--hb-ic:#121212;--hb-nokta:rgba(255,255,255,.4);color:#fff;background:#121212;box-shadow:var(--golge-md);border-inline-start:4px solid var(--marka)}
+.hb.h2 .r{position:absolute;inset:0;background:center/cover;opacity:.45;z-index:-2}
+.hb.h2::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(18,18,18,.96),rgba(18,18,18,.75))}
+.hb.h2 .ay-ik{background:rgba(252,182,35,.16);border:1px solid rgba(252,182,35,.35);color:var(--marka)}
+.hb.h2 .ay-dugme{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);color:#fff}.hb.h2 .ay-dugme i{color:var(--marka)}
+/* H3 */
+.hb.h3{--hb-cizgi:var(--gri-50);--hb-soluk:var(--gri-400);--hb-vurgu:var(--marka-metin);--hb-iz:var(--gri-50);--hb-ic:#fff;--hb-nokta:var(--gri-200);color:var(--siyah);background:linear-gradient(110deg,var(--marka-10),#fff 60%);border:1px solid var(--gri-50);box-shadow:var(--golge-sm)}
+.hb.h3 .ay-ik{background:var(--marka-25);color:var(--marka-metin)}
+.hb.h3 .hb-cz .hat i{background:linear-gradient(90deg,#1b2a4a,#5b7bb5 25%,#FCB623 55%,#e39a4a)!important}
+.hb.h3 .hb-cz li.gecti .nk{background:#fff!important;border-color:var(--gri-300)!important}
+.hb.h3 .hb-cz li.gecti b{color:var(--gri-300)}
+.hb.h3 .ay-dugme{background:#fff;border:1px solid var(--gri-50);box-shadow:var(--golge-sm)}.hb.h3 .ay-dugme i{color:var(--marka-metin)}
+</style></head><body style="background:#fff"><main class="sayfa"><header><h1>Namaz vakitleri ayırıcısı · 3 hibrit + 6 alternatif</h1><p>Hepsinde sıradaki vakit (Akşam 17.50) ve kalan süre (2 sa 18 dk) birlikte; geçmiş vakitler soluk; il seçimi sağda. Saat örnekte 15.32.</p></header><h2 style="font-size:var(--y-lg);font-weight:800;margin-block-start:8px">N1 + N2 + N3 hibritleri</h2><section class="alt-b"><b>H1 · Hibrit · Gökyüzü degradesi + halka + çizelge</b><div class="ay" style="padding:0"><div class="ay-kart hb h1"><div class="ay-kim"><span class="ay-ik"><i class="fa-solid fa-mosque"></i></span><span><b>Namaz Vakitleri</b><small>İstanbul · 23 Kasım Pazartesi</small></span></div><div class="hb-sira"><div class="halka2 hb-halka" style="--y:62"><span><b>2:18</b><small>kaldı</small></span></div><div><small>Sıradaki vakit</small><b>Akşam <span>17.50</span></b></div></div><ol class="cizelge hb-cz" style="--ilerleme:66%"><span class="hat"><i></i></span><li class="gecti"><span class="nk"></span><b>06.17</b><small>İmsak</small></li><li class="gecti"><span class="nk"></span><b>07.46</b><small>Güneş</small></li><li class="gecti"><span class="nk"></span><b>12.58</b><small>Öğle</small></li><li class="gecti"><span class="nk"></span><b>15.28</b><small>İkindi</small></li><li class="sira"><span class="nk"></span><b>17.50</b><small>Akşam</small></li><li class=""><span class="nk"></span><b>19.13</b><small>Yatsı</small></li></ol><a class="ay-dugme" href="#"><i class="fa-solid fa-location-dot"></i>81 il</a></div></div><p>N3'ün günün saatine göre gökyüzü rengi (lacivertten turuncuya), N2'nin halkalı geri sayımı ve "Sıradaki vakit", N1'in kehribar dolan zaman çizelgesi. En renkli, en atmosferik.</p></section><section class="alt-b"><b>H2 · Hibrit · Koyu fotoğraflı bant + halka + çizelge</b><div class="ay" style="padding:0"><div class="ay-kart hb h2"><div class="r" style="background-image:url(_gorsel/p122.jpg)"></div><div class="ay-kim"><span class="ay-ik"><i class="fa-solid fa-mosque"></i></span><span><b>Namaz Vakitleri</b><small>İstanbul · 23 Kasım Pazartesi</small></span></div><div class="hb-sira"><div class="halka2 hb-halka" style="--y:62"><span><b>2:18</b><small>kaldı</small></span></div><div><small>Sıradaki vakit</small><b>Akşam <span>17.50</span></b></div></div><ol class="cizelge hb-cz" style="--ilerleme:66%"><span class="hat"><i></i></span><li class="gecti"><span class="nk"></span><b>06.17</b><small>İmsak</small></li><li class="gecti"><span class="nk"></span><b>07.46</b><small>Güneş</small></li><li class="gecti"><span class="nk"></span><b>12.58</b><small>Öğle</small></li><li class="gecti"><span class="nk"></span><b>15.28</b><small>İkindi</small></li><li class="sira"><span class="nk"></span><b>17.50</b><small>Akşam</small></li><li class=""><span class="nk"></span><b>19.13</b><small>Yatsı</small></li></ol><a class="ay-dugme" href="#"><i class="fa-solid fa-location-dot"></i>81 il</a></div></div><p>N1'in koyu fotoğraflı bandı (Gastro bant dili, solda kehribar çizgi), N2'nin halkası, N1'in çizelgesi; N3'ten büyük rakamlar. Sitenin diğer koyu bantlarıyla aynı ailede.</p></section><section class="alt-b"><b>H3 · Hibrit · Açık şerit + gökyüzü rengi çizelge</b><div class="ay" style="padding:0"><div class="ay-kart hb h3"><div class="ay-kim"><span class="ay-ik"><i class="fa-solid fa-mosque"></i></span><span><b>Namaz Vakitleri</b><small>İstanbul · 23 Kasım Pazartesi</small></span></div><div class="hb-sira"><div class="halka2 hb-halka" style="--y:62"><span><b>2:18</b><small>kaldı</small></span></div><div><small>Sıradaki vakit</small><b>Akşam <span>17.50</span></b></div></div><ol class="cizelge hb-cz" style="--ilerleme:66%"><span class="hat"><i></i></span><li class="gecti"><span class="nk"></span><b>06.17</b><small>İmsak</small></li><li class="gecti"><span class="nk"></span><b>07.46</b><small>Güneş</small></li><li class="gecti"><span class="nk"></span><b>12.58</b><small>Öğle</small></li><li class="gecti"><span class="nk"></span><b>15.28</b><small>İkindi</small></li><li class="sira"><span class="nk"></span><b>17.50</b><small>Akşam</small></li><li class=""><span class="nk"></span><b>19.13</b><small>Yatsı</small></li></ol><a class="ay-dugme" href="#"><i class="fa-solid fa-location-dot"></i>81 il</a></div></div><p>N2'nin açık, ferah şeridi ve halkası; çizelge çizgisi N3'ün gökyüzü renklerinde (sabahtan akşama renk değiştirir); N1'in noktalı çizelgesi. En sakin, hava ayırıcısıyla aynı aile.</p></section><h2 style="font-size:var(--y-lg);font-weight:800;margin-block-start:16px">Önceki 6 alternatif</h2><section class="alt-b"><b>N1 · Zaman çizelgesi</b><div class="ay" style="padding:0"><div class="ay-kart n1"><div class="r" style="background-image:url(_gorsel/p122.jpg)"></div><div class="ay-kim"><span class="ay-ik"><i class="fa-solid fa-mosque"></i></span><span><b>Namaz Vakitleri</b><small>İstanbul · 23 Kasım Pazartesi</small></span></div><ol class="cizelge" style="--ilerleme:66%"><span class="hat"><i></i></span><li class="gecti"><span class="nk"></span><b>06.17</b><small>İmsak</small></li><li class="gecti"><span class="nk"></span><b>07.46</b><small>Güneş</small></li><li class="gecti"><span class="nk"></span><b>12.58</b><small>Öğle</small></li><li class="gecti"><span class="nk"></span><b>15.28</b><small>İkindi</small></li><li class="sira"><span class="nk"></span><b>17.50</b><small>Akşam</small><span class="balon"><i class="fa-solid fa-hourglass-half"></i>2 sa 18 dk</span></li><li class=""><span class="nk"></span><b>19.13</b><small>Yatsı</small></li></ol><a class="ay-dugme" href="#"><i class="fa-solid fa-location-dot"></i>81 il</a></div></div><p>Koyu fotoğraflı bant (Gastro bant dili). Günün 6 vakti tek bir yatay çizgide; çizgi şimdiki ana kadar kehribar dolar, geçen vakitler soluk. Sıradaki vaktin noktası halkalı, üstünde "2 sa 18 dk" balonu. Günün neresinde olunduğu tek bakışta görünür.</p></section><section class="alt-b"><b>N2 · Halkalı geri sayım</b><div class="ay" style="padding:0"><div class="ay-kart n2"><div class="ay-kim"><span class="ay-ik"><i class="fa-solid fa-mosque"></i></span><span><b>Namaz Vakitleri</b><small>İstanbul · 23 Kasım</small></span></div><div class="siradaki"><div class="halka2" style="--y:62"><span><b>2:18</b><small>kaldı</small></span></div><div><small>Sıradaki vakit</small><b>Akşam <span>17.50</span></b></div></div><div class="liste2"><div class="gecti"><small>İmsak</small><b>06.17</b></div><div class="gecti"><small>Güneş</small><b>07.46</b></div><div class="gecti"><small>Öğle</small><b>12.58</b></div><div class="gecti"><small>İkindi</small><b>15.28</b></div><div class=""><small>Yatsı</small><b>19.13</b></div></div><a class="ay-dugme" href="#"><i class="fa-solid fa-location-dot"></i>Şehir · 81 il</a></div></div><p>Açık, ferah şerit (hava ayırıcısıyla aynı aile). Solda sıradaki vakit büyük: kalan süreyi gösteren halka ("2:18 kaldı") ve "Akşam 17.50"; sağda diğer beş vakit ince çizgilerle ayrılmış sade sütunlarda.</p></section><section class="alt-b"><b>N3 · Gün degradesi, sade sütunlar</b><div class="ay" style="padding:0"><div class="ay-kart n3"><div class="ay-kim"><span class="ay-ik"><i class="fa-solid fa-moon"></i></span><span><b>Namaz Vakitleri</b><small>İstanbul · Akşama doğru</small></span></div><div class="sutun3"><div class="gecti"><small>İmsak</small><b>06.17</b></div><div class="gecti"><small>Güneş</small><b>07.46</b></div><div class="gecti"><small>Öğle</small><b>12.58</b></div><div class="gecti"><small>İkindi</small><b>15.28</b></div><div class="s"><small>Akşam</small><b>17.50</b><em><i class="fa-solid fa-hourglass-half"></i>2 sa 18 dk</em></div><div class=""><small>Yatsı</small><b>19.13</b></div></div><a class="ay-dugme" href="#"><i class="fa-solid fa-location-dot"></i>81 il</a></div></div><p>Arka plan günün saatine göre gökyüzü renginde (şu an akşama doğru: lacivertten turuncuya). Kutular yok; vakitler ince çizgilerle ayrılmış büyük rakamlar. Sıradaki vakit kehribar, altında kalan süre etiketi.</p></section><section class="alt-b"><b>N4 · Tek satır, en sade</b><div class="ay" style="padding:0"><div class="n4"><span class="n4-ik"><i class="fa-solid fa-mosque"></i>İstanbul</span><div class="n4-l"><span class="gecti"><small>İmsak</small><b>06.17</b></span><span class="gecti"><small>Güneş</small><b>07.46</b></span><span class="gecti"><small>Öğle</small><b>12.58</b></span><span class="gecti"><small>İkindi</small><b>15.28</b></span><span class="n4-s"><i class="fa-solid fa-hourglass-half"></i><b>Akşam 17.50</b><em>2 sa 18 dk kaldı</em></span><span class=""><small>Yatsı</small><b>19.13</b></span></div><a href="#" class="n4-d"><i class="fa-solid fa-location-dot"></i>81 il</a></div></div><p>Beyaz ince şerit; altı vakit tek satırda, sıradaki vakit siyah kapsülde "⏳ Akşam 17.50 · 2 sa 18 dk kaldı". En az yer kaplayan seçenek.</p></section><section class="alt-b"><b>N5 · Vakit kartları</b><div class="ay" style="padding:0"><div class="n5"><div class="n5-bas"><span class="ay-ik"><i class="fa-solid fa-mosque"></i></span><div><b>Namaz Vakitleri</b><small>İstanbul · 23 Kasım</small><a href="#" class="n5-d"><i class="fa-solid fa-location-dot"></i>Şehir değiştir · 81 il</a></div></div><div class="n5-g"><div class="n5-k gecti"><i class="fa-solid fa-star"></i><small>İmsak</small><b>06.17</b></div><div class="n5-k gecti"><i class="fa-solid fa-sun"></i><small>Güneş</small><b>07.46</b></div><div class="n5-k gecti"><i class="fa-solid fa-sun"></i><small>Öğle</small><b>12.58</b></div><div class="n5-k gecti"><i class="fa-solid fa-cloud-sun"></i><small>İkindi</small><b>15.28</b></div><div class="n5-k s"><i class="fa-solid fa-moon"></i><small>Akşam</small><b>17.50</b><span class="n5-bar"><i style="inline-size:62%"></i></span><em>2 sa 18 dk kaldı</em></div><div class="n5-k "><i class="fa-solid fa-star-and-crescent"></i><small>Yatsı</small><b>19.13</b></div></div></div></div><p>Gastro kart diliyle altı küçük beyaz kart; her vakit günün saatine uygun ikonla (yıldız, güneş, bulut, ay). Sıradaki vakit siyah, öne çıkmış (yükselmiş) kart, altında ilerleme çubuğu ve kalan süre.</p></section><section class="alt-b"><b>N6 · Gün kadranı</b><div class="ay" style="padding:0"><div class="ay-kart n6"><div class="n6-kad"><svg viewBox="0 0 140 140" class="kadran"><circle cx="70" cy="70" r="56" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="8"/><path d="M 125.8 74.2 A 56 56 0 0 1 25.3 103.7" fill="none" stroke="#FCB623" stroke-width="8" stroke-linecap="round"/><circle cx="125.8" cy="74.2" r="4" fill="#fff" stroke="#121212" stroke-width="2"/><circle cx="120.1" cy="95.0" r="4" fill="#fff" stroke="#121212" stroke-width="2"/><circle cx="56.0" cy="124.2" r="4" fill="#fff" stroke="#121212" stroke-width="2"/><circle cx="25.9" cy="104.5" r="4" fill="#fff" stroke="#121212" stroke-width="2"/><circle cx="14.1" cy="72.4" r="6" fill="#FCB623" stroke="#121212" stroke-width="2"/><circle cx="16.8" cy="52.5" r="4" fill="#fff" stroke="#121212" stroke-width="2"/><circle cx="25.3" cy="103.7" r="3" fill="#121212"/></svg><div class="n6-ic"><small>Akşam</small><b>17.50</b><em>2 sa 18 dk</em></div></div><div class="n6-sag"><div class="ay-kim"><span><b>Namaz Vakitleri</b><small>İstanbul · 23 Kasım Pazartesi · şimdi 15.32</small></span></div><ol class="n6-l"><li class="gecti"><small>İmsak</small><b>06.17</b></li><li class="gecti"><small>Güneş</small><b>07.46</b></li><li class="gecti"><small>Öğle</small><b>12.58</b></li><li class="gecti"><small>İkindi</small><b>15.28</b></li><li class="s"><small>Akşam</small><b>17.50</b></li><li class=""><small>Yatsı</small><b>19.13</b></li></ol></div><a class="ay-dugme" href="#"><i class="fa-solid fa-location-dot"></i>81 il</a></div></div><p>Koyu bantta 24 saatlik dairesel kadran: vakitler çember üzerinde nokta, gün başından şimdiye kadar kehribar yay dolar; ortada "Akşam 17.50 · 2 sa 18 dk". Sağda altı vakit sade sütunda. En özgün, en görsel.</p></section></main></body></html>

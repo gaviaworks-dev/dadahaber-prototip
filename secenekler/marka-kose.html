@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Seçenek · Köşe yuvarlaklığı</title>
+<style>
+/* TASLAK — yalnızca seçim için. Kök ekranlara taşınmaz.
+   Renk (v2 paleti) ve font (Gilroy) seçildi; burada değerlendirilen yalnızca köşe. */
+@font-face{font-family:"Gilroy";src:url("_font/gilroy/Gilroy-Medium.woff2") format("woff2");font-weight:400 600;font-display:swap}
+@font-face{font-family:"Gilroy";src:url("_font/gilroy/Gilroy-ExtraBold.woff2") format("woff2");font-weight:700 800;font-display:swap}
+:root{--marka:#FCB623;--marka-metin:#7A5F01;--ust:#121212;--zemin:#EFEFEF;--yuzey:#fff;--metin:#121212;--metin-2:#494949;--cizgi:#DEDEDE}
+*{box-sizing:border-box;margin:0}
+body{font-family:"Gilroy",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--zemin);color:var(--metin);padding:24px 16px 48px;line-height:1.5}
+.sayfa{max-width:1240px;margin-inline:auto}
+.sayfa>h1{font-size:1.5rem;line-height:1.2;font-weight:800}
+.sayfa>p{color:var(--metin-2);margin-block:6px 20px;max-width:72ch}
+.izgara{display:grid;gap:20px;grid-template-columns:1fr}
+@media (min-width:640px){.izgara{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1025px){.izgara{grid-template-columns:repeat(3,1fr)}}
+
+/* Seçeneklere göre köşe değişkenleri.
+   Köşe değerleri mantıksal: start-start · start-end · end-end · end-start (RTL'de kendiliğinden aynalanır) */
+.a{--k-kart-ss:16px;--k-kart-se:16px;--k-kart-ee:16px;--k-kart-es:0;--k-kucuk-ss:8px;--k-kucuk-se:8px;--k-kucuk-ee:8px;--k-kucuk-es:0;--k-hap:999px}
+.b{--k-kart-ss:16px;--k-kart-se:16px;--k-kart-ee:16px;--k-kart-es:16px;--k-kucuk-ss:8px;--k-kucuk-se:8px;--k-kucuk-ee:8px;--k-kucuk-es:8px;--k-hap:999px}
+.c{--k-kart-ss:8px;--k-kart-se:8px;--k-kart-ee:8px;--k-kart-es:8px;--k-kucuk-ss:4px;--k-kucuk-se:4px;--k-kucuk-ee:4px;--k-kucuk-es:4px;--k-hap:999px}
+
+.kart-k{border-start-start-radius:var(--k-kart-ss);border-start-end-radius:var(--k-kart-se);border-end-end-radius:var(--k-kart-ee);border-end-start-radius:var(--k-kart-es)}
+.kucuk-k{border-start-start-radius:var(--k-kucuk-ss);border-start-end-radius:var(--k-kucuk-se);border-end-end-radius:var(--k-kucuk-ee);border-end-start-radius:var(--k-kucuk-es)}
+
+.secenek{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.06);display:flex;flex-direction:column}
+.etiket{padding:14px 16px;background:var(--ust);color:#eee}
+.etiket b{font-size:1.05rem;color:#fff;font-weight:800}
+.etiket small{display:block;color:#bdbdbd;font-size:.8rem}
+.ornek{padding:16px;display:grid;gap:14px;background:var(--zemin);flex:1}
+
+.gorselli{position:relative;overflow:hidden;aspect-ratio:4/3;background:linear-gradient(160deg,#8a929c 0%,#3a3f46 55%,#121212 100%);color:#fff;display:flex;flex-direction:column;justify-content:flex-end;padding:14px}
+.gorselli .kat{position:absolute;inset-block-start:12px;inset-inline-start:12px}
+.gorselli h2{font-size:1.1rem;line-height:1.25;font-weight:800}
+.gorselli .meta{font-size:.75rem;opacity:.85;margin-block-start:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.kat{font-size:.68rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;background:var(--marka);color:var(--metin);padding:3px 8px;justify-self:start}
+
+.yatay{display:grid;grid-template-columns:96px 1fr;gap:12px;background:var(--yuzey);padding:10px;align-items:center}
+.yatay .kare{aspect-ratio:1;background:linear-gradient(135deg,#9aa2ac,#4a5058)}
+.yatay h3{font-size:.92rem;line-height:1.3;font-weight:800}
+.yatay .meta{font-size:.72rem;color:var(--metin-2);margin-block-start:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+.satir{display:flex;gap:8px;align-items:center;flex-wrap:nowrap;overflow:hidden}
+.dugme{font-size:.82rem;font-weight:800;padding:9px 14px;white-space:nowrap}
+.dugme.ana{background:var(--marka);color:var(--metin)}
+.dugme.ikinci{background:var(--yuzey);color:var(--metin);box-shadow:inset 0 0 0 1px var(--cizgi)}
+.hap{border-radius:var(--k-hap);font-size:.75rem;font-weight:600;padding:5px 11px;background:var(--yuzey);box-shadow:inset 0 0 0 1px var(--cizgi);white-space:nowrap}
+.hap.aktif{background:var(--ust);color:#fff;box-shadow:none}
+.arama{display:flex;align-items:center;gap:8px;background:var(--yuzey);box-shadow:inset 0 0 0 1px var(--cizgi);padding:10px 12px;font-size:.85rem;color:var(--metin-2)}
+.sd{display:flex;align-items:center;gap:10px;background:var(--yuzey);padding:6px;font-size:.8rem;white-space:nowrap;overflow:hidden}
+.sd b{background:var(--marka);padding:4px 10px;font-weight:800;font-size:.72rem}
+.sd span{overflow:hidden;text-overflow:ellipsis}
+
+.rtl-baslik{font-size:.7rem;color:#6B6B6B;text-transform:uppercase;letter-spacing:.04em}
+.not{padding:12px 16px 16px;font-size:.84rem;color:#373737;display:grid;gap:4px;border-block-start:1px solid var(--cizgi)}
+</style>
+</head>
+<body>
+<main class="sayfa">
+  <h1>Marka kimliği · 3/4 · Köşe yuvarlaklığı</h1>
+  <p>Seçilen renk (v2 paleti) ve font (Gilroy) ile. Aynı parçalar var: görselli kart, yatay kart, Son Dakika etiketi, düğmeler, sekme hapları, arama kutusu. En altta aynı kartın Arapça (sağdan sola) hali.</p>
+
+  <div class="izgara">
+    <!-- A -->
+    <section class="secenek a">
+      <div class="etiket"><b>A · İmza köşe (bir köşe keskin)</b><small>Referans: yayındaki v2 · <code>--dh-k-r: 16px 16px 16px 0</code>, <code>--dh-k-r-s: 8px 8px 8px 0</code></small></div>
+      <div class="ornek">
+        <article class="gorselli kart-k"><span class="kat kucuk-k">Ekonomi</span><h2>Asgari ücret görüşmelerinde ilk toplantı 4 Aralık'ta</h2><p class="meta">23 Kas 14.32 · 3 dk · 3 kaynak</p></article>
+        <article class="yatay kart-k"><div class="kare kucuk-k"></div><div><h3>Meclis'te yargı paketi görüşmeleri komisyonda sürüyor</h3><p class="meta">Gündem · 23 Kas 13.05</p></div></article>
+        <div class="sd kucuk-k"><b class="kucuk-k">SON DAKİKA</b><span>Merkez Bankası politika faizini yüzde 42,5'te sabit tuttu</span></div>
+        <div class="satir"><span class="dugme ana kucuk-k">Takip Et</span><span class="dugme ikinci kucuk-k">Haberi Dinle</span></div>
+        <div class="satir"><span class="hap aktif">Tümü</span><span class="hap">Siyaset</span><span class="hap">Toplum</span><span class="hap">Hukuk</span></div>
+        <div class="arama kucuk-k">Haber, konu ya da kişi ara</div>
+        <p class="rtl-baslik">Arapça · sağdan sola</p>
+        <article class="yatay kart-k" dir="rtl" lang="ar"><div class="kare kucuk-k"></div><div><h3>تبدأ مفاوضات الحد الأدنى للأجور في 4 ديسمبر</h3><p class="meta">اقتصاد · 23 نوفمبر</p></div></article>
+      </div>
+      <div class="not">
+        <p><b>Ne:</b> Kart 16px, küçük öğeler 8px; alt-baş köşe keskin. Haplar tam yuvarlak.</p>
+        <p><b>Artı:</b> v2'nin kimliği; renk ve fontla birlikte tanınır bir imza. Ailedeki diğer sitelerde yok, Dada Haber'i ayırıyor.</p>
+        <p><b>Eksi:</b> Her bileşende tutarlı uygulanması gerekir, yarım kalırsa hata gibi görünür. Arapçada keskin köşe aynalanır (alt-sağa geçer); bu kurala bağlanmalı.</p>
+      </div>
+    </section>
+
+    <!-- B -->
+    <section class="secenek b">
+      <div class="etiket"><b>B · Yumuşak, dört köşe eşit</b><small>Referans: kardeş siteler · <code>--radius-sm 8px</code>, <code>-md 12px</code>, <code>-lg 16px</code>, <code>-xl 24px</code></small></div>
+      <div class="ornek">
+        <article class="gorselli kart-k"><span class="kat kucuk-k">Ekonomi</span><h2>Asgari ücret görüşmelerinde ilk toplantı 4 Aralık'ta</h2><p class="meta">23 Kas 14.32 · 3 dk · 3 kaynak</p></article>
+        <article class="yatay kart-k"><div class="kare kucuk-k"></div><div><h3>Meclis'te yargı paketi görüşmeleri komisyonda sürüyor</h3><p class="meta">Gündem · 23 Kas 13.05</p></div></article>
+        <div class="sd kucuk-k"><b class="kucuk-k">SON DAKİKA</b><span>Merkez Bankası politika faizini yüzde 42,5'te sabit tuttu</span></div>
+        <div class="satir"><span class="dugme ana kucuk-k">Takip Et</span><span class="dugme ikinci kucuk-k">Haberi Dinle</span></div>
+        <div class="satir"><span class="hap aktif">Tümü</span><span class="hap">Siyaset</span><span class="hap">Toplum</span><span class="hap">Hukuk</span></div>
+        <div class="arama kucuk-k">Haber, konu ya da kişi ara</div>
+        <p class="rtl-baslik">Arapça · sağdan sola</p>
+        <article class="yatay kart-k" dir="rtl" lang="ar"><div class="kare kucuk-k"></div><div><h3>تبدأ مفاوضات الحد الأدنى للأجور في 4 ديسمبر</h3><p class="meta">اقتصاد · 23 نوفمبر</p></div></article>
+      </div>
+      <div class="not">
+        <p><b>Ne:</b> Kart 16px, küçük öğeler 8px, dört köşe eşit. Haplar tam yuvarlak.</p>
+        <p><b>Artı:</b> Dada ailesiyle birebir aynı; uygulaması basit, yön değişince sorun çıkmaz.</p>
+        <p><b>Eksi:</b> v2'deki ayırt edici imza kaybolur; Dada Haber kardeş sitelerden görsel olarak daha az ayrışır.</p>
+      </div>
+    </section>
+
+    <!-- C -->
+    <section class="secenek c">
+      <div class="etiket"><b>C · Keskin, az yuvarlak</b><small>Referans: dadahaber-view v1 · <code>--radius-sm 4px</code>, <code>-md 8px</code>, <code>-lg 14px</code></small></div>
+      <div class="ornek">
+        <article class="gorselli kart-k"><span class="kat kucuk-k">Ekonomi</span><h2>Asgari ücret görüşmelerinde ilk toplantı 4 Aralık'ta</h2><p class="meta">23 Kas 14.32 · 3 dk · 3 kaynak</p></article>
+        <article class="yatay kart-k"><div class="kare kucuk-k"></div><div><h3>Meclis'te yargı paketi görüşmeleri komisyonda sürüyor</h3><p class="meta">Gündem · 23 Kas 13.05</p></div></article>
+        <div class="sd kucuk-k"><b class="kucuk-k">SON DAKİKA</b><span>Merkez Bankası politika faizini yüzde 42,5'te sabit tuttu</span></div>
+        <div class="satir"><span class="dugme ana kucuk-k">Takip Et</span><span class="dugme ikinci kucuk-k">Haberi Dinle</span></div>
+        <div class="satir"><span class="hap aktif">Tümü</span><span class="hap">Siyaset</span><span class="hap">Toplum</span><span class="hap">Hukuk</span></div>
+        <div class="arama kucuk-k">Haber, konu ya da kişi ara</div>
+        <p class="rtl-baslik">Arapça · sağdan sola</p>
+        <article class="yatay kart-k" dir="rtl" lang="ar"><div class="kare kucuk-k"></div><div><h3>تبدأ مفاوضات الحد الأدنى للأجور في 4 ديسمبر</h3><p class="meta">اقتصاد · 23 نوفمبر</p></div></article>
+      </div>
+      <div class="not">
+        <p><b>Ne:</b> Kart 8px, küçük öğeler 4px. Haplar tam yuvarlak.</p>
+        <p><b>Artı:</b> Klasik, ciddi haber sitesi görünümü; yoğun ızgarada daha düzenli duruyor.</p>
+        <p><b>Eksi:</b> Gilroy'un yuvarlak, genç karakteriyle daha az uyumlu; hem v2'den hem kardeş sitelerden uzaklaşıyor.</p>
+      </div>
+    </section>
+  </div>
+</main>
+</body>
+</html>

@@ -1,0 +1,5 @@
+# Proje kuralı: tasks/ ve ekran görüntüleri git'e girmez; devir paketi (docs/kaynak) iç belgedir, açık depoya girmez.
+tasks/
+docs/screenshots/
+docs/kaynak/
+.DS_Store

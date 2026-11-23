@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Seçenek · Renk paleti</title>
+<style>
+/* TASLAK — yalnızca seçim için. Kök ekranlara taşınmaz.
+   Font henüz seçilmedi: her üç seçenek de aynı sistem fontuyla gösterilir. */
+*{box-sizing:border-box;margin:0}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:#eceef1;color:#1b1f27;line-height:1.5;padding:24px 16px 48px}
+.sayfa{max-width:1240px;margin-inline:auto}
+.sayfa>h1{font-size:1.5rem;line-height:1.2}
+.sayfa>p{color:#555b66;margin-block:6px 20px;max-width:70ch}
+.izgara{display:grid;gap:20px;grid-template-columns:1fr}
+@media (min-width:640px){.izgara{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1025px){.izgara{grid-template-columns:repeat(3,1fr)}}
+
+/* Her seçenek kendi değişkenleriyle */
+.secenek{--ust:#211E16;--ust-metin:#e9e2d6;--zemin:#f9f9f9;--yuzey:#fff;--metin:#211E16;--metin-2:#56514a;--cizgi:#e4e2de;
+  --marka:#2563EB;--marka-metin:#1d4fc4;--marka-ustu:#fff;--yumusak:#e8effd;--alt:var(--marka);--alt-metin:#fff}
+.secenek.b{--ust:#020D1E;--ust-metin:#c9d3e3;--zemin:#F6F7F9;--metin:#141B28;--metin-2:#4A5464;--cizgi:#E3E7ED;
+  --marka:#FCB623;--marka-metin:#7A5F01;--marka-ustu:#051830;--yumusak:#FFF4C2;--alt:#051830;--alt-metin:#e6ebf3}
+.secenek.c{--ust:#0A1730;--ust-metin:#c9d3e3;--zemin:#F6F7F9;--metin:#141B28;--metin-2:#4A5464;--cizgi:#E3E7ED;
+  --marka:#E0202C;--marka-metin:#B5121D;--marka-ustu:#fff;--yumusak:#FDECEB;--alt:#0F1E3D;--alt-metin:#e6ebf3}
+
+.secenek{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.06);display:flex;flex-direction:column}
+.etiket{padding:14px 16px;border-block-end:1px solid #e6e8ec}
+.etiket b{font-size:1.05rem}
+.etiket small{display:block;color:#666c77;font-size:.8rem}
+
+.onizleme{background:var(--zemin);color:var(--metin);flex:1}
+.ust-bar{background:var(--ust);color:var(--ust-metin);font-size:.72rem;padding:6px 14px;display:flex;gap:12px;white-space:nowrap;overflow:hidden}
+.ust-bar span:last-child{margin-inline-start:auto}
+.baslik{background:var(--yuzey);padding:10px 14px;display:flex;align-items:center;gap:14px;border-block-end:1px solid var(--cizgi)}
+.logo{font-weight:800;font-size:1.05rem;letter-spacing:-.01em;white-space:nowrap}
+.logo i{font-style:normal;color:var(--marka-metin)}
+.secenek.b .logo i{color:var(--metin);background:var(--marka);padding-inline:4px;border-radius:3px}
+.menu{display:flex;gap:12px;font-size:.8rem;white-space:nowrap;overflow:hidden}
+.menu a{color:var(--metin-2);text-decoration:none;padding-block:4px}
+.menu a.aktif{color:var(--metin);box-shadow:inset 0 -2px 0 var(--marka)}
+.icerik{padding:14px;display:grid;gap:12px}
+.sd{display:flex;gap:8px;align-items:center;font-size:.78rem;white-space:nowrap;overflow:hidden;background:var(--yuzey);border:1px solid var(--cizgi);border-radius:8px;padding:6px 10px}
+.sd b{background:var(--marka);color:var(--marka-ustu);font-size:.68rem;padding:2px 7px;border-radius:4px;letter-spacing:.02em}
+.sd span{overflow:hidden;text-overflow:ellipsis}
+.kart{background:var(--yuzey);border:1px solid var(--cizgi);border-radius:10px;overflow:hidden}
+.gorsel{aspect-ratio:16/9;background:linear-gradient(135deg,#7d8794,#3f4752)}
+.kart-ic{padding:10px 12px 12px}
+.kat{font-size:.7rem;font-weight:700;color:var(--marka-metin);letter-spacing:.04em;text-transform:uppercase}
+.kart h2{font-size:1rem;line-height:1.3;margin-block:4px 6px}
+.meta{font-size:.74rem;color:var(--metin-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.teyit{display:flex;gap:6px;align-items:center;font-size:.74rem;white-space:nowrap;overflow:hidden;margin-block-start:8px;padding-block-start:8px;border-block-start:1px dashed var(--cizgi);color:var(--metin-2)}
+.teyit em{font-style:normal;background:var(--yumusak);color:var(--metin);padding:1px 7px;border-radius:999px;font-weight:600}
+.dugmeler{display:flex;gap:8px}
+.dugme{font-size:.8rem;font-weight:600;padding:8px 14px;border-radius:8px;border:1px solid transparent;white-space:nowrap}
+.dugme.ana{background:var(--marka);color:var(--marka-ustu)}
+.dugme.ikinci{background:var(--yuzey);color:var(--metin);border-color:var(--cizgi)}
+.alt{background:var(--alt);color:var(--alt-metin);padding:12px 14px;font-size:.75rem;display:flex;gap:12px;white-space:nowrap;overflow:hidden}
+.renkler{display:flex;gap:6px;padding:12px 16px;border-block-start:1px solid #e6e8ec;flex-wrap:wrap}
+.renkler span{display:flex;align-items:center;gap:6px;font-size:.72rem;font-family:ui-monospace,Menlo,monospace;color:#444}
+.renkler span::before{content:"";inline-size:16px;block-size:16px;border-radius:4px;background:var(--r);border:1px solid rgba(0,0,0,.12)}
+.not{padding:12px 16px 16px;font-size:.82rem;color:#3d424b;display:grid;gap:4px}
+.not p{margin:0}
+</style>
+</head>
+<body>
+<main class="sayfa">
+  <h1>Marka kimliği · 1/5 · Renk paleti</h1>
+  <p>Üç seçenek aynı parçalarla gösteriliyor: siyah üst bar, header ve menü, Son Dakika satırı, haber kartı ve teyit satırı, düğmeler, footer. Font, köşe ve yoğunluk henüz seçilmedi; burada değerlendirilen yalnızca renk.</p>
+
+  <div class="izgara">
+
+    <section class="secenek a" aria-labelledby="sa">
+      <div class="etiket"><b id="sa">A · Aile kalıbı + mavi</b><small>Kalıp: kardeş siteler · Renk: dadahaber-view v1 alternatif vurgu</small></div>
+      <div class="onizleme">
+        <div class="ust-bar"><span>23 Kasım Pazartesi · İstanbul 12°</span><span>Dolar 34,52 · BIST 9.812</span><span>TR</span></div>
+        <div class="baslik"><span class="logo">dada <i>haber</i></span><nav class="menu"><a class="aktif">Gündem</a><a>Dünya</a><a>Ekonomi</a><a>Spor</a></nav></div>
+        <div class="icerik">
+          <div class="sd"><b>SON DAKİKA</b><span>Merkez Bankası politika faizini yüzde 42,5'te sabit tuttu</span></div>
+          <article class="kart"><div class="gorsel"></div><div class="kart-ic">
+            <span class="kat">Ekonomi</span>
+            <h2>Asgari ücret görüşmelerinde ilk toplantı 4 Aralık'ta yapılacak</h2>
+            <div class="meta">23 Kas 14.32 · 3 dk okuma</div>
+            <div class="teyit"><em>Teyitli</em> 3 kaynak · K1, K2 · 14.32'de güncellendi</div>
+          </div></article>
+          <div class="dugmeler"><span class="dugme ana">Takip Et</span><span class="dugme ikinci">Haberi Dinle</span></div>
+        </div>
+        <div class="alt"><span>Hakkımızda</span><span>Yayın İlkeleri</span><span>Düzeltme Politikası</span></div>
+      </div>
+      <div class="renkler">
+        <span style="--r:#2563EB">#2563EB</span><span style="--r:#211E16">#211E16</span><span style="--r:#f9f9f9">#F9F9F9</span>
+      </div>
+      <div class="not">
+        <p><b>Ne:</b> Kardeş sitelerin renk düzeni (sıcak siyah üst bar #211E16, #F9F9F9 zemin, tek marka rengi, marka renginde footer); haberin rengi olarak mavi.</p>
+        <p><b>Artı:</b> Dada ailesiyle aynı düzen; ailedeki diğer renklerle (Gastro turuncu-kırmızı, Diet ve Fit yeşil, Gourmet mor) çakışmıyor; sakin ton; metin rengi olarak da okunuyor.</p>
+        <p><b>Eksi:</b> Haber sitelerinde sık görülen bir renk; v2'de beğenilen kehribarın sıcaklığı yok.</p>
+      </div>
+    </section>
+
+    <section class="secenek b" aria-labelledby="sb">
+      <div class="etiket"><b id="sb">B · Lacivert + kehribar</b><small>Referans: dadahaber-view v2 (index-v2, <code>.dh-v2</code> katmanı)</small></div>
+      <div class="onizleme">
+        <div class="ust-bar"><span>23 Kasım Pazartesi · İstanbul 12°</span><span>Dolar 34,52 · BIST 9.812</span><span>TR</span></div>
+        <div class="baslik"><span class="logo">dada <i>haber</i></span><nav class="menu"><a class="aktif">Gündem</a><a>Dünya</a><a>Ekonomi</a><a>Spor</a></nav></div>
+        <div class="icerik">
+          <div class="sd"><b>SON DAKİKA</b><span>Merkez Bankası politika faizini yüzde 42,5'te sabit tuttu</span></div>
+          <article class="kart"><div class="gorsel"></div><div class="kart-ic">
+            <span class="kat">Ekonomi</span>
+            <h2>Asgari ücret görüşmelerinde ilk toplantı 4 Aralık'ta yapılacak</h2>
+            <div class="meta">23 Kas 14.32 · 3 dk okuma</div>
+            <div class="teyit"><em>Teyitli</em> 3 kaynak · K1, K2 · 14.32'de güncellendi</div>
+          </div></article>
+          <div class="dugmeler"><span class="dugme ana">Takip Et</span><span class="dugme ikinci">Haberi Dinle</span></div>
+        </div>
+        <div class="alt"><span>Hakkımızda</span><span>Yayın İlkeleri</span><span>Düzeltme Politikası</span></div>
+      </div>
+      <div class="renkler">
+        <span style="--r:#FCB623">#FCB623</span><span style="--r:#7A5F01">#7A5F01</span><span style="--r:#051830">#051830</span><span style="--r:#F6F7F9">#F6F7F9</span>
+      </div>
+      <div class="not">
+        <p><b>Ne:</b> v2'de beğenilen koyu lacivert ve kehribar; kehribar yalnızca zemin ve vurgu olarak, üstündeki metin lacivert.</p>
+        <p><b>Artı:</b> Beğenilen referans; ailede bu renk yok, kolay ayırt ediliyor; koyu bantlarla güçlü kontrast.</p>
+        <p><b>Eksi:</b> Kehribar açık zeminde metin olarak okunmuyor, metinde koyu ton (#7A5F01) gerekiyor; uyarı ve "gelişiyor" rengiyle karışabilir; kardeş sitelerin sıcak siyah tonundan ayrılıyor.</p>
+      </div>
+    </section>
+
+    <section class="secenek c" aria-labelledby="sc">
+      <div class="etiket"><b id="sc">C · Lacivert + kırmızı</b><small>Referans: dadahaber-view v1 (index.html, <code>dh-tokens.css</code>)</small></div>
+      <div class="onizleme">
+        <div class="ust-bar"><span>23 Kasım Pazartesi · İstanbul 12°</span><span>Dolar 34,52 · BIST 9.812</span><span>TR</span></div>
+        <div class="baslik"><span class="logo">dada <i>haber</i></span><nav class="menu"><a class="aktif">Gündem</a><a>Dünya</a><a>Ekonomi</a><a>Spor</a></nav></div>
+        <div class="icerik">
+          <div class="sd"><b>SON DAKİKA</b><span>Merkez Bankası politika faizini yüzde 42,5'te sabit tuttu</span></div>
+          <article class="kart"><div class="gorsel"></div><div class="kart-ic">
+            <span class="kat">Ekonomi</span>
+            <h2>Asgari ücret görüşmelerinde ilk toplantı 4 Aralık'ta yapılacak</h2>
+            <div class="meta">23 Kas 14.32 · 3 dk okuma</div>
+            <div class="teyit"><em>Teyitli</em> 3 kaynak · K1, K2 · 14.32'de güncellendi</div>
+          </div></article>
+          <div class="dugmeler"><span class="dugme ana">Takip Et</span><span class="dugme ikinci">Haberi Dinle</span></div>
+        </div>
+        <div class="alt"><span>Hakkımızda</span><span>Yayın İlkeleri</span><span>Düzeltme Politikası</span></div>
+      </div>
+      <div class="renkler">
+        <span style="--r:#E0202C">#E0202C</span><span style="--r:#B5121D">#B5121D</span><span style="--r:#0F1E3D">#0F1E3D</span><span style="--r:#F6F7F9">#F6F7F9</span>
+      </div>
+      <div class="not">
+        <p><b>Ne:</b> v1'deki gece mavisi ve canlı kırmızı.</p>
+        <p><b>Artı:</b> Okur hemen "haber sitesi" diye tanıyor; kırmızı küçük alanlarda bile güçlü.</p>
+        <p><b>Eksi:</b> Kırmızı alarm ve "son dakika" duygusu taşıyor, istenen sakin tona ters; Gastro'nun turuncu-kırmızısına yakın; teyitte "yanlış" anlamındaki kırmızıyla karışabilir.</p>
+      </div>
+    </section>
+
+  </div>
+</main>
+</body>
+</html>

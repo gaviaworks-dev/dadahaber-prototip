@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Seçenek · Header araçlarının yeri</title>
+<link rel="stylesheet" href="_vendor/fontawesome-6.5.2/css/all.min.css">
+<style>
+/* TASLAK — siyah bant, header ve Son Dakika yayındaki v2'nin aynısı (ölçülen değerler).
+   Sorulan: arama, bildirim, kaydedilenler, Giriş Yap, Üye Ol nerede duracak. Köşeler bizim kuralımızla (12px). */
+@font-face{font-family:"Gilroy";src:url("_font/gilroy/Gilroy-Medium.woff2") format("woff2");font-weight:400 600;font-display:swap}
+@font-face{font-family:"Gilroy";src:url("_font/gilroy/Gilroy-ExtraBold.woff2") format("woff2");font-weight:700 800;font-display:swap}
+:root{--marka:#FCB623;--marka-metin:#7A5F01;--siyah:#121212;--gri-50:#EFEFEF;--gri-100:#DEDEDE;--gri-300:#9D9D9D;--gri-400:#6B6B6B;--gri-600:#494949;--gri-800:#242424;--anlik:#C8102E;--k:12px;
+  --gastro:#DC3D17;--fit:#009D4F;--diet:#009A44;--gourmet:#742982}
+*{box-sizing:border-box;margin:0}
+body{font-family:"Gilroy",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:#cfcfcf;color:var(--siyah);padding:24px 16px 48px;line-height:1.5}
+.sayfa{max-width:1340px;margin-inline:auto;display:grid;gap:28px}
+.sayfa>header h1{font-size:1.5rem;font-weight:800;line-height:1.2}
+.sayfa>header p{color:var(--gri-600);margin-block-start:6px;max-width:90ch}
+.secenek{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 18px rgba(0,0,0,.08)}
+.etiket{padding:14px 20px;border-block-end:1px solid var(--gri-100)}
+.etiket b{font-size:1.1rem;font-weight:800}
+.etiket small{display:block;color:var(--gri-400);font-size:.82rem}
+.cerceve-ad{font-size:.7rem;font-weight:700;color:var(--gri-400);text-transform:uppercase;letter-spacing:.05em;padding:12px 20px 6px}
+.cerceve{padding:0 20px 12px;overflow-x:auto}
+.ekran{inline-size:var(--g);border:1px solid var(--gri-100);border-radius:var(--k);overflow:hidden;background:#fff}
+.g1300{--g:1300px}.g1025{--g:1025px}
+.kap{max-inline-size:1280px;margin-inline:auto;padding-inline:16px}
+
+/* Siyah bant · v2 .dh-v2-fmt */
+.bant{background:var(--siyah);border-block-end:1px solid rgba(255,255,255,.08)}
+.bant .satir{block-size:44px;display:flex;align-items:center;gap:16px;white-space:nowrap}
+.fmt{display:flex;gap:2px}
+.fmt a{display:flex;align-items:center;gap:7px;padding:7px 12px 7px 0;font-size:12.5px;font-weight:700;letter-spacing:.01em;color:rgba(255,255,255,.82);text-decoration:none}
+.fmt a + a{padding-inline-start:12px}
+.fmt a i{color:var(--marka);font-size:12.5px}
+.sag{margin-inline-start:auto;display:flex;align-items:center;gap:10px}
+.ayrac{inline-size:1px;block-size:16px;background:rgba(255,255,255,.18)}
+.aile{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:#fff}
+.aile .aktif{border:1px solid var(--marka);border-radius:var(--k);padding:3px 9px}
+.aile .aktif span{font-weight:500}
+.aile .n{inline-size:22px;block-size:22px;border-radius:8px;display:grid;place-items:center;font-size:9px;font-weight:800}
+.dil{border:1px solid rgba(255,255,255,.25);border-radius:var(--k);padding:2px 8px;color:#fff;font-size:12px;font-weight:700;display:flex;gap:5px;align-items:center}
+.dil i{font-size:10px;color:var(--gri-300)}
+/* Araç düğmeleri · v2 .dh-v2-act (34px) */
+.arac{display:flex;align-items:center;gap:2px}
+.act{inline-size:34px;block-size:34px;border-radius:var(--k);display:grid;place-items:center;position:relative;font-size:15px}
+.bant .act{color:rgba(255,255,255,.82)}
+.marka .act{color:var(--siyah)}
+.rozet{position:absolute;inset-block-start:2px;inset-inline-end:1px;min-inline-size:17px;block-size:17px;border-radius:9px;background:var(--anlik);color:#fff;font-size:11px;font-weight:700;display:grid;place-items:center;padding-inline:4px}
+.giris{font-size:12.5px;font-weight:700;padding:9px 12px;border-radius:var(--k);border:1px solid var(--gri-300);white-space:nowrap}
+.bant .giris{color:#fff;border-color:rgba(255,255,255,.35)}
+.uye{font-size:12.5px;font-weight:700;padding:10px 12px;border-radius:var(--k);background:var(--marka);color:var(--siyah);white-space:nowrap}
+
+/* Marka satırı · v2 .dh-v2-brand */
+.marka{background:#fff}
+.marka .satir{block-size:68px;display:flex;align-items:center;gap:10px;white-space:nowrap}
+.logo{inline-size:180px;flex:none;display:flex;align-items:center;gap:8px}
+.logo b{background:var(--marka);border-radius:8px;font-size:11px;font-weight:800;padding:8px 6px;line-height:1}
+.logo span{font-size:24px;font-weight:800;letter-spacing:-.02em}.logo span i{font-style:normal;font-weight:500}
+.menu{display:flex;justify-content:flex-end;margin-inline-start:auto;min-inline-size:0}
+.menu a{display:flex;align-items:center;gap:5px;block-size:68px;padding:0 14px;font-size:16px;font-weight:800;text-transform:uppercase;letter-spacing:.01em;color:var(--marka-metin);text-decoration:none}
+.menu a i{font-size:11px}
+.marka .arac-grup{display:flex;align-items:center;gap:8px;flex:none;padding-inline-start:6px;border-inline-start:1px solid var(--gri-100)}
+
+/* Son Dakika · v2 .dh-breaking */
+.sd{background:var(--gri-50)}
+.sd .satir{block-size:50px;display:flex;align-items:center;white-space:nowrap;overflow:hidden}
+.sd .etk{background:var(--marka);color:var(--siyah);font-size:16px;font-weight:700;text-transform:uppercase;letter-spacing:.02em;padding:0 18px;block-size:49px;display:flex;align-items:center;border-radius:var(--k);flex:none}
+.akis{display:flex;gap:40px;padding-inline-start:20px;overflow:hidden;flex:1;mask-image:linear-gradient(to left,transparent,#000 40px)}
+.akis span{display:flex;gap:10px;align-items:baseline}
+.akis time{font-size:14px;font-weight:700;color:var(--marka-metin)}
+.akis em{font-style:normal;font-size:16px;font-weight:500;color:var(--gri-800)}
+.tumu{font-size:16px;font-weight:700;color:var(--marka-metin);padding-inline-start:16px;flex:none}
+.alt-bos{block-size:40px;background:#fff}
+.not{padding:14px 20px 18px;font-size:.86rem;color:#373737;display:grid;gap:4px;border-block-start:1px solid var(--gri-100)}
+.uyari{color:#B81414;font-weight:700}
+</style>
+</head>
+<body>
+<main class="sayfa">
+  <header>
+    <h1>Header araçlarının yeri · masaüstü</h1>
+    <p>Siyah bant, header ve Son Dakika yayındaki v2'den ölçülen değerlerle çizildi (bant 45px, marka satırı 68px, Son Dakika 50px). Bandın solunda formatlar, sağında Dada ailesi ve dil. Sorulan: v2'de bandın sağında duran arama, bildirim, kaydedilenler, Giriş Yap ve Üye Ol nerede duracak. Logo yer tutucudur; menüde site haritasındaki 8 başlık var (menü başlıkları ayrıca sorulacak). Köşeler bizim kuralımızla (12px).</p>
+  </header>
+
+  <!-- A -->
+  <section class="secenek">
+    <div class="etiket"><b>A · Araçlar header satırında, menünün sağında</b><small>Bant v2'deki gibi sade kalır (formatlar + aile + dil). Header: logo · menü · araçlar.</small></div>
+    <p class="cerceve-ad">1300px</p>
+    <div class="cerceve"><div class="ekran g1300">
+      <div class="bant"><div class="kap satir">
+        <nav class="fmt"><a><i class="fa-solid fa-headphones"></i>Haber Dinle</a><a><i class="fa-solid fa-camera"></i>Foto Fokus</a><a><i class="fa-solid fa-play"></i>Video Haber</a><a><i class="fa-solid fa-chart-bar"></i>İnfografik</a><a><i class="fa-solid fa-podcast"></i>Podcast</a></nav>
+        <div class="sag"><div class="aile"><span class="aktif">dada <span>haber</span></span><span class="n" style="background:var(--gastro)">G</span><span class="n" style="background:var(--fit)">F</span><span class="n" style="background:var(--diet)">D</span><span class="n" style="background:var(--gourmet)">Go</span></div><span class="ayrac"></span><span class="dil"><i class="fa-solid fa-globe"></i>TR</span></div>
+      </div></div>
+      <div class="marka"><div class="kap satir">
+        <span class="logo"><b>dada!</b><span>dada<i>haber</i></span></span>
+        <nav class="menu"><a>Gündem<i class="fa-solid fa-chevron-down"></i></a><a>Dünya<i class="fa-solid fa-chevron-down"></i></a><a>Ekonomi<i class="fa-solid fa-chevron-down"></i></a><a>Spor<i class="fa-solid fa-chevron-down"></i></a><a>Savunma<i class="fa-solid fa-chevron-down"></i></a><a>Teknoloji<i class="fa-solid fa-chevron-down"></i></a><a>Yaşam<i class="fa-solid fa-chevron-down"></i></a><a>Kampüs<i class="fa-solid fa-chevron-down"></i></a></nav>
+        <div class="arac-grup"><div class="arac"><span class="act"><i class="fa-solid fa-magnifying-glass"></i></span><span class="act"><i class="fa-solid fa-bell"></i><span class="rozet">3</span></span><span class="act"><i class="fa-solid fa-bookmark"></i></span></div><span class="giris">Giriş Yap</span><span class="uye">Üye Ol</span></div>
+      </div></div>
+      <div class="sd"><div class="kap satir"><span class="etk">Son Dakika</span><div class="akis"><span><time>14.32</time><em>Merkez Bankası politika faizini yüzde 42,5'te sabit tuttu</em></span><span><time>14.05</time><em>Asgari ücret görüşmelerinde ilk toplantı 4 Aralık'ta</em></span><span><time>13.48</time><em>Milli takımın aday kadrosu açıklandı</em></span></div><span class="tumu">Tümü</span></div></div>
+      <div class="alt-bos"></div>
+    </div></div>
+    <p class="cerceve-ad">Masaüstünün en dar hali · 1025px</p>
+    <div class="cerceve"><div class="ekran g1025">
+      <div class="bant"><div class="kap satir">
+        <nav class="fmt"><a><i class="fa-solid fa-headphones"></i>Haber Dinle</a><a><i class="fa-solid fa-camera"></i>Foto Fokus</a><a><i class="fa-solid fa-play"></i>Video Haber</a><a><i class="fa-solid fa-chart-bar"></i>İnfografik</a><a><i class="fa-solid fa-podcast"></i>Podcast</a></nav>
+        <div class="sag"><div class="aile"><span class="aktif">dada <span>haber</span></span><span class="n" style="background:var(--gastro)">G</span><span class="n" style="background:var(--fit)">F</span><span class="n" style="background:var(--diet)">D</span><span class="n" style="background:var(--gourmet)">Go</span></div><span class="ayrac"></span><span class="dil"><i class="fa-solid fa-globe"></i>TR</span></div>
+      </div></div>
+      <div class="marka"><div class="kap satir" style="overflow:hidden">
+        <span class="logo"><b>dada!</b><span>dada<i>haber</i></span></span>
+        <nav class="menu"><a>Gündem<i class="fa-solid fa-chevron-down"></i></a><a>Dünya<i class="fa-solid fa-chevron-down"></i></a><a>Ekonomi<i class="fa-solid fa-chevron-down"></i></a><a>Spor<i class="fa-solid fa-chevron-down"></i></a><a>Savunma<i class="fa-solid fa-chevron-down"></i></a><a>Teknoloji<i class="fa-solid fa-chevron-down"></i></a><a>Yaşam<i class="fa-solid fa-chevron-down"></i></a><a>Kampüs<i class="fa-solid fa-chevron-down"></i></a></nav>
+        <div class="arac-grup"><div class="arac"><span class="act"><i class="fa-solid fa-magnifying-glass"></i></span><span class="act"><i class="fa-solid fa-bell"></i><span class="rozet">3</span></span><span class="act"><i class="fa-solid fa-bookmark"></i></span></div><span class="giris">Giriş Yap</span><span class="uye">Üye Ol</span></div>
+      </div></div>
+    </div></div>
+    <div class="not">
+      <p><b>Artı:</b> Bant sade; hesapla ilgili her şey logonun ve menünün yanında, okurun aradığı yerde. <b>Eksi:</b> Header satırı dolu; v2'de menünün yanında araç yoktu.</p>
+      <p class="uyari">Uyarı: 8 başlıklı menü (16px, v2 ölçüsü) ile araçlar 1300px'te bile aynı satıra sığmıyor; menü logonun üstüne biniyor. A ancak menü yazısı küçülür ya da başlık sayısı azalırsa olur.</p>
+    </div>
+  </section>
+
+  <!-- B -->
+  <section class="secenek">
+    <div class="etiket"><b>B · Araçlar siyah bantta, Dada ailesinin solunda</b><small>v2'deki yerinde kalır; bandın sağı: araçlar · Giriş Yap · Üye Ol · Dada ailesi · dil. Header yalnızca logo ve menü (v2'nin aynısı).</small></div>
+    <p class="cerceve-ad">1300px</p>
+    <div class="cerceve"><div class="ekran g1300">
+      <div class="bant"><div class="kap satir">
+        <nav class="fmt"><a><i class="fa-solid fa-headphones"></i>Haber Dinle</a><a><i class="fa-solid fa-camera"></i>Foto Fokus</a><a><i class="fa-solid fa-play"></i>Video Haber</a><a><i class="fa-solid fa-chart-bar"></i>İnfografik</a><a><i class="fa-solid fa-podcast"></i>Podcast</a></nav>
+        <div class="sag"><div class="arac"><span class="act"><i class="fa-solid fa-magnifying-glass"></i></span><span class="act"><i class="fa-solid fa-bell"></i><span class="rozet">3</span></span><span class="act"><i class="fa-solid fa-bookmark"></i></span></div><span class="giris">Giriş Yap</span><span class="uye">Üye Ol</span><span class="ayrac"></span><div class="aile"><span class="aktif">dada <span>haber</span></span><span class="n" style="background:var(--gastro)">G</span><span class="n" style="background:var(--fit)">F</span><span class="n" style="background:var(--diet)">D</span><span class="n" style="background:var(--gourmet)">Go</span></div><span class="dil"><i class="fa-solid fa-globe"></i>TR</span></div>
+      </div></div>
+      <div class="marka"><div class="kap satir">
+        <span class="logo"><b>dada!</b><span>dada<i>haber</i></span></span>
+        <nav class="menu"><a>Gündem<i class="fa-solid fa-chevron-down"></i></a><a>Dünya<i class="fa-solid fa-chevron-down"></i></a><a>Ekonomi<i class="fa-solid fa-chevron-down"></i></a><a>Spor<i class="fa-solid fa-chevron-down"></i></a><a>Savunma<i class="fa-solid fa-chevron-down"></i></a><a>Teknoloji<i class="fa-solid fa-chevron-down"></i></a><a>Yaşam<i class="fa-solid fa-chevron-down"></i></a><a>Kampüs<i class="fa-solid fa-chevron-down"></i></a></nav>
+      </div></div>
+      <div class="sd"><div class="kap satir"><span class="etk">Son Dakika</span><div class="akis"><span><time>14.32</time><em>Merkez Bankası politika faizini yüzde 42,5'te sabit tuttu</em></span><span><time>14.05</time><em>Asgari ücret görüşmelerinde ilk toplantı 4 Aralık'ta</em></span><span><time>13.48</time><em>Milli takımın aday kadrosu açıklandı</em></span></div><span class="tumu">Tümü</span></div></div>
+      <div class="alt-bos"></div>
+    </div></div>
+    <p class="cerceve-ad">Masaüstünün en dar hali · 1025px</p>
+    <div class="cerceve"><div class="ekran g1025">
+      <div class="bant"><div class="kap satir" style="overflow:hidden">
+        <nav class="fmt"><a><i class="fa-solid fa-headphones"></i>Haber Dinle</a><a><i class="fa-solid fa-camera"></i>Foto Fokus</a><a><i class="fa-solid fa-play"></i>Video Haber</a><a><i class="fa-solid fa-chart-bar"></i>İnfografik</a><a><i class="fa-solid fa-podcast"></i>Podcast</a></nav>
+        <div class="sag"><div class="arac"><span class="act"><i class="fa-solid fa-magnifying-glass"></i></span><span class="act"><i class="fa-solid fa-bell"></i><span class="rozet">3</span></span><span class="act"><i class="fa-solid fa-bookmark"></i></span></div><span class="giris">Giriş Yap</span><span class="uye">Üye Ol</span><span class="ayrac"></span><div class="aile"><span class="aktif">dada <span>haber</span></span><span class="n" style="background:var(--gastro)">G</span><span class="n" style="background:var(--fit)">F</span><span class="n" style="background:var(--diet)">D</span><span class="n" style="background:var(--gourmet)">Go</span></div><span class="dil"><i class="fa-solid fa-globe"></i>TR</span></div>
+      </div></div>
+      <div class="marka"><div class="kap satir">
+        <span class="logo"><b>dada!</b><span>dada<i>haber</i></span></span>
+        <nav class="menu"><a>Gündem<i class="fa-solid fa-chevron-down"></i></a><a>Dünya<i class="fa-solid fa-chevron-down"></i></a><a>Ekonomi<i class="fa-solid fa-chevron-down"></i></a><a>Spor<i class="fa-solid fa-chevron-down"></i></a><a>Savunma<i class="fa-solid fa-chevron-down"></i></a><a>Teknoloji<i class="fa-solid fa-chevron-down"></i></a><a>Yaşam<i class="fa-solid fa-chevron-down"></i></a><a>Kampüs<i class="fa-solid fa-chevron-down"></i></a></nav>
+      </div></div>
+    </div></div>
+    <div class="not">
+      <p><b>Artı:</b> Header v2'nin birebir aynısı (logo + menü), menü rahat. <b>Eksi:</b> Bandın sağı kalabalık; araçlar ile Dada ailesi yan yana, okur için iki ayrı tür öğe aynı yerde.</p>
+      <p class="uyari">Uyarı: 1300px'te her şey sığıyor. 1025px'te bandın sonu (Dada ailesi, dil) kesiliyor ve 8 başlıklı menü logonun üstüne biniyor; bu v2'nin kendi header'ında da aynı. Dar ekran davranışı mobil bölümünde sorulacak.</p>
+    </div>
+  </section>
+</main>
+</body>
+</html>

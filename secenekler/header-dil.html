@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Seçenek · Dil seçici ve Dada ailesi</title>
+<link rel="stylesheet" href="_vendor/fontawesome-6.5.2/css/all.min.css">
+<style>
+/* TASLAK — bant, header ve Son Dakika yayındaki v2'nin birebir aynısı (ölçülen değerler, köşeler 12px).
+   Sorulan: v2'de olmayan dil seçici ve Dada ailesi geçişi nerede duracak. */
+@font-face{font-family:"Gilroy";src:url("_font/gilroy/Gilroy-Medium.woff2") format("woff2");font-weight:400 600;font-display:swap}
+@font-face{font-family:"Gilroy";src:url("_font/gilroy/Gilroy-ExtraBold.woff2") format("woff2");font-weight:700 800;font-display:swap}
+:root{--marka:#FCB623;--marka-metin:#7A5F01;--siyah:#121212;--gri-50:#EFEFEF;--gri-100:#DEDEDE;--gri-300:#9D9D9D;--gri-400:#6B6B6B;--gri-600:#494949;--gri-800:#242424;--anlik:#C8102E;--k:12px;
+  --gastro:#DC3D17;--fit:#009D4F;--diet:#009A44;--gourmet:#742982}
+*{box-sizing:border-box;margin:0}
+body{font-family:"Gilroy",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:#cfcfcf;color:var(--siyah);padding:24px 16px 48px;line-height:1.5}
+.sayfa{max-width:1340px;margin-inline:auto;display:grid;gap:28px}
+.sayfa>header h1{font-size:1.5rem;font-weight:800;line-height:1.2}
+.sayfa>header p{color:var(--gri-600);margin-block-start:6px;max-width:90ch}
+.secenek{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 18px rgba(0,0,0,.08)}
+.etiket{padding:14px 20px;border-block-end:1px solid var(--gri-100)}
+.etiket b{font-size:1.1rem;font-weight:800}
+.etiket small{display:block;color:var(--gri-400);font-size:.82rem}
+.cerceve{padding:12px 20px;overflow-x:auto}
+.ekran{inline-size:1300px;border:1px solid var(--gri-100);border-radius:var(--k);overflow:hidden;background:#fff}
+.kap{max-inline-size:1280px;margin-inline:auto;padding-inline:16px}
+
+.bant{background:var(--siyah);border-block-end:1px solid rgba(255,255,255,.08)}
+.bant .satir{block-size:44px;display:flex;align-items:center;gap:16px;white-space:nowrap}
+.sponsor{font-size:11px;color:rgba(255,255,255,.7);border:1px dashed rgba(255,255,255,.3);border-radius:8px;padding:2px 8px;display:flex;gap:6px}
+.sponsor b{font-weight:800;color:#fff}
+.fmt{display:flex;gap:2px}
+.fmt a{display:flex;align-items:center;gap:7px;padding:7px 12px;font-size:12.5px;font-weight:700;letter-spacing:.01em;color:rgba(255,255,255,.82)}
+.fmt a i{color:var(--marka);font-size:12.5px}
+.araclar{margin-inline-start:auto;display:flex;align-items:center;gap:2px;align-self:stretch}
+.act{inline-size:34px;block-size:34px;border-radius:var(--k);display:grid;place-items:center;position:relative;font-size:16px;color:rgba(255,255,255,.82);align-self:center}
+.rozet{position:absolute;inset-block-start:4px;inset-inline-end:0;min-inline-size:17px;block-size:17px;border-radius:9px;background:var(--anlik);color:#fff;font-size:11px;font-weight:700;display:grid;place-items:center;padding-inline:4px}
+.ayrac{inline-size:1px;block-size:18px;background:rgba(255,255,255,.22);margin-inline:12px;align-self:center}
+.uye{inline-size:44px;background:var(--marka);color:#000;display:grid;place-items:center;font-size:16px;border-radius:var(--k);block-size:44px;align-self:center}
+.dil{block-size:34px;padding-inline:9px;border-radius:var(--k);display:flex;align-items:center;gap:6px;color:rgba(255,255,255,.88);font-size:12.5px;font-weight:700;align-self:center;border:1px solid rgba(255,255,255,.18)}
+.dil i{font-size:13px}.dil .ok{font-size:9px;opacity:.7}
+.aile{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:#fff;align-self:center}
+.aile .aktif{border:1px solid var(--marka);border-radius:var(--k);padding:3px 9px}
+.aile .aktif span{font-weight:500}
+.aile .n{inline-size:22px;block-size:22px;border-radius:8px;display:grid;place-items:center;font-size:9px;font-weight:800}
+
+.marka .satir{block-size:68px;display:flex;align-items:center;gap:10px;white-space:nowrap}
+.logo{inline-size:180px;flex:none;display:flex;align-items:center;gap:8px}
+.logo b{background:var(--marka);border-radius:8px;font-size:11px;font-weight:800;padding:8px 6px;line-height:1}
+.logo span{font-size:24px;font-weight:800;letter-spacing:-.02em}.logo span i{font-style:normal;font-weight:500}
+.menu{display:flex;justify-content:flex-end;margin-inline-start:auto}
+.menu a{display:flex;align-items:center;gap:5px;block-size:68px;padding:0 14px;font-size:16px;font-weight:800;text-transform:uppercase;letter-spacing:.01em;color:var(--marka-metin)}
+.menu a i{font-size:11px}
+.sd{background:var(--gri-50)}
+.sd .satir{block-size:50px;display:flex;align-items:center;white-space:nowrap;overflow:hidden}
+.sd .etk{background:var(--marka);font-size:16px;font-weight:700;text-transform:uppercase;letter-spacing:.02em;padding:0 18px;block-size:49px;display:flex;align-items:center;border-radius:var(--k);flex:none}
+.akis{display:flex;gap:40px;padding-inline-start:20px;overflow:hidden;flex:1;mask-image:linear-gradient(to left,transparent,#000 40px)}
+.akis span{display:flex;gap:10px;align-items:baseline}
+.akis time{font-size:14px;font-weight:700;color:var(--marka-metin)}
+.akis em{font-style:normal;font-size:16px;font-weight:500;color:var(--gri-800)}
+.tumu{font-size:16px;font-weight:700;color:var(--marka-metin);padding-inline-start:16px;flex:none}
+.bosluk{block-size:24px}
+/* Footer kesiti */
+.footer-kesit{background:var(--siyah);color:#ddd;padding:18px 16px;display:flex;gap:28px;align-items:center;font-size:13px;flex-wrap:wrap}
+.footer-kesit h4{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--gri-300);margin-block-end:6px}
+.footer-kesit .kutu{display:grid;gap:4px}
+.footer-kesit .sira{display:flex;gap:8px;flex-wrap:wrap}
+.footer-kesit .sira span{border:1px solid rgba(255,255,255,.2);border-radius:var(--k);padding:4px 10px;font-weight:700}
+.footer-kesit .sira span.aktif{border-color:var(--marka);color:var(--marka)}
+.footer-etk{font-size:.7rem;font-weight:700;color:var(--gri-400);text-transform:uppercase;letter-spacing:.05em;padding:8px 16px 4px;background:#fafafa;border-block-start:1px dashed var(--gri-100)}
+.not{padding:14px 20px 18px;font-size:.86rem;color:#373737;display:grid;gap:4px;border-block-start:1px solid var(--gri-100)}
+</style>
+</head>
+<body>
+<main class="sayfa">
+  <header>
+    <h1>Dil seçici ve Dada ailesi · masaüstü · 1300px</h1>
+    <p>Bant, header ve Son Dakika yayındaki v2'nin birebir aynısı: solda sponsor yeri ve formatlar, sağda Ara, Bildirim, Kaydedilenler, Giriş Yap, Üye Ol (yalnızca ikon). v2'de dil seçici ve Dada ailesi geçişi yok. Sorulan: bu ikisi nerede duracak. Altta footer'dan bir kesit var. Logo yer tutucu; menüde site haritasındaki 8 başlık.</p>
+  </header>
+
+  <section class="secenek">
+    <div class="etiket"><b>A · İkisi de footer'da</b><small>Bant v2'nin birebir aynısı kalır.</small></div>
+    <div class="cerceve"><div class="ekran">
+      <div class="bant"><div class="kap satir">
+        <span class="sponsor"><b>LOGO</b>sunuyor</span>
+        <nav class="fmt"><a><i class="fa-solid fa-headphones"></i>Haber Dinle</a><a><i class="fa-solid fa-camera"></i>Foto Fokus</a><a><i class="fa-solid fa-play"></i>Video Haber</a><a><i class="fa-solid fa-chart-bar"></i>İnfografik</a><a><i class="fa-solid fa-podcast"></i>Podcast</a></nav>
+        <div class="araclar"><span class="act"><i class="fa-solid fa-magnifying-glass"></i></span><span class="act"><i class="fa-solid fa-bell"></i><span class="rozet">3</span></span><span class="act"><i class="fa-solid fa-bookmark"></i></span><span class="ayrac"></span><span class="act"><i class="fa-solid fa-right-to-bracket"></i></span><span class="uye"><i class="fa-solid fa-user-plus"></i></span></div>
+      </div></div>
+      <div class="marka"><div class="kap satir"><span class="logo"><b>dada!</b><span>dada<i>haber</i></span></span><nav class="menu"><a>Gündem<i class="fa-solid fa-chevron-down"></i></a><a>Dünya<i class="fa-solid fa-chevron-down"></i></a><a>Ekonomi<i class="fa-solid fa-chevron-down"></i></a><a>Spor<i class="fa-solid fa-chevron-down"></i></a><a>Savunma<i class="fa-solid fa-chevron-down"></i></a><a>Teknoloji<i class="fa-solid fa-chevron-down"></i></a><a>Yaşam<i class="fa-solid fa-chevron-down"></i></a><a>Kampüs<i class="fa-solid fa-chevron-down"></i></a></nav></div></div>
+      <div class="sd"><div class="kap satir"><span class="etk">Son Dakika</span><div class="akis"><span><time>14.32</time><em>Merkez Bankası politika faizini yüzde 42,5'te sabit tuttu</em></span><span><time>14.05</time><em>Asgari ücret görüşmelerinde ilk toplantı 4 Aralık'ta</em></span><span><time>13.48</time><em>Milli takımın aday kadrosu açıklandı</em></span></div><span class="tumu">Tümü</span></div></div>
+      <div class="bosluk"></div>
+      <p class="footer-etk">Footer kesiti</p>
+      <div class="footer-kesit"><div class="kutu"><h4>Dil</h4><div class="sira"><span class="aktif">Türkçe</span><span>English</span><span>العربية</span><span>Deutsch</span></div></div><div class="kutu"><h4>Dada ailesi</h4><div class="sira"><span class="aktif">Dada Haber</span><span>Dada Gastro</span><span>Dada Fit</span><span>Dada Diet</span><span>Dada Gourmet</span></div></div></div>
+    </div></div>
+    <div class="not"><p><b>Artı:</b> Bant v2'nin birebir aynısı. <b>Eksi:</b> Dil, ürünün üç farkından biri olan çok dilli yayının kapısı; sayfanın en altında kalırsa yurt dışındaki okur onu bulmakta zorlanır.</p></div>
+  </section>
+
+  <section class="secenek">
+    <div class="etiket"><b>B · Dil bantta, Dada ailesi footer'da</b><small>Bandın sağına tek bir dil düğmesi eklenir (v2'nin araç düğmesi biçiminde, Üye Ol'un solunda). Dada ailesi footer'da.</small></div>
+    <div class="cerceve"><div class="ekran">
+      <div class="bant"><div class="kap satir">
+        <span class="sponsor"><b>LOGO</b>sunuyor</span>
+        <nav class="fmt"><a><i class="fa-solid fa-headphones"></i>Haber Dinle</a><a><i class="fa-solid fa-camera"></i>Foto Fokus</a><a><i class="fa-solid fa-play"></i>Video Haber</a><a><i class="fa-solid fa-chart-bar"></i>İnfografik</a><a><i class="fa-solid fa-podcast"></i>Podcast</a></nav>
+        <div class="araclar"><span class="act"><i class="fa-solid fa-magnifying-glass"></i></span><span class="act"><i class="fa-solid fa-bell"></i><span class="rozet">3</span></span><span class="act"><i class="fa-solid fa-bookmark"></i></span><span class="ayrac"></span><span class="dil"><i class="fa-solid fa-globe"></i>TR<i class="fa-solid fa-chevron-down ok"></i></span><span class="act"><i class="fa-solid fa-right-to-bracket"></i></span><span class="uye"><i class="fa-solid fa-user-plus"></i></span></div>
+      </div></div>
+      <div class="marka"><div class="kap satir"><span class="logo"><b>dada!</b><span>dada<i>haber</i></span></span><nav class="menu"><a>Gündem<i class="fa-solid fa-chevron-down"></i></a><a>Dünya<i class="fa-solid fa-chevron-down"></i></a><a>Ekonomi<i class="fa-solid fa-chevron-down"></i></a><a>Spor<i class="fa-solid fa-chevron-down"></i></a><a>Savunma<i class="fa-solid fa-chevron-down"></i></a><a>Teknoloji<i class="fa-solid fa-chevron-down"></i></a><a>Yaşam<i class="fa-solid fa-chevron-down"></i></a><a>Kampüs<i class="fa-solid fa-chevron-down"></i></a></nav></div></div>
+      <div class="sd"><div class="kap satir"><span class="etk">Son Dakika</span><div class="akis"><span><time>14.32</time><em>Merkez Bankası politika faizini yüzde 42,5'te sabit tuttu</em></span><span><time>14.05</time><em>Asgari ücret görüşmelerinde ilk toplantı 4 Aralık'ta</em></span><span><time>13.48</time><em>Milli takımın aday kadrosu açıklandı</em></span></div><span class="tumu">Tümü</span></div></div>
+      <div class="bosluk"></div>
+      <p class="footer-etk">Footer kesiti</p>
+      <div class="footer-kesit"><div class="kutu"><h4>Dada ailesi</h4><div class="sira"><span class="aktif">Dada Haber</span><span>Dada Gastro</span><span>Dada Fit</span><span>Dada Diet</span><span>Dada Gourmet</span></div></div></div>
+    </div></div>
+    <div class="not"><p><b>Artı:</b> Dil her sayfanın en üstünde, v2'nin araç düğmesi kalıbıyla; bant görünüşte v2 ile aynı kalıyor. Dada ailesi site haritasında zaten alt barda bir grup. <b>Eksi:</b> v2'ye tek bir öğe ekleniyor.</p></div>
+  </section>
+
+  <section class="secenek">
+    <div class="etiket"><b>C · İkisi de bantta</b><small>Bandın sağı: araçlar · dil · Dada ailesi · Giriş Yap · Üye Ol. Kardeş sitelerin bandındaki gibi.</small></div>
+    <div class="cerceve"><div class="ekran">
+      <div class="bant"><div class="kap satir">
+        <span class="sponsor"><b>LOGO</b>sunuyor</span>
+        <nav class="fmt"><a><i class="fa-solid fa-headphones"></i>Haber Dinle</a><a><i class="fa-solid fa-camera"></i>Foto Fokus</a><a><i class="fa-solid fa-play"></i>Video Haber</a><a><i class="fa-solid fa-chart-bar"></i>İnfografik</a><a><i class="fa-solid fa-podcast"></i>Podcast</a></nav>
+        <div class="araclar"><span class="act"><i class="fa-solid fa-magnifying-glass"></i></span><span class="act"><i class="fa-solid fa-bell"></i><span class="rozet">3</span></span><span class="act"><i class="fa-solid fa-bookmark"></i></span><span class="ayrac"></span><div class="aile"><span class="aktif">dada <span>haber</span></span><span class="n" style="background:var(--gastro)">G</span><span class="n" style="background:var(--fit)">F</span><span class="n" style="background:var(--diet)">D</span><span class="n" style="background:var(--gourmet)">Go</span></div><span class="ayrac"></span><span class="dil"><i class="fa-solid fa-globe"></i>TR<i class="fa-solid fa-chevron-down ok"></i></span><span class="act"><i class="fa-solid fa-right-to-bracket"></i></span><span class="uye"><i class="fa-solid fa-user-plus"></i></span></div>
+      </div></div>
+      <div class="marka"><div class="kap satir"><span class="logo"><b>dada!</b><span>dada<i>haber</i></span></span><nav class="menu"><a>Gündem<i class="fa-solid fa-chevron-down"></i></a><a>Dünya<i class="fa-solid fa-chevron-down"></i></a><a>Ekonomi<i class="fa-solid fa-chevron-down"></i></a><a>Spor<i class="fa-solid fa-chevron-down"></i></a><a>Savunma<i class="fa-solid fa-chevron-down"></i></a><a>Teknoloji<i class="fa-solid fa-chevron-down"></i></a><a>Yaşam<i class="fa-solid fa-chevron-down"></i></a><a>Kampüs<i class="fa-solid fa-chevron-down"></i></a></nav></div></div>
+      <div class="sd"><div class="kap satir"><span class="etk">Son Dakika</span><div class="akis"><span><time>14.32</time><em>Merkez Bankası politika faizini yüzde 42,5'te sabit tuttu</em></span><span><time>14.05</time><em>Asgari ücret görüşmelerinde ilk toplantı 4 Aralık'ta</em></span><span><time>13.48</time><em>Milli takımın aday kadrosu açıklandı</em></span></div><span class="tumu">Tümü</span></div></div>
+      <div class="bosluk"></div>
+    </div></div>
+    <div class="not"><p><b>Artı:</b> Kardeş sitelerin bandına en yakın. <b>Eksi:</b> v2'den en çok sapan seçenek; bandın sağı kalabalık.</p></div>
+  </section>
+</main>
+</body>
+</html>

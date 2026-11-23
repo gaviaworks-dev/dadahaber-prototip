@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Seçenek · Yoğunluk ve ton</title>
+<style>
+/* TASLAK — yalnızca seçim için. Kök ekranlara taşınmaz.
+   Seçilenler uygulandı: renk (v2 paleti), font (Gilroy), köşe (Gastro ölçeği: kontrol 12px, kart 16px).
+   Bu sayfa manşet ya da kart düzenini SORMUYOR; yalnızca boşluk yoğunluğunu ve genel tonu gösteriyor. */
+@font-face{font-family:"Gilroy";src:url("_font/gilroy/Gilroy-Medium.woff2") format("woff2");font-weight:400 600;font-display:swap}
+@font-face{font-family:"Gilroy";src:url("_font/gilroy/Gilroy-ExtraBold.woff2") format("woff2");font-weight:700 800;font-display:swap}
+:root{--marka:#FCB623;--marka-metin:#7A5F01;--siyah:#121212;--gri-10:#FAFAFA;--gri-50:#EFEFEF;--gri-100:#DEDEDE;--gri-400:#6B6B6B;--gri-600:#494949;
+  --k-kontrol:12px;--k-kart:16px}
+*{box-sizing:border-box;margin:0}
+body{font-family:"Gilroy",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:#d9d9d9;color:var(--siyah);padding:24px 16px 48px;line-height:1.5}
+.sayfa{max-width:1240px;margin-inline:auto;display:grid;gap:28px}
+.sayfa>header h1{font-size:1.5rem;line-height:1.2;font-weight:800}
+.sayfa>header p{color:var(--gri-600);margin-block-start:6px;max-width:80ch}
+
+.secenek{border-radius:var(--k-kart);overflow:hidden;box-shadow:0 4px 18px rgba(0,0,0,.08);background:#fff}
+.etiket{display:flex;gap:16px;align-items:baseline;flex-wrap:wrap;padding:14px 20px;background:#fff;border-block-end:1px solid var(--gri-100)}
+.etiket b{font-size:1.1rem;font-weight:800}
+.etiket small{color:var(--gri-400);font-size:.82rem}
+.olcu{display:flex;gap:8px;flex-wrap:wrap;margin-inline-start:auto}
+.olcu span{font-size:.72rem;font-weight:600;background:var(--gri-50);border-radius:var(--k-kontrol);padding:3px 9px;white-space:nowrap}
+
+/* Ortak mini sayfa parçaları */
+.ekran{background:var(--zemin);padding-block-end:var(--bolum)}
+.ust{background:var(--siyah);color:#cfcfcf;font-size:.72rem;display:flex;gap:16px;padding:7px var(--yan);white-space:nowrap;overflow:hidden}
+.ust span:last-child{margin-inline-start:auto}
+.bas{display:flex;align-items:center;gap:20px;padding:var(--bas-pad) var(--yan);background:#fff;border-block-end:1px solid var(--gri-100)}
+.logo{font-weight:800;font-size:1.25rem;white-space:nowrap}
+.logo i{font-style:normal;font-weight:500}
+.menu{display:flex;gap:18px;font-size:.82rem;font-weight:700;white-space:nowrap;overflow:hidden}
+.ara{margin-inline-start:auto;inline-size:38px;block-size:38px;border-radius:var(--k-kontrol);border:1px solid var(--gri-100);flex:none}
+.giris{background:var(--marka);font-weight:800;font-size:.8rem;padding:9px 14px;border-radius:var(--k-kontrol);white-space:nowrap}
+.icerik{padding-inline:var(--yan);padding-block-start:var(--bolum-ilk);display:grid;gap:var(--bolum)}
+.sd{display:flex;align-items:center;gap:12px;background:#fff;border-radius:calc(var(--k-kontrol) + 4px);padding:4px;font-size:.85rem;white-space:nowrap;overflow:hidden;box-shadow:inset 0 0 0 1px var(--gri-100)}
+.sd b{background:var(--marka);border-radius:var(--k-kontrol);padding:5px 12px;font-size:.75rem;font-weight:800}
+.sd span{overflow:hidden;text-overflow:ellipsis}
+.bolum h2{font-size:var(--h2);font-weight:800;line-height:1.15;margin-block-end:var(--h2-alt);display:flex;align-items:center;gap:10px}
+.bolum h2::before{content:"";inline-size:12px;block-size:12px;border-radius:3px;background:var(--marka)}
+.izgara{display:grid;gap:var(--kart-arasi);grid-template-columns:1fr}
+@media (min-width:640px){.izgara{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:1025px){.izgara{grid-template-columns:repeat(var(--sutun),1fr)}}
+.kart{background:var(--kart-zemin);border-radius:var(--k-kart);overflow:hidden;box-shadow:var(--kart-golge)}
+.gorsel{aspect-ratio:16/10;background:linear-gradient(150deg,#a3aab3,#4f565e)}
+.kart-ic{padding:var(--kart-pad);display:grid;gap:6px}
+.kat{justify-self:start;font-size:.68rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;border-radius:var(--k-kontrol);padding:3px 9px;background:var(--kat-zemin);color:var(--kat-metin)}
+.kart h3{font-size:var(--h3);line-height:1.28;font-weight:800}
+.spot{font-size:.9rem;color:var(--gri-600);line-height:1.5}
+.meta{font-size:.74rem;color:var(--gri-400);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* Koyu kart (B) */
+.koyu .kart{position:relative;color:#fff}
+.koyu .gorsel{aspect-ratio:4/5;background:linear-gradient(180deg,#8a929b 0%,#3b4046 45%,#121212 100%)}
+.koyu .kart-ic{position:absolute;inset-inline:0;inset-block-end:0}
+.koyu .spot,.koyu .meta{color:rgba(255,255,255,.78)}
+
+/* A · Ferah */
+.a{--zemin:#F9F9F9;--yan:40px;--bas-pad:18px;--bolum-ilk:40px;--bolum:72px;--kart-arasi:28px;--kart-pad:20px;--sutun:3;--h2:1.75rem;--h2-alt:24px;--h3:1.2rem;
+   --kart-zemin:#fff;--kart-golge:0 1px 2px rgba(0,0,0,.04),0 6px 20px rgba(0,0,0,.06);--kat-zemin:#FFF4C2;--kat-metin:#7A5F01}
+/* B · Dengeli, koyu kartlar */
+.b{--zemin:#EFEFEF;--yan:24px;--bas-pad:14px;--bolum-ilk:20px;--bolum:48px;--kart-arasi:16px;--kart-pad:16px;--sutun:4;--h2:1.5rem;--h2-alt:16px;--h3:1.05rem;
+   --kart-zemin:#121212;--kart-golge:none;--kat-zemin:#FCB623;--kat-metin:#121212}
+/* C · Yoğun, açık */
+.c{--zemin:#fff;--yan:24px;--bas-pad:12px;--bolum-ilk:16px;--bolum:32px;--kart-arasi:16px;--kart-pad:10px 0 0;--sutun:5;--h2:1.375rem;--h2-alt:12px;--h3:.95rem;
+   --kart-zemin:transparent;--kart-golge:none;--kat-zemin:transparent;--kat-metin:#7A5F01}
+.c .kat{padding:0;letter-spacing:.02em}
+.c .gorsel{border-radius:var(--k-kart)}
+.c .kart{border-radius:0;overflow:visible}
+
+.not{padding:14px 20px 18px;font-size:.86rem;color:#373737;display:grid;gap:4px;border-block-start:1px solid var(--gri-100)}
+@media (max-width:639px){.a{--yan:16px;--bolum:48px;--bolum-ilk:24px}.b,.c{--yan:16px}.b{--bolum:36px}.c{--bolum:28px}.menu{display:none}}
+</style>
+</head>
+<body>
+<main class="sayfa">
+  <header>
+    <h1>Marka kimliği · 4/4 · Genel yoğunluk ve ton</h1>
+    <p>Seçilen renk, Gilroy ve Gastro köşeleri uygulandı. Burada yalnızca boşlukların ne kadar sık olduğu ve genel ton karşılaştırılıyor: bölüm aralığı, kart aralığı, kartın iç boşluğu, zemin ve kartların açık ya da koyu oluşu. Manşet düzeni ve kart türleri sonraki sorularda ayrıca sorulacak.</p>
+  </header>
+
+  <!-- A -->
+  <section class="secenek a">
+    <div class="etiket"><b>A · Ferah ve sakin</b><small>Referans: kardeş siteler (Gastro, Diet bölüm aralığı <code>--bolum-nefes: 74px</code>)</small>
+      <div class="olcu"><span>Bölüm 72px</span><span>Kart arası 28px</span><span>Kart içi 20px</span><span>Satırda 3 kart</span><span>Zemin #F9F9F9</span></div></div>
+    <div class="ekran">
+      <div class="ust"><span>23 Kasım Pazartesi · İstanbul 12°</span><span>Dolar 34,52 · BIST 9.812</span><span>TR</span></div>
+      <div class="bas"><span class="logo">dada<i>haber</i></span><nav class="menu"><span>Gündem</span><span>Dünya</span><span>Ekonomi</span><span>Spor</span><span>Savunma</span></nav><span class="ara"></span><span class="giris">Giriş Yap</span></div>
+      <div class="icerik">
+        <div class="sd"><b>SON DAKİKA</b><span>Merkez Bankası politika faizini yüzde 42,5'te sabit tuttu</span></div>
+        <section class="bolum"><h2>Gündem</h2>
+          <div class="izgara">
+            <article class="kart"><div class="gorsel"></div><div class="kart-ic"><span class="kat">Gündem</span><h3>Meclis'te yargı paketi görüşmeleri komisyonda sürüyor</h3><p class="meta">23 Kas 13.05 · 3 kaynak</p></div></article>
+            <article class="kart"><div class="gorsel"></div><div class="kart-ic"><span class="kat">Ekonomi</span><h3>Asgari ücret görüşmelerinde ilk toplantı 4 Aralık'ta</h3><p class="meta">23 Kas 14.32 · 3 kaynak</p></div></article>
+            <article class="kart"><div class="gorsel"></div><div class="kart-ic"><span class="kat">Dünya</span><h3>AB dışişleri bakanları Brüksel'de göç paketini görüştü</h3><p class="meta">23 Kas 12.40 · 2 kaynak</p></div></article>
+          </div>
+        </section>
+        <section class="bolum"><h2>Ekonomi</h2>
+          <div class="izgara">
+            <article class="kart"><div class="gorsel"></div><div class="kart-ic"><span class="kat">Ekonomi</span><h3>Konut satışları ekimde yüzde 8 arttı</h3><p class="meta">23 Kas 10.00 · TÜİK</p></div></article>
+            <article class="kart"><div class="gorsel"></div><div class="kart-ic"><span class="kat">Ekonomi</span><h3>İhracat ekimde 23,4 milyar dolar oldu</h3><p class="meta">23 Kas 09.30 · 2 kaynak</p></div></article>
+            <article class="kart"><div class="gorsel"></div><div class="kart-ic"><span class="kat">Ekonomi</span><h3>Akaryakıtta indirim pompaya yansıdı</h3><p class="meta">23 Kas 08.15 · 2 kaynak</p></div></article>
+          </div>
+        </section>
+      </div>
+    </div>
+    <div class="not">
+      <p><b>Ton:</b> açık zemin, beyaz kartlar, kehribar yalnızca küçük vurgu. Bol beyaz alan, sakin okuma.</p>
+      <p><b>Artı:</b> Dada ailesiyle aynı nefes; "sakin" tona en yakın. <b>Eksi:</b> İlk ekrana az haber sığar; günlük takipçi daha çok kaydırır. Haber sitesi için seyrek kalabilir.</p>
+    </div>
+  </section>
+
+  <!-- B -->
+  <section class="secenek b">
+    <div class="etiket"><b>B · Dengeli, koyu kartlar</b><small>Referans: yayındaki v2 (<code>--dh-sec-gap: 48px</code>, koyu görselli kartlar, siyah üst bar)</small>
+      <div class="olcu"><span>Bölüm 48px</span><span>Kart arası 16px</span><span>Kart içi 16px</span><span>Satırda 4 kart</span><span>Zemin #EFEFEF</span></div></div>
+    <div class="ekran koyu">
+      <div class="ust"><span>23 Kasım Pazartesi · İstanbul 12°</span><span>Dolar 34,52 · BIST 9.812</span><span>TR</span></div>
+      <div class="bas"><span class="logo">dada<i>haber</i></span><nav class="menu"><span>Gündem</span><span>Dünya</span><span>Ekonomi</span><span>Spor</span><span>Savunma</span></nav><span class="ara"></span><span class="giris">Giriş Yap</span></div>
+      <div class="icerik">
+        <div class="sd"><b>SON DAKİKA</b><span>Merkez Bankası politika faizini yüzde 42,5'te sabit tuttu</span></div>
+        <section class="bolum"><h2>Gündem</h2>
+          <div class="izgara">
+            <article class="kart"><div class="gorsel"></div><div class="kart-ic"><span class="kat">Gündem</span><h3>Meclis'te yargı paketi görüşmeleri komisyonda sürüyor</h3><p class="meta">23 Kas 13.05 · 3 kaynak</p></div></article>
+            <article class="kart"><div class="gorsel"></div><div class="kart-ic"><span class="kat">Ekonomi</span><h3>Asgari ücret görüşmelerinde ilk toplantı 4 Aralık'ta</h3><p class="meta">23 Kas 14.32 · 3 kaynak</p></div></article>
+            <article class="kart"><div class="gorsel"></div><div class="kart-ic"><span class="kat">Dünya</span><h3>AB dışişleri bakanları Brüksel'de göç paketini görüştü</h3><p class="meta">23 Kas 12.40 · 2 kaynak</p></div></article>
+            <article class="kart"><div class="gorsel"></div><div class="kart-ic"><span class="kat">Spor</span><h3>Milli takımın aday kadrosu açıklandı</h3><p class="meta">23 Kas 11.20 · TFF</p></div></article>
+          </div>
+        </section>
+      </div>
+    </div>
+    <div class="not">
+      <p><b>Ton:</b> gri zemin, siyah görselli kartlar, beyaz başlık, kehribar etiketler. Güçlü kontrast, video ve görsel ağırlıklı, genç.</p>
+      <p><b>Artı:</b> Seçtiğiniz v2 ile aynı his; görseller öne çıkar. <b>Eksi:</b> Koyu kartlar ağır durabilir, "sakin" tondan uzaklaşır. Başlık görselin üstünde olduğu için okunurluk görselin rengine bağlı kalır.</p>
+    </div>
+  </section>
+
+  <!-- C -->
+  <section class="secenek c">
+    <div class="etiket"><b>C · Yoğun ve açık</b><small>Referans: TRT Haber ana sayfası (yalnızca yapı ve sıklık: görsel, altında kategori adı ve başlık, ince aralıklar)</small>
+      <div class="olcu"><span>Bölüm 32px</span><span>Kart arası 16px</span><span>Kart içi 10px</span><span>Satırda 5 kart</span><span>Zemin #FFFFFF</span></div></div>
+    <div class="ekran">
+      <div class="ust"><span>23 Kasım Pazartesi · İstanbul 12°</span><span>Dolar 34,52 · BIST 9.812</span><span>TR</span></div>
+      <div class="bas"><span class="logo">dada<i>haber</i></span><nav class="menu"><span>Gündem</span><span>Dünya</span><span>Ekonomi</span><span>Spor</span><span>Savunma</span><span>Teknoloji</span><span>Yaşam</span><span>Kampüs</span></nav><span class="ara"></span><span class="giris">Giriş Yap</span></div>
+      <div class="icerik">
+        <div class="sd"><b>SON DAKİKA</b><span>Merkez Bankası politika faizini yüzde 42,5'te sabit tuttu</span></div>
+        <section class="bolum"><h2>Gündem</h2>
+          <div class="izgara">
+            <article class="kart"><div class="gorsel"></div><div class="kart-ic"><span class="kat">Gündem</span><h3>Meclis'te yargı paketi görüşmeleri komisyonda sürüyor</h3><p class="meta">23 Kas 13.05 · 3 kaynak</p></div></article>
+            <article class="kart"><div class="gorsel"></div><div class="kart-ic"><span class="kat">Ekonomi</span><h3>Asgari ücret görüşmelerinde ilk toplantı 4 Aralık'ta</h3><p class="meta">23 Kas 14.32 · 3 kaynak</p></div></article>
+            <article class="kart"><div class="gorsel"></div><div class="kart-ic"><span class="kat">Dünya</span><h3>AB dışişleri bakanları Brüksel'de göç paketini görüştü</h3><p class="meta">23 Kas 12.40 · 2 kaynak</p></div></article>
+            <article class="kart"><div class="gorsel"></div><div class="kart-ic"><span class="kat">Spor</span><h3>Milli takımın aday kadrosu açıklandı</h3><p class="meta">23 Kas 11.20 · TFF</p></div></article>
+            <article class="kart"><div class="gorsel"></div><div class="kart-ic"><span class="kat">Savunma</span><h3>Yeni insansız deniz aracı teslim edildi</h3><p class="meta">23 Kas 10.45 · MSB</p></div></article>
+          </div>
+        </section>
+        <section class="bolum"><h2>Ekonomi</h2>
+          <div class="izgara">
+            <article class="kart"><div class="gorsel"></div><div class="kart-ic"><span class="kat">Ekonomi</span><h3>Konut satışları ekimde yüzde 8 arttı</h3><p class="meta">23 Kas 10.00 · TÜİK</p></div></article>
+            <article class="kart"><div class="gorsel"></div><div class="kart-ic"><span class="kat">Ekonomi</span><h3>İhracat ekimde 23,4 milyar dolar oldu</h3><p class="meta">23 Kas 09.30 · 2 kaynak</p></div></article>
+            <article class="kart"><div class="gorsel"></div><div class="kart-ic"><span class="kat">Ekonomi</span><h3>Akaryakıtta indirim pompaya yansıdı</h3><p class="meta">23 Kas 08.15 · 2 kaynak</p></div></article>
+            <article class="kart"><div class="gorsel"></div><div class="kart-ic"><span class="kat">Ekonomi</span><h3>Altının gramı haftaya yükselişle başladı</h3><p class="meta">23 Kas 08.00 · 2 kaynak</p></div></article>
+            <article class="kart"><div class="gorsel"></div><div class="kart-ic"><span class="kat">Ekonomi</span><h3>Bankacılık sektörünün kredi hacmi açıklandı</h3><p class="meta">22 Kas 17.10 · BDDK</p></div></article>
+          </div>
+        </section>
+      </div>
+    </div>
+    <div class="not">
+      <p><b>Ton:</b> beyaz zemin, kartın çerçevesi yok; görsel, altında kehribar-koyu kategori adı ve başlık. Renk az, bilgi çok.</p>
+      <p><b>Artı:</b> İlk ekranda en çok haber; günlük takipçi için hızlı tarama; açık zemin sakin. <b>Eksi:</b> Klasik portal hissi; v2'nin görsel gücü ve genç havası azalır; dikkat edilmezse kalabalık görünebilir.</p>
+    </div>
+  </section>
+</main>
+</body>
+</html>

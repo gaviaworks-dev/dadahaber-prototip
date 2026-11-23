@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Seçenek · Telefonda bar yüksekliği</title>
+<link rel="stylesheet" href="_vendor/fontawesome-6.5.2/css/all.min.css">
+<style>
+/* TASLAK — telefonda siyah bar yüksekliği. Kesikli kutular parmağın dokunma alanını gösterir. */
+@font-face{font-family:"Gilroy";src:url("_font/gilroy/Gilroy-Medium.woff2") format("woff2");font-weight:400 600;font-display:swap}
+@font-face{font-family:"Gilroy";src:url("_font/gilroy/Gilroy-ExtraBold.woff2") format("woff2");font-weight:700 800;font-display:swap}
+:root{--marka:#FCB623;--siyah:#121212;--gri-50:#EFEFEF;--gri-100:#DEDEDE;--gri-400:#6B6B6B;--gri-600:#494949;--k:12px}
+*{box-sizing:border-box;margin:0}
+body{font-family:"Gilroy",system-ui,sans-serif;background:#d9d9d9;color:var(--siyah);padding:24px 16px 48px;line-height:1.5}
+h1{font-size:1.4rem;font-weight:800;max-width:1280px;margin-inline:auto}
+.aciklama{color:var(--gri-600);max-width:1280px;margin:6px auto 20px;font-size:.92rem}
+.izgara{max-width:1280px;margin-inline:auto;display:flex;flex-wrap:wrap;gap:24px}
+.kol{display:grid;gap:8px;align-content:start}
+.kol b{font-size:1rem;font-weight:800}
+.kol small{color:var(--gri-400);font-size:.8rem;max-width:390px}
+.telefon{inline-size:390px;background:var(--gri-50);border:1px solid var(--gri-100);border-radius:24px;overflow:hidden;box-shadow:0 6px 20px rgba(0,0,0,.1)}
+.bar{background:var(--siyah);color:#eee;display:flex;align-items:center;padding-inline:16px;block-size:var(--h);font-size:.75rem;font-weight:600;white-space:nowrap}
+.hava{display:flex;gap:7px;align-items:center}.hava i{color:var(--marka)}
+.fmt{margin-inline-start:auto;display:flex}
+.fmt a{inline-size:var(--hedef);block-size:var(--h);display:grid;place-items:center;color:var(--marka);font-size:.95rem;position:relative}
+.goster .fmt a::after{content:"";position:absolute;inset-block-start:50%;inset-inline-start:50%;inline-size:44px;block-size:44px;transform:translate(-50%,-50%);border:1px dashed rgba(252,182,35,.9);border-radius:8px;pointer-events:none}
+[dir=rtl] .goster .fmt a::after{transform:translate(50%,-50%)}
+.bas{display:flex;align-items:center;gap:12px;background:#fff;padding:10px 16px;border-block-end:1px solid var(--gri-100)}
+.bas .logo{font-weight:800;font-size:1.15rem}.bas .logo i{font-style:normal;font-weight:500}
+.bas .ara{margin-inline-start:auto;inline-size:40px;block-size:40px;border-radius:var(--k);border:1px solid var(--gri-100);display:grid;place-items:center}
+.sd{margin:12px 16px;display:flex;align-items:center;gap:10px;background:#fff;border-radius:16px;padding:4px;font-size:.8rem;white-space:nowrap;overflow:hidden}
+.sd b{background:var(--marka);border-radius:var(--k);padding:5px 10px;font-size:.7rem;font-weight:800}
+.kart{margin:0 16px 16px;border-radius:16px;aspect-ratio:4/3;background:linear-gradient(180deg,#8a929b,#121212);display:flex;align-items:flex-end;padding:14px;color:#fff;font-weight:800}
+.olcu{font-size:.78rem;color:var(--gri-600)}
+</style>
+</head>
+<body>
+<h1>Telefonda siyah bar yüksekliği · 390px</h1>
+<p class="aciklama">M3 düzeni (solda hava, format ikonları sağa yaslı). Kesikli kutular 44×44px dokunma alanını gösterir; kutu barın dışına taşıyorsa dokunma alanı alttaki header'a biniyor demektir.</p>
+<div class="izgara">
+  <div class="kol"><b>A · 44px</b><small>Dokunma alanı barın içinde kalıyor. Ekranın üstünden 8px daha fazla yer gidiyor.</small>
+    <div class="telefon goster" style="--h:44px;--hedef:44px">
+      <div class="bar"><span class="hava"><i class="fa-solid fa-cloud-sun"></i>İstanbul 12°</span><nav class="fmt"><a aria-label="Haber Dinle"><i class="fa-solid fa-headphones"></i></a><a aria-label="Foto Fokus"><i class="fa-solid fa-camera"></i></a><a aria-label="Video"><i class="fa-solid fa-circle-play"></i></a><a aria-label="İnfografik"><i class="fa-solid fa-chart-simple"></i></a><a aria-label="Podcast"><i class="fa-solid fa-podcast"></i></a></nav></div>
+      <div class="bas"><i class="fa-solid fa-bars"></i><span class="logo">dada<i>haber</i></span><span class="ara"><i class="fa-solid fa-magnifying-glass"></i></span></div>
+      <div class="sd"><b>SON DAKİKA</b>Merkez Bankası faizi sabit tuttu</div>
+      <div class="kart">Asgari ücret görüşmelerinde ilk toplantı 4 Aralık'ta</div>
+    </div><span class="olcu">Bar + header: 105px</span></div>
+
+  <div class="kol"><b>B · 36px</b><small>Bar ince. Dokunma alanı görünmeden 44px'e büyütülüyor; kutular header'a taşıyor.</small>
+    <div class="telefon goster" style="--h:36px;--hedef:44px">
+      <div class="bar"><span class="hava"><i class="fa-solid fa-cloud-sun"></i>İstanbul 12°</span><nav class="fmt"><a aria-label="Haber Dinle"><i class="fa-solid fa-headphones"></i></a><a aria-label="Foto Fokus"><i class="fa-solid fa-camera"></i></a><a aria-label="Video"><i class="fa-solid fa-circle-play"></i></a><a aria-label="İnfografik"><i class="fa-solid fa-chart-simple"></i></a><a aria-label="Podcast"><i class="fa-solid fa-podcast"></i></a></nav></div>
+      <div class="bas"><i class="fa-solid fa-bars"></i><span class="logo">dada<i>haber</i></span><span class="ara"><i class="fa-solid fa-magnifying-glass"></i></span></div>
+      <div class="sd"><b>SON DAKİKA</b>Merkez Bankası faizi sabit tuttu</div>
+      <div class="kart">Asgari ücret görüşmelerinde ilk toplantı 4 Aralık'ta</div>
+    </div><span class="olcu">Bar + header: 97px</span></div>
+
+  <div class="kol"><b>C · 40px</b><small>Ortası. Dokunma alanı 4px kadar header'a taşıyor.</small>
+    <div class="telefon goster" style="--h:40px;--hedef:44px">
+      <div class="bar"><span class="hava"><i class="fa-solid fa-cloud-sun"></i>İstanbul 12°</span><nav class="fmt"><a aria-label="Haber Dinle"><i class="fa-solid fa-headphones"></i></a><a aria-label="Foto Fokus"><i class="fa-solid fa-camera"></i></a><a aria-label="Video"><i class="fa-solid fa-circle-play"></i></a><a aria-label="İnfografik"><i class="fa-solid fa-chart-simple"></i></a><a aria-label="Podcast"><i class="fa-solid fa-podcast"></i></a></nav></div>
+      <div class="bas"><i class="fa-solid fa-bars"></i><span class="logo">dada<i>haber</i></span><span class="ara"><i class="fa-solid fa-magnifying-glass"></i></span></div>
+      <div class="sd"><b>SON DAKİKA</b>Merkez Bankası faizi sabit tuttu</div>
+      <div class="kart">Asgari ücret görüşmelerinde ilk toplantı 4 Aralık'ta</div>
+    </div><span class="olcu">Bar + header: 101px</span></div>
+</div>
+</body>
+</html>

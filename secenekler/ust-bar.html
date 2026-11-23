@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Seçenek · En üst bar</title>
+<style>
+/* TASLAK — yalnızca seçim için. Kök ekranlara taşınmaz.
+   Seçilenler uygulandı: renk (v2), Gilroy, Gastro köşeleri, yoğunluk B. Burada sorulan: siyah barın içeriği ve öğelerin yeri. */
+@font-face{font-family:"Gilroy";src:url("_font/gilroy/Gilroy-Medium.woff2") format("woff2");font-weight:400 600;font-display:swap}
+@font-face{font-family:"Gilroy";src:url("_font/gilroy/Gilroy-ExtraBold.woff2") format("woff2");font-weight:700 800;font-display:swap}
+:root{--marka:#FCB623;--siyah:#121212;--gri-50:#EFEFEF;--gri-100:#DEDEDE;--gri-300:#9D9D9D;--gri-400:#6B6B6B;--gri-600:#494949;--k:12px;--kart:16px;
+  --gastro:#DC3D17;--fit:#009D4F;--diet:#009A44;--gourmet:#742982}
+*{box-sizing:border-box;margin:0}
+body{font-family:"Gilroy",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:#d9d9d9;color:var(--siyah);padding:24px 16px 48px;line-height:1.5}
+.sayfa{max-width:1280px;margin-inline:auto;display:grid;gap:28px}
+.sayfa>header h1{font-size:1.5rem;font-weight:800;line-height:1.2}
+.sayfa>header p{color:var(--gri-600);margin-block-start:6px;max-width:85ch}
+
+.secenek{background:#fff;border-radius:var(--kart);overflow:hidden;box-shadow:0 4px 18px rgba(0,0,0,.08)}
+.etiket{padding:14px 20px;border-block-end:1px solid var(--gri-100)}
+.etiket b{font-size:1.1rem;font-weight:800}
+.etiket small{display:block;color:var(--gri-400);font-size:.82rem}
+.cerceve-ad{font-size:.7rem;font-weight:700;color:var(--gri-400);text-transform:uppercase;letter-spacing:.05em;padding:12px 20px 6px}
+/* Genişlik çerçeveleri: bilinçli yatay kaydırma yalnızca bu önizlemede */
+.cerceve{padding:0 20px 8px;overflow-x:auto}
+.ekran{inline-size:var(--g);background:var(--gri-50);border:1px solid var(--gri-100);border-radius:var(--k);overflow:hidden}
+.masa{--g:1240px}.tablet{--g:800px}.telefon{--g:390px}
+
+.bar{background:var(--siyah);color:#d6d6d6;font-size:.75rem;font-weight:600;display:flex;align-items:center;gap:14px;padding:0 20px;block-size:40px;white-space:nowrap;overflow:hidden}
+.bar .grup{display:flex;align-items:center;gap:14px;min-inline-size:0}
+.bar .sag{margin-inline-start:auto}
+.bar .ayrac{inline-size:1px;block-size:14px;background:#3a3a3a;flex:none}
+.fmt{display:flex;align-items:center;gap:6px;color:#eee}
+.fmt i{inline-size:8px;block-size:8px;border-radius:50%;background:var(--marka);flex:none}
+.piyasa{display:flex;gap:12px;color:#cfcfcf}
+.piyasa b{color:#fff;font-weight:700;font-variant-numeric:tabular-nums}
+.piyasa em{font-style:normal;color:#7fd17f}
+.piyasa em.d{color:#ff8a8a}
+.aile{display:flex;align-items:center;gap:8px}
+.aile .aktif{border:1px solid var(--marka);border-radius:var(--k);padding:3px 9px;color:#fff;font-weight:700}
+.aile .aktif span{font-weight:500}
+.aile .nokta{inline-size:22px;block-size:22px;border-radius:var(--k);display:grid;place-items:center;font-size:.6rem;font-weight:800;color:#fff}
+.dil{border:1px solid #3a3a3a;border-radius:var(--k);padding:2px 8px;color:#fff}
+
+.bas{display:flex;align-items:center;gap:22px;background:#fff;padding:14px 20px;border-block-end:1px solid var(--gri-100);white-space:nowrap;overflow:hidden}
+.logo{font-weight:800;font-size:1.3rem}.logo i{font-style:normal;font-weight:500}
+.menu{display:flex;gap:18px;font-size:.82rem;font-weight:800;text-transform:uppercase;overflow:hidden}
+.arac{margin-inline-start:auto;display:flex;gap:8px;align-items:center;flex:none}
+.ikon{inline-size:38px;block-size:38px;border-radius:var(--k);border:1px solid var(--gri-100);display:grid;place-items:center;font-size:.65rem;font-weight:800;color:var(--gri-600)}
+.giris{background:var(--marka);font-weight:800;font-size:.8rem;padding:10px 14px;border-radius:var(--k)}
+.hamb{inline-size:38px;block-size:38px;display:grid;place-content:center;gap:4px}.hamb span{display:block;inline-size:20px;block-size:2px;background:var(--siyah)}
+.sd{margin:12px 20px;display:flex;align-items:center;gap:10px;background:#fff;border-radius:calc(var(--k) + 4px);padding:4px;font-size:.82rem;white-space:nowrap;overflow:hidden}
+.sd b{background:var(--marka);border-radius:var(--k);padding:5px 12px;font-size:.72rem;font-weight:800}
+.not{padding:14px 20px 18px;font-size:.86rem;color:#373737;display:grid;gap:4px;border-block-start:1px solid var(--gri-100)}
+.yer{display:inline-block;font-size:.66rem;font-weight:800;background:#FFF4C2;color:#7A5F01;border-radius:var(--k);padding:1px 7px;margin-inline-start:6px}
+</style>
+</head>
+<body>
+<main class="sayfa">
+  <header>
+    <h1>En üst bar (siyah bar) · içerik ve yer</h1>
+    <p>Seçilen renk, Gilroy, köşe ve yoğunluk uygulandı. Her seçenek masaüstü (1240px), tablet (800px) ve telefon (390px) genişliğinde. Barın altındaki beyaz header, araçların nereye düştüğünü göstermek için var; header düzeni bir sonraki soruda ayrıca sorulacak. Kardeş sitelerde ve v2'de bar telefonda gizleniyor; üç seçenekte de öyle gösterildi, bar öğeleri telefonda yandan açılan menüye (çekmece) giriyor.</p>
+  </header>
+
+  <!-- A -->
+  <section class="secenek">
+    <div class="etiket"><b>A · Solda formatlar, sağda Dada ailesi ve dil</b><small>Referans: sol taraf yayındaki v2'nin siyah barı (Haber Dinle, Foto Fokus, Video Haber, İnfografik, Podcast) · sağ taraf dadagastro.com üst bandı (Dada ailesi geçişi ve dil seçici)</small></div>
+    <p class="cerceve-ad">Masaüstü · 1240px</p>
+    <div class="cerceve"><div class="ekran masa">
+      <div class="bar">
+        <div class="grup"><span class="fmt"><i></i>Haber Dinle</span><span class="fmt"><i></i>Foto Fokus</span><span class="fmt"><i></i>Video</span><span class="fmt"><i></i>İnfografik</span><span class="fmt"><i></i>Podcast</span></div>
+        <div class="grup sag"><div class="aile"><span class="aktif">dada <span>haber</span></span><span class="nokta" style="background:var(--gastro)">G</span><span class="nokta" style="background:var(--fit)">F</span><span class="nokta" style="background:var(--diet)">D</span><span class="nokta" style="background:var(--gourmet)">Go</span></div><span class="ayrac"></span><span class="dil">TR</span></div>
+      </div>
+      <div class="bas"><span class="logo">dada<i>haber</i></span><nav class="menu"><span>Gündem</span><span>Dünya</span><span>Ekonomi</span><span>Spor</span><span>Savunma</span><span>Teknoloji</span><span>Yaşam</span><span>Kampüs</span></nav><div class="arac"><span class="ikon">ARA</span><span class="ikon">ZİL</span><span class="ikon">KAY</span><span class="giris">Giriş Yap</span></div></div>
+      <div class="sd"><b>SON DAKİKA</b>Merkez Bankası politika faizini yüzde 42,5'te sabit tuttu</div>
+    </div></div>
+    <p class="cerceve-ad">Tablet · 800px</p>
+    <div class="cerceve"><div class="ekran tablet">
+      <div class="bar">
+        <div class="grup"><span class="fmt"><i></i>Haber Dinle</span><span class="fmt"><i></i>Foto Fokus</span><span class="fmt"><i></i>Video</span><span class="fmt"><i></i>Podcast</span></div>
+        <div class="grup sag"><div class="aile"><span class="aktif">dada <span>haber</span></span><span class="nokta" style="background:var(--gastro)">G</span><span class="nokta" style="background:var(--diet)">D</span></div><span class="dil">TR</span></div>
+      </div>
+      <div class="bas"><span class="hamb"><span></span><span></span><span></span></span><span class="logo">dada<i>haber</i></span><div class="arac"><span class="ikon">ARA</span><span class="ikon">ZİL</span><span class="giris">Giriş Yap</span></div></div>
+    </div></div>
+    <div class="not">
+      <p><b>Ne:</b> Bar formatlara ve aileye ayrılıyor. Arama, bildirim, kaydedilenler ve giriş beyaz header'da. Tarih, hava ve piyasa barda yok; yerleri header ya da şerit sorusunda sorulacak.</p>
+      <p><b>Artı:</b> Bildirdiğiniz eğilimle uyumlu (Haber Dinle gibi öğeler siyah barda); kardeş sitelerin bandındaki aile geçişi ve dil korunuyor; bar sade. <b>Eksi:</b> Günlük takipçinin baktığı piyasa ve hava ilk satırda değil. Tablette formatların bir kısmı sığmıyor, "İnfografik" düşüyor.</p>
+    </div>
+  </section>
+
+  <!-- B -->
+  <section class="secenek">
+    <div class="etiket"><b>B · Solda tarih, hava, piyasa; sağda Dada ailesi ve dil</b><small>Referans: dadagastro.com üst bandı (solda site bilgisi, sağda aile geçişi ve dil) · sol içerik site haritasındaki üst bar öğeleri (tarih, şehir, hava, piyasa)</small></div>
+    <p class="cerceve-ad">Masaüstü · 1240px</p>
+    <div class="cerceve"><div class="ekran masa">
+      <div class="bar">
+        <div class="grup"><span>23 Kasım Pazartesi</span><span class="ayrac"></span><span>İstanbul 12°</span><span class="ayrac"></span><div class="piyasa"><span>Dolar <b>34,52</b> <em>▲0,1</em></span><span>Euro <b>36,18</b> <em class="d">▼0,2</em></span><span>BIST <b>9.812</b> <em>▲0,8</em></span><span>Altın <b>2.987</b> <em>▲0,4</em></span></div></div>
+        <div class="grup sag"><div class="aile"><span class="aktif">dada <span>haber</span></span><span class="nokta" style="background:var(--gastro)">G</span><span class="nokta" style="background:var(--fit)">F</span><span class="nokta" style="background:var(--diet)">D</span><span class="nokta" style="background:var(--gourmet)">Go</span></div><span class="ayrac"></span><span class="dil">TR</span></div>
+      </div>
+      <div class="bas"><span class="logo">dada<i>haber</i></span><nav class="menu"><span>Gündem</span><span>Dünya</span><span>Ekonomi</span><span>Spor</span><span>Savunma</span><span>Teknoloji</span><span>Yaşam</span><span>Kampüs</span></nav><div class="arac"><span class="ikon">ARA</span><span class="ikon">ZİL</span><span class="ikon">KAY</span><span class="giris">Giriş Yap</span></div></div>
+      <div class="sd"><b>SON DAKİKA</b>Merkez Bankası politika faizini yüzde 42,5'te sabit tuttu</div>
+    </div></div>
+    <p class="cerceve-ad">Tablet · 800px</p>
+    <div class="cerceve"><div class="ekran tablet">
+      <div class="bar">
+        <div class="grup"><span>İstanbul 12°</span><span class="ayrac"></span><div class="piyasa"><span>Dolar <b>34,52</b></span><span>Euro <b>36,18</b></span><span>BIST <b>9.812</b></span></div></div>
+        <div class="grup sag"><div class="aile"><span class="aktif">dada <span>haber</span></span></div><span class="dil">TR</span></div>
+      </div>
+      <div class="bas"><span class="hamb"><span></span><span></span><span></span></span><span class="logo">dada<i>haber</i></span><div class="arac"><span class="ikon">ARA</span><span class="ikon">ZİL</span><span class="giris">Giriş Yap</span></div></div>
+    </div></div>
+    <div class="not">
+      <p><b>Ne:</b> Bar günlük bilgiye ayrılıyor: tarih, şehir ve hava, dört piyasa değeri. Formatlar (Haber Dinle vb.) format şeridinde kalıyor. Araçlar header'da.</p>
+      <p><b>Artı:</b> Kardeş sitelerin bandına en yakın düzen; günlük takipçinin baktığı bilgi ilk satırda. <b>Eksi:</b> Bildirdiğiniz "Haber Dinle siyah barda" eğilimini karşılamıyor. Piyasa satırı tablette kısalıyor (Altın düşüyor).</p>
+    </div>
+  </section>
+
+  <!-- C -->
+  <section class="secenek">
+    <div class="etiket"><b>C · Solda formatlar, ortada hava ve piyasa, sağda Dada ailesi ve dil</b><small>Referans: v2'nin format bağlantıları + Gastro'nun aile geçişi ve dili + site haritasındaki hava ve piyasa</small></div>
+    <p class="cerceve-ad">Masaüstü · 1240px</p>
+    <div class="cerceve"><div class="ekran masa">
+      <div class="bar">
+        <div class="grup"><span class="fmt"><i></i>Haber Dinle</span><span class="fmt"><i></i>Foto Fokus</span><span class="fmt"><i></i>Video</span><span class="fmt"><i></i>Podcast</span></div>
+        <span class="ayrac"></span>
+        <div class="grup"><span>İstanbul 12°</span><div class="piyasa"><span>Dolar <b>34,52</b></span><span>Euro <b>36,18</b></span><span>BIST <b>9.812</b></span></div></div>
+        <div class="grup sag"><div class="aile"><span class="aktif">dada <span>haber</span></span><span class="nokta" style="background:var(--gastro)">G</span><span class="nokta" style="background:var(--fit)">F</span><span class="nokta" style="background:var(--diet)">D</span><span class="nokta" style="background:var(--gourmet)">Go</span></div><span class="dil">TR</span></div>
+      </div>
+      <div class="bas"><span class="logo">dada<i>haber</i></span><nav class="menu"><span>Gündem</span><span>Dünya</span><span>Ekonomi</span><span>Spor</span><span>Savunma</span><span>Teknoloji</span><span>Yaşam</span><span>Kampüs</span></nav><div class="arac"><span class="ikon">ARA</span><span class="ikon">ZİL</span><span class="ikon">KAY</span><span class="giris">Giriş Yap</span></div></div>
+      <div class="sd"><b>SON DAKİKA</b>Merkez Bankası politika faizini yüzde 42,5'te sabit tuttu</div>
+    </div></div>
+    <p class="cerceve-ad">Tablet · 800px</p>
+    <div class="cerceve"><div class="ekran tablet">
+      <div class="bar">
+        <div class="grup"><span class="fmt"><i></i>Haber Dinle</span><span class="fmt"><i></i>Video</span></div><span class="ayrac"></span>
+        <div class="grup"><div class="piyasa"><span>Dolar <b>34,52</b></span><span>BIST <b>9.812</b></span></div></div>
+        <div class="grup sag"><span class="dil">TR</span></div>
+      </div>
+      <div class="bas"><span class="hamb"><span></span><span></span><span></span></span><span class="logo">dada<i>haber</i></span><div class="arac"><span class="ikon">ARA</span><span class="ikon">ZİL</span><span class="giris">Giriş Yap</span></div></div>
+    </div></div>
+    <div class="not">
+      <p><b>Ne:</b> Bar en dolu hali: formatlar, hava, üç piyasa değeri, aile ve dil. Araçlar header'da.</p>
+      <p><b>Artı:</b> Hem eğiliminiz (formatlar barda) hem günlük bilgi ilk satırda. <b>Eksi:</b> Bar kalabalık; masaüstünde bile Altın ve İnfografik sığmıyor. Tablette aile geçişi düşüyor, yığılma riski en yüksek seçenek.</p>
+    </div>
+  </section>
+
+  <section class="secenek">
+    <div class="etiket"><b>Üç seçenekte de telefon · 390px</b><small>Referans: dadagastro.com (bar 640px altında gizli) ve yayındaki v2 (telefonda bar yok, header'da menü düğmesi + logo + arama)</small></div>
+    <div class="cerceve" style="padding-block-start:12px"><div class="ekran telefon">
+      <div class="bas"><span class="hamb"><span></span><span></span><span></span></span><span class="logo">dada<i>haber</i></span><div class="arac"><span class="ikon">ARA</span></div></div>
+      <div class="sd"><b>SON DAKİKA</b>Merkez Bankası faizi sabit tuttu</div>
+    </div></div>
+    <div class="not"><p>Bar telefonda görünmez; içindeki öğeler yandan açılan menüye (çekmeceye) girer. Telefondaki piyasa ve hava gösterimi şerit sorusunda ayrıca sorulacak.</p></div>
+  </section>
+</main>
+</body>
+</html>

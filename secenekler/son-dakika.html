@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Seçenek · Son Dakika şeridi</title>
+<link rel="stylesheet" href="_vendor/fontawesome-6.5.2/css/all.min.css">
+<style>
+/* TASLAK — bant ve header kayıtlı halleriyle (v2 + dil düğmesi, sponsor yok). Sorulan: Son Dakika şeridinin görünümü. */
+@font-face{font-family:"Gilroy";src:url("_font/gilroy/Gilroy-Medium.woff2") format("woff2");font-weight:400 600;font-display:swap}
+@font-face{font-family:"Gilroy";src:url("_font/gilroy/Gilroy-ExtraBold.woff2") format("woff2");font-weight:700 800;font-display:swap}
+:root{--marka:#FCB623;--marka-metin:#7A5F01;--marka-25:#FFF4C2;--siyah:#121212;--gri-10:#FAFAFA;--gri-50:#EFEFEF;--gri-100:#DEDEDE;--gri-300:#9D9D9D;--gri-400:#6B6B6B;--gri-600:#494949;--gri-800:#242424;--anlik:#C8102E;--k:12px}
+*{box-sizing:border-box;margin:0}
+body{font-family:"Gilroy",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:#cfcfcf;color:var(--siyah);padding:24px 16px 48px;line-height:1.5}
+.sayfa{max-width:1340px;margin-inline:auto;display:grid;gap:28px}
+.sayfa>header h1{font-size:1.5rem;font-weight:800;line-height:1.2}
+.sayfa>header p{color:var(--gri-600);margin-block-start:6px;max-width:90ch}
+.secenek{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 18px rgba(0,0,0,.08)}
+.etiket{padding:14px 20px;border-block-end:1px solid var(--gri-100)}
+.etiket b{font-size:1.1rem;font-weight:800}
+.etiket small{display:block;color:var(--gri-400);font-size:.82rem}
+.cerceve{padding:12px 20px;overflow-x:auto}
+.ekran{inline-size:1300px;border:1px solid var(--gri-100);border-radius:var(--k);overflow:hidden;background:var(--gri-50)}
+.kap{max-inline-size:1280px;margin-inline:auto;padding-inline:16px}
+/* Bant ve header: kayıtlı haller */
+.bant{background:var(--siyah);border-block-end:1px solid rgba(255,255,255,.08)}
+.bant .satir{block-size:44px;display:flex;align-items:center;gap:16px;white-space:nowrap}
+.fmt{display:flex;gap:2px}
+.fmt a{display:flex;align-items:center;gap:7px;padding:7px 12px;font-size:12.5px;font-weight:700;color:rgba(255,255,255,.82)}
+.fmt a:first-child{padding-inline-start:0}
+.fmt a i{color:var(--marka)}
+.araclar{margin-inline-start:auto;display:flex;align-items:center;gap:2px}
+.act{inline-size:34px;block-size:34px;border-radius:var(--k);display:grid;place-items:center;position:relative;font-size:16px;color:rgba(255,255,255,.82)}
+.rozet{position:absolute;inset-block-start:4px;inset-inline-end:0;min-inline-size:17px;block-size:17px;border-radius:9px;background:var(--anlik);color:#fff;font-size:11px;font-weight:700;display:grid;place-items:center;padding-inline:4px}
+.ayrac{inline-size:1px;block-size:18px;background:rgba(255,255,255,.22);margin-inline:12px}
+.dil{block-size:34px;padding-inline:9px;border-radius:var(--k);display:flex;align-items:center;gap:6px;color:rgba(255,255,255,.88);font-size:12.5px;font-weight:700;border:1px solid rgba(255,255,255,.18)}
+.dil .ok{font-size:9px;opacity:.7}
+.uye{inline-size:44px;block-size:44px;background:var(--marka);color:#000;display:grid;place-items:center;font-size:16px;border-radius:var(--k)}
+.marka{background:#fff}
+.marka .satir{block-size:68px;display:flex;align-items:center;gap:10px;white-space:nowrap}
+.logo{inline-size:180px;flex:none;display:flex;align-items:center;gap:8px}
+.logo b{background:var(--marka);border-radius:8px;font-size:11px;font-weight:800;padding:8px 6px;line-height:1}
+.logo span{font-size:24px;font-weight:800;letter-spacing:-.02em}.logo span i{font-style:normal;font-weight:500}
+.menu{display:flex;margin-inline-start:auto}
+.menu a{display:flex;align-items:center;gap:5px;block-size:68px;padding:0 14px;font-size:16px;font-weight:800;text-transform:uppercase;color:var(--marka-metin)}
+.menu a i{font-size:11px}
+.icerik-ornek{display:grid;grid-template-columns:2fr 1fr;gap:16px;padding-block:20px 28px}
+.icerik-ornek div{border-radius:16px;background:linear-gradient(180deg,#8a929b,#121212);block-size:220px}
+
+/* Ortak akış */
+.akis{display:flex;gap:36px;overflow:hidden;flex:1;min-inline-size:0;mask-image:linear-gradient(to left,transparent,#000 48px)}
+.akis span{display:flex;gap:10px;align-items:baseline;white-space:nowrap}
+.akis time{font-size:13px;font-weight:700;font-variant-numeric:tabular-nums}
+.akis em{font-style:normal;font-size:15px;font-weight:500}
+
+/* A · Açık kapsül */
+.a-sd{padding-block-start:16px}
+.a-sd .kapsul{display:flex;align-items:center;gap:16px;background:#fff;border-radius:16px;padding:4px;padding-inline-end:16px;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+.a-sd .etk{display:flex;align-items:center;gap:8px;background:var(--marka);border-radius:var(--k);padding:0 14px;block-size:36px;font-size:12px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;flex:none}
+.a-sd .etk i{font-size:7px}
+.a-sd time{color:var(--marka-metin)}
+.a-sd em{color:var(--gri-800)}
+.a-sd .tumu{font-size:13px;font-weight:700;color:var(--siyah);display:flex;gap:6px;align-items:center;flex:none}
+.a-sd .tumu i{font-size:10px;color:var(--marka-metin)}
+
+/* B · Koyu ince şerit */
+.b-sd{background:#1c1c1c;border-block-start:1px solid rgba(255,255,255,.06)}
+.b-sd .satir{block-size:40px;display:flex;align-items:center;gap:18px}
+.b-sd .etk{display:flex;align-items:center;gap:8px;color:var(--marka);font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;flex:none}
+.b-sd .nokta{inline-size:8px;block-size:8px;border-radius:50%;background:var(--marka);box-shadow:0 0 0 4px rgba(252,182,35,.2)}
+.b-sd .cizgi{inline-size:1px;block-size:16px;background:rgba(255,255,255,.18);flex:none}
+.b-sd time{color:var(--marka)}
+.b-sd em{color:rgba(255,255,255,.88);font-size:14px}
+.b-sd .tumu{font-size:12.5px;font-weight:700;color:rgba(255,255,255,.82);flex:none;display:flex;gap:6px;align-items:center}
+.b-sd .tumu i{font-size:10px;color:var(--marka)}
+
+/* C · TRT Haber yapısı */
+.c-sd{padding-block-start:16px}
+.c-sd .kap-ic{display:flex;align-items:center;background:#E4E4E4;border-radius:16px;block-size:48px;overflow:hidden}
+.c-sd .etk{background:var(--marka);block-size:100%;display:flex;align-items:center;padding:0 22px;font-size:15px;font-weight:800;text-transform:uppercase;letter-spacing:.02em;flex:none;border-start-end-radius:16px;border-end-end-radius:16px}
+.c-sd .akis{padding-inline-start:20px}
+.c-sd time{color:var(--marka-metin)}
+.c-sd em{color:var(--siyah);font-weight:700}
+.c-sd .tumu{font-size:15px;font-weight:800;color:var(--marka-metin);padding-inline:20px;flex:none;border-inline-start:1px solid #cfcfcf;block-size:100%;display:flex;align-items:center;background:#E4E4E4}
+
+.not{padding:14px 20px 18px;font-size:.86rem;color:#373737;display:grid;gap:4px;border-block-start:1px solid var(--gri-100)}
+</style>
+</head>
+<body>
+<main class="sayfa">
+  <header>
+    <h1>Son Dakika şeridi · masaüstü · 1300px</h1>
+    <p>Bant ve header kayıtlı halleriyle: v2'nin aynısı, sponsor yeri yok, dil düğmesi Üye Ol'un yanında. Sorulan yalnızca Son Dakika şeridinin görünümü. İçerik aynı: etiket, saatli başlıklar, "Tümü" bağlantısı. Akış v2'deki gibi yavaşça kayar (önizlemede durağan).</p>
+  </header>
+
+  <!-- A -->
+  <section class="secenek">
+    <div class="etiket"><b>A · Açık kapsül</b><small>Referans: marka kimliği önizlemesindeki Son Dakika satırı (sizin iç içe köşe düzeltmenizle): beyaz kap 16px köşe, 4px iç boşluk, içinde 12px köşeli küçük etiket</small></div>
+    <div class="cerceve"><div class="ekran">
+      <div class="bant"><div class="kap satir"><nav class="fmt"><a><i class="fa-solid fa-headphones"></i>Haber Dinle</a><a><i class="fa-solid fa-camera"></i>Foto Fokus</a><a><i class="fa-solid fa-play"></i>Video Haber</a><a><i class="fa-solid fa-chart-bar"></i>İnfografik</a><a><i class="fa-solid fa-podcast"></i>Podcast</a></nav><div class="araclar"><span class="act"><i class="fa-solid fa-magnifying-glass"></i></span><span class="act"><i class="fa-solid fa-bell"></i><span class="rozet">3</span></span><span class="act"><i class="fa-solid fa-bookmark"></i></span><span class="ayrac"></span><span class="dil"><i class="fa-solid fa-globe"></i>TR<i class="fa-solid fa-chevron-down ok"></i></span><span class="act"><i class="fa-solid fa-right-to-bracket"></i></span><span class="uye"><i class="fa-solid fa-user-plus"></i></span></div></div></div>
+      <div class="marka"><div class="kap satir"><span class="logo"><b>dada!</b><span>dada<i>haber</i></span></span><nav class="menu"><a>Gündem<i class="fa-solid fa-chevron-down"></i></a><a>Dünya<i class="fa-solid fa-chevron-down"></i></a><a>Ekonomi<i class="fa-solid fa-chevron-down"></i></a><a>Spor<i class="fa-solid fa-chevron-down"></i></a><a>Savunma<i class="fa-solid fa-chevron-down"></i></a><a>Teknoloji<i class="fa-solid fa-chevron-down"></i></a><a>Yaşam<i class="fa-solid fa-chevron-down"></i></a><a>Kampüs<i class="fa-solid fa-chevron-down"></i></a></nav></div></div>
+      <div class="a-sd"><div class="kap"><div class="kapsul"><span class="etk"><i class="fa-solid fa-circle"></i>Son Dakika</span><div class="akis"><span><time>14.32</time><em>Merkez Bankası politika faizini yüzde 42,5'te sabit tuttu</em></span><span><time>14.05</time><em>Asgari ücret görüşmelerinde ilk toplantı 4 Aralık'ta</em></span><span><time>13.48</time><em>Milli takımın aday kadrosu açıklandı</em></span></div><span class="tumu">Tümü<i class="fa-solid fa-arrow-right"></i></span></div></div></div>
+      <div class="kap icerik-ornek"><div></div><div></div></div>
+    </div></div>
+    <div class="not"><p><b>Artı:</b> Sakin ve hafif; köşe kuralına birebir uyuyor; sayfanın içeriğiyle aynı genişlikte duruyor. <b>Eksi:</b> En az dikkat çeken seçenek; çok önemli bir haberde bile sakin kalır.</p></div>
+  </section>
+
+  <!-- B -->
+  <section class="secenek">
+    <div class="etiket"><b>B · Koyu ince şerit</b><small>Referans: v2'nin siyah bant dili (koyu zemin, kehribar vurgu) · header'ın hemen altında, tam genişlik, 40px</small></div>
+    <div class="cerceve"><div class="ekran">
+      <div class="bant"><div class="kap satir"><nav class="fmt"><a><i class="fa-solid fa-headphones"></i>Haber Dinle</a><a><i class="fa-solid fa-camera"></i>Foto Fokus</a><a><i class="fa-solid fa-play"></i>Video Haber</a><a><i class="fa-solid fa-chart-bar"></i>İnfografik</a><a><i class="fa-solid fa-podcast"></i>Podcast</a></nav><div class="araclar"><span class="act"><i class="fa-solid fa-magnifying-glass"></i></span><span class="act"><i class="fa-solid fa-bell"></i><span class="rozet">3</span></span><span class="act"><i class="fa-solid fa-bookmark"></i></span><span class="ayrac"></span><span class="dil"><i class="fa-solid fa-globe"></i>TR<i class="fa-solid fa-chevron-down ok"></i></span><span class="act"><i class="fa-solid fa-right-to-bracket"></i></span><span class="uye"><i class="fa-solid fa-user-plus"></i></span></div></div></div>
+      <div class="marka"><div class="kap satir"><span class="logo"><b>dada!</b><span>dada<i>haber</i></span></span><nav class="menu"><a>Gündem<i class="fa-solid fa-chevron-down"></i></a><a>Dünya<i class="fa-solid fa-chevron-down"></i></a><a>Ekonomi<i class="fa-solid fa-chevron-down"></i></a><a>Spor<i class="fa-solid fa-chevron-down"></i></a><a>Savunma<i class="fa-solid fa-chevron-down"></i></a><a>Teknoloji<i class="fa-solid fa-chevron-down"></i></a><a>Yaşam<i class="fa-solid fa-chevron-down"></i></a><a>Kampüs<i class="fa-solid fa-chevron-down"></i></a></nav></div></div>
+      <div class="b-sd"><div class="kap satir"><span class="etk"><span class="nokta"></span>Son Dakika</span><span class="cizgi"></span><div class="akis"><span><time>14.32</time><em>Merkez Bankası politika faizini yüzde 42,5'te sabit tuttu</em></span><span><time>14.05</time><em>Asgari ücret görüşmelerinde ilk toplantı 4 Aralık'ta</em></span><span><time>13.48</time><em>Milli takımın aday kadrosu açıklandı</em></span></div><span class="tumu">Tümü<i class="fa-solid fa-arrow-right"></i></span></div></div>
+      <div class="kap icerik-ornek"><div></div><div></div></div>
+    </div></div>
+    <div class="not"><p><b>Artı:</b> Bantla aynı dil, şık ve haber sitesi hissi güçlü; içerikten net ayrılıyor. <b>Eksi:</b> Üstte iki koyu şerit arasında beyaz header kalıyor; üst kısım ağırlaşabilir.</p></div>
+  </section>
+
+  <!-- C -->
+  <section class="secenek">
+    <div class="etiket"><b>C · TRT Haber yapısı</b><small>Referans: TRT Haber "Son Haberler" şeridi (yalnızca yapı): gri kap, solda dolu etiket bloğu, sağda ayrık "Tümü"; renk bizim paletimizden</small></div>
+    <div class="cerceve"><div class="ekran">
+      <div class="bant"><div class="kap satir"><nav class="fmt"><a><i class="fa-solid fa-headphones"></i>Haber Dinle</a><a><i class="fa-solid fa-camera"></i>Foto Fokus</a><a><i class="fa-solid fa-play"></i>Video Haber</a><a><i class="fa-solid fa-chart-bar"></i>İnfografik</a><a><i class="fa-solid fa-podcast"></i>Podcast</a></nav><div class="araclar"><span class="act"><i class="fa-solid fa-magnifying-glass"></i></span><span class="act"><i class="fa-solid fa-bell"></i><span class="rozet">3</span></span><span class="act"><i class="fa-solid fa-bookmark"></i></span><span class="ayrac"></span><span class="dil"><i class="fa-solid fa-globe"></i>TR<i class="fa-solid fa-chevron-down ok"></i></span><span class="act"><i class="fa-solid fa-right-to-bracket"></i></span><span class="uye"><i class="fa-solid fa-user-plus"></i></span></div></div></div>
+      <div class="marka"><div class="kap satir"><span class="logo"><b>dada!</b><span>dada<i>haber</i></span></span><nav class="menu"><a>Gündem<i class="fa-solid fa-chevron-down"></i></a><a>Dünya<i class="fa-solid fa-chevron-down"></i></a><a>Ekonomi<i class="fa-solid fa-chevron-down"></i></a><a>Spor<i class="fa-solid fa-chevron-down"></i></a><a>Savunma<i class="fa-solid fa-chevron-down"></i></a><a>Teknoloji<i class="fa-solid fa-chevron-down"></i></a><a>Yaşam<i class="fa-solid fa-chevron-down"></i></a><a>Kampüs<i class="fa-solid fa-chevron-down"></i></a></nav></div></div>
+      <div class="c-sd"><div class="kap"><div class="kap-ic"><span class="etk">Son Dakika</span><div class="akis"><span><time>14.32</time><em>Merkez Bankası politika faizini yüzde 42,5'te sabit tuttu</em></span><span><time>14.05</time><em>Asgari ücret görüşmelerinde ilk toplantı 4 Aralık'ta</em></span><span><time>13.48</time><em>Milli takımın aday kadrosu açıklandı</em></span></div><span class="tumu">Tümü</span></div></div></div>
+      <div class="kap icerik-ornek"><div></div><div></div></div>
+    </div></div>
+    <div class="not"><p><b>Artı:</b> Tanıdık haber sitesi düzeni; etiket güçlü ve okunaklı. <b>Eksi:</b> v2'deki haline en yakın seçenek; size şık gelmeyen bloklu görünüşü büyük ölçüde koruyor.</p></div>
+  </section>
+</main>
+</body>
+</html>

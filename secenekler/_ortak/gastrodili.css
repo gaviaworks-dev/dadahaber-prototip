@@ -1,0 +1,635 @@
+/* TASLAK — v2 iskeleti, Dada Gastro tasarım dili. anasayfa.css + v2plus.css'in üstüne yüklenir.
+   Bütün değerler docs/tasarim-kararlari.md'den: Gilroy, ölçek 1.333, palet, köşe kuralı (kontrol/chip 12, kart 16, büyük 24). */
+
+/* Bölüm başlığı (Gastro .sec-head) */
+.gs{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:24px;align-items:center;margin-block-end:32px}
+.gs .ust{grid-column:1/-1;display:inline-flex;align-items:center;gap:10px;font-size:var(--y-sm);font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--marka-metin);margin-block-end:14px}
+.gs .ust i{font-size:var(--y-sm);letter-spacing:0}
+.gs h2{font-size:var(--y-xl);line-height:1.12;font-weight:800;letter-spacing:-.025em}
+.gs .lead{grid-column:1;font-size:var(--y-md);color:var(--gri-400);font-weight:500;margin-block-start:10px;max-inline-size:60ch}
+.gs .arac{grid-column:2;grid-row:2;display:flex;gap:10px;align-items:center}
+.gd-dugme{display:inline-flex;align-items:center;gap:10px;font-size:var(--y-sm);font-weight:800;padding:0 18px;block-size:44px;border:1px solid var(--gri-50);border-radius:var(--k-kontrol);background:#fff;color:var(--siyah);box-shadow:var(--golge-sm);transition:border-color .25s,color .25s;white-space:nowrap}
+.gd-dugme:hover{border-color:var(--marka);color:var(--marka-metin)}
+.gd-dugme i{font-size:var(--y-sm);transition:transform .25s}.gd-dugme:hover i{transform:translateX(3px)}
+.gd-dugme.dolu{background:var(--marka);border-color:var(--marka);color:var(--siyah);box-shadow:none}
+.gd-kare{inline-size:44px;block-size:44px;display:grid;place-items:center;border:1px solid var(--gri-50);border-radius:var(--k-kontrol);background:#fff;box-shadow:var(--golge-sm);font-size:var(--y-sm);color:var(--siyah)}
+.gd-kare[aria-disabled=true]{opacity:.45}
+.koyu-b .gs h2{color:#fff}.koyu-b .gs .lead{color:var(--gri-200)}.koyu-b .gs .ust{color:var(--marka)}
+.koyu-b .gd-dugme{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.18);color:#fff;box-shadow:none}
+
+/* Bölüm zeminleri: zebra + Gastro yumuşak geçiş */
+.gb{padding-block:72px}
+.gb.a{background:#fff}.gb.b{background:var(--zemin-b);box-shadow:inset 0 -1px 0 var(--gri-50)}
+
+/* Gastro kartı (r-card) */
+.gk{position:relative;background:#fff;border:1px solid var(--gri-50);border-radius:var(--k-kart);overflow:hidden;box-shadow:var(--golge-sm);display:flex;flex-direction:column;transition:transform .3s ease,box-shadow .3s ease}
+.gk:hover{transform:translateY(-6px);box-shadow:var(--golge-md)}
+.gk .gm{position:relative;aspect-ratio:4/3;overflow:hidden}
+.gk .gm .r{position:absolute;inset:0;background:center/cover no-repeat;transition:transform .5s ease}
+.gk:hover .gm .r{transform:scale(1.04)}
+.cip{position:absolute;inset-block-start:13px;inset-inline-start:13px;background:rgba(255,255,255,.94);color:var(--siyah);font-size:var(--y-sm);font-weight:800;padding:5px 11px;border-radius:var(--k-kontrol);display:inline-flex;gap:6px;align-items:center;z-index:2}
+.cip i{color:var(--marka-metin);font-size:var(--y-sm)}
+.kaydet{position:absolute;inset-block-start:12px;inset-inline-end:12px;inline-size:40px;block-size:40px;border-radius:50%;background:#fff;display:grid;place-items:center;color:var(--siyah);font-size:var(--y-sm);box-shadow:var(--golge-sm);z-index:2}
+.gk .gv{padding:18px 18px 16px;display:flex;flex-direction:column;flex:1}
+.gk h3{font-size:var(--y-md);line-height:1.3;font-weight:800;letter-spacing:-.01em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-block-size:2.6em;margin-block-end:12px}
+.gk:hover h3{color:var(--marka-metin)}
+.bilgi{display:flex;align-items:center;font-size:var(--y-sm);color:var(--gri-400);font-weight:500;white-space:nowrap;min-inline-size:0}
+.bilgi span{display:inline-flex;align-items:center;gap:6px}
+.bilgi i{color:var(--marka-metin);font-size:var(--y-sm)}
+.bilgi span+span{border-inline-start:1px solid var(--gri-100);padding-inline-start:12px;margin-inline-start:12px}
+.imza{margin-block-start:auto;padding-block-start:14px;border-block-start:1px solid var(--gri-50);display:flex;align-items:center;gap:10px;font-size:var(--y-sm)}
+.gk .bilgi{margin-block-end:16px}
+.av{inline-size:30px;block-size:30px;border-radius:50%;background:var(--marka-25);color:var(--marka-metin);display:grid;place-items:center;font-weight:800;font-size:var(--y-sm);flex:none}
+.imza b{font-weight:800}
+.imza .sag{margin-inline-start:auto;display:flex;gap:12px;color:var(--gri-400);align-items:center}
+.imza .sag i{color:var(--marka-metin)}
+.teyitli{display:inline-flex;gap:6px;align-items:center;font-weight:800;color:var(--artis)}
+.teyitli i{color:var(--artis)!important}
+
+/* Yatay Gastro kartı (En yeni tarifler yan listesi) */
+.gy{position:relative;display:grid;grid-template-columns:200px 1fr;background:#fff;border:1px solid var(--gri-50);border-radius:var(--k-kart);overflow:hidden;box-shadow:var(--golge-sm);transition:transform .3s ease,box-shadow .3s ease}
+.gy:hover{transform:translateY(-4px);box-shadow:var(--golge-md)}
+.gy .gm{position:relative;overflow:hidden;min-block-size:150px}
+.gy .gm .r{position:absolute;inset:0;background:center/cover;transition:transform .5s}
+.gy:hover .gm .r{transform:scale(1.04)}
+.gy .cip{inset-block-start:10px;inset-inline-start:10px;padding:4px 9px}
+.gy .kaydet{inline-size:36px;block-size:36px;inset-block-start:10px;inset-inline-end:10px}
+.gy .gv{padding:16px 18px;display:flex;flex-direction:column;gap:10px}
+.gy h3{font-size:var(--y-md);line-height:1.28;font-weight:800;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.gy .imza{padding-block-start:10px}
+
+/* Büyük öne çıkan kart (Gastro En yeni tarifler sol) */
+.go{position:relative;border-radius:var(--k-kart);overflow:hidden;min-block-size:500px;display:flex;align-items:flex-end;color:#fff;box-shadow:var(--golge-sm);isolation:isolate;transition:transform .3s,box-shadow .3s}
+.go:hover{transform:translateY(-4px);box-shadow:var(--golge-md)}
+.go .r{position:absolute;inset:0;background:center/cover;z-index:-2;transition:transform .6s}
+.go:hover .r{transform:scale(1.03)}
+.go::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(0deg,rgba(18,18,18,.9),rgba(18,18,18,.35) 45%,rgba(18,18,18,0) 70%)}
+.go .ic{padding:28px;display:grid;gap:12px;justify-items:start}
+.go h3{font-size:var(--y-lg);line-height:1.2;font-weight:800;letter-spacing:-.015em;max-inline-size:30ch}
+.go .bilgi{color:rgba(255,255,255,.8)}.go .bilgi i{color:var(--marka)}.go .bilgi span+span{border-color:rgba(255,255,255,.25)}
+.go .cip{position:static}
+.go .kaydet{inline-size:44px;block-size:44px}
+.yeni{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.yeni .yan{display:grid;gap:16px;align-content:start}
+
+/* Izgaralar */
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+
+/* Kategori kutucukları (Gastro Kategoriler rayı) */
+.kat-ray{display:flex;gap:18px;overflow:hidden}
+.kat-ray a{flex:0 0 148px;display:grid;justify-items:center;gap:10px;text-align:center}
+.kat-ray .k{inline-size:148px;block-size:148px;border-radius:var(--k-kart);background:center/cover;box-shadow:var(--golge-sm);position:relative;overflow:hidden;transition:transform .3s}
+.kat-ray a:hover .k{transform:translateY(-4px)}
+.kat-ray .k i{position:absolute;inset-block-end:10px;inset-inline-start:10px;inline-size:36px;block-size:36px;border-radius:var(--k-kontrol);background:rgba(255,255,255,.94);color:var(--marka-metin);display:grid;place-items:center;font-size:var(--y-sm)}
+.kat-ray b{font-size:var(--y-md);font-weight:800}
+.kat-ray small{font-size:var(--y-sm);color:var(--gri-400)}
+
+/* Fotoğraflı koyu bant (Gastro "Tarif bul — elindekiyle") */
+.gband{position:relative;border-radius:var(--k-kart);overflow:hidden;display:grid;grid-template-columns:auto 1fr auto auto;gap:20px;align-items:center;padding:26px 30px;color:#fff;background:#121212;box-shadow:var(--golge-md);border-inline-start:4px solid var(--marka);isolation:isolate}
+.gband .r{position:absolute;inset:0;background:center/cover;opacity:.45;z-index:-2}
+.gband::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(18,18,18,.96) 0%,rgba(18,18,18,.82) 45%,rgba(18,18,18,.55) 100%)}
+.gband .ik{inline-size:48px;block-size:48px;border-radius:var(--k-kontrol);background:rgba(252,182,35,.16);border:1px solid rgba(252,182,35,.35);color:var(--marka);display:grid;place-items:center;font-size:var(--y-md)}
+.gband b{display:block;font-size:var(--y-md);font-weight:800}
+.gband span.alt{font-size:var(--y-sm);color:var(--gri-200)}
+.gband .cipler{display:flex;gap:8px}
+.gband .cipler span{font-size:var(--y-sm);font-weight:700;padding:8px 14px;border-radius:var(--k-kontrol);background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);backdrop-filter:blur(4px)}
+.gband .cipler span.vurgu{border-color:rgba(252,182,35,.6);color:var(--marka);background:rgba(252,182,35,.08)}
+.gband .git{display:inline-flex;gap:10px;align-items:center;background:var(--marka);color:var(--siyah);font-weight:800;font-size:var(--y-sm);padding:0 20px;block-size:48px;border-radius:var(--k-kontrol);white-space:nowrap}
+.bant-bosluk{padding-block:40px}
+
+/* Kardeş site bölümü (Gastro'daki Dada Gourmet bölümü) */
+.kb{padding-block:72px}
+.kb .marka-yazi{font-size:var(--y-lg);font-weight:800;letter-spacing:-.03em;margin-block-end:8px;display:inline-flex;align-items:baseline}
+.kb .marka-yazi i{font-style:normal;font-weight:300}
+.kb .gk .gv p{font-size:var(--y-sm);color:var(--gri-400);margin-block:-4px 14px}
+.kb .kesfet-l{margin-block-start:auto;padding-block-start:14px;border-block-start:1px solid var(--gri-50);font-weight:800;font-size:var(--y-sm);display:flex;gap:8px;align-items:center}
+
+/* Koyu dokulu bölüm (Gastro Mutfak Sırları) */
+.koyu-b{position:relative;color:#fff;background:#121212;isolation:isolate;overflow:hidden}
+.koyu-b>.r{position:absolute;inset:0;background:center/cover;opacity:.18;z-index:-2;filter:grayscale(.3)}
+.koyu-b::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(18,18,18,.55),rgba(18,18,18,.9))}
+.sekme{display:inline-flex;padding:4px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14)}
+.sekme span{font-size:var(--y-sm);font-weight:800;padding:0 16px;block-size:36px;display:grid;place-items:center;border-radius:var(--k-kontrol);color:var(--gri-200)}
+.sekme span.a{background:var(--marka);color:var(--siyah)}
+.numara{display:grid;grid-template-columns:1fr 1fr;column-gap:48px}
+.numara a{display:grid;grid-template-columns:48px 1fr auto;gap:16px;align-items:center;padding-block:18px;border-block-end:1px solid rgba(255,255,255,.1)}
+.numara .n{inline-size:44px;block-size:44px;border-radius:var(--k-kontrol);background:rgba(252,182,35,.14);border:1px solid rgba(252,182,35,.3);color:var(--marka);display:grid;place-items:center;font-weight:800;font-size:var(--y-sm)}
+.numara b{font-size:var(--y-md);font-weight:800;display:block}
+.numara small{font-size:var(--y-sm);color:var(--gri-200)}
+.numara i.ok{color:var(--gri-300);font-size:var(--y-sm)}
+.numara.acik a{border-color:var(--gri-50)}.numara.acik small{color:var(--gri-400)}.numara.acik i.ok{color:var(--gri-300)}
+
+/* Servis kartları (hava, namaz, piyasa) Gastro kart diliyle */
+.servis3{display:grid;grid-template-columns:1.25fr 1.25fr 1fr;gap:24px}
+.sk3{background:#fff;border:1px solid var(--gri-50);border-radius:var(--k-kart);box-shadow:var(--golge-sm);padding:22px;display:grid;gap:16px;align-content:start}
+.sk3 .bas{display:flex;align-items:center;gap:10px}
+.sk3 .bas .ust{display:inline-flex;gap:8px;align-items:center;font-size:var(--y-sm);font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--marka-metin)}
+.sk3 .bas .sec{margin-inline-start:auto;display:inline-flex;gap:8px;align-items:center;block-size:36px;padding:0 12px;border:1px solid var(--gri-50);border-radius:var(--k-kontrol);font-size:var(--y-sm);font-weight:700}
+.sk3 .bas .sec i{color:var(--marka-metin)}
+.buyuk-rakam{display:flex;align-items:center;gap:16px}
+.buyuk-rakam i.h{font-size:var(--y-xl);color:var(--marka)}
+.buyuk-rakam b{font-size:var(--y-2xl);font-weight:800;letter-spacing:-.03em;line-height:1}
+.buyuk-rakam span{font-size:var(--y-sm);color:var(--gri-400)}
+.gunler{display:grid;grid-template-columns:repeat(5,1fr);border-block-start:1px solid var(--gri-50);padding-block-start:14px}
+.gunler div{text-align:center;display:grid;gap:4px;font-size:var(--y-sm)}
+.gunler small{font-weight:800;color:var(--gri-400);font-size:var(--y-sm)}
+.gunler i{color:var(--marka-metin)}
+.vakitler{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.vakitler div{border:1px solid var(--gri-50);border-radius:var(--k-kontrol);padding:10px;text-align:center}
+.vakitler small{display:block;font-size:var(--y-sm);color:var(--gri-400);font-weight:700}
+.vakitler b{font-size:var(--y-md);font-weight:800;font-variant-numeric:tabular-nums}
+.vakitler .s{background:var(--siyah);color:#fff;border-color:var(--siyah)}.vakitler .s small{color:var(--marka)}
+.kurlar-l{display:grid}
+.kurlar-l div{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;padding-block:10px;border-block-end:1px solid var(--gri-50);font-size:var(--y-sm)}
+.kurlar-l div:last-child{border:0}
+.kurlar-l b{font-size:var(--y-md);font-weight:800;font-variant-numeric:tabular-nums;text-align:end}
+.kurlar-l em{font-style:normal;font-weight:800;min-inline-size:64px;text-align:end}.kurlar-l em.y{color:var(--artis)}.kurlar-l em.d{color:var(--azalis)}
+.kurlar-l i{inline-size:32px;block-size:32px;border-radius:var(--k-kontrol);background:var(--marka-25);color:var(--marka-metin);display:grid;place-items:center}
+
+/* Takımlar (Gastro Tarifin ustaları) */
+.ustalar{display:flex;gap:16px;overflow:hidden}
+.ustalar a{flex:0 0 124px;display:grid;justify-items:center;gap:8px;text-align:center;padding:18px 8px;background:#fff;border:1px solid var(--gri-50);border-radius:var(--k-kart);box-shadow:var(--golge-sm);transition:transform .3s}
+.ustalar a:hover{transform:translateY(-4px)}
+.ustalar .arma{inline-size:64px;block-size:64px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:800;font-size:var(--y-sm);border:3px solid #fff;box-shadow:0 0 0 1px var(--gri-50)}
+.ustalar b{font-size:var(--y-sm);font-weight:800}
+.ustalar small{font-size:var(--y-sm);color:var(--gri-400)}
+.ustalar .t{font-size:var(--y-sm);font-weight:800;color:var(--marka-metin);display:inline-flex;gap:6px;align-items:center}
+
+/* Akış (dikey video) Gastro kalitesinde */
+.akis-r{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
+.akis-r a{position:relative;aspect-ratio:9/16;border-radius:var(--k-kart);overflow:hidden;color:#fff;display:flex;flex-direction:column;justify-content:flex-end;padding:14px;isolation:isolate;transition:transform .3s}
+.akis-r a:hover{transform:translateY(-6px)}
+.akis-r .r{position:absolute;inset:0;background:center/cover;z-index:-2;transition:transform .6s}.akis-r a:hover .r{transform:scale(1.05)}
+.akis-r a::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(0deg,rgba(18,18,18,.92),rgba(18,18,18,0) 60%)}
+.akis-r .sure{position:absolute;inset-block-start:12px;inset-inline-start:12px;font-size:var(--y-sm);font-weight:800;background:rgba(18,18,18,.55);border-radius:var(--k-kontrol);padding:3px 9px}
+.akis-r .oy{position:absolute;inset-block-start:50%;inset-inline-start:50%;translate:-50% -50%;inline-size:52px;block-size:52px;border-radius:50%;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.4);backdrop-filter:blur(6px);display:grid;place-items:center;transition:transform .3s}
+.akis-r a:hover .oy{transform:scale(1.12)}
+.akis-r h3{font-size:var(--y-sm);font-weight:800;line-height:1.3}
+
+/* Son haberler üçlüsü */
+.son3g{display:grid;grid-template-columns:3fr 6fr 3fr;gap:32px}
+.son3g .bas{display:flex;gap:8px;align-items:center;font-size:var(--y-sm);font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--marka-metin);padding-block-end:14px;margin-block-end:8px;border-block-end:2px solid var(--siyah)}
+.yazar{display:grid;grid-template-columns:52px 1fr;gap:12px;align-items:center;padding-block:14px;border-block-end:1px solid var(--gri-50)}
+.yazar .f{inline-size:52px;block-size:52px;border-radius:50%;background:center/cover}
+.yazar b{font-size:var(--y-sm);font-weight:800;display:block;color:var(--marka-metin)}
+.yazar span{font-size:var(--y-md);font-weight:800;line-height:1.3}
+.pop{list-style:none;padding:0;counter-reset:p}
+.pop li{display:grid;grid-template-columns:48px 1fr;gap:12px;align-items:start;padding-block:14px;border-block-end:1px solid var(--gri-50);counter-increment:p}
+.pop li::before{content:counter(p,decimal-leading-zero);font-size:var(--y-lg);font-weight:800;color:var(--marka);line-height:1.1}
+.pop h3{font-size:var(--y-md);font-weight:800;line-height:1.3}
+
+/* İnfografik: görsel (v2 infografik sayfası) — büyük görsel + Ken Burns yakınlaşması */
+.info-v{display:grid;grid-template-columns:2fr 1fr;gap:24px}
+.info-v-yan{display:grid;gap:24px}
+.info-v .go.kucuk{min-block-size:248px}
+.info-v .go.kucuk h3{font-size:var(--y-md)}
+.kb-anim .r{animation:kenburns 14s ease-in-out infinite alternate}
+@keyframes kenburns{from{transform:scale(1) translate(0,0)}to{transform:scale(1.12) translate(-2%,-2%)}}
+.go .buyut{position:absolute;inset-block-start:12px;inset-inline-end:64px;inline-size:44px;block-size:44px;border-radius:50%;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);backdrop-filter:blur(6px);display:grid;place-items:center;color:#fff;font-size:var(--y-sm);z-index:2}
+.go.kucuk .buyut{inline-size:36px;block-size:36px;inset-inline-end:56px}
+@media (prefers-reduced-motion:reduce){.kb-anim .r{animation:none}}
+
+/* KURAL (Beyar): ikon ile metin bitişik olamaz. Bütün ikon + metin kapları aynı boşluğu kullanır: --ikon-bosluk (8px). */
+.imza .sag span,.bilgi span,.cip,.gd-dugme,.gs .ust,.sk3 .bas .ust,.sk3 .bas .sec,.ustalar .t,.kesfet-l,.kapsul .tumu,.kapsul .etk,.facts span,.gband .git,.cam,.dil,.fmt a,.kas,.son3g .bas,.go .bilgi span,.akis-r .sure,.footer .aile span,.secici,.teyitli,.dinle-b,.tumunu{display:inline-flex;align-items:center;gap:var(--ikon-bosluk)}
+.cam i,.cip i{margin:0}
+
+/* Yazı tablosu güncellemesi (Beyar: kart ve bölüm başlıkları çok kalın). Elde Gilroy Light 300 / Medium 500 / ExtraBold 800 var;
+   SemiBold/Bold dosyası yok. Bölüm başlığı (h2) ve kart başlıkları (h3) Medium 500; manşet h1 ExtraBold kalır. */
+.gs h2,.kb .gs h2{font-weight:500;letter-spacing:-.02em}
+.gk h3,.gy h3,.go h3,.g h3,.g.buyuk h3,.akis-r h3,.numara b,.pop h3,.yazar span,.info-v .go h3{font-weight:500}
+.kat-ray b,.ustalar b{font-weight:500}
+
+/* Başlıklarda satır dengeleme: tek kelime alt satıra düşmesin */
+.gs h2,.gk h3,.gy h3,.go h3,.g h3,.manset h1,.pop h3,.yazar span{text-wrap:pretty}
+
+/* KURAL (Beyar): hizalama — yan yana sütunların üst ve alt kenarları aynı hizada biter. */
+.manset .izg{align-items:stretch}
+.manset .sol{display:block;block-size:490px}
+.manset .sol .g{block-size:100%}
+/* KURAL (Beyar): kaydırma okları ve sayfa noktaları kartın üstünde durur, ayrı satırda durmaz. */
+.kart-kontrol{position:absolute;inset-block-end:24px;inset-inline-end:24px;z-index:3;display:flex;align-items:center;gap:var(--ikon-bosluk)}
+.kart-kontrol .noktalar{display:flex;gap:8px;align-items:center;margin-inline-end:8px}
+.kart-kontrol .noktalar span{inline-size:8px;block-size:8px;border-radius:50%;background:rgba(255,255,255,.5)}
+.kart-kontrol .noktalar span.a{inline-size:26px;border-radius:999px;background:var(--marka)}
+.kart-kontrol .ok-dugme{border-color:transparent}
+.ray-kap{position:relative;--ok-y:50%}
+.ray-kap:has(> .g4){--ok-y:calc((100% - 0px) * 0 + 110px)}
+.ray-ok{position:absolute;inset-block-start:var(--ok-y);translate:0 -50%;z-index:4;box-shadow:var(--golge-md);border-color:transparent}
+.ray-ok.onceki{inset-inline-start:-20px}
+.ray-ok.sonraki{inset-inline-end:-20px}
+[dir=rtl] .ray-ok i{transform:scaleX(-1)}
+
+/* KURAL (Beyar): görselin üstüne gelen ikon, etiket ve kontrollerin arkası koyu yarı saydam zemindir;
+   görsel açık ya da koyu olsun her zaman okunur. Opak beyaz öğeler (kaydet düğmesi, beyaz kart etiketi) hariç. */
+:root{--ust-zemin:rgba(18,18,18,.55);--ust-cizgi:rgba(255,255,255,.22)}
+.medya i,.go .buyut,.cam,.akis-r .oy,.reel .oynat,.sayac,.akis-r .sure,.reel .sure{background:var(--ust-zemin)!important;border:1px solid var(--ust-cizgi)!important;color:#fff!important;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.medya i{inline-size:36px;block-size:36px;font-size:var(--y-sm)}
+.kart-kontrol{background:var(--ust-zemin);border:1px solid var(--ust-cizgi);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border-radius:var(--k-kart);padding:4px 4px 4px 14px}
+.kart-kontrol .noktalar span{background:rgba(255,255,255,.55)}
+
+/* Ayırıcı modüller (hava, namaz, döviz): bölümlerin arasına serpiştirilir; aynı iskelet, farklı ton. */
+.ay{padding-block:28px}
+.ay-kart{position:relative;display:grid;grid-template-columns:auto auto 1fr auto;align-items:center;gap:32px;padding:24px 28px;border-radius:var(--k-buyuk);overflow:hidden;isolation:isolate;min-block-size:128px}
+.ay-kim{display:flex;align-items:center;gap:16px;white-space:nowrap}
+.ay-ik{inline-size:52px;block-size:52px;border-radius:var(--k-kart);display:grid;place-items:center;font-size:var(--y-lg);flex:none}
+.ay-kim b{display:block;font-size:var(--y-md);font-weight:800;line-height:1.2}
+.ay-kim small{display:block;font-size:var(--y-sm);font-weight:500;margin-block-start:2px}
+.ay-dugme{display:inline-flex;align-items:center;gap:var(--ikon-bosluk);block-size:44px;padding:0 16px;border-radius:var(--k-kontrol);font-size:var(--y-sm);font-weight:800;white-space:nowrap}
+.ay-ayrac{inline-size:1px;align-self:stretch;margin-block:4px}
+/* Hava: açık, ferah */
+.ay-hava{background:linear-gradient(110deg,var(--marka-10) 0%,#fff 55%);border:1px solid var(--gri-50);box-shadow:var(--golge-sm)}
+.ay-hava .ay-ik{background:var(--marka-25);color:var(--marka-metin)}
+.ay-hava .ay-kim small{color:var(--gri-400)}
+.ay-sicak{display:flex;align-items:flex-start;gap:6px;font-size:56.8px;font-weight:800;letter-spacing:-.04em;line-height:1}
+.ay-sicak sup{font-size:var(--y-lg);font-weight:500;color:var(--gri-400);margin-block-start:6px}
+.ay-gunler{display:grid;grid-template-columns:repeat(6,1fr);justify-self:stretch}
+.ay-gunler div{display:grid;justify-items:center;gap:6px;padding-inline:8px;border-inline-start:1px solid var(--gri-50)}
+.ay-gunler small{font-size:var(--y-sm);font-weight:800;color:var(--gri-400);text-transform:uppercase;letter-spacing:.06em}
+.ay-gunler i{font-size:var(--y-lg);color:var(--marka)}
+.ay-gunler b{font-size:var(--y-sm);font-weight:800}.ay-gunler b span{color:var(--gri-300);font-weight:500;margin-inline-start:6px}
+.ay-hava .ay-dugme{background:#fff;border:1px solid var(--gri-50);box-shadow:var(--golge-sm)}
+.ay-hava .ay-dugme i{color:var(--marka-metin)}
+/* Namaz: Gastro fotoğraflı koyu bant */
+.ay-namaz{background:#121212;color:#fff;box-shadow:var(--golge-md);border-inline-start:4px solid var(--marka)}
+.ay-namaz .r{position:absolute;inset:0;background:center/cover;opacity:.5;z-index:-2}
+.ay-namaz::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(18,18,18,.96) 0%,rgba(18,18,18,.82) 50%,rgba(18,18,18,.6) 100%)}
+.ay-namaz .ay-ik{background:rgba(252,182,35,.16);border:1px solid rgba(252,182,35,.35);color:var(--marka)}
+.ay-namaz .ay-kim small{color:var(--gri-200)}
+.ay-geri{display:grid;gap:2px;white-space:nowrap}
+.ay-geri b{font-size:var(--y-xl);font-weight:800;letter-spacing:-.02em;line-height:1;font-variant-numeric:tabular-nums}
+.ay-geri small{font-size:var(--y-sm);color:var(--gri-200)}
+.ay-vakit{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
+.ay-vakit div{display:grid;justify-items:center;gap:2px;padding:10px 6px;border-radius:var(--k-kontrol);background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(4px)}
+.ay-vakit small{font-size:var(--y-sm);color:var(--gri-200);font-weight:700}
+.ay-vakit b{font-size:var(--y-md);font-weight:800;font-variant-numeric:tabular-nums}
+.ay-vakit .s{background:var(--marka);border-color:var(--marka);color:var(--siyah)}.ay-vakit .s small{color:var(--siyah)}
+.ay-namaz .ay-dugme{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);color:#fff}
+.ay-namaz .ay-dugme i{color:var(--marka)}
+/* Döviz: temiz piyasa şeridi */
+.ay-doviz{background:#fff;border:1px solid var(--gri-50);box-shadow:var(--golge-sm);grid-template-columns:auto 1fr auto}
+.ay-doviz .ay-ik{background:var(--siyah);color:var(--marka)}
+.ay-doviz .ay-kim small{color:var(--gri-400);display:inline-flex;align-items:center;gap:var(--ikon-bosluk)}
+.ay-kurlar{display:grid;grid-template-columns:repeat(4,1fr)}
+.ay-kur{display:grid;grid-template-columns:1fr auto;grid-template-rows:auto auto;column-gap:12px;row-gap:2px;align-items:end;padding-inline:24px;border-inline-start:1px solid var(--gri-50)}
+.ay-kur small{grid-column:1/-1;font-size:var(--y-sm);font-weight:800;color:var(--gri-400);display:inline-flex;align-items:center;gap:var(--ikon-bosluk);text-transform:uppercase;letter-spacing:.06em}
+.ay-kur b{font-size:var(--y-lg);font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums;white-space:nowrap}
+.ay-kur em{font-style:normal;font-size:var(--y-sm);font-weight:800;white-space:nowrap;display:inline-flex;align-items:center;gap:4px;justify-self:end;padding:2px 8px;border-radius:var(--k-kontrol)}
+.ay-kur em.y{color:var(--artis);background:color-mix(in srgb,var(--artis) 10%,#fff)}.ay-kur em.d{color:var(--azalis);background:color-mix(in srgb,var(--azalis) 9%,#fff)}
+.ay-kur svg{grid-column:1/-1;inline-size:100%;block-size:24px;margin-block-start:6px}
+.ay-doviz .ay-dugme{background:var(--siyah);color:#fff}.ay-doviz .ay-dugme i{color:var(--marka)}
+
+/* Manşet kaydırma kontrolü · K1 (Beyar seçti): numara sayacı + ilerleme çizgisi + çizgili yuvarlak oklar, kartın sağ altında */
+.k1{position:absolute;inset-block-end:24px;inset-inline-end:24px;z-index:3;display:flex;align-items:center;gap:12px;color:#fff}
+.k1 .say{font-size:var(--y-sm);font-weight:700;display:flex;gap:4px;align-items:baseline;opacity:.9;font-variant-numeric:tabular-nums}
+.k1 .say b{font-size:var(--y-md);font-weight:800}
+.k1 .cizgi{inline-size:64px;block-size:2px;background:rgba(255,255,255,.35);border-radius:999px;overflow:hidden}
+.k1 .cizgi i{display:block;block-size:100%;background:var(--marka);transition:inline-size .4s ease}
+.k1 .okk{inline-size:44px;block-size:44px;border-radius:50%;border:1px solid rgba(255,255,255,.55);display:grid;place-items:center;font-size:var(--y-sm);background:rgba(18,18,18,.25);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);cursor:pointer;transition:background .25s,border-color .25s,color .25s}
+.k1 .okk:hover{background:var(--marka);border-color:var(--marka);color:var(--siyah)}
+[dir=rtl] .k1 .okk i{transform:scaleX(-1)}
+
+/* İçerik türü göstergesi · M1 (Beyar seçti): görsel üstünde yazılı cam kapsül, ikon + tür + süre */
+.medya.m1{display:flex;gap:8px}
+.medya.m1>span{display:inline-flex;align-items:center;gap:var(--ikon-bosluk);block-size:36px;padding:0 14px;border-radius:var(--k-kontrol);background:var(--ust-zemin);border:1px solid var(--ust-cizgi);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);color:#fff;font-size:var(--y-sm);font-weight:700;white-space:nowrap}
+.medya.m1 i{inline-size:auto!important;block-size:auto!important;background:none!important;border:0!important;color:var(--marka)!important;backdrop-filter:none!important}
+
+/* Kart görsel üstü etiketler · E1 (Beyar): kategori etiketi ve kaydet düğmesi içerik türü kapsülüyle (M1) aynı koyu cam aile.
+   Yapı değişmedi: kategori sol üstte, kaydet sağ üstte. */
+.cip{background:var(--ust-zemin)!important;border:1px solid var(--ust-cizgi);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);color:#fff!important;font-weight:700;block-size:34px;padding:0 12px!important}
+.cip i{color:var(--marka)!important}
+.kaydet{background:var(--ust-zemin)!important;border:1px solid var(--ust-cizgi);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);color:#fff!important;border-radius:var(--k-kontrol)!important;inline-size:36px!important;block-size:36px!important;box-shadow:none!important}
+.go .kaydet{inline-size:40px!important;block-size:40px!important;inset-block-start:16px;inset-inline-end:16px}
+.go .ic .cip{block-size:34px}
+.kb .gk .cip{color:#fff!important}
+
+/* Bilgi satırında yazar (Beyar): avatar + ad, ardından süre · tarih · görüntülenme */
+.yz{display:inline-flex;align-items:center;gap:var(--ikon-bosluk);font-weight:800}
+.yz .av{inline-size:26px;block-size:26px}
+.go .yz,.manset .yz{color:#fff}
+.go .yz .av,.manset .yz .av{background:rgba(255,255,255,.18);color:#fff;border:1px solid rgba(255,255,255,.3)}
+
+/* KURAL (Beyar): avatar baş harfi her zaman tam ortada (yatay ve dikey merkez). Bilgi satırı kuralları avatarı etkileyemez. */
+.av,.facts .av,.bilgi .av,.imza .av,.yz .av{display:grid!important;place-items:center!important;justify-content:center!important;align-content:center!important;text-align:center;line-height:1;padding:0!important;gap:0!important;border-radius:50%;flex:none}
+
+/* Namaz: kalan süre, sıradaki vaktin kutusunun içinde (Beyar) */
+.ay-namaz{grid-template-columns:auto 1fr auto}
+.ay-vakit{align-items:stretch}
+.ay-vakit div{align-content:center}
+.ay-vakit .kalan{display:inline-flex;align-items:center;gap:var(--ikon-bosluk);font-size:var(--y-sm);font-weight:800;color:var(--siyah);margin-block-start:2px;white-space:nowrap}
+.ay-vakit .kalan i{font-size:var(--y-sm)}
+
+/* KURAL (Beyar): ray okları kartların dışında durur, kartla kesişmez. Kartın kenarından 20px boşlukla, kabın dışında. */
+.ray-ok.onceki{inset-inline-start:-64px!important}
+.ray-ok.sonraki{inset-inline-end:-64px!important}
+.ray-ok[aria-disabled=true]{opacity:.45}
+
+/* Otomatik dönen ray (Beyar: oklar kaldırıldı). Kartlar tek satırda akar; taşma gizli. */
+.ray-kap.otomatik{overflow:hidden;margin-inline:-12px;padding:12px 12px 16px}
+.oto-iz{display:grid!important;grid-auto-flow:column;grid-template-columns:none!important;grid-auto-columns:calc((100% - 3*24px)/4);column-gap:24px;will-change:transform}
+.ustalar.oto-iz{grid-auto-columns:124px;column-gap:16px}
+.akis-r.oto-iz{grid-auto-columns:calc((100% - 5*16px)/6);column-gap:16px}
+[dir=rtl] .oto-iz{direction:rtl}
+
+/* Üst etiket ile bölüm başlığı arası (Beyar: çok fazlaydı) 14px -> 6px */
+.gs .ust{margin-block-end:6px!important}
+.gs h2{line-height:1.1}
+
+/* Namaz ayırıcısı · H3 (Beyar): açık şerit, solda kehribar şerit (H2'deki gibi), halkalı geri sayım, gökyüzü renkli çizelge */
+.ay-kart.nm{grid-template-columns:auto auto 1fr auto;background:linear-gradient(110deg,var(--marka-10),#fff 60%);border:1px solid var(--gri-50);border-inline-start:4px solid var(--marka);box-shadow:var(--golge-sm)}
+.nm .ay-ik{background:var(--marka-25);color:var(--marka-metin)}
+.nm .ay-kim small{color:var(--gri-400)}
+.nm-sira{display:flex;align-items:center;gap:14px;padding-inline:4px 28px;border-inline-end:1px solid var(--gri-50)}
+.nm-halka{inline-size:76px;block-size:76px;border-radius:50%;background:conic-gradient(var(--marka) calc(var(--y)*1%),var(--gri-50) 0);display:grid;place-items:center;flex:none}
+.nm-halka>span{inline-size:60px;block-size:60px;border-radius:50%;background:#fff;display:grid;place-content:center;justify-items:center;line-height:1.05}
+.nm-halka b{font-size:var(--y-md);font-weight:800;font-variant-numeric:tabular-nums}
+.nm-halka small{font-size:var(--y-sm);color:var(--gri-400)}
+.nm-sira small{font-size:var(--y-sm);color:var(--gri-400);font-weight:700}
+.nm-sira>div>b{display:block;font-size:var(--y-lg);font-weight:800;letter-spacing:-.02em;white-space:nowrap}
+.nm-sira>div>b span{color:var(--marka-metin)}
+.nm-cz{list-style:none;margin:0;padding:8px 0 0;position:relative;display:grid;grid-template-columns:repeat(6,1fr)}
+.nm-cz .hat{position:absolute;inset-inline:calc(100%/12);inset-block-start:15px;block-size:2px;background:var(--gri-50);border-radius:999px}
+.nm-cz .hat i{position:absolute;inset-block:0;inset-inline-start:0;inline-size:var(--ilerleme);border-radius:999px;background:linear-gradient(90deg,#1b2a4a,#5b7bb5 25%,#FCB623 55%,#e39a4a)}
+[dir=rtl] .nm-cz .hat i{background:linear-gradient(270deg,#1b2a4a,#5b7bb5 25%,#FCB623 55%,#e39a4a)}
+.nm-cz li{display:grid;justify-items:center;gap:4px;position:relative}
+.nm-cz .nk{inline-size:16px;block-size:16px;border-radius:50%;background:#fff;border:2px solid var(--gri-200);margin-block-end:8px;z-index:1}
+.nm-cz li.gecti .nk{border-color:var(--gri-300)}
+.nm-cz li.sira .nk{inline-size:20px;block-size:20px;margin-block:-2px 6px;border:4px solid var(--marka);box-shadow:0 0 0 6px rgba(252,182,35,.18)}
+.nm-cz b{font-size:var(--y-lg);font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.nm-cz small{font-size:var(--y-sm);color:var(--gri-400);font-weight:700}
+.nm-cz li.gecti b{color:var(--gri-300)}
+.nm-cz li.sira b{color:var(--marka-metin)}
+.nm .ay-dugme{background:#fff;border:1px solid var(--gri-50);box-shadow:var(--golge-sm)}.nm .ay-dugme i{color:var(--marka-metin)}
+
+/* KURAL (Beyar): büyük kart + liste yapısı tekrarlandıkça büyük kart sırayla başta ve sonda (sol/sağ) durur */
+.yeni.ters>.go{order:2}
+
+/* Süper Lig · T2 (Beyar): kompakt takım kutucukları + seçili takımın haber paneli */
+.arma{border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:800;font-size:var(--y-sm);border:3px solid #fff;box-shadow:0 0 0 1px var(--gri-50);flex:none;line-height:1}
+.tk-serit{display:grid;grid-template-columns:repeat(12,1fr);gap:12px}
+.tk{display:grid;justify-items:center;gap:8px;padding:14px 6px 12px;background:#fff;border:1px solid var(--gri-50);border-radius:var(--k-kart);box-shadow:var(--golge-sm);transition:transform .3s,box-shadow .3s,border-color .3s,background .3s;cursor:pointer}
+.tk:hover{transform:translateY(-4px);box-shadow:var(--golge-md)}
+.tk .arma{transition:transform .3s}.tk:hover .arma{transform:scale(1.06)}
+.tk b{font-size:var(--y-sm);font-weight:800;letter-spacing:.04em}
+.tk.sec{border:2px solid var(--marka);background:var(--marka-10)}
+.tk-panel{margin-block-start:20px;background:#fff;border:1px solid var(--gri-50);border-radius:var(--k-buyuk);box-shadow:var(--golge-sm);padding:24px;display:grid;gap:20px}
+.tk-pbas{display:flex;align-items:center;gap:14px;padding-block-end:18px;border-block-end:1px solid var(--gri-50)}
+.tk-pbas b{display:block;font-size:var(--y-lg);font-weight:800}
+.tk-pbas small{display:flex;font-size:var(--y-sm);color:var(--gri-400);white-space:nowrap}
+.tk-pbas small span+span{border-inline-start:1px solid var(--gri-100);padding-inline-start:10px;margin-inline-start:10px}
+.tk-pbas .tk-tumu{margin-inline-start:auto}
+.tk-tumu>span{display:inline}
+
+/* Süper Lig T2 · birleşik blok (Beyar: kutucuklar ve panel kopuktu). Tek kart; kutucuk şeridi kartın üst satırı, seçili kutucuk sekme gibi panele bağlanır. */
+.tk-blok{background:#fff;border:1px solid var(--gri-50);border-radius:var(--k-buyuk);box-shadow:var(--golge-sm);overflow:hidden}
+.tk-blok .tk-serit{gap:0;background:var(--zemin-b);border-block-end:1px solid var(--gri-50);padding:8px 8px 0}
+.tk-blok .tk{background:transparent;border:0;box-shadow:none;border-radius:var(--k-kart) var(--k-kart) 0 0;padding:12px 4px 14px;position:relative}
+.tk-blok .tk:hover{transform:none;box-shadow:none;background:rgba(255,255,255,.6)}
+.tk-blok .tk.sec{background:#fff;border:0;box-shadow:0 -1px 0 var(--gri-50),1px 0 0 var(--gri-50),-1px 0 0 var(--gri-50);margin-block-end:-1px}
+.tk-blok .tk.sec::before{content:"";position:absolute;inset-inline:22%;inset-block-start:0;block-size:3px;border-radius:0 0 3px 3px;background:var(--marka)}
+.tk-blok .tk.sec b{color:var(--marka-metin)}
+.tk-blok .tk-panel{margin:0;border:0;border-radius:0;box-shadow:none}
+
+/* Bölüm başlığı kalınlığı (Beyar: Medium 500 aşırı ince). Gilroy'da SemiBold dosyası yok; Medium'a ince kontur ile ~600 görünüm.
+   Kalıcı çözüm: Gilroy SemiBold (600) woff2 dosyası temin edilince kontur kaldırılır, font-weight:600 yazılır. */
+.gs h2,.kb .gs h2{font-weight:500;-webkit-text-stroke:.45px currentColor;paint-order:stroke fill}
+
+/* Süper Lig · TC (Beyar): kutusuz arma rayı + büyük kart düzeni */
+.tc-ray{display:flex;justify-content:space-between;margin-block-end:24px;padding-block-end:20px;border-block-end:1px solid var(--gri-50)}
+.tc-a{display:grid;justify-items:center;gap:6px;cursor:pointer}
+.tc-a .arma{inline-size:56px;block-size:56px;font-size:var(--y-sm);border-width:3px;transition:transform .3s,box-shadow .3s}
+.tc-a:hover .arma{transform:scale(1.08)}
+.tc-a small{font-size:var(--y-sm);font-weight:800;color:var(--gri-400);transition:color .2s}
+.tc-a.sec .arma{box-shadow:0 0 0 3px var(--marka)}
+.tc-a.sec small{color:var(--siyah)}
+
+/* Döviz ayırıcısı · X1 dev sembollü kur kartları (Beyar) */
+.dvz{display:grid;gap:16px}
+.dvz-bas{display:flex;align-items:center;gap:20px}
+.dvz-et{display:inline-flex;align-items:center;gap:var(--ikon-bosluk);font-size:var(--y-sm);font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--marka-metin)}
+.dvz-canli{display:inline-flex;align-items:center;gap:var(--ikon-bosluk);font-size:var(--y-sm);font-weight:700;color:var(--gri-400)}
+.dvz-link{margin-inline-start:auto;display:inline-flex;align-items:center;gap:var(--ikon-bosluk);font-size:var(--y-sm);font-weight:800}
+.dvz-link i{color:var(--marka-metin);transition:transform .25s}.dvz-link:hover i{transform:translateX(3px)}
+.dvz-g{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.dvz-k{position:relative;overflow:hidden;isolation:isolate;background:#fff;border:1px solid var(--gri-50);border-radius:var(--k-kart);box-shadow:var(--golge-sm);padding:18px 18px 0;display:grid;gap:8px;transition:transform .3s,box-shadow .3s}
+.dvz-k:hover{transform:translateY(-4px);box-shadow:var(--golge-md)}
+.dvz-fil{position:absolute;z-index:-1;inset-block-start:8px;inset-inline-end:16px;font-size:112px;font-weight:800;line-height:1;letter-spacing:-.05em;color:var(--marka-25);pointer-events:none}
+.dvz-fil i{font-size:80px;margin-block-start:14px;display:block}
+.dvz-ust{display:flex;align-items:baseline;gap:8px}
+.dvz-ust b{font-size:var(--y-md);font-weight:800}.dvz-ust small{font-size:var(--y-sm);color:var(--gri-400);font-weight:700}
+.dvz-deger{font-size:var(--y-xl);font-weight:800;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.dvz-deg{justify-self:start;display:inline-flex;align-items:center;gap:6px;font-size:var(--y-sm);font-weight:800;padding:4px 10px;border-radius:var(--k-kontrol)}
+.dvz-deg.y{color:var(--artis);background:color-mix(in srgb,var(--artis) 10%,#fff)}
+.dvz-deg.d{color:var(--azalis);background:color-mix(in srgb,var(--azalis) 9%,#fff)}
+.dvz-graf{display:block;inline-size:calc(100% + 36px);margin-inline:-18px;block-size:56px}
+
+/* Beyar: başlıklar erken satıra geçmesin. text-wrap:balance kaldırıldı; pretty yalnızca son satırda tek kelime kalmasını önler. */
+h1,h2,h3{text-wrap:pretty}
+
+/* Foto Fokus · F3 kolaj kapaklı albüm kartı (Beyar) */
+.kolaj{display:grid;grid-template-columns:2fr 1fr;grid-template-rows:1fr 1fr;gap:3px;aspect-ratio:4/3;position:relative;overflow:hidden}
+.kolaj>span:not(.cip):not(.kaydet):not(.al-say){background:center/cover;transition:transform .5s}
+.kolaj .b{grid-row:span 2}
+.al3:hover .kolaj>span.b{transform:scale(1.03)}
+.al-say{position:absolute;inset-block-end:12px;inset-inline-start:12px;z-index:2;display:inline-flex;align-items:center;gap:var(--ikon-bosluk);block-size:34px;padding:0 12px;border-radius:var(--k-kontrol);background:var(--ust-zemin);border:1px solid var(--ust-cizgi);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);color:#fff;font-size:var(--y-sm);font-weight:700}
+.al-say i{color:var(--marka)}
+.gk.al3 h3{min-block-size:0;margin:0}
+.gk.al3 .gv{padding-block:14px 16px}
+
+/* Otomatik ray, betik çalışmasa da tek satır kalır (kart sığmazsa taşma gizli) */
+.ray-kap.otomatik>.g4,.ray-kap.otomatik>.ustalar,.ray-kap.otomatik>.akis-r{display:grid;grid-auto-flow:column;grid-template-columns:none;grid-auto-columns:calc((100% - 3*24px)/4);column-gap:24px}
+.ray-kap.otomatik>.akis-r{grid-auto-columns:calc((100% - 5*16px)/6);column-gap:16px}
+
+/* İnfografik (Beyar: v2 yapısı) — dikey görsel kartlar, alt şeritte veri kaynağı, başlık altta; ray döner, 5 kart görünür */
+.ray-kap.otomatik>.info-ray,.info-ray.oto-iz{grid-auto-columns:calc((100% - 4*20px)/5)!important;column-gap:20px!important}
+.ig{display:grid;gap:12px;align-content:start}
+.ig-g{position:relative;display:block;aspect-ratio:3/4;border-radius:var(--k-kart);overflow:hidden;box-shadow:var(--golge-sm);transition:transform .3s,box-shadow .3s}
+.ig:hover .ig-g{transform:translateY(-4px);box-shadow:var(--golge-md)}
+.ig-g .r{position:absolute;inset:0;background:center/cover;transition:transform .6s}
+.ig:hover .ig-g .r{transform:scale(1.04)}
+.ig-g .kaydet{position:absolute;inset-block-start:12px;inset-inline-end:12px;z-index:2}
+.ig-kay{position:absolute;inset-inline:0;inset-block-end:0;z-index:2;display:flex;align-items:center;gap:var(--ikon-bosluk);padding:10px 14px;background:rgba(18,18,18,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);color:#fff;font-size:var(--y-sm);font-weight:800;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ig-kay i{color:var(--marka)}
+.ig h3{font-size:var(--y-md);line-height:1.3;font-weight:500}
+.ig:hover h3{color:var(--marka-metin)}
+
+/* Footer (Beyar: v2 footer'ın bütün yapısı, yeni içerikle) — kehribar zemin, koyu yazı */
+.ft{background:var(--marka);color:var(--siyah);padding-block:64px 28px}
+.ft-ust{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr 1.4fr;gap:40px;padding-block-end:40px;border-block-end:1px solid rgba(18,18,18,.15)}
+.ft-logo b{background:var(--siyah)!important;color:var(--marka)}
+.ft-logo span{color:var(--siyah)}
+.ft-marka p{font-size:var(--y-sm);line-height:1.6;margin-block:16px 24px;max-inline-size:40ch;text-align:justify;text-align-last:start;hyphens:auto}
+.ft-sosyal{display:flex;flex-wrap:wrap;gap:8px;max-inline-size:300px}
+.ft-sos{inline-size:44px;block-size:44px;border-radius:var(--k-kontrol);background:rgba(18,18,18,.08);display:grid;place-items:center;font-size:var(--y-md);transition:background .25s,color .25s,transform .25s}
+.ft-sos:hover{background:var(--siyah);color:var(--marka);transform:translateY(-3px)}
+.ft h4{font-size:var(--y-md);font-weight:800;margin-block-end:16px}
+.ft-kol ul{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.ft-kol a{font-size:var(--y-sm);font-weight:500;transition:color .2s}
+.ft-kol a:hover{text-decoration:underline;text-underline-offset:3px}
+.ft-kol b{font-weight:800}
+.ft-uyg p{font-size:var(--y-sm);line-height:1.6;margin-block-end:16px}
+.ft-mag{display:flex;align-items:center;gap:12px;block-size:64px;padding:0 18px;border-radius:var(--k-kart);background:rgba(18,18,18,.08);border:1px solid rgba(18,18,18,.2);margin-block-end:10px;transition:background .25s,color .25s,transform .25s;max-inline-size:300px}
+.ft-mag:hover{background:var(--siyah);color:#fff;transform:translateY(-3px)}
+.ft-mag i{font-size:var(--y-lg)}
+.ft-mag span{display:grid;font-size:var(--y-md);font-weight:800;line-height:1.1}
+.ft-mag small{font-size:var(--y-sm);font-weight:500}
+.ft-satir{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:6px 0;padding-block:22px;border-block-end:1px solid rgba(18,18,18,.15);font-size:var(--y-sm);font-weight:700}
+.ft-satir>a{padding-inline:16px;border-inline-start:1px solid rgba(18,18,18,.25);line-height:1}
+.ft-satir>b+a,.ft-satir>a:first-child{border:0}
+.ft-satir>b{font-weight:800;margin-inline-end:20px}
+.ft-ailesi>b{margin-inline-end:12px}
+.ft-aile{display:inline-flex!important;align-items:center;gap:var(--ikon-bosluk);block-size:36px;padding:0 14px!important;margin-inline:4px;border:1px solid rgba(18,18,18,.2)!important;border-radius:var(--k-kontrol);background:rgba(255,255,255,.2)}
+.ft-aile .nokta{inline-size:10px;block-size:10px;border-radius:50%}
+.ft-aile.aktif{background:var(--siyah);color:var(--marka);border-color:var(--siyah)!important}
+.ft-telif{font-size:var(--y-sm);text-align:center;line-height:1.6;max-inline-size:110ch;margin:22px auto 16px;opacity:.85}
+.ft-alt{display:flex;justify-content:center;align-items:center;gap:16px;font-size:var(--y-sm);font-weight:700}
+.ft-gavia{display:inline-flex;align-items:center;gap:var(--ikon-bosluk);padding:4px 10px;border-radius:var(--k-kontrol);background:rgba(18,18,18,.08)}
+.ft-aile.aktif .nokta{background:var(--marka)!important}
+
+/* Zebra (Beyar, Gastro gibi, baştan): manşetten sonraki ana bloklar sırayla beyaz / #F9F9F9 */
+.gb.z-a,.ay.z-a,.bant-bosluk.z-a{background:#fff}
+.gb.z-b,.ay.z-b,.bant-bosluk.z-b{background:var(--zemin-b)}
+.gb.z-b{box-shadow:none}
+.ay{padding-block:40px}
+.bant-bosluk{padding-block:40px}
+
+/* Bölüm başlığı (h2) bir tık daha kalın (Beyar): Medium + 0.7px kontur (geçici; SemiBold dosyası gelince 600) */
+.gs h2,.kb .gs h2{-webkit-text-stroke:.7px currentColor}
+
+/* Dada ailesi yalnızca logolu (Beyar) */
+.ft-ailesi{gap:8px 32px}
+.ft-ailesi>b{margin-inline-end:0}
+.ft-ailesi>a.ft-aile{display:inline-flex!important;align-items:center;gap:6px;block-size:auto;padding:0!important;margin:0;border:0!important;background:none;border-radius:0;opacity:.85;transition:opacity .2s,transform .2s}
+.ft-ailesi>a.ft-aile:hover{opacity:1;transform:translateY(-2px)}
+.ft-aile b{display:inline-grid;place-items:center;border-radius:12px;color:#fff;font-size:var(--y-xs);font-weight:800;padding:5px 5px;line-height:1}
+.ft-aile span{font-size:var(--y-md);font-weight:800;letter-spacing:-.02em}
+.ft-aile span i{font-style:normal;font-weight:500}
+
+/* Podcast PC (Beyar): 2×2 yatay oynatıcı kartları */
+.pc-g{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.pc{display:grid;grid-template-columns:168px minmax(0,1fr);background:#fff;border:1px solid var(--gri-50);border-radius:var(--k-kart);box-shadow:var(--golge-sm);overflow:hidden;transition:transform .3s,box-shadow .3s}
+.pc:hover{transform:translateY(-4px);box-shadow:var(--golge-md)}
+.pc-kap{position:relative;display:grid;place-items:center;background:center/cover;min-block-size:168px}
+.pc-kap::before{content:"";position:absolute;inset:0;background:rgba(18,18,18,.18)}
+.pc-oynat{position:relative;inline-size:52px;block-size:52px;border-radius:50%;border:0;background:var(--marka);color:var(--siyah);display:grid;place-items:center;font-size:var(--y-md);cursor:pointer;box-shadow:0 6px 16px rgba(252,182,35,.35);transition:transform .25s}
+.pc-oynat i{margin-inline-start:2px}
+.pc:hover .pc-oynat{transform:scale(1.08)}
+.pc-ic{display:grid;gap:8px;align-content:center;padding:16px 18px;min-inline-size:0}
+.pc-ust{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.pc-seri{font-size:var(--y-sm);font-weight:800;color:var(--marka-metin);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pc-kaydet{flex:none;inline-size:32px;block-size:32px;border-radius:var(--k-kontrol);border:1px solid var(--gri-50);display:grid;place-items:center;font-size:var(--y-sm);color:var(--gri-600)}
+.pc h3{font-size:var(--y-md);line-height:1.3;font-weight:500}
+.pc-dalga{display:flex;align-items:center;gap:12px}
+.pc-dlg{display:flex;align-items:center;gap:2px;flex:1;min-inline-size:0;block-size:26px}
+.pc-dlg i{flex:1;border-radius:2px;background:var(--gri-100);min-block-size:3px}
+.pc-dlg i.d{background:var(--marka)}
+.pc-sure{font-size:var(--y-sm);font-weight:800;font-variant-numeric:tabular-nums;color:var(--gri-600)}
+
+/* Dada ailesi: büyük başlık + yalnızca favicon (Beyar) */
+.ft-ailesi2{display:flex;align-items:center;justify-content:center;gap:28px;padding-block:28px;border-block-end:1px solid rgba(18,18,18,.15)}
+.ft-ailesi2 h4{font-size:var(--y-lg);font-weight:800;margin:0;white-space:nowrap}
+.ft-favler{display:flex;align-items:center;gap:14px}
+.ft-fav{inline-size:56px;block-size:56px;border-radius:var(--k-kart);background:#fff;display:grid;place-items:center;box-shadow:0 2px 8px rgba(18,18,18,.08);transition:transform .25s,box-shadow .25s}
+.ft-fav:hover{transform:translateY(-3px);box-shadow:0 8px 18px rgba(18,18,18,.14)}
+.ft-fav span{inline-size:36px;block-size:36px;border-radius:12px;background:center/contain no-repeat}
+
+/* Gerçek Dada Haber logosu (Beyar; v2'den, PNG; SVG açık kalem). Görünen genişlik 180px */
+.logo-img{inline-size:auto}
+.logo-img img{display:block;inline-size:180px;block-size:auto}
+/* Footer alt satırı: telif başa, GaviaWorks sona yaslı (Beyar) */
+.ft-alt{justify-content:space-between}
+
+/* İnfografik kartı T2 (Beyar: TRT yapısından, grafikli mock görselle). Kartta yalnızca infografik görseli; .ps afişi mock görseldir */
+.t-sira{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.t2{display:grid;grid-template-rows:auto 1fr;border-radius:var(--k-kart);overflow:hidden;box-shadow:var(--golge-sm);background:var(--siyah);transition:transform .3s,box-shadow .3s}
+.t2:hover{transform:translateY(-4px);box-shadow:var(--golge-md)}
+.t2-g{position:relative;display:block;aspect-ratio:3/4;overflow:hidden}
+.t2-g .kaydet{position:absolute;inset-block-start:12px;inset-inline-end:12px;z-index:3}
+.t2-alt{display:grid;align-content:space-between;gap:12px;padding:16px 18px 18px;color:#fff}
+.t2-alt h3{font-size:var(--y-md);font-weight:500;line-height:1.3;min-block-size:2.6em}
+.t2-bilgi{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:var(--y-sm);white-space:nowrap}
+.t2-bilgi span{display:inline-flex;align-items:center;gap:var(--ikon-bosluk);font-weight:800;letter-spacing:.04em;text-transform:uppercase}
+.t2-bilgi i{color:var(--marka)}
+.t2-bilgi time{color:var(--gri-200)}
+/* Mock infografik görseli (afiş) */
+.ps{display:grid;grid-template-rows:auto auto 1fr auto;gap:14px;padding:20px 18px 14px;inline-size:100%;block-size:118%;transition:transform 2.5s ease}
+.t2:hover .ps{transform:translateY(-15%)}
+.ps-koyu{background:#121212;color:#fff}.ps-acik{background:#fff;color:#121212}.ps-kehribar{background:#FCB623;color:#121212}
+.ps-bas{display:grid;gap:4px}
+.ps-bas small{font-size:var(--y-xs);font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.7}
+.ps-bas b{font-size:var(--y-xl);font-weight:800;line-height:.95;letter-spacing:-.02em}
+.ps-koyu .ps-bas b{color:#FCB623}
+.ps-acik .ps-bas b{border-block-end:4px solid #FCB623;padding-block-end:6px;justify-self:start}
+.ps-st{display:flex;gap:8px}
+.ps-st span{flex:1;display:grid;gap:2px;padding:8px 10px;border-radius:12px;background:rgba(127,127,127,.12);min-inline-size:0}
+.ps-st b{font-size:var(--y-md);font-weight:800;font-variant-numeric:tabular-nums;white-space:nowrap}
+.ps-st small{font-size:var(--y-xs);opacity:.75}
+.ps-koyu .ps-st span:first-child b{color:#FCB623}
+.ps-acik .ps-st span:first-child b{color:#7A5F01}
+.ps-gr{position:relative;min-block-size:70px}
+.ps-bar,.ps-line,.ps-hbar{position:absolute;inset:0}
+.ps-bar{display:flex;align-items:end;gap:4px}
+.ps-bar i{flex:1;border-radius:3px 3px 0 0;background:rgba(127,127,127,.35)}
+.ps-bar i.s{background:#FCB623}
+.ps-line{inline-size:100%;block-size:100%}
+.ps-hbar{display:grid;align-content:space-evenly}
+.ps-hbar span{display:grid;grid-template-columns:54px 1fr 30px;gap:6px;align-items:center;font-size:var(--y-xs)}
+.ps-hbar i{block-size:8px;border-radius:999px;background:rgba(127,127,127,.3)}.ps-hbar i.s{background:#FCB623}
+.ps-hbar b{font-weight:800}
+.ps-donut{position:absolute;inset-block-start:50%;inset-inline-start:50%;translate:-50% -50%;inline-size:min(70%,140px);aspect-ratio:1;border-radius:50%;display:grid;place-items:center}
+.ps-donut span{inline-size:55%;aspect-ratio:1;border-radius:50%;background:#FCB623}
+.ps-alt{display:flex;justify-content:space-between;align-items:center;padding-block-start:8px;border-block-start:1px solid rgba(127,127,127,.3);font-size:var(--y-xs);opacity:.85}
+.ps-logo{font-weight:800;display:inline-flex;align-items:center;gap:4px}
+.ps-logo em{font-style:normal;background:#FCB623;color:#121212;border-radius:12px;padding:2px 3px;font-size:var(--y-xs)}
+.ps-kehribar .ps-logo em{background:#121212;color:#FCB623}
+.ps-logo i{font-style:normal;font-weight:500}
+
+/* Footer perdesi (Beyar: Gastro'daki gibi, kesin). ≥641px ve footer pencereye sığıyorsa footer sabit durur, içerik kayınca altından açılır.
+   Sığmıyorsa (ya da dar ekranda) normal akışta kalır. Betik gövdenin alt boşluğunu footer boyuna eşitler (html.perde-acik). */
+html.perde-acik .ft{position:fixed;inset-inline:0;inset-block-end:0;z-index:0}
+html.perde-acik body>*:not(.ft):not(script){position:relative;z-index:1}
+html.perde-acik main{background:#fff}
+html.perde-acik body>*:not(.ft):not(script):last-of-type{box-shadow:0 18px 30px -18px rgba(18,18,18,.25)}
+
+/* Footer renk dengesi F2 · Krem zemin (Beyar, 2026-11-23). Kehribar yalnızca vurguda; başlıklar koyu, bağlantılar gri, düğmeler beyaz + kehribar çerçeve. Perde korunur. */
+.ft{background:#FFFBEA;color:var(--gri-800)}
+.ft h4{color:#121212}
+.ft-kol a,.ft-satir>a{color:var(--gri-600)}
+.ft-kol a:hover,.ft-satir>a:hover{color:#7A5F01}
+.ft-telif,.ft-alt{color:var(--gri-400)}
+.ft-kol b{color:#7A5F01}
+.ft-sos{background:#fff;border:1px solid #FFE373;color:#7A5F01}
+.ft-mag{background:#fff;border:1px solid #FFE373;color:#121212}
+.ft-mag i{color:#7A5F01}
+.ft-sos:hover,.ft-mag:hover{background:var(--marka);color:#121212;border-color:var(--marka)}
+.ft-ust,.ft-satir,.ft-ailesi2{border-color:#FFE373}
+.ft-satir>a{border-color:#FFE373}
+.ft-fav{box-shadow:none;border:1px solid #FFE373}
+.ft-gavia{background:#fff;border:1px solid #FFE373;color:var(--gri-600)}
+
+/* Yazarlar · Y1 (Beyar): Gastro "Tarifin ustaları" uyarlaması; yalnızca avatar, ad, unvan; kartın tamamı yazar detayına gider */
+.ray-kap.otomatik>.yz-ray,.yz-ray.oto-iz{display:grid;grid-auto-flow:column;grid-template-columns:none!important;grid-auto-columns:calc((100% - 5*20px)/6)!important;column-gap:20px!important}
+.yz-ray{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:20px}
+.yz1{display:grid;justify-items:center;align-content:start;gap:6px;text-align:center;padding:28px 16px 24px;background:#fff;border:1px solid var(--gri-50);border-radius:var(--k-kart);box-shadow:var(--golge-sm);transition:transform .3s,box-shadow .3s}
+.yz1:hover{transform:translateY(-4px);box-shadow:var(--golge-md)}
+.yz1-av{display:grid;place-items:center;inline-size:88px;block-size:88px;border-radius:50%;background:#FFF4C2 center/cover;color:#7A5F01;font-size:var(--y-xl);font-weight:800;line-height:1;outline:3px solid #fff;box-shadow:0 0 0 5px #FFE373;margin-block-end:12px;transition:box-shadow .3s}
+.yz1:hover .yz1-av{box-shadow:0 0 0 5px var(--marka)}
+.yz1 h3{font-size:var(--y-md);font-weight:800;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-inline-size:100%}
+.yz1 small{font-size:var(--y-sm);color:var(--gri-400);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-inline-size:100%}
+
+/* Footer perdesi için sıkılaştırma (Beyar: perde Gastro'daki gibi çalışmalı). Perde footer pencereye sığınca açılır;
+   Gastro footer'ı 1440'ta 518px. Bizimki 784px idi, 900px pencerede sığmıyordu. Yapı aynı, boşluklar sıkı. */
+.ft{padding-block:44px 20px}
+.ft-ust{gap:32px;padding-block-end:28px}
+.ft h4{margin-block-end:12px}
+.ft-kol ul{gap:6px}
+.ft-marka p{margin-block:12px 16px}
+.ft-sos{inline-size:38px;block-size:38px}
+.ft-uyg p{margin-block-end:12px}
+.ft-mag{block-size:52px;margin-block-end:8px}
+.ft-ailesi2{padding-block:16px;gap:20px}
+.ft-ailesi2 h4{margin:0}
+.ft-fav{inline-size:44px;block-size:44px;border-radius:12px}
+.ft-fav span{inline-size:28px;block-size:28px}
+.ft-satir{padding-block:12px}
+.ft-telif{margin:14px auto 10px}

@@ -1,0 +1,76 @@
+<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex, nofollow"><title>Seçenek · İnfografik kartı (TRT yapısı)</title>
+<link rel="stylesheet" href="_vendor/fontawesome-6.5.2/css/all.min.css"><link rel="stylesheet" href="_ortak/anasayfa.css"><link rel="stylesheet" href="_ortak/v2plus.css"><link rel="stylesheet" href="_ortak/gastrodili.css"><style>
+.sayfa{max-width:1340px;margin-inline:auto;padding:24px 16px 48px;display:grid;gap:28px}
+.sayfa>header h1{font-size:var(--y-lg);font-weight:800}.sayfa>header p{color:var(--gri-600);max-width:100ch;margin-block-start:6px}
+.alt-b{display:grid;gap:10px}.alt-b>b{font-size:var(--y-md);font-weight:800}.alt-b>p{font-size:var(--y-sm);color:var(--gri-400);max-width:110ch}
+.ornek{background:var(--zemin-b);border-radius:24px;padding:40px 32px}
+.gs h2{-webkit-text-stroke:.7px currentColor}
+/* Mock infografik afişi (gerçekte infografik görselinin kendisi) */
+.ps{display:grid;grid-template-rows:auto auto 1fr auto;gap:14px;padding:20px 18px 14px;inline-size:100%;overflow:hidden}
+.ps-koyu{background:#121212;color:#fff}.ps-acik{background:#fff;color:#121212}.ps-kehribar{background:#FCB623;color:#121212}
+.ps-bas{display:grid;gap:4px}
+.ps-bas small{font-size:var(--y-xs);font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.7}
+.ps-bas b{font-size:var(--y-xl);font-weight:800;line-height:.95;letter-spacing:-.02em}
+.ps-koyu .ps-bas b{color:#FCB623}
+.ps-acik .ps-bas b{border-block-end:4px solid #FCB623;padding-block-end:6px;justify-self:start}
+.ps-st{display:flex;gap:8px}
+.ps-st span{flex:1;display:grid;gap:2px;padding:8px 10px;border-radius:12px;background:rgba(127,127,127,.12)}
+.ps-st b{font-size:var(--y-md);font-weight:800;font-variant-numeric:tabular-nums;white-space:nowrap}
+.ps-st small{font-size:var(--y-xs);opacity:.75}
+.ps-koyu .ps-st span:first-child b,.ps-acik .ps-st span:first-child b{color:#FCB623}
+.ps-acik .ps-st span:first-child b{color:#7A5F01}
+.ps-gr{position:relative;min-block-size:70px}
+.ps-bar,.ps-line,.ps-hbar,.ps-pir{position:absolute;inset:0}
+.ps-bar{display:flex;align-items:end;gap:4px}
+.ps-bar i{flex:1;border-radius:3px 3px 0 0;background:rgba(127,127,127,.35)}
+.ps-bar i.s{background:#FCB623}
+.ps-kehribar .ps-bar i{background:rgba(18,18,18,.25)}.ps-kehribar .ps-bar i.s{background:#121212}
+.ps-line{inline-size:100%;block-size:100%}
+.ps-hbar{display:grid;align-content:space-evenly}
+.ps-hbar span{display:grid;grid-template-columns:54px 1fr 30px;gap:6px;align-items:center;font-size:var(--y-xs)}
+.ps-hbar i{block-size:8px;border-radius:999px;background:rgba(127,127,127,.3)}.ps-hbar i.s{background:#FCB623}
+.ps-hbar b{font-weight:800}
+.ps-donut{position:absolute;inset-block-start:50%;inset-inline-start:50%;translate:-50% -50%;inline-size:min(70%,140px);aspect-ratio:1;border-radius:50%;display:grid;place-items:center}
+.ps-donut span{inline-size:55%;aspect-ratio:1;border-radius:50%;background:#FCB623}
+.ps-pir{display:grid;align-content:space-evenly}
+.ps-pir span{display:grid;grid-template-columns:1fr 1fr;gap:3px}
+.ps-pir i{block-size:7px;background:#FCB623;border-radius:2px}
+.ps-pir i:first-child{justify-self:end;background:rgba(255,255,255,.55)}
+.ps-alt{display:flex;justify-content:space-between;align-items:center;padding-block-start:8px;border-block-start:1px solid rgba(127,127,127,.3);font-size:var(--y-xs);opacity:.85}
+.ps-logo{font-weight:800;display:inline-flex;align-items:center;gap:4px}
+.ps-logo em{font-style:normal;background:#FCB623;color:#121212;border-radius:12px;padding:2px 3px;font-size:var(--y-xs)}
+.ps-kehribar .ps-logo em{background:#121212;color:#FCB623}
+.ps-logo i{font-style:normal;font-weight:500}
+.t-g{position:relative;display:block;overflow:hidden}
+.t-g .ps{transition:transform .5s}
+.kaydet{position:absolute;inset-block-start:12px;inset-inline-end:12px;z-index:3}
+/* T1: TRT yapısı, kehribar altlık */
+.t-mas{columns:3;column-gap:24px}
+.t-mas>a{break-inside:avoid;display:block;margin-block-end:24px}
+.t1{border-radius:var(--k-kart);overflow:hidden;box-shadow:var(--golge-sm);transition:transform .3s,box-shadow .3s}
+.t1:hover{transform:translateY(-4px);box-shadow:var(--golge-md)}
+.t1-alt{display:grid;gap:10px;padding:16px 18px 18px;background:var(--marka);color:var(--siyah)}
+.t1-alt h3{font-size:var(--y-md);font-weight:800;line-height:1.3}
+.t1-alt time{font-size:var(--y-sm);font-weight:500}
+/* T2: sabit sıra, koyu altlık */
+.t-sira{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.t2{display:grid;grid-template-rows:auto 1fr;border-radius:var(--k-kart);overflow:hidden;box-shadow:var(--golge-sm);background:var(--siyah);transition:transform .3s,box-shadow .3s}
+.t2:hover{transform:translateY(-4px);box-shadow:var(--golge-md)}
+.t2-g{aspect-ratio:3/4}
+.t2-g .ps{block-size:auto}
+.t2:hover .ps,.t3:hover .ps{transform:translateY(-6%)}
+.t2-alt{display:grid;align-content:space-between;gap:12px;padding:16px 18px 18px;color:#fff}
+.t2-alt h3{font-size:var(--y-md);font-weight:500;line-height:1.3}
+.t2-bilgi{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:var(--y-sm);white-space:nowrap}
+.t2-bilgi span{display:inline-flex;align-items:center;gap:var(--ikon-bosluk);font-weight:800;letter-spacing:.04em;text-transform:uppercase}
+.t2-bilgi i{color:var(--marka)}
+.t2 .t2-bilgi time{color:var(--gri-200)}
+/* T3: masonry, beyaz kart kökü */
+.t-mas.dort{columns:4}
+.t3{background:#fff;border:1px solid var(--gri-50);border-radius:var(--k-kart);overflow:hidden;box-shadow:var(--golge-sm);transition:transform .3s,box-shadow .3s}
+.t3:hover{transform:translateY(-4px);box-shadow:var(--golge-md)}
+.t3-alt{display:grid;gap:10px;padding:14px 16px 16px}
+.t3-alt h3{font-size:var(--y-md);font-weight:500;line-height:1.3}
+.t3 .t2-bilgi span{color:var(--gri-600)}.t3 .t2-bilgi i{color:var(--marka-metin)}
+.t3 .t2-bilgi time{color:var(--gri-400)}
+.t-img{display:block;inline-size:100%;background:center top/cover;transition:transform .5s}.t1:hover .t-img,.t3:hover .t-img{transform:scale(1.03)}.t2-g .t-img{block-size:100%;aspect-ratio:auto!important;background-position:center top;transition:background-position 3s ease}.t2:hover .t-img{background-position:center bottom}.t2:hover .ps,.t3:hover .ps{transform:none}</style></head><body style="background:#fff"><main class="sayfa"><header><h1>İnfografik kartı · TRT Haber yapısından 3 alternatif</h1><p>TRT Haber /infografikler yapısı: kartta yalnızca infografik görseli (grafik çizilmez; infografik tek bir görseldir), görselin üstünde etiket yok, altında düz blokta başlık + tarih. Görseller mock fotoğraf; gerçekte infografik görselinin kendisi (dikey, farklı boylarda). TRT içeriği kullanılmadı.</p></header><section class="alt-b"><b>T1 · TRT yapısı, kehribar altlık</b><div class="ornek"><div class="gs"><span class="ust"><i class="fa-solid fa-chart-pie"></i>İnfografik</span><h2>Rakamlarla Gündem</h2><div class="arac"><a class="gd-dugme" href="#">Tamamını Gör<i class="fa-solid fa-arrow-right"></i></a></div></div><div class="t-mas"><a class="t1" href="#"><span class="t-g"><span class="t-img" style="background-image:url(_gorsel/p178.jpg);aspect-ratio:1/1.55"></span></span><span class="t1-alt"><h3>Asgari ücretin on yıllık seyri</h3><time>22.11.2026</time></span></a><a class="t1" href="#"><span class="t-g"><span class="t-img" style="background-image:url(_gorsel/p183.jpg);aspect-ratio:1/1.3"></span></span><span class="t1-alt"><h3>Şehirlere göre kira artış oranları</h3><time>21.11.2026</time></span></a><a class="t1" href="#"><span class="t-g"><span class="t-img" style="background-image:url(_gorsel/p155.jpg);aspect-ratio:1/1.4"></span></span><span class="t1-alt"><h3>İhracatın sektörel dağılımı</h3><time>20.11.2026</time></span></a><a class="t1" href="#"><span class="t-g"><span class="t-img" style="background-image:url(_gorsel/p195.jpg);aspect-ratio:1/1.2"></span></span><span class="t1-alt"><h3>Elektrikli araç satışları çeyreklik</h3><time>19.11.2026</time></span></a><a class="t1" href="#"><span class="t-g"><span class="t-img" style="background-image:url(_gorsel/p203.jpg);aspect-ratio:1/1.5"></span></span><span class="t1-alt"><h3>Nüfus piramidi 2025</h3><time>18.11.2026</time></span></a><a class="t1" href="#"><span class="t-g"><span class="t-img" style="background-image:url(_gorsel/p188.jpg);aspect-ratio:1/1.25"></span></span><span class="t1-alt"><h3>Türkiye'de enerji üretimi kaynağa göre</h3><time>17.11.2026</time></span></a></div></div><p>TRT ile aynı kurgu: 3 sütun taş duvar, infografik tam boy ve kendi yüksekliğinde, altta kehribar blokta kalın başlık + tarih. Görselin üstünde hiçbir şey yok. Eksi: ana sayfada sütun altları eşit bitmez.</p></section><section class="alt-b"><b>T2 · Sabit sıra, koyu altlık</b><div class="ornek"><div class="gs"><span class="ust"><i class="fa-solid fa-chart-pie"></i>İnfografik</span><h2>Rakamlarla Gündem</h2><div class="arac"><a class="gd-dugme" href="#">Tamamını Gör<i class="fa-solid fa-arrow-right"></i></a></div></div><div class="t-sira"><a class="t2" href="#"><span class="t-g t2-g"><span class="t-img" style="background-image:url(_gorsel/p178.jpg);aspect-ratio:1/1.55"></span><span class="kaydet" aria-label="Kaydet"><i class="fa-solid fa-bookmark"></i></span></span><span class="t2-alt"><h3>Asgari ücretin on yıllık seyri</h3><span class="t2-bilgi"><span><i class="fa-solid fa-database"></i>TÜİK</span><time>22.11.2026</time></span></span></a><a class="t2" href="#"><span class="t-g t2-g"><span class="t-img" style="background-image:url(_gorsel/p183.jpg);aspect-ratio:1/1.3"></span><span class="kaydet" aria-label="Kaydet"><i class="fa-solid fa-bookmark"></i></span></span><span class="t2-alt"><h3>Şehirlere göre kira artış oranları</h3><span class="t2-bilgi"><span><i class="fa-solid fa-database"></i>TÜİK</span><time>21.11.2026</time></span></span></a><a class="t2" href="#"><span class="t-g t2-g"><span class="t-img" style="background-image:url(_gorsel/p155.jpg);aspect-ratio:1/1.4"></span><span class="kaydet" aria-label="Kaydet"><i class="fa-solid fa-bookmark"></i></span></span><span class="t2-alt"><h3>İhracatın sektörel dağılımı</h3><span class="t2-bilgi"><span><i class="fa-solid fa-database"></i>TİM</span><time>20.11.2026</time></span></span></a><a class="t2" href="#"><span class="t-g t2-g"><span class="t-img" style="background-image:url(_gorsel/p195.jpg);aspect-ratio:1/1.2"></span><span class="kaydet" aria-label="Kaydet"><i class="fa-solid fa-bookmark"></i></span></span><span class="t2-alt"><h3>Elektrikli araç satışları çeyreklik</h3><span class="t2-bilgi"><span><i class="fa-solid fa-database"></i>ODMD</span><time>19.11.2026</time></span></span></a></div></div><p>Ana sayfaya uyarlanmış hali: 4 eşit kart, infografik 3:4 çerçevede üstten görünür (üstüne gelince yukarı kayar), cam kaydet; altta koyu blokta başlık, kaynak ve tarih. Sıra düz biter, kaymaz.</p></section><section class="alt-b"><b>T3 · Taş duvar, beyaz kart kökü</b><div class="ornek"><div class="gs"><span class="ust"><i class="fa-solid fa-chart-pie"></i>İnfografik</span><h2>Rakamlarla Gündem</h2><div class="arac"><a class="gd-dugme" href="#">Tamamını Gör<i class="fa-solid fa-arrow-right"></i></a></div></div><div class="t-mas dort"><a class="t3" href="#"><span class="t-g"><span class="t-img" style="background-image:url(_gorsel/p203.jpg);aspect-ratio:1/1.55"></span><span class="kaydet" aria-label="Kaydet"><i class="fa-solid fa-bookmark"></i></span></span><span class="t3-alt"><h3>Asgari ücretin on yıllık seyri</h3><span class="t2-bilgi"><span><i class="fa-solid fa-database"></i>TÜİK</span><time>22.11.2026</time></span></span></a><a class="t3" href="#"><span class="t-g"><span class="t-img" style="background-image:url(_gorsel/p188.jpg);aspect-ratio:1/1.3"></span><span class="kaydet" aria-label="Kaydet"><i class="fa-solid fa-bookmark"></i></span></span><span class="t3-alt"><h3>Şehirlere göre kira artış oranları</h3><span class="t2-bilgi"><span><i class="fa-solid fa-database"></i>TÜİK</span><time>21.11.2026</time></span></span></a><a class="t3" href="#"><span class="t-g"><span class="t-img" style="background-image:url(_gorsel/p178.jpg);aspect-ratio:1/1.4"></span><span class="kaydet" aria-label="Kaydet"><i class="fa-solid fa-bookmark"></i></span></span><span class="t3-alt"><h3>İhracatın sektörel dağılımı</h3><span class="t2-bilgi"><span><i class="fa-solid fa-database"></i>TİM</span><time>20.11.2026</time></span></span></a><a class="t3" href="#"><span class="t-g"><span class="t-img" style="background-image:url(_gorsel/p183.jpg);aspect-ratio:1/1.2"></span><span class="kaydet" aria-label="Kaydet"><i class="fa-solid fa-bookmark"></i></span></span><span class="t3-alt"><h3>Elektrikli araç satışları çeyreklik</h3><span class="t2-bilgi"><span><i class="fa-solid fa-database"></i>ODMD</span><time>19.11.2026</time></span></span></a><a class="t3" href="#"><span class="t-g"><span class="t-img" style="background-image:url(_gorsel/p155.jpg);aspect-ratio:1/1.5"></span><span class="kaydet" aria-label="Kaydet"><i class="fa-solid fa-bookmark"></i></span></span><span class="t3-alt"><h3>Nüfus piramidi 2025</h3><span class="t2-bilgi"><span><i class="fa-solid fa-database"></i>TÜİK</span><time>18.11.2026</time></span></span></a><a class="t3" href="#"><span class="t-g"><span class="t-img" style="background-image:url(_gorsel/p195.jpg);aspect-ratio:1/1.25"></span><span class="kaydet" aria-label="Kaydet"><i class="fa-solid fa-bookmark"></i></span></span><span class="t3-alt"><h3>Türkiye'de enerji üretimi kaynağa göre</h3><span class="t2-bilgi"><span><i class="fa-solid fa-database"></i>EPDK</span><time>17.11.2026</time></span></span></a></div></div><p>TRT dizilimi 4 sütun, ama altlık bizim kart kökümüz: beyaz kart, cam kaydet, başlık, kaynak · tarih. Liste/arşiv sayfası için en doğal hali.</p></section></main></body></html>
