@@ -205,3 +205,7 @@ document.querySelectorAll('[data-yazdir]').forEach(b=>b.addEventListener('click'
   d.querySelectorAll('[data-go]').forEach(o=>o.addEventListener('click',()=>goster(i+(+o.dataset.go)*(getComputedStyle(d).direction==='rtl'?-1:1))));
   d.addEventListener('keydown',e=>{if(e.key==='ArrowRight')goster(i+1); if(e.key==='ArrowLeft')goster(i-1);});
 })();
+
+/* Takvime ekle (format denetimi): düğme açılır/kapanır, bildirim gösterir. Prototip; gerçek takvim dosyası üretilmez. */
+document.querySelectorAll('.tk-ekle').forEach(b=>b.addEventListener('click',e=>{e.preventDefault(); e.stopPropagation(); const on=b.classList.toggle('on');
+  b.setAttribute('aria-pressed',on); b.lastChild.textContent=on?'Takvimde':'Takvime ekle'; toast(on?'Takvimine eklendi; bir saat önce hatırlatacağız':'Takvimden çıkarıldı');}));

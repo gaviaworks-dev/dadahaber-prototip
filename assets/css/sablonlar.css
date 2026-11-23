@@ -380,3 +380,91 @@ span.dt-oyn{display:grid;place-items:center;flex:none}
   .hs-satir>span:nth-child(2){display:grid}
   .hs-satir>span:nth-child(2)>*{overflow:hidden;text-overflow:ellipsis}
 }
+
+/* ===== Canlı ve format bileşenleri (Beyar onaylı format denetimi düzeltmeleri, 2026-11-23) ===== */
+/* Canlı durum rozeti: .cd-rozet.canli (nabız) | .cd-rozet.bitti (sona erdi) */
+.cd-rozet{display:inline-flex;align-items:center;gap:8px;block-size:30px;padding:0 12px;border-radius:999px;font-size:var(--y-sm);font-weight:800;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap}
+.cd-rozet.canli{background:var(--azalis);color:var(--beyaz)}
+.cd-rozet.canli::before{content:"";inline-size:8px;block-size:8px;border-radius:50%;background:var(--beyaz);animation:nabiz 1.4s infinite}
+.cd-rozet.bitti{background:var(--gri-50);color:var(--gri-600)}
+.cd-rozet.bitti::before{content:"\f058";font-family:"Font Awesome 6 Free";font-weight:900;color:var(--gri-400)}
+@media (prefers-reduced-motion:reduce){.cd-rozet.canli::before{animation:none}}
+/* Sabit olay başlığı (dakika dakika): kaydırınca üstte kalan ince şerit */
+.cd-sabit{position:sticky;inset-block-start:var(--ust-boy);z-index:20;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:12px;padding:10px 16px;margin-block-end:20px;border-radius:var(--k-kontrol);background:var(--beyaz);border:1px solid var(--gri-50);box-shadow:var(--golge-sm)}
+.cd-sabit b{font-size:var(--y-sm);font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cd-sabit small{font-size:var(--y-xs);color:var(--gri-400);white-space:nowrap}
+/* Kilit anlar: saatli kısa liste, girişe bağlanır */
+.cd-kilit{display:grid;gap:10px;padding:20px;border-radius:var(--k-kart);background:var(--marka-10);border:1px solid var(--marka-100)}
+.cd-kilit h2{font-size:var(--y-md);font-weight:800}
+.cd-kilit ol{display:grid;gap:4px;list-style:none;padding:0;margin:0}
+.cd-kilit a{display:grid;grid-template-columns:56px minmax(0,1fr);gap:10px;align-items:baseline;min-block-size:var(--dokun);padding-block:6px;font-size:var(--y-sm);font-weight:700}
+.cd-kilit time{font-weight:800;color:var(--marka-metin);font-variant-numeric:tabular-nums}
+/* Giriş içi: tarih + saat, medya, alıntı, kaynak ve teyit */
+.ca-o time small{font-weight:600;color:var(--gri-400);margin-inline-start:6px}
+.ca-o .ca-medya{aspect-ratio:16/9;border-radius:var(--k-kontrol);background:var(--gri-50) center/cover no-repeat;position:relative}
+.ca-o .ca-medya .dt-video{position:absolute;inset-inline-start:12px;inset-block-end:12px}
+.ca-o blockquote{margin:0;padding:12px 16px;border-inline-start:3px solid var(--marka);background:var(--zemin-b);border-radius:0 var(--k-kontrol) var(--k-kontrol) 0;font-size:var(--y-md);font-style:italic}
+.ca-o blockquote cite{display:block;margin-block-start:6px;font-style:normal;font-size:var(--y-sm);font-weight:700;color:var(--gri-600)}
+.ca-kay{display:flex;align-items:center;gap:12px;font-size:var(--y-sm);color:var(--gri-600);white-space:nowrap;overflow:hidden}
+.ca-kay a{font-weight:700;color:var(--marka-metin);overflow:hidden;text-overflow:ellipsis}
+/* Teyit rozeti (giriş ve satır içinde): .ty-rozet.teyitli | .ty-rozet.bekliyor */
+.ty-rozet{display:inline-flex;align-items:center;gap:6px;flex:none;font-size:var(--y-xs);font-weight:800;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap}
+.ty-rozet.teyitli{color:var(--artis)}
+.ty-rozet.teyitli::before{content:"\f058";font-family:"Font Awesome 6 Free";font-weight:900}
+.ty-rozet.bekliyor{color:var(--gri-600)}
+.ty-rozet.bekliyor::before{content:"\f017";font-family:"Font Awesome 6 Free";font-weight:900;color:var(--marka-metin)}
+/* Olay dosyası ve takip satırı */
+.cd-dosya{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:16px;padding:16px 20px;border-radius:var(--k-kart);border:1px solid var(--gri-50);background:var(--beyaz)}
+.cd-dosya>i{display:grid;place-items:center;inline-size:44px;block-size:44px;border-radius:var(--k-kontrol);background:var(--marka-10);color:var(--marka-metin)}
+.cd-dosya b{display:block;font-size:var(--y-md)}
+.cd-dosya small{font-size:var(--y-sm);color:var(--gri-600)}
+.cd-dosya .cd-eylem{display:flex;gap:8px}
+/* "Ne değişti" (güncellenen haberler) */
+.gn-k{display:grid;grid-template-columns:140px minmax(0,1fr);gap:20px;padding-block:18px;border-block-end:1px solid var(--gri-50)}
+.gn-k .gn-zaman{display:grid;gap:2px;align-content:start}
+.gn-k .gn-zaman b{font-size:var(--y-md);font-weight:800;color:var(--marka-metin);font-variant-numeric:tabular-nums}
+.gn-k .gn-zaman small{font-size:var(--y-xs);color:var(--gri-400)}
+.gn-k h3{font-size:var(--y-md);font-weight:800;line-height:1.35}
+.gn-degis{display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px;align-items:baseline;margin-block-start:8px;padding:10px 14px;border-radius:var(--k-kontrol);background:var(--zemin-b);font-size:var(--y-sm)}
+.gn-degis>span{font-weight:800;color:var(--marka-metin);white-space:nowrap}
+.gn-ilk{display:block;margin-block-start:6px;font-size:var(--y-xs);color:var(--gri-400)}
+/* Bugün ne oldu: tarih şeridi ve özet satırı */
+.tr-serit{display:flex;gap:8px}
+.tr-serit a{flex:none;display:grid;justify-items:center;min-inline-size:64px;padding:8px 10px;border-radius:var(--k-kontrol);border:1px solid var(--gri-100);background:var(--beyaz);font-size:var(--y-xs);font-weight:700;color:var(--gri-600)}
+.tr-serit a b{font-size:var(--y-lg);font-weight:800;color:var(--siyah)}
+.tr-serit a.aktif{background:var(--marka);border-color:var(--marka);color:var(--siyah)}
+.bo-s{display:grid;grid-template-columns:64px minmax(0,1fr) 168px;gap:20px;align-items:start;padding-block:18px;border-block-end:1px solid var(--gri-50)}
+.bo-s time{font-size:var(--y-md);font-weight:800;color:var(--marka-metin);font-variant-numeric:tabular-nums}
+.bo-s h3{font-size:var(--y-md);font-weight:800;line-height:1.35}
+.bo-s p{margin-block-start:6px;font-size:var(--y-sm);color:var(--gri-600);line-height:1.55}
+.bo-s .bo-g{aspect-ratio:16/10;border-radius:var(--k-kontrol);background:var(--gri-50) center/cover no-repeat}
+.bo-s .bo-bilgi{display:flex;gap:12px;margin-block-start:8px;font-size:var(--y-xs);color:var(--gri-400);white-space:nowrap;overflow:hidden}
+/* Takvime ekle */
+.tk-ekle{display:inline-flex;align-items:center;gap:6px;block-size:36px;padding:0 12px;border-radius:var(--k-kontrol);border:1px solid var(--gri-100);background:var(--beyaz);font:inherit;font-size:var(--y-xs);font-weight:800;color:var(--gri-800);white-space:nowrap;cursor:pointer}
+.tk-ekle.on{background:var(--marka-10);border-color:var(--marka);color:var(--siyah)}
+@media (pointer:coarse){.tk-ekle{block-size:var(--dokun)}}
+/* Canlı yayın: yayın akışı */
+.yy-akis{display:grid;gap:0}
+.yy-s{display:grid;grid-template-columns:72px minmax(0,1fr) auto;gap:16px;align-items:center;padding-block:14px;border-block-end:1px solid var(--gri-50)}
+.yy-s time{font-weight:800;color:var(--marka-metin);font-variant-numeric:tabular-nums}
+.yy-s b{font-size:var(--y-md);font-weight:800}
+.yy-s small{display:block;font-size:var(--y-sm);color:var(--gri-600)}
+.yy-s.simdi{background:var(--marka-10);border-radius:var(--k-kontrol);padding-inline:12px}
+@media (max-width:639.98px){
+  .cd-sabit{grid-template-columns:auto minmax(0,1fr)}
+  .cd-sabit small{display:none}
+  .cd-dosya{grid-template-columns:auto minmax(0,1fr)}
+  .cd-dosya .cd-eylem{grid-column:1/-1}
+  .gn-k{grid-template-columns:minmax(0,1fr);gap:8px}
+  .gn-k .gn-zaman{grid-auto-flow:column;justify-content:start;gap:10px;align-items:baseline}
+  .bo-s{grid-template-columns:52px minmax(0,1fr);gap:12px}
+  .bo-s .bo-g{display:none}
+  .yy-s{grid-template-columns:56px minmax(0,1fr)}
+  .yy-s>:last-child{grid-column:2;justify-self:start}
+}
+/* kart görseli üstünde canlı/sona erdi rozeti: sol alt köşe (sol üstte çip, sağ üstte kaydet) */
+.gm .cd-rozet{position:absolute;inset-block-end:12px;inset-inline-start:12px;z-index:2;block-size:26px;font-size:var(--y-xs)}
+.gm .cd-rozet.bitti{background:rgba(255,255,255,.92)}
+.sw-takvim .tk-ekle,.yy-s .tk-ekle{justify-self:start}
+.ca-o p a,.bo-s p a,.gn-degis a{color:var(--marka-metin);font-weight:700;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+.ca-o .ca-medya .dt-video{inset-inline-end:auto;inline-size:max-content;max-inline-size:calc(100% - 24px)}
