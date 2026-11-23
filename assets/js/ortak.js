@@ -10,7 +10,25 @@ document.querySelectorAll('.tk-serit .tk').forEach(a=>a.addEventListener('click'
   const ar=p.querySelector('.tk-arma .arma'); ar.textContent=a.dataset.kod; ar.style.background=a.dataset.renk;}));
 // Otomatik dönen raylar: her 5 sn'de bir kart kayar; üstüne gelince ve sekme görünmezken durur; prefers-reduced-motion'da kapalı.
 const azHareket=matchMedia('(prefers-reduced-motion: reduce)').matches;
-document.querySelectorAll('[data-oto]').forEach(kap=>{
+/* Dar ekran ve dokunmatik (Beyar, mobil revize): raylar gerçek yatay kaydırma; parmakla kayar, kartta durur (scroll-snap).
+   Otomatik akış sürer ama dokunuş ya da elle kaydırmadan sonra 8 sn bekler; klon kart yok. */
+const darRay=matchMedia('(max-width:1024px), (hover: none)').matches;
+document.querySelectorAll('[data-oto]').forEach(kap=>{ if(!darRay) return;
+  const iz=kap.firstElementChild; if(!iz) return;
+  kap.classList.add('oto-kay'); if(azHareket) return;
+  let bekle=0; const durdur=()=>{bekle=Date.now()+8000;};
+  ['touchstart','pointerdown','wheel'].forEach(o=>iz.addEventListener(o,durdur,{passive:true}));
+  kap.addEventListener('mouseenter',durdur);
+  const yon=getComputedStyle(iz).direction==='rtl'?-1:1;
+  setInterval(()=>{ if(Date.now()<bekle||document.hidden) return;
+    const r=kap.getBoundingClientRect(); if(r.bottom<0||r.top>innerHeight) return;
+    const pad=parseFloat(getComputedStyle(iz).paddingInlineStart)||0, x=Math.abs(iz.scrollLeft);
+    const son=x+iz.clientWidth>=iz.scrollWidth-4;
+    const sonraki=[...iz.children].find(c=>c.offsetLeft-pad>x+4);
+    iz.scrollTo({left:(son||!sonraki)?0:(sonraki.offsetLeft-pad)*yon,behavior:'smooth'});
+  },5000);
+});
+document.querySelectorAll('[data-oto]').forEach(kap=>{ if(darRay) return;
   const iz=kap.firstElementChild; if(!iz) return;
   const ilk=[...iz.children]; ilk.forEach(c=>iz.appendChild(c.cloneNode(true)));
   iz.classList.add('oto-iz'); let i=0, dur=false;

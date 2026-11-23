@@ -1518,3 +1518,20 @@ dialog.gorsel-on::backdrop{background:rgba(10,10,10,.85)}
   .liste>.gk .gv>:not(h3):not(.bilgi){display:none}
   .liste>.gk .bilgi span:nth-child(n+3){display:none}
 }
+
+/* ===== Mobil revize (Beyar): kaydırılabilir raylar ve kart şeritleri ===== */
+@media (max-width:1024px),(hover:none){
+  /* otomatik raylar: gerçek kaydırma, kartta durur */
+  .ray-kap.otomatik.oto-kay{overflow:visible;margin-inline:calc(-1*var(--kenar));padding:8px 0 12px}
+  .ray-kap.oto-kay>*:first-child{display:grid!important;grid-auto-flow:column;grid-template-columns:none!important;overflow-x:auto;overscroll-behavior-inline:contain;scroll-snap-type:x mandatory;scroll-padding-inline:var(--kenar);padding-inline:var(--kenar);padding-block:4px 8px;scrollbar-width:none;transform:none!important;transition:none!important}
+  .ray-kap.oto-kay>*:first-child::-webkit-scrollbar{display:none}
+  .ray-kap.oto-kay>*:first-child>*{scroll-snap-align:start}
+  .ray-kap.oto-kay .ray-ok,.ray-kap.oto-kay>button{display:none}
+}
+@media (max-width:639.98px){
+  /* alt alta büyük kartlar yerine yatay kart şeridi (sonuç listeleri, liste görünümü ve Hesabım hariç) */
+  main :is(.g4,.g3,.pc-g,.t-sira):not(.ls-arac2 ~ *):not(.liste):not(.oto-iz):not(.ray-kap>*):not(.hs-kart *):not(.hs-ic *){display:flex!important;gap:12px;overflow-x:auto;overscroll-behavior-inline:contain;scroll-snap-type:x mandatory;scroll-padding-inline:var(--kenar);margin-inline:calc(-1*var(--kenar));padding-inline:var(--kenar);padding-block:4px 12px;scrollbar-width:none}
+  main :is(.g4,.g3,.pc-g,.t-sira):not(.ls-arac2 ~ *):not(.liste):not(.oto-iz):not(.ray-kap>*):not(.hs-kart *):not(.hs-ic *)::-webkit-scrollbar{display:none}
+  main :is(.g4,.g3,.pc-g,.t-sira):not(.ls-arac2 ~ *):not(.liste):not(.oto-iz):not(.ray-kap>*):not(.hs-kart *):not(.hs-ic *)>*{flex:0 0 82%;min-inline-size:0;scroll-snap-align:start}
+  main .pc-g:not(.ls-arac2 ~ *)>*{flex-basis:88%}
+}
