@@ -101,3 +101,39 @@
 .ls-s em{display:inline-flex;align-items:center;gap:var(--ikon-bosluk);font-style:normal;font-size:var(--y-sm);color:var(--gri-400)}
 /* Alt menü okları: kaydırılacak yer yoksa sönük */
 .am-ok:disabled{opacity:.35;cursor:default;border-color:var(--gri-100);color:var(--gri-400)}
+
+/* ===== Dar ekran (mobil bölümü; CC seçti, Beyar gözden geçirecek) ===== */
+@media (max-width:1024px){
+  .bn{background-attachment:scroll;padding-block:24px 72px}
+  .bn .kap{grid-template-columns:minmax(0,1fr);gap:24px;min-block-size:0}
+  .bn-sag{justify-items:stretch}
+  .bn-ok{display:none}
+  .bn-panel{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .bn-y b{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .am-ok{display:none}
+  .am-ic{block-size:64px}
+  .ls-arac2{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
+  .ls-arac2>*{flex:none}
+  .ls-one-c{grid-template-columns:minmax(0,1fr);block-size:auto}
+  .ls-go{min-block-size:360px}
+  .ls-b-ic{grid-template-columns:minmax(0,1fr)}
+  .ls-sayfa a,.ls-sayfa span{min-inline-size:var(--dokun);block-size:var(--dokun)}
+}
+@media (max-width:639.98px){
+  .bn{padding-block:20px 60px}
+  .bn h1{max-inline-size:none}
+  .bn-one h2{font-size:var(--y-xl)}
+  .bn-meta{flex-wrap:nowrap;overflow:hidden}
+  .bn-panel{grid-template-columns:minmax(0,1fr)}
+  .bn-y:nth-child(n+2){display:none}
+  .pnl{margin-block-start:-32px;border-start-start-radius:20px;border-start-end-radius:20px}
+  .am{border-start-start-radius:20px;border-start-end-radius:20px}
+  .am-ic{block-size:60px}
+  .am-etk{display:none}
+  .pnl-ic{padding-block:24px 48px}
+  .ls-gor{display:none}
+  .ls-sayfa{gap:6px}
+  .ls-sayfa a:not(.aktif):nth-child(n+4):nth-last-child(n+3){display:none}
+}
+@media (max-width:1024px){.g3,.g4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:639.98px){.g3,.g4{grid-template-columns:minmax(0,1fr)}}

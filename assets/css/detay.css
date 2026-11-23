@@ -159,3 +159,60 @@
 .dt-sutun .dt-bas-ic{max-inline-size:none}
 .dt-sutun .dt-spot{max-inline-size:none}
 .dt-sade .dt-hiza .dt-sutun{padding-block-start:4px}
+
+/* ===== Dar ekran (mobil bölümü; CC seçti, Beyar gözden geçirecek) ===== */
+@media (max-width:1024px){
+  .dt-hiza{grid-template-columns:minmax(0,1fr);row-gap:20px}
+  .dt-hiza>.dt-eylem{grid-column:1;grid-row:auto}
+  .dt-sutun{grid-column:1;inline-size:100%;justify-self:stretch}
+  .dt-eylem.dikey{position:static;flex-direction:row;overflow-x:auto;scrollbar-width:none}
+  .dt-eylem.dikey button{inline-size:auto;block-size:var(--dokun);padding:0 14px;flex:none}
+  .dt-eylem.dikey span{position:static;inline-size:auto;block-size:auto;overflow:visible;clip-path:none}
+  .dt-izg,.dt-uc{grid-template-columns:minmax(0,1fr)}
+  .dt-yan,.dt-icindekiler{position:static}
+  .dt-ana-g,.dt-ana.genis .dt-ana-g{aspect-ratio:16/9}
+  .dt-meta{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
+  .dt-meta>span{flex:none}
+  .dt-etk{overflow-x:auto;scrollbar-width:none}
+  .dt-pay{overflow-x:auto;scrollbar-width:none}
+  .dt-pay-d{flex:none;inline-size:var(--dokun);block-size:var(--dokun)}
+  .dt-c-filtre{overflow-x:auto;scrollbar-width:none}
+  .dt-c-filtre>*{flex:none}
+  .dt-c-eylem button{min-block-size:var(--dokun)}
+  .dt-ozet-bas{flex-wrap:wrap}
+  .dt-sekme{margin-inline-start:0;overflow-x:auto}
+}
+@media (max-width:639.98px){
+  .dt-bas-ic h1{font-size:var(--y-2xl);max-inline-size:none}
+  .dt-spot{font-size:var(--y-md)!important}
+  .dt-yz{border:0;padding:0}
+  .dt-dinle{flex-wrap:nowrap}
+  .dt-dalga{display:none}
+  .dt-govde p{text-align:start;hyphens:auto}
+  .dt-c.yanit{margin-inline-start:20px}
+  .dt-c-bas{overflow:hidden}
+  .dt-c-tar{display:none}
+  .dt-giris{grid-template-columns:minmax(0,1fr)}
+  .dt-giris-ik{display:none}
+  .dt-kaynak li{grid-template-columns:minmax(0,1fr) auto}
+  .dt-k-ik{display:none}
+}
+@media (max-width:1024px){.dt-bas-ic>*{max-inline-size:100%}.dt-meta{inline-size:100%}}
+@media (max-width:639.98px){
+  /* dinleme çubuğu: başlık kısalır, hız düğmesi kalır */
+  .dt-dinle{gap:12px;padding:12px 14px}
+  .dt-dinle-y{flex:1 1 auto;min-inline-size:0}
+  .dt-dinle-y b,.dt-dinle-y small{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+}
+
+/* Etiketler + Paylaş tek satır (Beyar: gereksiz satır açılmaz). Solda etiketler kayar, sağda paylaş sabit; aradaki çizgi yok */
+.dt-ep{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;column-gap:24px;padding-block:16px;border-block:1px solid var(--gri-50)}
+.dt-ep>.dt-etk,.dt-ep>.dt-pay{padding:0;border:0;margin:0;min-inline-size:0}
+.dt-ep>.dt-pay{justify-content:flex-end}
+@media (max-width:639.98px){
+  /* telefonda ikisi yan yana sığmaz: iki tek satır, ikisi de kırılmaz (etiketler kayar, paylaş tek satır) */
+  .dt-ep{grid-template-columns:minmax(0,1fr);row-gap:12px}
+  .dt-ep>.dt-pay{justify-content:flex-start}
+  .dt-pay>span{display:none}
+  .dt-pay{gap:4px}
+}

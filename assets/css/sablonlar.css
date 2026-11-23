@@ -300,3 +300,83 @@ span.dt-oyn{display:grid;place-items:center;flex:none}
 .mt-bol .kf-kart p,.mt-bol .dt-ako p,.mt-bol .fr-kart p{text-align:start;hyphens:manual}
 /* Üyelik formu baş bloğuyla aynı sol kenarda (hiza kuralı) */
 .kap.uy-izg{max-inline-size:var(--kap);margin-inline:auto}
+
+/* ===== Dar ekran (mobil bölümü; CC seçti, Beyar gözden geçirecek) ===== */
+@media (max-width:1024px){
+  .mt-gastro,.hs-izg,.uy-izg{grid-template-columns:minmax(0,1fr)}
+  .mt-menu{position:static;display:flex;overflow-x:auto;scrollbar-width:none;gap:6px;padding:8px}
+  .mt-menu .mt-ici-b{display:none}
+  .mt-menu a{flex:none;min-block-size:var(--dokun)}
+  .mt-kart{padding:24px}
+  .mt-ici.kutu ol{grid-template-columns:minmax(0,1fr)}
+  .mt-sayilar,.hs-sayilar{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .mt-bol table{display:block;overflow-x:auto}
+  .mt-kunye{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
+  .oy-kapak{grid-template-columns:160px minmax(0,1fr)}
+  .gr-serit{grid-auto-flow:column;grid-template-columns:none;grid-auto-columns:88px;overflow-x:auto;scrollbar-width:none}
+  .ak-izg{grid-template-columns:minmax(0,1fr)}
+  .ak-oy,.ak-sira{grid-column:1}
+  .ak-oy{max-inline-size:420px;inline-size:100%;justify-self:center}
+  .dg-izg{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .il-izg,.bz-izg{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .sv-gunler,.sv-vakit{grid-auto-flow:column;grid-template-columns:none;grid-auto-columns:minmax(92px,1fr);overflow-x:auto;scrollbar-width:none}
+  .sv-ust{grid-template-columns:minmax(0,1fr)}
+  .dz{columns:2}
+  .kr-o{grid-template-columns:110px minmax(0,1fr)}
+  .ht{padding:40px 24px}
+  .ht-kod{font-size:72px}
+}
+@media (max-width:639.98px){
+  .mt-kart{padding:18px}
+  .mt-sayilar,.hs-sayilar{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .fr-kart,.uy-yan,.hs-kart{padding:20px}
+  .hs-satir{grid-template-columns:auto minmax(0,1fr)}
+  .hs-satir>:nth-child(3){grid-column:2;justify-self:start}
+  .oy-kapak{grid-template-columns:minmax(0,1fr)}
+  .oy-kapak>span{max-inline-size:200px}
+  .oy-sira a{grid-template-columns:110px minmax(0,1fr)}
+  .oy-sira a>small{display:none}
+  .gr-alt{grid-template-columns:minmax(0,1fr)}
+  .gr-ok{inline-size:var(--dokun);block-size:var(--dokun)}
+  .za-s{grid-template-columns:52px minmax(0,1fr) auto;gap:10px}
+  .za-s .za-kat{display:none}
+  .za-s h3{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+  .kf-kart{grid-template-columns:44px minmax(0,1fr);padding:16px}
+  .kf-kart>i{inline-size:44px;block-size:44px}
+  .dg-izg{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .il-izg,.bz-izg{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .kr-o{grid-template-columns:minmax(0,1fr);gap:4px}
+  .dz{columns:1}
+  .ht{padding:32px 18px}
+  .ht-kod{font-size:56px}
+  .ht-ara{flex-direction:column}
+  .ar-soru{max-inline-size:90%}
+  .sv-deger b{font-size:56px}
+  .pf-bas{gap:14px}
+  .pf-av{inline-size:72px;block-size:72px}
+  .pf-kunye{overflow-x:auto;scrollbar-width:none}
+  .pf-kunye span{flex:none}
+  .pf-skor{gap:12px}
+  .pf-skor b{font-size:40px}
+  .pf-skor .pf-av{inline-size:52px;block-size:52px}
+}
+@media (max-width:1024px){
+  /* kart içi öğeler içeriğe göre genişlemesin; adım ve sekme şeritleri tek satırda kayar */
+  .fr-kart>*,.hs-kart>*,.uy-izg>*,.hs-izg>*,.kf-kart>*,.kf-izg>*,.mt-gastro>*{min-inline-size:0}
+  .fr-adim,.pn-sekme,.sw-sekme{max-inline-size:100%;overflow-x:auto;scrollbar-width:none}
+  .fr-adim>*,.pn-sekme>*{flex:none}
+  .cp-izg{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
+  .cp-izg>*{flex:none}
+  .kf-kart small{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+}
+@media (max-width:1024px){.kf-izg,.fb-izg{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:639.98px){.kf-izg,.fb-izg{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:639.98px){
+  /* Hesabım satırı: başlık ve bilgi ayrı satır, ikisi de tek satırda kısalır */
+  .hs-satir>span:nth-child(2){display:grid}
+  .hs-satir>span:nth-child(2)>*{overflow:hidden;text-overflow:ellipsis}
+}
+@media (max-width:1024px){
+  .hs-satir>span:nth-child(2){display:grid}
+  .hs-satir>span:nth-child(2)>*{overflow:hidden;text-overflow:ellipsis}
+}

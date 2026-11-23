@@ -49,13 +49,103 @@ document.addEventListener('click',e=>{
   const a=e.target.closest('[data-acilir]'); if(a&&pnAc(a.dataset.acilir)){e.preventDefault();return;}
   const ty=e.target.closest('[data-toast]'); if(ty) toast(ty.dataset.toast);
   const k=e.target.closest('[data-kapat]'); if(k){const d=k.closest('dialog'); if(d) d.close();}
-  const kay=e.target.closest('.kaydet,.pc-kaydet,.inf3-kaydet'); if(kay){e.preventDefault(); pnAc('uyelik'); return;}
   const b=e.target.closest('.dt-eylem button,.dt-pay-d'); if(b){const l=b.getAttribute('aria-label')||'';
     if(/Paylaş|kopyala/i.test(l)){e.preventDefault(); if(/kopyala/i.test(l)) toast('Bağlantı kopyalandı'); else pnAc('paylas');}
-    else if(/Yazı boyutu/i.test(l)) pnAc('gorunum'); else if(/Kaydet/i.test(l)) pnAc('uyelik');}
+    else if(/Yazı boyutu/i.test(l)) pnAc('gorunum'); else if(/Kaydet/i.test(l)){ b.classList.toggle('on'); toast(b.classList.contains('on')?'Kaydedildi':'Kayıt kaldırıldı'); }}
 });
 document.querySelectorAll('dialog.pn').forEach(d=>d.addEventListener('click',e=>{if(e.target===d) d.close();}));
 /* Çerez bandı: ilk ziyarette altta (girişte açılır pencere değil, sayfayı kapatmaz); seçim cihazda saklanır */
 (()=>{const cz=document.querySelector('.cz'); if(!cz) return; let s=null; try{s=localStorage.getItem('dh-cerez');}catch(_){}
   if(!s) cz.classList.add('acik');
   document.addEventListener('click',e=>{const c=e.target.closest('[data-cerez]'); if(!c) return; try{localStorage.setItem('dh-cerez',c.dataset.cerez);}catch(_){} cz.classList.remove('acik');});})();
+
+/* ===== Misafir ve üye hali (CC kararı; Beyar: iki hal eksiksiz) =====
+   Hal localStorage 'dh-oturum' ile sayfalar arasında ve yenilemede korunur; html.oturum sınıfı üye halini açar.
+   [data-oturum="ac"] üye haline geçirir (giriş, kayıt, Google/Facebook/Apple), [data-oturum="kapat"] misafir haline döndürür.
+   Misafirken üyelik isteyen bağlantılar (Hesabım sayfaları, bildirimler, kaydedilenler) giriş penceresini açar;
+   girişten sonra okur gitmek istediği yere ulaşır (sessionStorage 'dh-hedef'). */
+const oturum={
+  acik(){try{return localStorage.getItem('dh-oturum')==='1'}catch(_){return document.documentElement.classList.contains('oturum')}},
+  ayarla(v){try{v?localStorage.setItem('dh-oturum','1'):localStorage.removeItem('dh-oturum')}catch(_){} document.documentElement.classList.toggle('oturum',v);}
+};
+document.documentElement.classList.toggle('oturum',oturum.acik());
+const uyelikIster=h=>/^hesabim(?!-misafir)(-[a-z-]+)?\.html/.test(h||'');
+document.addEventListener('click',e=>{
+  const ac=e.target.closest('[data-oturum="ac"]'), kapat=e.target.closest('[data-oturum="kapat"]');
+  if(ac){ oturum.ayarla(true); let hedef=null; try{hedef=sessionStorage.getItem('dh-hedef'); sessionStorage.removeItem('dh-hedef');}catch(_){}
+    if(hedef&&hedef.startsWith('pn:')){ setTimeout(()=>pnAc(hedef.slice(3)),60); }
+    else if(hedef){e.preventDefault(); location.href=hedef; return;}
+    if(ac.tagName==='A'&&ac.closest('dialog')) e.preventDefault();
+    return; }
+  if(kapat){ oturum.ayarla(false); toast('Çıkış yaptın'); return; }
+  const ist=e.target.closest('[data-acilir="bildirim"],[data-acilir="hesap"]');
+  if(ist&&!oturum.acik()){ e.preventDefault(); e.stopPropagation(); try{sessionStorage.setItem('dh-hedef','pn:'+ist.dataset.acilir)}catch(_){} pnAc('giris'); return; }
+  const a=e.target.closest('a[href]');
+  if(a&&!oturum.acik()&&!a.dataset.acilir&&uyelikIster(a.getAttribute('href'))){ e.preventDefault(); try{sessionStorage.setItem('dh-hedef',a.getAttribute('href'))}catch(_){} pnAc('giris'); }
+},true);
+/* Misafir bir Hesabım sayfasını doğrudan açarsa giriş penceresi açılır; giriş yapınca sayfada kalır */
+if(uyelikIster(location.pathname.split('/').pop())&&!oturum.acik()){ addEventListener('load',()=>pnAc('giris')); }
+/* Bildirim paneli: okunmamış süzgeci ve "tümünü okundu işaretle" */
+document.addEventListener('click',e=>{
+  const s=e.target.closest('[data-bildirim-suz]'); if(s){ s.parentElement.querySelectorAll('button').forEach(b=>b.classList.toggle('aktif',b===s));
+    document.querySelectorAll('.pn-bildirim').forEach(x=>x.hidden=s.dataset.bildirimSuz==='yeni'&&!x.classList.contains('yeni')); }
+  if(e.target.closest('[data-okundu]')){ document.querySelectorAll('.pn-bildirim.yeni').forEach(x=>x.classList.remove('yeni'));
+    document.querySelectorAll('.pn-yeni-say').forEach(x=>x.textContent='0'); document.querySelectorAll('.act .rozet').forEach(r=>r.hidden=true); toast('Bütün bildirimler okundu'); }
+});
+/* Kaydet ve takip: girişsiz de çalışır görünür (cihazda tutulur, üye olunca hesaba taşınır) */
+document.addEventListener('click',e=>{
+  const k=e.target.closest('.kaydet,.pc-kaydet'); if(k){ e.preventDefault(); e.stopPropagation(); const on=k.classList.toggle('on');
+    toast(on?(oturum.acik()?'Kaydedildi · Kaydedilenler\'e eklendi':'Kaydedildi · cihazında tutuluyor, üye olunca hesabına taşınır'):'Kayıt kaldırıldı'); }
+  const tk=e.target.closest('[data-takip]'); if(tk){ e.preventDefault(); const on=tk.classList.toggle('on'); tk.querySelector('span')&&(tk.querySelector('span').textContent=on?'Takip ediliyor':'Takip et');
+    toast(on?'Takip ediliyor'+(oturum.acik()?'':' · üye olunca hesabına taşınır'):'Takip bırakıldı'); }
+  const bil=e.target.closest('.dt-c-eylem button'); if(bil&&/Bildir/.test(bil.textContent)){ e.preventDefault(); pnAc('bildir'); }
+},true);
+/* Yukarı çık düğmesi: 600px'ten sonra belirir, yumuşak kaydırır; çerez bandı açıkken onun üstünde durur */
+(()=>{const y=document.querySelector('.yukari'); if(!y) return;
+  const g=()=>y.classList.toggle('gorunur',scrollY>600); addEventListener('scroll',g,{passive:true}); g();
+  y.addEventListener('click',()=>scrollTo({top:0,behavior:azHareket?'auto':'smooth'}));
+  const cz=document.querySelector('.cz'); const ayar=()=>document.documentElement.classList.toggle('cz-acik',!!(cz&&cz.classList.contains('acik')));
+  ayar(); if(cz) new MutationObserver(ayar).observe(cz,{attributes:true,attributeFilter:['class']});})();
+/* Okuma ilerleme çubuğu (haber detayı ve metin sayfaları) */
+(()=>{const g=document.querySelector('.dt-govde,.mt-metin'); if(!g) return; const c=document.createElement('div'); c.className='okuma-cubuk'; c.setAttribute('aria-hidden','true'); document.body.appendChild(c);
+  const h=()=>{const r=g.getBoundingClientRect(); const p=Math.min(1,Math.max(0,(innerHeight*.35-r.top)/r.height)); c.style.transform=`scaleX(${p})`;}; addEventListener('scroll',h,{passive:true}); h();})();
+
+/* Dokunmatik: açılır menü başlığına ilk dokunuş paneli açar (üstüne gelme yok); ikinci dokunuş sayfaya gider */
+if(matchMedia('(hover: none)').matches){ document.querySelectorAll('.mm>.mm-a').forEach(a=>a.addEventListener('click',e=>{const li=a.parentElement;
+  if(!li.classList.contains('acik')){e.preventDefault(); document.querySelectorAll('.mm.acik').forEach(x=>x!==li&&x.classList.remove('acik')); li.classList.add('acik');}}));
+  document.addEventListener('click',e=>{if(!e.target.closest('.mm')) document.querySelectorAll('.mm.acik').forEach(x=>x.classList.remove('acik'));}); }
+
+/* Kartın tamamı tıklanır (Beyar, 2026-11-23, genel kural): kartın herhangi bir yerine tıklanınca başlık bağlantısının hedefine gidilir.
+   Kart içindeki kendi işi olan öğeler (bağlantı, düğme, Kaydet, oynat) kendi işini yapar. Ctrl/Cmd ya da orta tık yeni sekmede açar.
+   Yeni kart türü: sınıfı KART listesine eklenir ya da öğeye data-kart verilir. */
+(()=>{const KART='.gk,.gy,.go,.g,.pc,.fb-k,[data-kart]';
+  const hedef=k=>k.querySelector('h1 a[href],h2 a[href],h3 a[href],h4 a[href],[data-kart-hedef]');
+  const ic='a,button,input,select,textarea,label,summary,[role=button],.kaydet,.pc-kaydet,[data-takip],[data-acilir]';
+  const git=(e,yeni)=>{const k=e.target.closest(KART); if(!k)return; const ie=e.target.closest(ic); if(ie&&k.contains(ie))return;
+    if(String(getSelection()).length)return; const a=hedef(k); if(!a)return;
+    if(yeni||e.ctrlKey||e.metaKey||e.button===1){open(a.href,'_blank','noopener');return;} a.click();};
+  document.addEventListener('click',e=>git(e,false));
+  document.addEventListener('auxclick',e=>{if(e.button===1)git(e,true);});
+})();
+
+/* Kayan şerit (Beyar: sığmayan öğe alt satıra inmez; okla ve sürükleyerek yatay kayar). Ortak bileşen: KAYAN listesindeki ya da
+   [data-kayar] taşıyan her tek satır. Taşıyorsa uçlarda yapışkan oklar belirir; fareyle sürüklenir (sürükleme sonrası tık yutulur). */
+(()=>{const KAYAN='.dt-etk,.dt-pay,.cp-izg,.dt-meta,.dt-c-filtre,.sw-lejant,.pf-kunye,.mt-kunye,.ls-arac2,.gband .cipler,[data-kayar]';
+  const yon=el=>getComputedStyle(el).direction==='rtl'?-1:1;
+  const kur=el=>{ if(el.dataset.ks) return; el.dataset.ks='1'; el.classList.add('ks');
+    const ok=(s)=>{const b=document.createElement('button'); b.type='button'; b.className='ks-ok ks-'+(s<0?'bas':'son'); b.setAttribute('aria-label',s<0?'Geri kaydır':'İleri kaydır');
+      b.innerHTML='<i class="fa-solid fa-chevron-'+(s<0?'left':'right')+'"></i>'; b.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();
+      el.scrollBy({left:s*yon(el)*el.clientWidth*.7,behavior:azHareket?'auto':'smooth'});}); return b;};
+    const bas=ok(-1), son=ok(1); el.prepend(bas); el.append(son);
+    const durum=()=>{const t=el.scrollWidth>el.clientWidth+2, x=el.scrollLeft*yon(el);
+      bas.hidden=!t||x<=1; son.hidden=!t||x+el.clientWidth>=el.scrollWidth-1;};
+    el.addEventListener('scroll',durum,{passive:true}); addEventListener('resize',durum); durum();
+    let x0=null,s0=0,surdu=false;
+    el.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse'||e.target.closest('.ks-ok'))return; x0=e.clientX; s0=el.scrollLeft; surdu=false;});
+    addEventListener('pointermove',e=>{if(x0===null)return; const d=e.clientX-x0; if(Math.abs(d)>5){surdu=true; el.classList.add('surukle'); el.scrollLeft=s0-d;}});
+    addEventListener('pointerup',()=>{if(x0===null)return; x0=null; setTimeout(()=>el.classList.remove('surukle'),0);});
+    el.addEventListener('click',e=>{if(surdu){e.preventDefault();e.stopPropagation();surdu=false;}},true);
+    el.addEventListener('dragstart',e=>e.preventDefault());
+  };
+  document.querySelectorAll(KAYAN).forEach(kur);
+})();
