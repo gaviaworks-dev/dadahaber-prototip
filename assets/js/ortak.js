@@ -209,3 +209,8 @@ document.querySelectorAll('[data-yazdir]').forEach(b=>b.addEventListener('click'
 /* Takvime ekle (format denetimi): düğme açılır/kapanır, bildirim gösterir. Prototip; gerçek takvim dosyası üretilmez. */
 document.querySelectorAll('.tk-ekle').forEach(b=>b.addEventListener('click',e=>{e.preventDefault(); e.stopPropagation(); const on=b.classList.toggle('on');
   b.setAttribute('aria-pressed',on); b.lastChild.textContent=on?'Takvimde':'Takvime ekle'; toast(on?'Takvimine eklendi; bir saat önce hatırlatacağız':'Takvimden çıkarıldı');}));
+
+/* Canlı anlatım sabit şeridi: açılışta gizli; başlık ekrandan çıkınca üstte belirir (yer kaplamaz, başlığı tekrar etmez). */
+(()=>{const s=document.querySelector('.cd-sabit'), h=document.querySelector('.dt-bas-ic h1'); if(!s||!h) return;
+  const ust=()=>parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--ust-boy'))||100;
+  const bak=()=>s.classList.toggle('gorunur',h.getBoundingClientRect().bottom<ust()); addEventListener('scroll',bak,{passive:true}); addEventListener('resize',bak); bak();})();

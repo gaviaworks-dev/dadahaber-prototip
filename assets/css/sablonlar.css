@@ -383,14 +383,14 @@ span.dt-oyn{display:grid;place-items:center;flex:none}
 
 /* ===== Canlı ve format bileşenleri (Beyar onaylı format denetimi düzeltmeleri, 2026-11-23) ===== */
 /* Canlı durum rozeti: .cd-rozet.canli (nabız) | .cd-rozet.bitti (sona erdi) */
-.cd-rozet{display:inline-flex;align-items:center;gap:8px;block-size:30px;padding:0 12px;border-radius:999px;font-size:var(--y-sm);font-weight:800;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap}
+.cd-rozet{display:inline-flex;align-items:center;gap:8px;block-size:30px;padding:0 12px;border-radius:var(--k-ic);line-height:1;font-size:var(--y-sm);font-weight:800;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap}
 .cd-rozet.canli{background:var(--azalis);color:var(--beyaz)}
 .cd-rozet.canli::before{content:"";inline-size:8px;block-size:8px;border-radius:50%;background:var(--beyaz);animation:nabiz 1.4s infinite}
 .cd-rozet.bitti{background:var(--gri-50);color:var(--gri-600)}
 .cd-rozet.bitti::before{content:"\f058";font-family:"Font Awesome 6 Free";font-weight:900;color:var(--gri-400)}
 @media (prefers-reduced-motion:reduce){.cd-rozet.canli::before{animation:none}}
 /* Sabit olay başlığı (dakika dakika): kaydırınca üstte kalan ince şerit */
-.cd-sabit{position:sticky;inset-block-start:var(--ust-boy);z-index:20;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:12px;padding:10px 16px;margin-block-end:20px;border-radius:var(--k-kontrol);background:var(--beyaz);border:1px solid var(--gri-50);box-shadow:var(--golge-sm)}
+.cd-sabit{position:fixed;inset-block-start:calc(var(--ust-boy) + 8px);inset-inline:0;margin-inline:auto;inline-size:min(760px,calc(100% - 2*var(--kenar)));z-index:30;visibility:hidden;opacity:0;transform:translateY(-8px);transition:opacity .2s,transform .2s,visibility .2s;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:12px;padding:10px 16px;margin-block-end:20px;border-radius:var(--k-kontrol);background:var(--beyaz);border:1px solid var(--gri-50);box-shadow:var(--golge-sm)}
 .cd-sabit b{font-size:var(--y-sm);font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .cd-sabit small{font-size:var(--y-xs);color:var(--gri-400);white-space:nowrap}
 /* Kilit anlar: saatli kısa liste, girişe bağlanır */
@@ -469,13 +469,15 @@ span.dt-oyn{display:grid;place-items:center;flex:none}
 .ca-o p a,.bo-s p a,.gn-degis a{color:var(--marka-metin);font-weight:700;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
 .ca-o .ca-medya .dt-video{inset-inline-end:auto;inline-size:max-content;max-inline-size:calc(100% - 24px)}
 /* Kilit anlar: yatay zaman şeridi (Beyar, A). Saat üstte, cümle altta en çok 2 satır; sığmayan okla ve sürükleyerek kayar */
-.cd-kilit ol{display:flex;align-items:flex-start;gap:10px;overflow-x:auto;scrollbar-width:none}
-.cd-kilit li{flex:1 0 124px}
+.cd-kilit ol{display:flex;align-items:stretch;gap:10px;overflow-x:auto;scrollbar-width:none}
+.cd-kilit li{flex:1 0 200px}
 .cd-kilit li{min-inline-size:0}
 .cd-kilit li{position:relative;padding:12px 14px;border-radius:var(--k-kontrol);background:var(--beyaz);border:1px solid var(--marka-100)}
-.cd-kilit a{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden;min-block-size:3lh;padding:0;line-height:1.4}
+.cd-kilit a{display:block;padding:0;line-height:1.4}
 .cd-kilit a::after{content:"";position:absolute;inset:0;border-radius:inherit}
-.cd-kilit a time{display:block}
+.cd-kilit a time{display:inline;margin-inline-end:6px}
 .cd-kilit li:hover{border-color:var(--marka)}
 .cd-kilit ol>.ks-ok{align-self:center}
-@media (max-width:639.98px){.cd-kilit li{flex:0 0 46%}}
+@media (max-width:639.98px){.cd-kilit li{flex:0 0 72%}}
+.cd-sabit.gorunur{visibility:visible;opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.cd-sabit{transition:none}}

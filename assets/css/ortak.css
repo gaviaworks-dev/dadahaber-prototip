@@ -1467,3 +1467,7 @@ dialog.gorsel-on::backdrop{background:rgba(10,10,10,.85)}
 @media (pointer:coarse){.gr-alan .cp-sec{block-size:var(--dokun)}}
 .sd .nabiz{background:var(--siyah);animation-name:nabiz-s}
 .pn-ara{inline-size:100%}
+/* Telefonda iki yana yaslı metin kelime arasında boşluk patlatır: dar ekranda bütün yaslı metinler sola (başa) yaslı */
+@media (max-width:639.98px){
+  .dt-govde p,.dt-c p,.sw-uyari p,.p,.ozet-ic,.ft-marka p,.mg-bas p,.mt-bol p,.ca-o p,.ar-yanit p{text-align:start!important;text-align-last:auto}
+}

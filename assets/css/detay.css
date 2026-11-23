@@ -5,7 +5,7 @@
 .dt-bn .bn-sol{align-content:space-between}
 .dt-bas-ic{display:grid;justify-items:start;gap:14px;max-inline-size:900px}
 .dt-bas-ic .cip{position:static;inset:auto}
-.dt-bas-ic h1{font-size:var(--y-2xl);font-weight:800;line-height:1.08;letter-spacing:-.02em;padding:0;border:0;max-inline-size:24ch}
+.dt-bas-ic h1{font-size:var(--y-2xl);font-weight:800;line-height:1.08;letter-spacing:-.02em;padding:0;border:0;max-inline-size:none;text-wrap:balance}
 .dt-spot{font-size:var(--y-md);line-height:1.6;max-inline-size:70ch;color:var(--gri-200)}
 .dt-meta{display:flex;align-items:center;flex-wrap:nowrap;gap:18px;font-size:var(--y-sm);font-weight:700;white-space:nowrap;color:var(--gri-200)}
 .dt-meta>span{display:inline-flex;align-items:center;gap:var(--ikon-bosluk)}
