@@ -241,7 +241,7 @@
 .ay-hava{background:linear-gradient(110deg,var(--marka-10) 0%,#fff 55%);border:1px solid var(--gri-50);box-shadow:var(--golge-sm)}
 .ay-hava .ay-ik{background:var(--marka-25);color:var(--marka-metin)}
 .ay-hava .ay-kim small{color:var(--gri-400)}
-.ay-sicak{display:flex;align-items:flex-start;gap:6px;font-size:56.8px;font-weight:800;letter-spacing:-.04em;line-height:1}
+.ay-sicak{display:flex;align-items:flex-start;gap:6px;font-size:53.7px;font-weight:800;letter-spacing:-.04em;line-height:1}
 .ay-sicak sup{font-size:var(--y-lg);font-weight:500;color:var(--gri-400);margin-block-start:6px}
 .ay-gunler{display:grid;grid-template-columns:repeat(6,1fr);justify-self:stretch}
 .ay-gunler div{display:grid;justify-items:center;gap:6px;padding-inline:8px;border-inline-start:1px solid var(--gri-50)}
@@ -633,3 +633,70 @@ html.perde-acik body>*:not(.ft):not(script):last-of-type{box-shadow:0 18px 30px 
 .ft-fav span{inline-size:28px;block-size:28px}
 .ft-satir{padding-block:12px}
 .ft-telif{margin:14px auto 10px}
+
+/* Üst bölüm sabit (Beyar: "en üst menü sticky olacak"): siyah bar + header birlikte üstte kalır. Perde kuralı bunu ezmesin. */
+html.perde-acik body>header.yapiskan,body>header.yapiskan{position:sticky;inset-block-start:0;z-index:40}
+
+/* Ana menü açılır paneli (Beyar: v2 dh-mega yapısı, bizim sistemde). Tam genişlik beyaz panel, header'ın altından açılır. */
+.marka .kap{position:relative}
+.mm-l{display:flex;list-style:none;margin:0;padding:0}
+.mm{position:static}
+.mm>.mm-a{position:relative}
+.mm>.mm-a i{transition:transform .25s}
+.mm>.mm-a::after{content:"";position:absolute;inset-inline:14px;inset-block-end:0;block-size:3px;border-radius:3px 3px 0 0;background:var(--marka);transform:scaleX(0);transition:transform .25s}
+.mm:hover>.mm-a::after,.mm:focus-within>.mm-a::after{transform:scaleX(1)}
+.mm:hover>.mm-a i,.mm:focus-within>.mm-a i{transform:rotate(180deg)}
+.mega{position:absolute;inset-inline:0;inset-block-start:100%;z-index:50;padding-block-start:0;opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .2s ease .12s,transform .2s ease .12s,visibility 0s linear .32s}
+.mm:hover>.mega,.mm:focus-within>.mega{opacity:1;visibility:visible;transform:none;transition-delay:.12s,.12s,0s}
+.mg-ic{display:grid;grid-template-columns:260px minmax(0,1fr);gap:40px;padding:32px;background:#fff;border:1px solid var(--gri-50);border-block-start:0;border-end-start-radius:24px;border-end-end-radius:24px;box-shadow:0 24px 48px -16px rgba(18,18,18,.18)}
+.mg-bas{display:grid;align-content:start;justify-items:start;gap:10px;padding-inline-end:32px;border-inline-end:1px solid var(--gri-50)}
+.mg-ik{display:grid;place-items:center;inline-size:48px;block-size:48px;border-radius:var(--k-kontrol);background:#FFF4C2;color:#7A5F01;font-size:var(--y-md)}
+.mg-ad{font-size:var(--y-lg);font-weight:800;letter-spacing:-.01em}
+.mg-bas p{font-size:var(--y-sm);line-height:1.6;color:var(--gri-600);white-space:normal;margin-block-end:6px}
+.mg-kollar{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+.mg-kollar.genis{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:24px}
+.mg-grp{display:block;font-size:var(--y-sm);font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--marka-metin);padding-block-end:10px;margin-block-end:8px;border-block-end:1px solid var(--gri-50)}
+.mg-kol ul{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+.menu .mega a:not(.gd-dugme){display:flex;align-items:center;block-size:32px;padding:0;font-size:var(--y-sm);font-weight:500;text-transform:none;letter-spacing:0;color:var(--gri-800);white-space:nowrap;transition:color .2s,padding .2s}
+.menu .mega a:not(.gd-dugme):hover{color:#7A5F01;padding-inline-start:4px}
+.menu .mega a b{font-weight:800;margin-inline-end:4px}
+.menu .mega .gd-dugme{block-size:40px;padding:0 16px;font-size:var(--y-sm);text-transform:none;letter-spacing:0;color:#121212}
+
+/* Üye Ol düğmesi (Beyar: v2'deki gibi): üstüne gelince genişler, ikonun yanında "Üye Ol" yazısı belirir */
+.uye{display:inline-flex!important;align-items:center;justify-content:center;gap:0;inline-size:auto!important;min-inline-size:44px;padding-inline:14px;white-space:nowrap;overflow:hidden;transition:gap .3s ease,padding .3s ease,background .25s}
+.uye span{max-inline-size:0;opacity:0;font-size:var(--y-sm);font-weight:800;transition:max-inline-size .3s ease,opacity .2s ease}
+.uye:hover,.uye:focus-visible{gap:var(--ikon-bosluk);padding-inline:16px 18px;background:#FFD740}
+.uye:hover span,.uye:focus-visible span{max-inline-size:80px;opacity:1}
+/* Giriş Yap (Beyar: Üye Ol ile aynı davranış): üstüne gelince genişler, yazı belirir; zemin koyu bant üstünde cam */
+.act.giris{display:inline-flex!important;align-items:center;justify-content:center;gap:0;inline-size:auto!important;min-inline-size:40px;padding-inline:12px;white-space:nowrap;overflow:hidden;border-radius:var(--k-kontrol);transition:gap .3s ease,padding .3s ease,background .25s}
+.act.giris span{max-inline-size:0;opacity:0;font-size:var(--y-sm);font-weight:800;transition:max-inline-size .3s ease,opacity .2s ease}
+.act.giris:hover,.act.giris:focus-visible{gap:var(--ikon-bosluk);padding-inline:14px 16px;background:rgba(255,255,255,.12)}
+.act.giris:hover span,.act.giris:focus-visible span{max-inline-size:90px;opacity:1}
+
+/* Açılır panel sol başlık bloğu (Beyar): görselli; üstünde Dada kehribarı gradyan ve %20 siyah örtü; yazı beyaz */
+.mg-ic{grid-template-columns:300px minmax(0,1fr);padding:20px 32px 20px 20px}
+.mg-bas{position:relative;overflow:hidden;align-content:end;padding:28px 24px;border-inline-end:0;border-radius:var(--k-kart);color:#fff;min-block-size:280px;
+  background:linear-gradient(rgba(18,18,18,.2),rgba(18,18,18,.2)),linear-gradient(160deg,rgba(252,182,35,.92) 0%,rgba(252,182,35,.55) 45%,rgba(122,95,1,.35) 100%),#121212 var(--mg-g) center/cover}
+.mg-bas .mg-ik{background:rgba(255,255,255,.22);color:#fff;border:1px solid rgba(255,255,255,.35);backdrop-filter:blur(6px);margin-block-end:auto}
+.mg-bas .mg-ad{color:#fff;font-size:var(--y-xl);text-shadow:0 1px 12px rgba(18,18,18,.25)}
+.mg-bas p{color:#fff;font-weight:500;text-shadow:0 1px 8px rgba(18,18,18,.3)}
+.menu .mega .mg-bas .gd-dugme{background:#fff;border-color:#fff;color:#121212}
+.mg-kollar{padding-block:12px}
+.mg-bas{background:linear-gradient(rgba(18,18,18,.2),rgba(18,18,18,.2)),linear-gradient(20deg,rgba(252,182,35,.85) 0%,rgba(252,182,35,.45) 50%,rgba(252,182,35,.1) 100%),#121212 var(--mg-g) center/cover}
+
+/* Açılır panel sol blok · v2'nin görselli hali (Beyar): blok panelin sol, üst ve alt kenarına yapışık (iç kart değil).
+   Katmanlar: görsel → Dada kehribarı perde (yukarıdan aşağı %26 → %66) → %20 siyah → alttan okuma gradyanı. Keşfet (geniş): sol blok yok, 6 sütun. */
+.mg-ic{grid-template-columns:300px minmax(0,1fr);padding:0;gap:40px;overflow:hidden}
+.mg-bas{isolation:isolate;margin:0;border-radius:0;border-end-start-radius:24px;min-block-size:320px;padding:28px 28px 30px;align-content:end;
+  background:#121212 var(--mg-g) center 35%/cover no-repeat}
+.mg-bas::before,.mg-bas::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none}
+.mg-bas::before{background:linear-gradient(180deg,rgba(252,182,35,.26) 0%,rgba(252,182,35,.66) 100%),rgba(18,18,18,.2)}
+.mg-bas::after{background:linear-gradient(0deg,rgba(0,0,0,.85) 0%,rgba(0,0,0,.65) 34%,rgba(0,0,0,.25) 64%,rgba(0,0,0,0) 94%)}
+.mg-bas .mg-ik{margin-block-end:auto}
+.mg-bas .mg-ad{font-size:var(--y-xl)}
+.mg-bas p{color:rgba(255,255,255,.88);text-align:justify;text-align-last:start;hyphens:auto}
+.menu .mega .mg-bas .gd-dugme{background:var(--marka);border-color:var(--marka);color:#121212}
+.mg-kollar{padding-block:28px 30px;padding-inline-end:32px}
+.mg-ic.genis{grid-template-columns:minmax(0,1fr)}
+.mg-ic.genis .mg-bas{display:none}
+.mg-ic.genis .mg-kollar,.mg-kollar.genis{grid-template-columns:repeat(6,minmax(0,1fr));padding-inline:32px;gap:24px}

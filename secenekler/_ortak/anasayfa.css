@@ -10,7 +10,7 @@
   --gastro:#DC3D17;--diet:#009A44;--gourmet:#742982;
   --k-kontrol:12px;
   --ikon-bosluk:8px; /* KURAL: ikon ile metin arası her yerde en az bu kadar; bitişik ikon-metin yasak */--k-kart:16px;--k-buyuk:24px;
-  --y-xs:10.1px;--y-sm:13.5px;--y-md:18px;--y-lg:24px;--y-xl:32px;--y-2xl:42.6px;
+  --y-xs:9.6px;--y-sm:12.8px;--y-md:17px;--y-lg:22.7px;--y-xl:30.2px;--y-2xl:40.3px;
   --bolum:48px;--kart-arasi:16px;--kap:1280px;
   --golge-sm:0 1px 2px rgba(33,30,22,.04),0 2px 6px rgba(33,30,22,.05);--golge-md:0 6px 22px rgba(33,30,22,.09);
 }
@@ -51,7 +51,7 @@ img{display:block}
 .logo b{background:var(--marka);border-radius:8px;font-size:11px;font-weight:800;padding:8px 6px;line-height:1}
 .logo span{font-size:24px;font-weight:800;letter-spacing:-.02em}.logo span i{font-style:normal;font-weight:500}
 .menu{display:flex;margin-inline-start:auto}
-.menu a{display:flex;align-items:center;gap:5px;block-size:68px;padding:0 14px;font-size:16px;font-weight:800;text-transform:uppercase;letter-spacing:.01em;color:var(--marka-metin)}
+.menu a{display:flex;align-items:center;gap:5px;block-size:68px;padding:0 14px;font-size:15px;font-weight:800;text-transform:uppercase;letter-spacing:.01em;color:var(--marka-metin)}
 .menu a i{font-size:11px}
 
 /* Son Dakika kapsülü */
