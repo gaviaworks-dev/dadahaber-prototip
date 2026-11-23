@@ -137,3 +137,6 @@
 }
 @media (max-width:1024px){.g3,.g4{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:639.98px){.g3,.g4{grid-template-columns:minmax(0,1fr)}}
+/* Yasin Bey (20.17): açılış panelindeki açıklamalar bir kademe küçük; etiket de buna göre */
+.bn-y b{font-size:var(--y-sm);line-height:1.4}
+.bn-y small{font-size:var(--y-xs)}

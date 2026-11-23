@@ -10,3 +10,4 @@ Beyar'ın ya da Yasin Bey'in yakaladığı hatalar. Yeni işten önce okunur; ay
 | N4 | 2026-11-23 | Detay telefon önizlemeleri | Bölümler arası boşluklar tutarsız; kartlar ve kaynak listesi tarayıcı girintisiyle sağa kaymıştı | Boşluk ölçeği mobilde de geçerli | 4/8/12/16/20/24/32 ölçeği; bölümler arası 32; listelerde varsayılan girinti sıfır |
 | N5 | 2026-11-23 | Detay başlığı | h1 karakter sınırıyla daraltılmış, iki satıra sığacakken üç satıra kırılıyordu | Gereksiz satır açılmaz | Başlık sütun genişliğini kullanır |
 | N6 | 2026-11-23 | Masaüstü üst bölüm | Menü yazıları ve bant düğmeleri fazla büyüktü | Yoğunluk ve ölçek tutarlılığı | Menü 13.5px, bant 40px, düğmeler 30–32px |
+| N7 | 2026-11-23 | Liste sayfaları açılış paneli (`.bn-y`) | Sağ paneldeki açıklama başlıkları fazla büyüktü, sol taraftaki ana başlıkla yarışıyordu | Hiyerarşi: yan panel ana başlıktan belirgin küçük | Açıklama `--y-sm`, etiket `--y-xs` |
