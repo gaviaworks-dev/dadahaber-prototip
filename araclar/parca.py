@@ -33,6 +33,9 @@ for yol in hedef:
     # Yapı kuralı (Beyar: gereksiz satır açılmaz): Etiketler ve Paylaş tek satırda; solda etiketler (kayar), sağda paylaş
     t = re.sub(r'(?<!<div class="dt-ep">)(<div class="dt-etk[^"]*">(?:(?!<div).)*?</div>)\s*(<div class="dt-pay[^"]*">(?:(?!<div).)*?</div>)',
                r'<div class="dt-ep">\1\2</div>', t, flags=re.S)
+    # Yapı kuralı: yorum filtresi "Yorumlar (N)" başlık satırının sağına (ayrı satır açılmaz)
+    t = re.sub(r'(<section class="dt-yorum"[^>]*>\s*<div class="gs">)((?:(?!</div>).)*?)(</div>)((?:(?!<section).)*?)<div class="dt-c-filtre">((?:(?!</div>).)*?)</div>',
+               r'\1\2<div class="arac dt-c-filtre">\5</div>\3\4', t, flags=re.S)
     # "İçeriğe geç" bağlantısının hedefi
     t = re.sub(r'<main(?![^>]*\bid=)([^>]*)>', r'<main id="icerik"\1>', t, count=1)
     n = len(re.findall(r'href="#"', t))

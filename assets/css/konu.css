@@ -240,3 +240,15 @@ em.y{color:var(--artis)}em.d{color:var(--azalis)}
   .sw-bas-s>*{flex:none}
 }
 @media (max-width:1024px){.dv-kur{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-inline-size:100%}}
+
+/* Gereksiz satır açılmaz: enstrüman başlığı, rakamlar ve dönem sekmeleri tek satır (masaüstü) */
+@media (min-width:1025px){
+  .dv-buyuk:has(>.dv-buyuk-u+.dv-rakam){grid-template-columns:auto auto minmax(0,1fr) auto;column-gap:16px}
+  .dv-buyuk:has(>.dv-buyuk-u+.dv-rakam)>*{grid-column:1/-1}
+  .dv-buyuk:has(>.dv-buyuk-u+.dv-rakam)>.dv-buyuk-u{display:contents}
+  .dv-buyuk-u>.dv-kod{grid-column:1;grid-row:1}
+  .dv-buyuk-u>span:not(.dv-kod){grid-column:2;grid-row:1}
+  .dv-buyuk:has(>.dv-buyuk-u+.dv-rakam)>.dv-rakam{grid-column:3;grid-row:1;justify-self:center;align-items:center}
+  .dv-buyuk-u>.sw-sekme{grid-column:4;grid-row:1}
+}
+@media (min-width:1025px){.dv-buyuk-u>.sw-sekme{align-self:center}}

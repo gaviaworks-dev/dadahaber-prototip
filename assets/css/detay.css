@@ -216,3 +216,26 @@
   .dt-pay>span{display:none}
   .dt-pay{gap:4px}
 }
+
+/* Gereksiz satır açılmaz (Beyar kuralı): yorum bölümü */
+/* giriş kartı: metin solda, Giriş Yap / Üye Ol sağda */
+.dt-giris>div{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:24px;align-items:center}
+.dt-giris>div>*{grid-column:1}
+.dt-giris>div>.dt-giris-d{grid-column:2;grid-row:1/span 4;margin:0}
+/* yorum: ad · rozet · zaman solda, Beğen · Yanıtla · Bildir sağda, metin altta */
+.dt-c-ana{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:16px;align-items:center}
+.dt-c-ana>*{grid-column:1/-1}
+.dt-c-ana>.dt-c-bas{grid-column:1;grid-row:1;min-inline-size:0}
+.dt-c-ana>.dt-c-eylem{grid-column:2;grid-row:1;margin:0}
+/* filtre başlık satırının sağında (parca.py yapı kuralı taşır) */
+.gs>.arac.dt-c-filtre{max-inline-size:100%;min-inline-size:0}
+.gs:has(>.dt-c-filtre){grid-template-columns:auto minmax(0,1fr)}
+.gs>.dt-c-filtre{justify-self:end}
+@media (max-width:639.98px){
+  .dt-giris>div{grid-template-columns:minmax(0,1fr)}
+  .dt-giris>div>.dt-giris-d{grid-column:1;grid-row:auto;margin-block-start:12px}
+  .dt-c-ana{grid-template-columns:minmax(0,1fr)}
+  .dt-c-ana>.dt-c-eylem{grid-column:1;grid-row:auto}
+  .gs:has(>.dt-c-filtre){grid-template-columns:minmax(0,1fr)}
+  .gs>.dt-c-filtre{grid-column:1;grid-row:auto;justify-self:stretch;margin-block-start:12px}
+}
