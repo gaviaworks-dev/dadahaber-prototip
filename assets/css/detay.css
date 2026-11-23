@@ -16,7 +16,7 @@
 .dt-bn.tam .kap{min-block-size:560px}
 .dt-bn.tam::before{background:linear-gradient(0deg,rgba(18,18,18,.92) 0%,rgba(18,18,18,.55) 50%,rgba(18,18,18,.3) 100%)}
 .dt-ana{display:grid;gap:10px;margin-block-end:36px}
-.dt-ana-g{position:relative;aspect-ratio:21/9;border-radius:24px;background:center/cover;overflow:hidden}
+.dt-ana-g{position:relative;aspect-ratio:21/9;border-radius:var(--k-buyuk);background:center/cover;overflow:hidden}
 .dt-ana figcaption,.dt-fig figcaption{font-size:var(--y-sm);color:var(--gri-400)}
 .dt-video{position:absolute;inset-inline-end:16px;inset-block-end:16px;display:inline-flex;align-items:center;gap:var(--ikon-bosluk);block-size:44px;padding:0 18px;border-radius:var(--k-kontrol);background:var(--ust-zemin);border:1px solid var(--ust-cizgi);backdrop-filter:blur(8px);color:var(--beyaz);font-size:var(--y-sm);font-weight:800}
 .dt-video i{color:var(--marka)}
@@ -35,7 +35,7 @@
 .dt-ozet h2{font-size:var(--y-lg);font-weight:500;-webkit-text-stroke:.5px currentColor}
 .dt-ozet h2 b{font-weight:800;-webkit-text-stroke:0}
 .dt-sekme{margin-inline-start:auto;display:flex;padding:4px;border-radius:var(--k-kontrol);background:var(--beyaz);border:1px solid var(--marka-100)}
-.dt-sekme button{block-size:32px;padding:0 12px;border:0;border-radius:8px;background:none;font-size:var(--y-sm);font-weight:700;cursor:pointer;white-space:nowrap}
+.dt-sekme button{block-size:32px;padding:0 12px;border:0;border-radius:var(--k-ic);background:none;font-size:var(--y-sm);font-weight:700;cursor:pointer;white-space:nowrap}
 .dt-sekme button.aktif{background:var(--marka)}
 .dt-ozet ol{list-style:none;margin:0;padding:0;display:grid;gap:10px}
 .dt-ozet li{display:grid;grid-template-columns:28px minmax(0,1fr);gap:12px;align-items:start;font-size:var(--y-md);line-height:1.5}
@@ -57,7 +57,7 @@
 .dt-dalga{flex:1;display:flex;align-items:center;gap:3px;block-size:32px;min-inline-size:0}
 .dt-dalga i{flex:1;border-radius:2px;background:rgba(255,255,255,.25)}
 .dt-dalga i:nth-child(-n+9){background:var(--marka)}
-.dt-hiz{flex:none;display:grid;place-items:center;block-size:32px;padding:0 10px;border-radius:8px;border:1px solid rgba(255,255,255,.25);font-size:var(--y-sm);font-weight:800}
+.dt-hiz{flex:none;display:grid;place-items:center;block-size:32px;padding:0 10px;border-radius:var(--k-ic);border:1px solid rgba(255,255,255,.25);font-size:var(--y-sm);font-weight:800}
 .dt-govde{display:grid;gap:18px}
 .dt-govde p{font-size:var(--y-md);line-height:1.65;color:var(--gri-800);text-align:justify;text-align-last:start;hyphens:auto;max-inline-size:68ch}
 .dt-govde h2{font-size:var(--y-lg);font-weight:800;line-height:1.25;margin-block-start:12px}

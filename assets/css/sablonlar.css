@@ -29,7 +29,7 @@
 .mt-menu a:hover{background:var(--marka-10)}
 .mt-menu a.aktif{background:var(--marka);color:var(--siyah)}
 .mt-menu a.aktif i{color:var(--siyah)}
-.mt-kart{display:grid;gap:32px;padding:32px 40px;border-radius:24px;background:var(--beyaz);border:1px solid var(--gri-50);box-shadow:var(--golge-sm)}
+.mt-kart{display:grid;gap:32px;padding:32px 40px;border-radius:var(--k-buyuk);background:var(--beyaz);border:1px solid var(--gri-50);box-shadow:var(--golge-sm)}
 .mt-ici.kutu{position:static;box-shadow:none;background:var(--zemin-b)}
 .mt-ici.kutu ol{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:16px}
 .mt-bol table{inline-size:100%;border-collapse:collapse;font-size:var(--y-sm);margin-block:4px}
@@ -254,7 +254,7 @@
 .sv-vakit b{font-size:var(--y-lg);font-weight:800;font-variant-numeric:tabular-nums}
 .il-izg{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
 .il-izg a{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:var(--k-kontrol);border:1px solid var(--gri-50);background:var(--beyaz);font-size:var(--y-sm);font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.il-izg a b{display:grid;place-items:center;inline-size:28px;block-size:28px;border-radius:12px;background:var(--marka-25);color:var(--marka-metin);font-size:var(--y-xs);flex:none}
+.il-izg a b{display:grid;place-items:center;inline-size:28px;block-size:28px;border-radius:var(--k-kontrol);background:var(--marka-25);color:var(--marka-metin);font-size:var(--y-xs);flex:none}
 .il-izg a:hover{border-color:var(--marka)}
 
 /* ===== C17 · Arama ve Dada'ya Sor ===== */

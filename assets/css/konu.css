@@ -2,14 +2,14 @@
 /* Konuya özel bileşenler (Spor, Finans). Kabuk dili liste A'dan. */
 .sw-yigin{display:grid;gap:24px}
 .sw-iki{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:24px;align-items:start}
-.sw-kutu{display:grid;gap:16px;align-content:start;padding:24px;border-radius:24px;background:var(--beyaz);border:1px solid var(--gri-50);box-shadow:var(--golge-sm)}
+.sw-kutu{display:grid;gap:16px;align-content:start;padding:24px;border-radius:var(--k-buyuk);background:var(--beyaz);border:1px solid var(--gri-50);box-shadow:var(--golge-sm)}
 .sw-bas{display:flex;align-items:end;justify-content:space-between;gap:16px}
 .sw-bas .ust{display:inline-flex;align-items:center;gap:var(--ikon-bosluk);font-size:var(--y-sm);font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--marka-metin);margin-block-end:4px}
 .sw-bas h2{font-size:var(--y-lg);font-weight:500;-webkit-text-stroke:.6px currentColor;line-height:1.2}
 .sw-bas-s{display:flex;gap:8px;flex:none}
 .sw-ara{block-size:1px;background:var(--gri-50);margin-block:4px}
 .sw-sekme{display:flex;gap:6px;padding:4px;border-radius:var(--k-kontrol);background:var(--zemin-b);border:1px solid var(--gri-50);justify-self:start;overflow-x:auto;scrollbar-width:none;max-inline-size:100%}
-.sw-sekme button{display:inline-flex;align-items:center;gap:var(--ikon-bosluk);block-size:36px;padding:0 14px;border:0;border-radius:8px;background:none;font-size:var(--y-sm);font-weight:700;white-space:nowrap;cursor:pointer;color:var(--gri-600)}
+.sw-sekme button{display:inline-flex;align-items:center;gap:var(--ikon-bosluk);block-size:36px;padding:0 14px;border:0;border-radius:var(--k-ic);background:none;font-size:var(--y-sm);font-weight:700;white-space:nowrap;cursor:pointer;color:var(--gri-600)}
 .sw-sekme button.aktif{background:var(--beyaz);color:var(--siyah);box-shadow:var(--golge-sm)}
 .sw-sekme button i{color:var(--marka-metin)}
 /* Spor: skor kartları */
@@ -84,10 +84,10 @@ em.y{color:var(--artis)}em.d{color:var(--azalis)}
 .sw-yan .sw-kutu{padding:20px}
 .sw-yan .sw-bas h2{font-size:var(--y-md)}
 /* Merkez (C) ve bantlar */
-.sw-merkez{display:grid;gap:16px;padding:20px;border-radius:24px;background:var(--zemin-b);border:1px solid var(--gri-50)}
+.sw-merkez{display:grid;gap:16px;padding:20px;border-radius:var(--k-buyuk);background:var(--zemin-b);border:1px solid var(--gri-50)}
 .sw-merkez-ic{padding:20px;border-radius:var(--k-kart);background:var(--beyaz);border:1px solid var(--gri-50)}
 .sw-gs{margin-block-start:20px}
-.sw-band{display:grid;gap:16px;padding:24px;margin-block:12px;border-radius:24px;background:var(--marka-10);border:1px solid var(--marka-100)}
+.sw-band{display:grid;gap:16px;padding:24px;margin-block:12px;border-radius:var(--k-buyuk);background:var(--marka-10);border:1px solid var(--marka-100)}
 .sw-band .sw-mac{background:var(--beyaz)}
 /* Finans: piyasa özeti */
 .sw-po{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
@@ -95,7 +95,7 @@ em.y{color:var(--artis)}em.d{color:var(--azalis)}
 .sw-pk:hover{border-color:var(--marka);box-shadow:var(--golge-sm)}
 .sw-pk-u{display:flex;align-items:center;gap:8px;white-space:nowrap}
 .sw-pk-u small{font-size:var(--y-sm);font-weight:800;margin-inline-end:auto}
-.sw-pk-ik{display:grid;place-items:center;inline-size:30px;block-size:30px;border-radius:8px;background:var(--marka-25);color:var(--marka-metin);font-size:var(--y-sm)}
+.sw-pk-ik{display:grid;place-items:center;inline-size:30px;block-size:30px;border-radius:var(--k-ic);background:var(--marka-25);color:var(--marka-metin);font-size:var(--y-sm)}
 .sw-pk-ik.k{inline-size:26px;block-size:26px;font-size:11px}
 .sw-pk>b{font-size:var(--y-lg);font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
 .sw-spark{inline-size:100%;block-size:32px}
@@ -158,7 +158,7 @@ em.y{color:var(--artis)}em.d{color:var(--azalis)}
 .dv-inp{display:flex;align-items:center;justify-content:space-between;gap:10px;block-size:52px;padding:0 6px 0 16px;border-radius:var(--k-kontrol);background:var(--beyaz);border:1px solid var(--gri-100)}
 .dv-inp b{font-size:var(--y-lg);font-weight:800;font-variant-numeric:tabular-nums}
 .dv-inp.sonuc{border-color:var(--marka)}
-.dv-sec{display:inline-flex;align-items:center;gap:6px;block-size:40px;padding:0 12px;border-radius:8px;background:var(--zemin-b);font-size:var(--y-sm);font-weight:800}
+.dv-sec{display:inline-flex;align-items:center;gap:6px;block-size:40px;padding:0 12px;border-radius:var(--k-ic);background:var(--zemin-b);font-size:var(--y-sm);font-weight:800}
 .dv-sec i:first-child{color:var(--marka-metin)}.dv-sec i:last-child{font-size:10px;opacity:.6}
 .dv-degis{justify-self:center;inline-size:40px;block-size:40px;border-radius:50%;border:1px solid var(--marka-100);background:var(--beyaz);color:var(--marka-metin);cursor:pointer}
 .dv-kur{font-size:var(--y-sm);color:var(--gri-600)}

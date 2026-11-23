@@ -21,7 +21,7 @@
 .bn-ok{display:flex;gap:8px}
 .bn-ok button{inline-size:44px;block-size:44px;border-radius:var(--k-kontrol);background:var(--ust-zemin);border:1px solid var(--ust-cizgi);backdrop-filter:blur(6px);color:var(--beyaz);cursor:pointer;transition:background .2s,color .2s}
 .bn-ok button:hover{background:var(--marka);color:var(--siyah);border-color:var(--marka)}
-.bn-panel{display:grid;gap:8px;inline-size:100%;padding:8px;border-radius:24px;background:rgba(18,18,18,.55);border:1px solid var(--ust-cizgi);backdrop-filter:blur(10px)}
+.bn-panel{display:grid;gap:8px;inline-size:100%;padding:8px;border-radius:var(--k-buyuk);background:rgba(18,18,18,.55);border:1px solid var(--ust-cizgi);backdrop-filter:blur(10px)}
 .bn-y{display:grid;gap:4px;padding:14px 16px;border-radius:var(--k-kart);background:rgba(255,255,255,.04);border-inline-start:3px solid transparent;opacity:.65;transition:opacity .25s,background .25s}
 .bn-y:hover,.bn-y.aktif{opacity:1;background:rgba(255,255,255,.08);border-inline-start-color:var(--marka)}
 .bn-y small{font-size:var(--y-sm);font-weight:800;color:var(--marka);letter-spacing:.04em;text-transform:uppercase}

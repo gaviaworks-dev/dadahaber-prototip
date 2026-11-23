@@ -36,6 +36,8 @@ for yol in hedef:
     # Yapı kuralı: yorum filtresi "Yorumlar (N)" başlık satırının sağına (ayrı satır açılmaz)
     t = re.sub(r'(<section class="dt-yorum"[^>]*>\s*<div class="gs">)((?:(?!</div>).)*?)(</div>)((?:(?!<section).)*?)<div class="dt-c-filtre">((?:(?!</div>).)*?)</div>',
                r'\1\2<div class="arac dt-c-filtre">\5</div>\3\4', t, flags=re.S)
+    # Marka kuralı: ikonlar tek stil, dolu (fa-solid); içi boş fa-regular kullanılmaz
+    t = t.replace('fa-regular ', 'fa-solid ')
     # "İçeriğe geç" bağlantısının hedefi
     t = re.sub(r'<main(?![^>]*\bid=)([^>]*)>', r'<main id="icerik"\1>', t, count=1)
     n = len(re.findall(r'href="#"', t))

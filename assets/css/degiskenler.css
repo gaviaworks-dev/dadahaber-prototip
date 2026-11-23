@@ -10,7 +10,7 @@
   --zemin-a:#FFFFFF;--zemin-b:#F9F9F9;--cizgi:#DEDEDE;--anlik:#C8102E;--artis:#19750A;--azalis:#C8102E;
   --gastro:#DC3D17;--diet:#009A44;--gourmet:#742982;
   --k-kontrol:12px;
-  --ikon-bosluk:8px; /* KURAL: ikon ile metin arası her yerde en az bu kadar; bitişik ikon-metin yasak */--k-kart:16px;--k-buyuk:24px;
+  --ikon-bosluk:8px; /* KURAL: ikon ile metin arası her yerde en az bu kadar; bitişik ikon-metin yasak */--k-kart:16px;--k-buyuk:24px;--k-ic:8px;
   --y-xs:9.6px;--y-sm:12.8px;--y-md:17px;--y-lg:22.7px;--y-xl:30.2px;--y-2xl:40.3px;
   --bolum:48px;--kart-arasi:16px;--kap:1280px;
   --golge-sm:0 1px 2px rgba(33,30,22,.04),0 2px 6px rgba(33,30,22,.05);--golge-md:0 6px 22px rgba(33,30,22,.09);
