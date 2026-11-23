@@ -1,0 +1,6 @@
+Dada ailesi favicon'ları (Beyar: kardeş sitelerin favicon'ları footer'da, yazısız). İndirme 2026-11-23.
+haber.png   gaviaworks-dev.github.io/dadahaber-view/assets/images/logos/logo-left.png (v2 favicon)
+gastro.png  dadagastro.com/apple-touch-icon.png
+fit.svg     dadafit.com.tr/kanon/varlik/dadafit-isaret.svg
+diet.png    dadadiet.com/apple-touch-icon.png
+gourmet.png dadagourmet.com/assets/gourmet-prototip/img/favicon.ico (içindeki en büyük 48px PNG)
