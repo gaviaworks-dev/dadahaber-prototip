@@ -1600,3 +1600,17 @@ button,input,select,textarea{color:inherit;font-family:inherit;-webkit-tap-highl
   dialog.pn.gorsel-on .go-ok[data-go="1"]{inset-inline-end:8px}
   dialog.pn.gorsel-on .go-g{grid-column:1;touch-action:pan-y}
 }
+
+/* Yazı boyutu (Görünüm penceresi): içerik ölçeklenir, düzen bozulmaz */
+html[data-boyut] main{zoom:var(--olcek,1)}
+/* Dada Özet "1 dk" eki */
+.dt-ozet-1dk{display:grid;gap:10px;margin-block-start:14px;padding-block-start:14px;border-block-start:1px dashed var(--marka-100)}
+.dt-ozet-1dk[hidden]{display:none}
+.dt-ozet-1dk p{font-size:var(--y-md);line-height:1.6;color:var(--gri-800);text-align:justify;hyphens:auto}
+/* Süzgeç: gizlenen öğe */
+.sw-maclar>[hidden],.sw-transfer>[hidden],.sw-fikstur>[hidden],.hs-kart [hidden]{display:none!important}
+/* Paragraflar iki yana yaslı (Beyar kuralı, telefon dahil); kelime aralığı açılmasın diye heceleme. Başlıklar yaslı değil */
+@media (max-width:639.98px){
+  .dt-govde p,.dt-c p,.sw-uyari p,.ft-marka p,.mg-bas p,.mt-bol p,.ca-o p,.ar-yanit p,.dt-ako details p,.gv p{text-align:justify!important;text-align-last:start;hyphens:auto;-webkit-hyphens:auto}
+}
+.dt-govde p,.ca-o p,.mt-bol p,.dt-ako details p{text-align:justify;text-align-last:start;hyphens:auto;-webkit-hyphens:auto}
