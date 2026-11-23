@@ -220,3 +220,16 @@ document.querySelectorAll('.ft-kol').forEach((k,i)=>{const h=k.querySelector('h2
   u.id=u.id||('ft-liste-'+i); h.setAttribute('role','button'); h.setAttribute('tabindex','0'); h.setAttribute('aria-controls',u.id); h.setAttribute('aria-expanded','false');
   const ac=()=>{const on=k.classList.toggle('acik'); h.setAttribute('aria-expanded',on);};
   h.addEventListener('click',ac); h.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault(); ac();}});});
+
+/* Akordiyon (Yasin Bey): haber detayındaki açılır bölümlerde aynı anda tek bölüm açık; açılışta yalnız ilki açık. */
+document.querySelectorAll('.dt-ako').forEach(k=>{const d=[...k.querySelectorAll(':scope>details')]; d.forEach((x,i)=>{x.open=i===0;
+  x.addEventListener('toggle',()=>{if(x.open) d.forEach(y=>{if(y!==x) y.open=false;});});});});
+
+/* Izgara / liste görünümü (Yasin Bey): liste düğmesi kartları yatay satıra çevirir; tercih sayfalar arasında hatırlanır. */
+(()=>{let tercih=null; try{tercih=localStorage.getItem('dh-gorunum');}catch(_){}
+  document.querySelectorAll('.ls-gor').forEach(g=>{const b=g.querySelectorAll('button'); if(b.length<2) return;
+    const arac=g.closest('.ls-arac2'); let iz=arac&&arac.nextElementSibling; while(iz&&!iz.matches('.g4,.g3')) iz=iz.nextElementSibling; if(!iz) return;
+    const uygula=l=>{iz.classList.toggle('liste',l); b[0].classList.toggle('aktif',!l); b[1].classList.toggle('aktif',l); b[0].setAttribute('aria-pressed',!l); b[1].setAttribute('aria-pressed',l);};
+    b[0].addEventListener('click',()=>{uygula(false); try{localStorage.setItem('dh-gorunum','izgara')}catch(_){}});
+    b[1].addEventListener('click',()=>{uygula(true); try{localStorage.setItem('dh-gorunum','liste')}catch(_){}});
+    if(tercih==='liste') uygula(true);});})();

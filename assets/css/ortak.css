@@ -1486,3 +1486,35 @@ dialog.gorsel-on::backdrop{background:rgba(10,10,10,.85)}
   .ft-kol a{display:flex;align-items:center;min-block-size:40px}
 }
 @media (max-width:639.98px){.ft-sosyal{flex-wrap:nowrap;justify-content:space-between;gap:4px}.ft-sosyal .ft-sos{flex:none}}
+
+/* ===== Yasin Bey revizeleri (2026-11-23 20.02) ===== */
+/* Masaüstü üst bölüm daha küçük: menü yazısı ve siyah bant düğmeleri (dar ekran dokunma ölçüleri ayrı, değişmez) */
+@media (min-width:1025px){
+  .menu a{font-size:13.5px;padding:0 12px;letter-spacing:.02em}
+  .bant .kap{block-size:40px}
+  .act{inline-size:30px;block-size:30px;font-size:14px}
+  .dil{block-size:30px;padding-inline:8px;font-size:12px}
+  .uye{block-size:32px;min-inline-size:32px;padding-inline:10px;font-size:14px}
+  .act.giris{block-size:30px;min-inline-size:30px;padding-inline:8px}
+}
+/* Görüş bildir: kenara yapışık sekme, büyük yuvarlak iç köşe, yazı yukarıdan aşağı okunur, ikonsuz (kardeş sitelerdeki yapı; renk bizim marka) */
+.kenar-gorus{flex-direction:column;gap:0;padding:22px 11px;border-start-start-radius:var(--k-buyuk);border-end-start-radius:var(--k-buyuk);font-size:14px;font-weight:800;letter-spacing:.01em;box-shadow:-4px 6px 18px rgba(18,18,18,.14)}
+.kenar-gorus>span{transform:none}
+.kenar-gorus i{display:none}
+/* Haber detayı "Neden önemli / Bana etkisi / Bundan sonra": akordiyon, aynı anda tek bölüm açık (davranış ortak.js) */
+/* Liste görünümü (ızgara/liste düğmesi): kartlar yatay satır, solda görsel, sağda başlık ve bilgi */
+.g4.liste,.g3.liste{grid-template-columns:minmax(0,1fr)!important;gap:0}
+.liste>.gk{display:grid;grid-template-columns:260px minmax(0,1fr);align-items:center;gap:24px;padding-block:18px;border-radius:0;background:none;box-shadow:none;border-block-end:1px solid var(--gri-50)}
+.liste>.gk:hover{transform:none;box-shadow:none}
+.liste>.gk .gm{aspect-ratio:16/10;border-radius:var(--k-kontrol)}
+.liste>.gk .gv{padding:0}
+.liste>.gk h3{font-size:var(--y-lg);min-block-size:0;margin-block-end:10px}
+.liste>.gk .bilgi{margin-block-end:10px}
+@media (max-width:639.98px){
+  .liste>.gk{grid-template-columns:112px minmax(0,1fr);gap:14px;padding-block:14px}
+  .liste>.gk .gm{aspect-ratio:1/1}
+  .liste>.gk .gm .cip,.liste>.gk .gm .kaydet{display:none}
+  .liste>.gk h3{font-size:var(--y-md);-webkit-line-clamp:3}
+  .liste>.gk .gv>:not(h3):not(.bilgi){display:none}
+  .liste>.gk .bilgi span:nth-child(n+3){display:none}
+}
