@@ -1406,3 +1406,62 @@ html.perde-acik body>.alt-gez:not(.ft):not(script){position:fixed}
 @media (min-width:640px) and (max-width:1024px){.manset .sag .facts span:nth-child(n+3){display:none}}
 .cekmece .pn-bas .pn-kapat{margin-inline-start:auto}
 .cekmece .pn-bas .logo:focus:not(:focus-visible){outline:0}
+
+/* ===== 7 · Taramadan eklenen ortak parçalar (CC ekledi, Beyar gözden geçirecek) ===== */
+/* Görüş formu */
+.gr-form,.gr-basari{display:grid;gap:16px}
+.gr-form[hidden],.gr-basari[hidden]{display:none}
+.fr-metin{block-size:auto;min-block-size:112px;padding-block:12px;font:inherit;font-size:var(--y-md);line-height:1.5;resize:vertical;inline-size:100%}
+input.fr-inp{font:inherit;font-size:var(--y-md);inline-size:100%}
+.fr-inp.hatali{border-color:var(--azalis);box-shadow:0 0 0 3px rgba(209,52,56,.12)}
+.fr-hata[hidden]{display:none}
+.gr-puan{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
+.gr-puan button{display:grid;justify-items:center;gap:4px;min-block-size:var(--dokun);padding:8px 4px;border:1px solid var(--gri-100);border-radius:var(--k-kontrol);background:var(--beyaz);font:inherit;font-size:var(--y-xs);font-weight:700;color:var(--gri-600);cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gr-puan i{font-size:20px;color:var(--gri-300)}
+.gr-puan button.aktif{border-color:var(--marka);background:var(--marka-10);color:var(--siyah)}
+.gr-puan button.aktif i{color:var(--marka-metin)}
+.fr-dosya{display:flex;align-items:center;gap:10px;min-block-size:56px;padding:0 16px;border:1px dashed var(--gri-200);border-radius:var(--k-kontrol);background:var(--zemin-b);cursor:pointer}
+.fr-dosya[hidden],.fr-dosya-on[hidden]{display:none}
+.fr-dosya i{color:var(--marka-metin);font-size:18px}
+.fr-dosya small{margin-inline-start:auto;color:var(--gri-400);font-size:var(--y-sm)}
+.fr-dosya-on{display:grid;grid-template-columns:56px minmax(0,1fr) auto;align-items:center;gap:12px;padding:8px;border:1px solid var(--gri-100);border-radius:var(--k-kontrol)}
+.fr-dosya-on .fr-dosya-g{inline-size:56px;block-size:56px;border-radius:8px;background:var(--gri-50) center/cover no-repeat}
+.fr-dosya-on b{display:block;font-size:var(--y-sm);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fr-dosya-on small{font-size:var(--y-xs);color:var(--gri-400)}
+/* Konum ve sesli arama */
+[data-konum]{justify-content:center;gap:var(--ikon-bosluk)}
+.kn-durum[hidden]{display:none}
+.ar-ses{margin-inline-start:auto;display:grid;place-items:center;inline-size:36px;block-size:36px;border:0;border-radius:50%;background:var(--marka-10);color:var(--marka-metin);cursor:pointer}
+.ar-ses.dinliyor{background:var(--marka);color:var(--siyah);box-shadow:0 0 0 6px var(--marka-25)}
+@media (pointer:coarse){.ar-ses{inline-size:var(--dokun);block-size:var(--dokun)}}
+/* Görsel önizleme */
+.go-ac{cursor:zoom-in}
+dialog.gorsel-on{inline-size:min(1200px,96vw);max-inline-size:96vw;padding:0;background:var(--siyah);color:var(--beyaz);border-radius:var(--k-buyuk);overflow:hidden}
+dialog.gorsel-on::backdrop{background:rgba(10,10,10,.85)}
+.gorsel-on .pn-kapat{position:absolute;inset-block-start:12px;inset-inline-end:12px;z-index:2;background:rgba(255,255,255,.12);color:var(--beyaz)}
+.go-sahne{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:8px;padding:12px}
+.go-g{aspect-ratio:16/10;max-block-size:78vh;inline-size:100%;background:center/contain no-repeat}
+.go-ok{display:grid;place-items:center;inline-size:var(--dokun);block-size:var(--dokun);border:0;border-radius:50%;background:rgba(255,255,255,.12);color:var(--beyaz);cursor:pointer}
+.go-ok[hidden]{visibility:hidden;display:grid}
+.go-ok:dir(rtl) i{transform:scaleX(-1)}
+.go-alt{display:flex;gap:16px;align-items:baseline;padding:0 24px 18px;font-size:var(--y-sm);color:var(--gri-200)}
+.go-say{flex:none;font-weight:800;color:var(--marka);font-variant-numeric:tabular-nums}
+@media (max-width:639.98px){
+  dialog.gorsel-on{inline-size:100vw;max-inline-size:100vw;border-radius:0;margin:auto}
+  .go-sahne{grid-template-columns:minmax(0,1fr);padding:56px 0 8px}
+  .go-ok{display:none}
+  .gr-puan button{font-size:0;gap:0}
+  .gr-puan i{font-size:22px}
+}
+/* Yazdırma görünümü: yalnız içerik */
+@media print{
+  header,.bant,.sd,.son-dakika,.ft,footer,.alt-gez,.yukari,.kenar-gorus,.cz,.toast-kap,.dt-eylem,.dt-ep,.dt-yorum,.ls-arsiv,.okuma-cubuk,dialog,.fmt-serit,.am{display:none!important}
+  body{padding:0!important;background:#fff}
+  html.perde-acik body>*{box-shadow:none!important}
+  .dt-govde p{font-size:12pt;line-height:1.55}
+}
+/* görüş formunda ilgili alan seçimi (ortak; sablonlar.css yüklenmeyen sayfalarda da) */
+.gr-alan{display:flex;gap:8px}
+.gr-alan .cp-sec{flex:none;display:inline-flex;align-items:center;block-size:40px;padding:0 14px;border-radius:var(--k-kontrol);border:1px solid var(--gri-100);background:var(--beyaz);font:inherit;font-size:var(--y-sm);font-weight:700;color:var(--gri-800);cursor:pointer;white-space:nowrap}
+.gr-alan .cp-sec.aktif{background:var(--marka);border-color:var(--marka);color:var(--siyah)}
+@media (pointer:coarse){.gr-alan .cp-sec{block-size:var(--dokun)}}

@@ -149,3 +149,59 @@ if(matchMedia('(hover: none)').matches){ document.querySelectorAll('.mm>.mm-a').
   };
   document.querySelectorAll(KAYAN).forEach(kur);
 })();
+
+/* Görüş bildir formu (CC ekledi; kardeş sitelerdeki geri bildirim penceresinin yapısı): konu sekmesi, ilgili alan, 5'li puan,
+   ekran görüntüsü ekleme, alan hatası ve başarı ekranı. Prototip: gönderim yerel, sunucuya bir şey gitmez. */
+(()=>{const d=document.getElementById('pn-gorus'); if(!d) return;
+  const form=d.querySelector('.gr-form'), basari=d.querySelector('.gr-basari'), metinB=d.querySelector('.gr-metin-b');
+  d.querySelectorAll('[data-gorus-konu]').forEach(b=>b.addEventListener('click',()=>{d.querySelectorAll('[data-gorus-konu]').forEach(x=>x.classList.toggle('aktif',x===b)); metinB.textContent=b.dataset.gorusKonu;}));
+  d.querySelectorAll('.gr-alan .cp-sec').forEach(b=>b.addEventListener('click',()=>d.querySelectorAll('.gr-alan .cp-sec').forEach(x=>x.classList.toggle('aktif',x===b))));
+  d.querySelectorAll('[data-puan]').forEach(b=>b.addEventListener('click',()=>d.querySelectorAll('[data-puan]').forEach(x=>{const on=x===b; x.classList.toggle('aktif',on); x.setAttribute('aria-checked',on);})));
+  const dosya=d.querySelector('[data-dosya]'), on=d.querySelector('.fr-dosya-on'), sec=d.querySelector('.fr-dosya');
+  dosya.addEventListener('change',()=>{const f=dosya.files[0]; if(!f) return;
+    if(f.size>5*1024*1024){toast('Dosya 5 MB\'tan büyük'); dosya.value=''; return;}
+    d.querySelector('[data-dosya-ad]').textContent=f.name; d.querySelector('[data-dosya-boy]').textContent=Math.max(1,Math.round(f.size/1024))+' KB';
+    const g=d.querySelector('.fr-dosya-g'); g.style.backgroundImage='url('+URL.createObjectURL(f)+')'; on.hidden=false; sec.hidden=true;});
+  d.querySelector('[data-dosya-kaldir]').addEventListener('click',()=>{dosya.value=''; on.hidden=true; sec.hidden=false;});
+  const hata=(el,var_)=>{const h=el.parentElement.querySelector('.fr-hata'); h.hidden=!var_; el.classList.toggle('hatali',var_);};
+  d.querySelector('[data-gorus-gonder]').addEventListener('click',()=>{const m=d.querySelector('[data-gerekli]'), e=d.querySelector('[data-eposta]');
+    const mh=m.value.trim().length<10, eh=e.value.trim()!==''&&!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(e.value.trim()); hata(m,mh); hata(e,eh);
+    if(mh||eh){(mh?m:e).focus(); return;} form.hidden=true; basari.hidden=false;});
+  d.querySelector('[data-gorus-yeni]').addEventListener('click',()=>{basari.hidden=true; form.hidden=false;});
+})();
+
+/* Konumumu kullan (CC ekledi): tarayıcı konum izni; izin reddi, zaman aşımı ve desteklenmeme halleri ayrı mesajla. */
+document.querySelectorAll('[data-konum]').forEach(b=>b.addEventListener('click',()=>{const kap=b.parentElement, du=kap.querySelector('.kn-durum');
+  const goster=(baslik,metin)=>{du.querySelector('[data-konum-b]').textContent=baslik; du.querySelector('[data-konum-p]').textContent=metin; du.hidden=false;};
+  if(!('geolocation' in navigator)){goster('Tarayıcın konumu desteklemiyor','Şehri aşağıdaki listeden seçebilirsin.'); return;}
+  b.disabled=true; b.lastChild.textContent='Konum alınıyor…';
+  navigator.geolocation.getCurrentPosition(()=>{b.disabled=false; b.lastChild.textContent='Konumumu kullan'; du.hidden=true; toast('Konumun bulundu: İstanbul'); b.closest('dialog')?.close();},
+    e=>{b.disabled=false; b.lastChild.textContent='Konumumu kullan';
+      if(e.code===1) goster('Konuma izin verilmedi','Tarayıcı ayarlarından konum iznini açabilir ya da şehri aşağıdan seçebilirsin.');
+      else if(e.code===3) goster('Konum zamanında alınamadı','Bağlantını kontrol edip yeniden dene ya da şehri aşağıdan seç.');
+      else goster('Konum bulunamadı','Şehri aşağıdaki listeden seçebilirsin.');},{timeout:8000,maximumAge:600000});}));
+
+/* Sesli arama (CC ekledi): tarayıcı destekliyorsa konuşmayı metne çevirip arama kutusuna yazar. */
+document.querySelectorAll('[data-sesli]').forEach(b=>b.addEventListener('click',e=>{e.preventDefault(); e.stopPropagation();
+  const SR=window.SpeechRecognition||window.webkitSpeechRecognition; if(!SR){toast('Tarayıcın sesli aramayı desteklemiyor'); return;}
+  const r=new SR(); r.lang=document.documentElement.lang||'tr-TR'; r.interimResults=false; b.classList.add('dinliyor'); toast('Dinliyorum…');
+  r.onresult=ev=>{const m=ev.results[0][0].transcript; const h=b.parentElement.querySelector('[data-ara-metin]'); if(h) h.textContent=m;};
+  r.onend=()=>b.classList.remove('dinliyor'); r.onerror=()=>{b.classList.remove('dinliyor'); toast('Ses alınamadı, yeniden dene');}; r.start();}));
+
+/* Yazdır (CC ekledi) */
+document.querySelectorAll('[data-yazdir]').forEach(b=>b.addEventListener('click',()=>{b.closest('dialog')?.close(); setTimeout(()=>print(),50);}));
+
+/* Sayfa içi görsel önizleme (CC ekledi): haber gövdesindeki ve açılıştaki görsellere tıklanınca büyük görünüm; önceki/sonraki, sayaç, altyazı.
+   Görseller div + background-image olduğu için adres stilden okunur. Video düğmesi taşıyan görsel önizleme açmaz. */
+(()=>{const d=document.getElementById('pn-gorsel'); if(!d) return;
+  const liste=[...document.querySelectorAll('.dt-ana-g,.dt-fig-g')].filter(g=>!g.querySelector('.dt-video'));
+  if(!liste.length) return; let i=0;
+  const goster=n=>{i=(n+liste.length)%liste.length; const g=liste[i], cap=g.closest('figure')?.querySelector('figcaption')?.textContent||'';
+    d.querySelector('.go-g').style.backgroundImage=getComputedStyle(g).backgroundImage; d.querySelector('.go-g').setAttribute('aria-label',cap||'Haber görseli');
+    d.querySelector('.go-cap').textContent=cap; d.querySelector('.go-say').textContent=(i+1)+' / '+liste.length;
+    d.querySelectorAll('.go-ok').forEach(o=>o.hidden=liste.length<2);};
+  liste.forEach((g,n)=>{g.classList.add('go-ac'); g.setAttribute('role','button'); g.setAttribute('tabindex','0'); g.setAttribute('aria-label','Görseli büyüt');
+    const ac=()=>{goster(n); d.showModal();}; g.addEventListener('click',ac); g.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault(); ac();}});});
+  d.querySelectorAll('[data-go]').forEach(o=>o.addEventListener('click',()=>goster(i+(+o.dataset.go)*(getComputedStyle(d).direction==='rtl'?-1:1))));
+  d.addEventListener('keydown',e=>{if(e.key==='ArrowRight')goster(i+1); if(e.key==='ArrowLeft')goster(i-1);});
+})();

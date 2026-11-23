@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+<title>Dada Haber</title>
+<link>https://dadahaber.com/</link>
+<description>Kısa, sakin, kaynak gösteren haberler. Prototip akışı: örnek içerik.</description>
+<language>tr</language>
+<lastBuildDate>Mon, 23 Nov 2026 16:05:00 +0300</lastBuildDate>
+<atom:link href="https://dadahaber.com/rss.xml" rel="self" type="application/rss+xml"/>
+<item><title>Asgari ücret görüşmelerinde ilk toplantı 4 Aralık'ta yapılacak</title><link>https://dadahaber.com/haber-detay.html</link><guid>https://dadahaber.com/haber-detay.html</guid><category>Gündem</category><pubDate>Mon, 23 Nov 2026 14:05:00 +0300</pubDate><description>Asgari Ücret Tespit Komisyonu, 2027 yılı için ilk toplantısını 4 Aralık'ta yapacak. Kaynak: Çalışma ve Sosyal Güvenlik Bakanlığı.</description></item>
+<item><title>Merkez Bankası politika faizini yüzde 42,5'te sabit tuttu</title><link>https://dadahaber.com/finans-detay.html</link><guid>https://dadahaber.com/finans-detay.html</guid><category>Finans</category><pubDate>Mon, 23 Nov 2026 14:32:00 +0300</pubDate><description>Para Politikası Kurulu faizi değiştirmedi. Kaynak: Türkiye Cumhuriyet Merkez Bankası.</description></item>
+<item><title>Milli takımın aday kadrosu açıklandı</title><link>https://dadahaber.com/spor-detay.html</link><guid>https://dadahaber.com/spor-detay.html</guid><category>Spor</category><pubDate>Mon, 23 Nov 2026 13:48:00 +0300</pubDate><description>Teknik heyet, aralık kampı için 26 kişilik aday kadroyu duyurdu. Kaynak: Türkiye Futbol Federasyonu.</description></item>
+<item><title>Marmara'da yoğun kar yağışı: gelişmeler dakika dakika</title><link>https://dadahaber.com/dakika-dakika.html</link><guid>https://dadahaber.com/dakika-dakika.html</guid><category>Canlı</category><pubDate>Mon, 23 Nov 2026 16:05:00 +0300</pubDate><description>Kar yağışı ve ulaşımdaki son durum. Kaynak: Meteoroloji Genel Müdürlüğü, İstanbul Valiliği.</description></item>
+<item><title>AB dışişleri bakanları göç paketini görüştü</title><link>https://dadahaber.com/dunya-detay.html</link><guid>https://dadahaber.com/dunya-detay.html</guid><category>Dünya</category><pubDate>Mon, 23 Nov 2026 12:10:00 +0300</pubDate><description>Brüksel'deki toplantıda göç ve sığınma paketinin uygulama takvimi ele alındı.</description></item>
+</channel>
+</rss>
