@@ -34,6 +34,16 @@
   .not{margin-block-start:40px;display:grid;gap:8px;padding:20px 22px;border-radius:16px;background:var(--beyaz);border:1px solid var(--gri-50);font-size:15px;line-height:1.55}
   .not b{font-weight:800}
   .not a{color:var(--marka-metin);font-weight:800;text-decoration:underline;text-underline-offset:3px}
+  .secilen{display:grid;grid-template-columns:410px minmax(0,1fr);gap:40px;align-items:start;margin-block-end:56px;padding:28px;border-radius:24px;background:var(--beyaz);border:2px solid var(--marka)}
+  .secilen .sec-bas{max-inline-size:620px;align-self:start;gap:14px}
+  .rv{list-style:none;padding:0;display:grid;gap:10px}
+  .rv li{display:grid;grid-template-columns:24px minmax(0,1fr);gap:10px;font-size:15px;line-height:1.5;color:var(--gri-800)}
+  .rv i{display:grid;place-items:center;inline-size:24px;block-size:24px;border-radius:8px;background:var(--marka-10);color:var(--marka-metin);font-size:12px;margin-block-start:1px}
+  .rv b{color:var(--siyah)}
+  .secilen .sec-bas h2{font-size:26px}
+  .secilen .ac{justify-self:start}
+  .ara{font-size:22px;font-weight:800;margin-block-end:20px}
+  @media (max-width:900px){.secilen{grid-template-columns:minmax(0,1fr);padding:16px}}
   @media (max-width:1300px){.izg{grid-template-columns:minmax(0,1fr)}}
   @media (max-width:640px){.kap{padding:24px 12px 48px}header h1{font-size:28px}.tel{padding:6px;border-radius:40px}.tel iframe{border-radius:34px}}
 </style>
@@ -42,10 +52,27 @@
 <div class="kap">
 <header>
   <small>Dada Haber · Haber detayı · Telefon · Yeni tasarım</small>
-  <h1>Haber detayı için 3 yeni telefon tasarımı</h1>
+  <h1>Haber detayı · telefon tasarımı</h1>
   <p>Aynı haber, aynı marka dili (Gilroy, kehribar, köşe ölçüleri); üç farklı okuma deneyimi. Çerçevelerin içinde kaydırabilir, düğmelere dokunabilirsiniz: Dada Özet sekmeleri, özet kartları, Kaydet ve Takip et çalışır.</p>
   <div class="arac"><button class="dg" id="tamboy"><i class="fa-solid fa-up-down"></i>Tam boy göster</button></div>
 </header>
+<section class="secilen">
+  <div class="tel"><iframe src="detay-yeni-4.html" title="Seçilen tasarım"></iframe></div>
+  <div class="sec-bas">
+    <h2><span>★</span>Seçilen · Yasin Bey revizesi</h2>
+    <p>Girişte tam ekran kapak (2), devamı sakin editoryal (1).</p>
+    <ul class="rv">
+      <li><i class="fa-solid fa-check"></i><span><b>Giriş:</b> tam ekran görsel kapak; kategori, başlık, yazar, süre ve güncelleme saati görselin üstünde.</span></li>
+      <li><i class="fa-solid fa-check"></i><span><b>Teyit:</b> kapakta yeşil "Teyitli · 3 resmî kaynak" işareti.</span></li>
+      <li><i class="fa-solid fa-check"></i><span><b>Devamı:</b> kutusuz Dada Özet (15 sn / 1 dk / Tam), ince ayraç, büyük puntolu metin, alıntı ve görsel.</span></li>
+      <li><i class="fa-solid fa-check"></i><span><b>Akordiyon:</b> "Neden önemli / Bana etkisi / Bundan sonra" aynı anda tek bölüm açık.</span></li>
+      <li><i class="fa-solid fa-check"></i><span><b>Kaynaklar:</b> tek satırlık küçük liste; kurum adı ve bağlantı.</span></li>
+      <li><i class="fa-solid fa-check"></i><span><b>Altta:</b> sabit okuma çubuğu (dinle, kaydet, paylaş, yazı boyutu) ve okuma ilerlemesi.</span></li>
+    </ul>
+    <a class="ac" href="detay-yeni-4.html">Telefonda aç <i class="fa-solid fa-arrow-right"></i></a>
+  </div>
+</section>
+<h2 class="ara">Önceki 3 yön</h2>
 <main class="izg">
   <section class="sec">
     <div class="sec-bas">

@@ -19,3 +19,5 @@
   const ub=document.querySelector('.e2 .ub'), kp=document.querySelector('.kp');
   if(ub&&kp){const f=()=>ub.classList.toggle('dolu',kp.getBoundingClientRect().bottom<70); addEventListener('scroll',f,{passive:true}); f();}
 })();
+/* akordiyon: aynı anda tek bölüm açık */
+document.querySelectorAll('.e1-ne').forEach(k=>{const d=[...k.querySelectorAll('details')]; d.forEach(x=>x.addEventListener('toggle',()=>{if(x.open) d.forEach(y=>{if(y!==x) y.open=false;});}));});

@@ -254,3 +254,15 @@ ul,ol{margin:0;padding:0}
 .kr article{gap:var(--s2)}
 .kr p{line-height:1.3}
 .gp-alt .yz>span:last-child{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-inline-size:0}
+
+/* ===================== 4 · Seçilen birleşim (Yasin Bey revizesi): kapak (2) + editoryal devam (1) ===================== */
+.kp-teyit{display:inline-flex;align-items:center;gap:6px;justify-self:start;block-size:28px;padding-inline:10px;border-radius:var(--k-ic);background:rgba(25,117,10,.92);color:var(--beyaz);font-size:13px;font-weight:800}
+.e4 .kn>.e1-ty:first-child{margin-block-start:var(--s5)}
+.e4 .e1-oz{margin-block-start:var(--s6)}
+/* küçük kaynak listesi: tek satır, numara + kurum + bağlantı */
+.ky-kucuk{margin-block-start:var(--s2)}
+.ky-kucuk li{grid-template-columns:22px minmax(0,1fr) 18px;align-items:center;gap:var(--s2);padding-block:var(--s2)}
+.ky-kucuk .no{inline-size:22px;block-size:22px;font-size:12px}
+.ky-kucuk b{font-size:14px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ky-kucuk .fa-arrow-up-right-from-square{font-size:12px;margin:0}
+.ky-say{display:inline-grid;place-items:center;min-inline-size:22px;block-size:22px;margin-inline-start:6px;padding-inline:6px;border-radius:var(--k-ic);background:var(--gri-50);color:var(--gri-600);font-size:12px;letter-spacing:0}
