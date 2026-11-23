@@ -22,6 +22,13 @@ kontrol = '--kontrol' in sys.argv
 hedef = [a for a in sys.argv[1:] if not a.startswith('--')] or sorted(glob.glob(os.path.join(KOK, '*.html')))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import baglanti_kurallari as BK
+import hashlib
+# Önbellek kırma: CSS ve JS bağlantılarına içerik özetinden sürüm eklenir (?v=…); dosya değişince sürüm değişir, tarayıcı yenisini alır
+SURUM = {}
+for yol_ in glob.glob(os.path.join(KOK, 'assets', 'css', '*.css')) + glob.glob(os.path.join(KOK, 'assets', 'js', '*.js')):
+    SURUM[os.path.relpath(yol_, KOK)] = hashlib.md5(open(yol_, 'rb').read()).hexdigest()[:8]
+def surumle(t):
+    return re.sub(r'(href|src)="(assets/(?:css|js)/[^"?]+\.(?:css|js))(?:\?v=[0-9a-f]+)?"', lambda m: f'{m.group(1)}="{m.group(2)}?v={SURUM.get(m.group(2), "1")}"', t)
 degisen = []; bos = {}
 for yol in hedef:
     yol = yol if os.path.isabs(yol) else os.path.join(KOK, yol)
@@ -38,6 +45,7 @@ for yol in hedef:
                r'\1\2<div class="arac dt-c-filtre">\5</div>\3\4', t, flags=re.S)
     # Marka kuralı: ikonlar tek stil, dolu (fa-solid); içi boş fa-regular kullanılmaz
     t = t.replace('fa-regular ', 'fa-solid ')
+    t = surumle(t)
     # "İçeriğe geç" bağlantısının hedefi
     t = re.sub(r'<main(?![^>]*\bid=)([^>]*)>', r'<main id="icerik"\1>', t, count=1)
     n = len(re.findall(r'href="#"', t))
