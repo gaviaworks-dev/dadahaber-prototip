@@ -1535,3 +1535,18 @@ dialog.gorsel-on::backdrop{background:rgba(10,10,10,.85)}
   main :is(.g4,.g3,.pc-g,.t-sira):not(.ls-arac2 ~ *):not(.liste):not(.oto-iz):not(.ray-kap>*):not(.hs-kart *):not(.hs-ic *)>*{flex:0 0 82%;min-inline-size:0;scroll-snap-align:start}
   main .pc-g:not(.ls-arac2 ~ *)>*{flex-basis:88%}
 }
+/* Bölüm başlığı · telefon (Beyar revizesi): araç grubunda sekme varsa başlığın altına kendi satırına iner;
+   sekme solda, "Tamamını Gör" sağda, tek satır (sığmazsa sekme kayar). Tek düğmeli başlıklar başlıkla yan yana kalır. */
+@media (max-width:639.98px){
+  .gs .arac:has(>.sekme,>.sg,>.pn-sekme){grid-column:1/-1;grid-row:auto;justify-self:stretch;margin-block-start:12px;display:flex;justify-content:space-between;gap:8px;min-inline-size:0}
+  .gs .arac>.sekme{min-inline-size:0;overflow-x:auto;scrollbar-width:none;flex:0 1 auto}
+  .gs .arac>.sekme span{flex:none;padding-inline:12px}
+  .gs .arac:has(>.sekme)>.gd-dugme{flex:none}
+  .gs h2{min-inline-size:0;overflow-wrap:anywhere}
+  .gs .lead{margin-block-start:8px}
+}
+/* podcast kartı: içerik sütunu kartı aşmaz (dalga görseli sütunu genişletiyordu) */
+.pc-ic{min-inline-size:0}
+.pc-ic>*{min-inline-size:0;max-inline-size:100%}
+.pc-dalga{overflow:hidden}
+.pc h3{overflow-wrap:anywhere}
