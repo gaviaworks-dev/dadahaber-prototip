@@ -700,3 +700,8 @@ html.perde-acik body>header.yapiskan,body>header.yapiskan{position:sticky;inset-
 .mg-ic.genis{grid-template-columns:minmax(0,1fr)}
 .mg-ic.genis .mg-bas{display:none}
 .mg-ic.genis .mg-kollar,.mg-kollar.genis{grid-template-columns:repeat(6,minmax(0,1fr));padding-inline:32px;gap:24px}
+
+/* Kart başlıkları bir tık kalın (Beyar): Medium + 0.35px kontur (~600 görünüm; SemiBold dosyası gelince 600) */
+.gk h3,.gy h3,.go h3,.g h3{-webkit-text-stroke:.35px currentColor}
+/* Yazar adı bir tık ince (Beyar): ExtraBold yerine Medium + 0.45px kontur */
+.yz1 h3{font-weight:500;-webkit-text-stroke:.45px currentColor}
