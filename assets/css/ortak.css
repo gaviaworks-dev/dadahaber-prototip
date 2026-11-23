@@ -1584,3 +1584,11 @@ button,input,select,textarea{color:inherit;font-family:inherit;-webkit-tap-highl
   .gorsel-on .go-g{aspect-ratio:auto;block-size:70dvh;max-block-size:none}
   .gorsel-on .go-alt{padding:12px 16px calc(20px + env(safe-area-inset-bottom))}
 }
+/* Çekmece (Beyar): Formatlar tek satır, soldan başlar, parmakla kayar; Araçlar listesi başlıkla aynı hizada */
+.cm-fmt{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;overscroll-behavior-inline:contain;scroll-snap-type:x proximity;scrollbar-width:none;margin-inline:-20px;padding-inline:20px;scroll-padding-inline:20px;padding-block:2px}
+.cm-fmt::-webkit-scrollbar{display:none}
+.cm-fmt a{flex:none;scroll-snap-align:start;white-space:nowrap}
+#pn-menu .cm-grup .pn-liste a{padding-inline:0}
+/* odak çerçevesi: tarayıcı mavisi yerine marka rengi (bütün site) */
+:focus-visible{outline:2px solid var(--marka-metin);outline-offset:2px}
+.cekmece .pn-bas .logo:focus{outline:2px solid var(--marka);outline-offset:3px;border-radius:var(--k-ic)}
