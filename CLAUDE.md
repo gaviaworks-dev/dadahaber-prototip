@@ -123,6 +123,9 @@ Sıra Beyar'ın isteğiyle değişebilir. `DADAHABER-05-kararlar.md` içindeki B
 - **Negatif örnekler.** Beyar'ın ya da Yasin Bey'in yakaladığı her hata `docs/negatif-ornekler.md`
   dosyasına yazılır: sayfa, ne yanlıştı, hangi kural, nasıl düzeldi. Yeni bir işe başlamadan bu dosya
   okunur; aynı hata tekrar görülürse kayda eklenir ve bütün sitede taranıp düzeltilir.
+- **Teslimden önce test.** Canlıya almadan önce üç tarama çalışır: yatay taşma (`tasks/araclar/tasma_tara.py`),
+  üst üste binme (`cakisma_tara.py`) ve etkileşim testi (`etkilesim_test.py`: her düğmeye tıklar, dokunur, kaydırır,
+  sonucu ölçer). Yeni bir etkileşimli bileşen eklenince testine de eklenir. Görüntüye bakmak test sayılmaz.
 - **Kare görsel:** `img` değil; `div` + `background-image` + `cover` + `center`.
 - **Görsel boyutu:** CSS'te görünen genişlik esas alınır; 2x retina çarpanı uygulanmaz.
 - Logo ve ikonlar SVG ya da Font Awesome 6.5.2 Free (depoda barındırılır).

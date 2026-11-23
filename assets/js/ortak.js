@@ -267,7 +267,7 @@ document.querySelectorAll('.gs .sekme').forEach(s=>{const bol=s.closest('section
 /* Galeri (Foto Fokus, İnfografik detay): oklar, küçük resim seçimi (sayfa yenilenmez), sayaç, kaydırma ve tam ekran görüntüleyici. */
 (()=>{const pn=document.getElementById('pn-gorsel');
   document.querySelectorAll('.gr').forEach(gr=>{const sahne=gr.querySelector('.gr-sahne'), kucuk=[...gr.querySelectorAll('.gr-serit>a')]; if(!sahne||!kucuk.length) return;
-    const url=a=>getComputedStyle(a).backgroundImage, say=sahne.querySelector('.gr-say'), top=Math.max(kucuk.length, parseInt((say?.textContent.match(/\/\s*(\d+)/)||[])[1])||kucuk.length);
+    const url=a=>getComputedStyle(a).backgroundImage, say=sahne.querySelector('.gr-say'), top=kucuk.length;
     let i=Math.max(0,kucuk.findIndex(a=>a.classList.contains('sec')));
     const git=n=>{i=(n+kucuk.length)%kucuk.length; sahne.style.backgroundImage=url(kucuk[i]); kucuk.forEach((a,j)=>a.classList.toggle('sec',j===i));
       if(say){const ik=say.querySelector('i'); say.textContent=' '+String(i+1).padStart(2,'0')+' / '+String(top).padStart(2,'0'); if(ik) say.prepend(ik);}
@@ -289,3 +289,10 @@ document.querySelectorAll('.gs .sekme').forEach(s=>{const bol=s.closest('section
     const n=parseInt(pn.querySelector('.go-say').textContent)-1; pn._galeri(n+(+o.dataset.go));},true));
   if(pn) pn.addEventListener('close',()=>{pn._galeri=null;});
 })();
+
+/* Görüntüleyici: telefonda parmakla kaydırma (sola/sağa) ve aşağı çekince kapanma */
+(()=>{const pn=document.getElementById('pn-gorsel'); if(!pn) return; let x0=null,y0=null;
+  pn.addEventListener('touchstart',e=>{x0=e.touches[0].clientX; y0=e.touches[0].clientY;},{passive:true});
+  pn.addEventListener('touchend',e=>{if(x0===null) return; const dx=e.changedTouches[0].clientX-x0, dy=e.changedTouches[0].clientY-y0; x0=null;
+    if(Math.abs(dx)>40&&Math.abs(dx)>Math.abs(dy)){const yon=getComputedStyle(pn).direction==='rtl'?-1:1; pn.querySelector(`[data-go="${dx<0?yon:-yon}"]`)?.click();}
+    else if(dy>90&&Math.abs(dy)>Math.abs(dx)) pn.close();});})();

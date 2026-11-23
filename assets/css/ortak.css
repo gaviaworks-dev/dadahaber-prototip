@@ -1592,3 +1592,11 @@ button,input,select,textarea{color:inherit;font-family:inherit;-webkit-tap-highl
 /* odak çerçevesi: tarayıcı mavisi yerine marka rengi (bütün site) */
 :focus-visible{outline:2px solid var(--marka-metin);outline-offset:2px}
 .cekmece .pn-bas .logo:focus{outline:2px solid var(--marka);outline-offset:3px;border-radius:var(--k-ic)}
+@media (max-width:639.98px){
+  /* görüntüleyici telefonda: oklar görselin iki yanında, üstte; sayfa kaydırması kapalı */
+  dialog.pn.gorsel-on .go-sahne{position:relative;grid-template-columns:minmax(0,1fr)}
+  dialog.pn.gorsel-on .go-ok{display:grid;position:absolute;inset-block-start:50%;transform:translateY(-50%);z-index:2;background:rgba(18,18,18,.55);backdrop-filter:blur(6px)}
+  dialog.pn.gorsel-on .go-ok[data-go="-1"]{inset-inline-start:8px}
+  dialog.pn.gorsel-on .go-ok[data-go="1"]{inset-inline-end:8px}
+  dialog.pn.gorsel-on .go-g{grid-column:1;touch-action:pan-y}
+}
