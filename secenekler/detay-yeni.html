@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Detay Yeni Tasarımlar · Dada Haber</title>
+<link rel="stylesheet" href="../assets/css/degiskenler.css">
+<link rel="stylesheet" href="../assets/vendor/fontawesome-6.5.2/css/all.min.css">
+<style>
+  *{box-sizing:border-box;margin:0}
+  body{font-family:"Gilroy",system-ui,sans-serif;background:#F6F4EF;color:var(--siyah);-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .kap{max-inline-size:1320px;margin-inline:auto;padding:40px 24px 72px}
+  header{display:grid;gap:10px;margin-block-end:36px}
+  header small{font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--marka-metin)}
+  header h1{font-size:38px;line-height:1.1;font-weight:800;letter-spacing:-.025em}
+  header p{font-size:17px;line-height:1.55;color:var(--gri-600);max-inline-size:68ch}
+  .arac{display:flex;gap:10px;margin-block-start:6px}
+  .dg{display:inline-flex;align-items:center;gap:8px;block-size:44px;padding-inline:16px;border-radius:12px;background:var(--siyah);color:var(--beyaz);font-size:14px;font-weight:800;border:0;cursor:pointer;font-family:inherit}
+  .dg.ik2{background:var(--beyaz);color:var(--siyah);border:1px solid var(--gri-100)}
+  .izg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;align-items:start}
+  .sec{display:grid;gap:16px;justify-items:center}
+  .sec-bas{inline-size:100%;max-inline-size:410px;display:grid;gap:8px}
+  .sec-bas h2{display:flex;align-items:center;gap:10px;font-size:21px;font-weight:800;letter-spacing:-.01em}
+  .sec-bas h2 span{display:grid;place-items:center;inline-size:32px;block-size:32px;border-radius:8px;background:var(--marka);font-size:15px}
+  .sec-bas p{font-size:15px;line-height:1.5;color:var(--gri-800)}
+  .sec-bas ul{list-style:none;padding:0;display:grid;gap:3px;font-size:14px;line-height:1.45;color:var(--gri-600)}
+  .sec-bas li b{color:var(--siyah)}
+  .tel{position:relative;inline-size:410px;max-inline-size:100%;padding:10px;border-radius:52px;background:#121212;box-shadow:0 30px 60px -20px rgba(18,18,18,.35),0 0 0 1px rgba(18,18,18,.08)}
+  .tel iframe{display:block;inline-size:390px;max-inline-size:100%;block-size:844px;border:0;border-radius:42px;background:#fff}
+  .tamboy .tel iframe{block-size:var(--boy,844px)}
+  .tamboy .tel{border-radius:52px 52px 40px 40px}
+  .ac{display:inline-flex;align-items:center;gap:8px;block-size:44px;padding-inline:18px;border-radius:12px;background:var(--beyaz);border:1px solid var(--gri-100);font-size:14px;font-weight:800}
+  .not{margin-block-start:40px;display:grid;gap:8px;padding:20px 22px;border-radius:16px;background:var(--beyaz);border:1px solid var(--gri-50);font-size:15px;line-height:1.55}
+  .not b{font-weight:800}
+  .not a{color:var(--marka-metin);font-weight:800;text-decoration:underline;text-underline-offset:3px}
+  @media (max-width:1300px){.izg{grid-template-columns:minmax(0,1fr)}}
+  @media (max-width:640px){.kap{padding:24px 12px 48px}header h1{font-size:28px}.tel{padding:6px;border-radius:40px}.tel iframe{border-radius:34px}}
+</style>
+</head>
+<body>
+<div class="kap">
+<header>
+  <small>Dada Haber · Haber detayı · Telefon · Yeni tasarım</small>
+  <h1>Haber detayı için 3 yeni telefon tasarımı</h1>
+  <p>Aynı haber, aynı marka dili (Gilroy, kehribar, köşe ölçüleri); üç farklı okuma deneyimi. Çerçevelerin içinde kaydırabilir, düğmelere dokunabilirsiniz: Dada Özet sekmeleri, özet kartları, Kaydet ve Takip et çalışır.</p>
+  <div class="arac"><button class="dg" id="tamboy"><i class="fa-solid fa-up-down"></i>Tam boy göster</button></div>
+</header>
+<main class="izg">
+  <section class="sec">
+    <div class="sec-bas">
+      <h2><span>1</span>Sakin editoryal</h2>
+      <p>Gazete sayfası gibi sakin: büyük başlık, kısa özet, tam genişlik görsel, kutusuz Dada Özet; altta sabit okuma çubuğu (dinle, kaydet, paylaş, yazı boyutu).</p>
+      <ul><li><b>Kime:</b> haberi baştan sona okuyan günlük takipçi.</li><li><b>Güçlü yanı:</b> okunurluk ve güven; reklam ve süs yok.</li><li><b>Referans:</b> The Guardian ve NYT uygulama haber sayfası.</li></ul>
+    </div>
+    <div class="tel"><iframe src="detay-yeni-1.html" title="Tasarım 1 · Sakin editoryal"></iframe></div>
+    <a class="ac" href="detay-yeni-1.html">Telefonda aç <i class="fa-solid fa-arrow-right"></i></a>
+  </section>
+  <section class="sec">
+    <div class="sec-bas">
+      <h2><span>2</span>Kapak ve özet kartları</h2>
+      <p>Tam ekran görsel kapak; ardından kaydırılan "15 saniyede haber" kartları ve koyu "Neden önemli" kutusu. Dinleme çubuğu ekranın altında yüzer.</p>
+      <ul><li><b>Kime:</b> sosyal medyadan gelen genç okur.</li><li><b>Güçlü yanı:</b> hikâye/reels diline yakın, ilk ekran etkisi yüksek.</li><li><b>Referans:</b> Instagram hikâye kartları, The Verge ve Axios mobil.</li></ul>
+    </div>
+    <div class="tel"><iframe src="detay-yeni-2.html" title="Tasarım 2 · Kapak ve özet kartları"></iframe></div>
+    <a class="ac" href="detay-yeni-2.html">Telefonda aç <i class="fa-solid fa-arrow-right"></i></a>
+  </section>
+  <section class="sec">
+    <div class="sec-bas">
+      <h2><span>3</span>Güven önde</h2>
+      <p>Başlığın altında künye paneli (teyit, kaynak sayısı, okuma süresi, yayın saati). 15 sn / 1 dk / Tam metin geçişi; metinde numaralı kaynak atıfları.</p>
+      <ul><li><b>Kime:</b> "bu doğru mu?" diye soran, kaynağı görmek isteyen okur.</li><li><b>Güçlü yanı:</b> ürünün farkı (görünür teyit ve kaynak) ilk ekranda.</li><li><b>Referans:</b> Semafor haber yapısı, Wikipedia kaynak atıfları.</li></ul>
+    </div>
+    <div class="tel"><iframe src="detay-yeni-3.html" title="Tasarım 3 · Güven önde"></iframe></div>
+    <a class="ac" href="detay-yeni-3.html">Telefonda aç <i class="fa-solid fa-arrow-right"></i></a>
+  </section>
+</main>
+<div class="not">
+  <p><b>Tavsiye: 3 · Güven önde,</b> ilk ekranında 2'nin özet kartlarıyla. Dada Haber'in farkı görünür teyit ve kaynak; bu tasarım onu ilk ekrana taşıyor, genç okur için 15 saniyelik özeti de koruyor.</p>
+  <p>İlk turdaki yerleşim alternatifleri (mevcut tasarımla A, B, C): <a href="detay-mobil.html">detay-mobil.html</a></p>
+</div>
+</div>
+<script>
+  // Tam boy: çerçeveleri içeriğin boyuna uzatır (aynı kökenden okunur); tekrar basınca telefon boyuna döner
+  const b=document.getElementById('tamboy');
+  b.addEventListener('click',()=>{const on=document.body.classList.toggle('tamboy');
+    document.querySelectorAll('.tel iframe').forEach(f=>{try{f.style.setProperty('--boy',f.contentDocument.documentElement.scrollHeight+'px')}catch(_){}});
+    b.innerHTML=on?'<i class="fa-solid fa-mobile-screen"></i>Telefon boyuna dön':'<i class="fa-solid fa-up-down"></i>Tam boy göster';});
+</script>
+</body>
+</html>
