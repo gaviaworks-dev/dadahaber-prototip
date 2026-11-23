@@ -19,10 +19,13 @@ Satırlardaki "üretildi (CC seçimi, §4)" ibaresi, şablonun `docs/tasarim-kar
 |---|---|
 | Reklam alanları | Beyar yer tutucuları kaldırdı; her kırılımdaki yeri ve boyutu web onayından önce sorulacak (C25). Reklam sayfasındaki ölçü tablosu karar değil. |
 | Araya giren tam ekran reklam (v2 dh-rint) | Kırmızı çizgi: açılır pencere ve tam ekran reklam yok. |
-| Giriş yapılmış üst bar + hesap menüsü | B-14 kararı bekliyor; üst bar seçilmiş kararla aynı kaldı. Girişli hal Hesabım sayfalarında gösterildi. |
-| Haber Dinle kategori sayfaları (Gündem dışındaki 7 kategori) | Kalıp tek kategori sayfasıyla gösterildi (`haber-dinle-kategori.html`); diğer kategori çipleri "#". |
-| Burçların 11 ayrı detay sayfası, hamilelik haftalarının 40 ayrı sayfası | Kalıp tek örnekle gösterildi (`burc.html`, `hamilelik-hafta.html`); diğerleri aynı şablonun verisi. |
+| Burçların 11 ayrı detay sayfası, hamilelik haftalarının 40 ayrı sayfası | Kalıp tek örnekle gösterildi (`burc.html`, `hamilelik-hafta.html`); diğer seçimler aynı sayfanın `?secim=` adresine gider (boş bağlantı yok). |
 | 78 ilin ayrı yerel haber sayfası | Kalıp İstanbul, Ankara, İzmir ile gösterildi; diğer iller `yerel-haberler.html`'e bağlı. |
+
+## Tamamlama turu ve mobil bölümü (2026-11-23 akşam)
+
+- **Tamamlama turu:** giriş yapılmış hal (üst barda avatar + ad, hesap menüsü, okunmuş/okunmamış bildirim paneli; misafir/üye geçişi sayfalar arasında ve yenilemede korunur), 7 Haber Dinle kategori sayfası (`haber-dinle-dunya/finans/kadin/kampus/savunma/spor/teknoloji.html`), giriş ve üyelik pencere + sayfa halinde Google/Facebook/Apple logolu düğmeler ve dolu formlar, yukarı çık, kenar "Görüş bildir", içeriğe geç, okuma çubuğu, yorum bildir. Sitede `href="#"` **0** (`araclar/baglanti_kurallari.py`). Kökte **272 sayfa**; kırık bağlantı 0, erişilemeyen 0.
+- **Mobil bölümü:** bütün sayfalar telefon (<640) ve tablet (640–1024) kurallarını ortak CSS'ten alır (kararlar §2 M1–M12). Yatay taşma taraması (`tasks/araclar/tasma_tara.py`) 272 sayfa × 360/390/768/1024px → **0**. Aşağıdaki "Dar ekran notu" sütunundaki notlar ortak kurallarla karşılandı: ses oynatıcısı (başlık kısalır, hız düğmesi kalır), tablolar (kap içinde kayar), maç/piyasa/hava kutuları (tek satır kayan şerit), görselli açılır menü (dar ekranda çekmece), çok sütunlu düzenler (tablet 2, telefon 1 sütun).
 
 ## 1 · Bölüm sayfaları (8 ana başlık ve alt kırılımlar)
 
@@ -153,7 +156,7 @@ Satırlardaki "üretildi (CC seçimi, §4)" ibaresi, şablonun `docs/tasarim-kar
 | E-posta doğrulama (bekleme, doğrulandı, geçersiz) | yok | özel düzen (durum) | öneri | **üretildi** (CC seçimi, §4) · B-15 | standart |
 | Sosyal giriş ara durumları | kısmen | özel düzen | v2 | **üretildi** (CC seçimi, §4) · B-15 | standart |
 | Karşılama ve tercih seçimi (ilgi, şehir, takım) | yok | özel düzen | akış A2, A3 | **üretildi** (CC seçimi, §4) · B-14 | Çipler sarar. |
-| Giriş yapılmış üst bar + hesap menüsü | yok | ortak parça | harita | **üretilmedi** · B-14: giriş yapılmış hal kararı bekliyor; Hesabım sayfaları girişli hali gösteriyor | Alt panel. |
+| Giriş yapılmış üst bar + hesap menüsü | yok | ortak parça | harita | **üretildi** (CC seçimi, §4 C29) · B-14 Beyar gözden geçirecek | Alt panel. |
 
 ## 7 · Hesabım
 

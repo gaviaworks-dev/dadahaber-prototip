@@ -114,11 +114,19 @@ Sıra Beyar'ın isteğiyle değişebilir. `DADAHABER-05-kararlar.md` içindeki B
 ## Proje kuralları (Beyar)
 
 - **Yığılma ve satıra kırılma yok.** Kart ve bloklar alt alta istiflenir; ama aynı türden bilgi (tarih, kaynak, kategori, süre, piyasa değeri) tek satırda kalır. Sığmıyorsa kırılmaz: kısaltılır, gizlenir ya da yatay kayar. Sağı boş kalan, satırı ziyan eden düzen de olmaz.
+- **Gereksiz satır açılmaz.** Kısa içerikli iki satır (ör. etiketler ve paylaş) tek satırda
+  birleştirilir: biri solda, biri sağda. Sığmayan öğe alt satıra inmez; okla ve sürükleyerek
+  yatay kayar. Sağı boş kalan satır bırakılmaz.
 - **Kare görsel:** `img` değil; `div` + `background-image` + `cover` + `center`.
 - **Görsel boyutu:** CSS'te görünen genişlik esas alınır; 2x retina çarpanı uygulanmaz.
 - Logo ve ikonlar SVG ya da Font Awesome 6.5.2 Free (depoda barındırılır).
 - Örnek içerik gerçekçi Türkçe haber metnidir; lorem ipsum yok. Başka yayın kuruluşunun logosu, filigranı ya da içeriği kullanılmaz.
 - Reklam, görsel, video ve gömülü içerik alanları önceden ayrılır; sayfa sıçramaz. Açılır pencere ve tam ekran reklam yok.
+- **Kartın tamamı tıklanır.** Haber, video, podcast ve benzeri bütün kartlarda yalnızca
+  başlık değil, kartın herhangi bir yeri tıklanınca detaya gidilir. Kart içindeki ayrı
+  işlevli öğeler (kaydet, paylaş, takip et, kategori etiketi, yazar adı) kendi işlerini
+  yapmaya devam eder; karta tıklama onları ezmez. Bağlantı tek olur: kart içinde aynı
+  yere giden ikinci bir bağlantı açılmaz.
 
 ## Her ekran için teslim
 
@@ -175,6 +183,7 @@ ile uğraşmayacak; iş, hafızana değil dosyalara dayanır.
 - Büyük iş: keşif → plan → DUR → onay → uygulama. Küçük iş: doğrudan yap.
 - Beklenmedik bir şey görürsen (kaynak okunmuyor, site açılmıyor, kurallar çelişiyor) dur ve raporla.
 - Git hesabı `gaviaworks-dev`. `git add -A` ve force push yok; dosyalar adıyla eklenir. Ayrı konu ayrı commit; commit mesajı İngilizce, Conventional Commits. Commit ve push için ayrı ayrı Beyar'ın açık onayı gerekir.
+- **Kalıcı canlıya alma izni (Beyar, 2026-11-23):** her iş paketi bitip kontrolden geçince sormadan commit ve push yapılır, GitHub Pages derlemesi bitince canlı adres kontrol edilir; kurallar aynı (gaviaworks-dev, dosyalar adıyla, ayrı konu ayrı commit, force push yok, tasks/ ve ekran görüntüleri depoya girmez).
 - Ekran görüntülerini kendi kontrolün için al, `docs/screenshots/` altına koy (git'e girmez). Beyar'a kısa yazılı rapor ver.
 - `tasks/` klasörü git'e girmez. `secenekler/` klasörünün git'e girip girmeyeceğini depo kurulurken Beyar'a sor.
 - Prototip ritmi: yap, tek hızlı kontrol, raporla. Uzun ölçüm ya da test turuna girmeden önce büyük harfle yaz: `ÖLÇÜM: <ne>, tahmini X dk`. 10 dakikayı aşacaksa önce sor.
