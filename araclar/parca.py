@@ -76,6 +76,14 @@ for yol in hedef:
                r'\1\2<div class="arac dt-c-filtre">\5</div>\3\4', t, flags=re.S)
     # Marka kuralı: ikonlar tek stil, dolu (fa-solid); içi boş fa-regular kullanılmaz
     t = t.replace('fa-regular ', 'fa-solid ')
+    # Teyit işareti (Yasin Bey: "teyit hiçbir yerde yok"): kaynağı olan haber detayında künyenin altında görünür
+    if 'class="dt-bas-ic"' in t and 'class="dt-teyit"' not in t:
+        n = len(re.findall(r'class="dt-k-ik"', t))
+        if n:
+            kb = re.search(r'<section class="dt-kaynak[^"]*"[^>]*aria-labelledby="([^"]+)"', t)
+            hedef = f'#{kb.group(1)}' if kb else '#icerik'
+            isaret = f'<a class="dt-teyit" href="{hedef}"><i class="fa-solid fa-circle-check"></i>Teyitli · {n} kaynak</a>'
+            t = re.sub(r'(<div class="dt-bas-ic">.*?<div class="dt-meta">.*?</div>)', lambda m: m.group(1) + isaret, t, count=1, flags=re.S)
     t = tablo_hizala(t)
     t = surumle(t)
     # "İçeriğe geç" bağlantısının hedefi
