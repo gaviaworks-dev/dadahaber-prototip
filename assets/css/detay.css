@@ -317,3 +317,5 @@
   .dt-govde h2{margin-block:16px 12px}
 }
 @media (max-width:639.98px){main:has(>.dt-ust .dt-ana-g) .dt-bas-ic .cip i{color:var(--siyah)!important}}
+.dt-teyit.incelendi{background:var(--gri-50);color:var(--gri-800)}
+@media (max-width:639.98px){main:has(>.dt-ust .dt-ana-g) .dt-bas-ic .dt-teyit.incelendi{background:rgba(255,255,255,.9);color:var(--siyah)}}
