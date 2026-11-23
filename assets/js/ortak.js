@@ -214,3 +214,9 @@ document.querySelectorAll('.tk-ekle').forEach(b=>b.addEventListener('click',e=>{
 (()=>{const s=document.querySelector('.cd-sabit'), h=document.querySelector('.dt-bas-ic h1'); if(!s||!h) return;
   const ust=()=>parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--ust-boy'))||100;
   const bak=()=>s.classList.toggle('gorunur',h.getBoundingClientRect().bottom<ust()); addEventListener('scroll',bak,{passive:true}); addEventListener('resize',bak); bak();})();
+
+/* Footer sütunları telefonda açılır-kapanır (Yasin Bey talebi): başlık düğme gibi davranır; masaüstünde CSS listeyi hep açık tutar. */
+document.querySelectorAll('.ft-kol').forEach((k,i)=>{const h=k.querySelector('h2'), u=k.querySelector('ul'); if(!h||!u) return;
+  u.id=u.id||('ft-liste-'+i); h.setAttribute('role','button'); h.setAttribute('tabindex','0'); h.setAttribute('aria-controls',u.id); h.setAttribute('aria-expanded','false');
+  const ac=()=>{const on=k.classList.toggle('acik'); h.setAttribute('aria-expanded',on);};
+  h.addEventListener('click',ac); h.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault(); ac();}});});
