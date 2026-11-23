@@ -117,6 +117,12 @@ Sıra Beyar'ın isteğiyle değişebilir. `DADAHABER-05-kararlar.md` içindeki B
 - **Gereksiz satır açılmaz.** Kısa içerikli iki satır (ör. etiketler ve paylaş) tek satırda
   birleştirilir: biri solda, biri sağda. Sığmayan öğe alt satıra inmez; okla ve sürükleyerek
   yatay kayar. Sağı boş kalan satır bırakılmaz.
+- **Tablolarda hizalama.** Etiket ve metin sütunları başa, sayısal sütunlar (sayı, yüzde, tutar,
+  tarih, saat) sona yaslanır; rakamlar eşit genişlikli. Sütun başlığı, sütununun içeriğiyle aynı tarafa
+  yaslanır; ortalanmış sayı olmaz. Aynı kutuda alt alta duran tabloların sütunları birbirine hizalıdır.
+- **Negatif örnekler.** Beyar'ın ya da Yasin Bey'in yakaladığı her hata `docs/negatif-ornekler.md`
+  dosyasına yazılır: sayfa, ne yanlıştı, hangi kural, nasıl düzeldi. Yeni bir işe başlamadan bu dosya
+  okunur; aynı hata tekrar görülürse kayda eklenir ve bütün sitede taranıp düzeltilir.
 - **Kare görsel:** `img` değil; `div` + `background-image` + `cover` + `center`.
 - **Görsel boyutu:** CSS'te görünen genişlik esas alınır; 2x retina çarpanı uygulanmaz.
 - Logo ve ikonlar SVG ya da Font Awesome 6.5.2 Free (depoda barındırılır).
