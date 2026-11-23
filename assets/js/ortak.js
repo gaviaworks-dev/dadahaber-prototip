@@ -233,3 +233,8 @@ document.querySelectorAll('.dt-ako').forEach(k=>{const d=[...k.querySelectorAll(
     b[0].addEventListener('click',()=>{uygula(false); try{localStorage.setItem('dh-gorunum','izgara')}catch(_){}});
     b[1].addEventListener('click',()=>{uygula(true); try{localStorage.setItem('dh-gorunum','liste')}catch(_){}});
     if(tercih==='liste') uygula(true);});})();
+
+/* Akordiyon genel kuralı (Yasin Bey): aynı kapta yan yana iki ve daha fazla açılır bölüm varsa aynı anda tek bölüm açık. */
+document.querySelectorAll('details').forEach(x=>{const p=x.parentElement; if(!p||p.dataset.akordiyon) return; const d=[...p.children].filter(c=>c.tagName==='DETAILS'); if(d.length<2) return;
+  p.dataset.akordiyon='1'; if(!p.matches('.dt-ako')){let ilk=d.find(y=>y.open); d.forEach(y=>y.open=y===ilk);}
+  d.forEach(y=>y.addEventListener('toggle',()=>{if(y.open) d.forEach(z=>{if(z!==y) z.open=false;});}));});

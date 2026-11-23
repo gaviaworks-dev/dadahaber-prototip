@@ -27,6 +27,37 @@ import hashlib
 SURUM = {}
 for yol_ in glob.glob(os.path.join(KOK, 'assets', 'css', '*.css')) + glob.glob(os.path.join(KOK, 'assets', 'js', '*.js')):
     SURUM[os.path.relpath(yol_, KOK)] = hashlib.md5(open(yol_, 'rb').read()).hexdigest()[:8]
+# Tablo hizalama kuralı (Beyar): sayısal sütunlar (sayı, %, tutar, tarih, saat) sona yaslı; th ve td'ye class="say" eklenir.
+# Bir sütun, dolu hücrelerinin en az %60'ı sayısalsa sayısal sayılır. "sol" sınıflı (anahtar-değer) tablolara dokunulmaz.
+_IZIN = r'(puan|TL|USD|EUR|km|cm|kg|dk|sa|gün|ay|yıl|hafta|Oca|Şub|Mar|Nis|May|Haz|Tem|Ağu|Eyl|Eki|Kas|Ara|B|M|Mn|Mr|bin|milyon|milyar)'
+def _sayisal(h):
+    x = re.sub(r'<[^>]+>', ' ', h); x = re.sub(r'&[a-z#0-9]+;', ' ', x).strip()
+    if not x or not re.search(r'\d', x): return False
+    y = re.sub(_IZIN, ' ', x)
+    return not re.search(r'[A-Za-zÇĞİÖŞÜçğıöşüâîû]{2,}', y)
+def _hucre_sinif(h, ekle):
+    if not ekle or re.search(r'\bsay\b', h.split('>',1)[0]): return h
+    bas, kalan = h.split('>', 1)
+    if 'class="' in bas: bas = bas.replace('class="', 'class="say ', 1)
+    else: bas += ' class="say"'
+    return bas + '>' + kalan
+def tablo_hizala(t):
+    def tablo(m):
+        s = m.group(0)
+        satirlar = re.findall(r'<tr\b.*?</tr>', s, re.S)
+        govde = [re.findall(r'<td\b[^>]*>.*?</td>', r, re.S) for r in satirlar if '<td' in r]
+        if not govde: return s
+        n = max(len(r) for r in govde); say = set()
+        for i in range(1, n):
+            dolu = [r[i] for r in govde if i < len(r) and re.sub(r'<[^>]+>', '', r[i]).strip()]
+            if dolu and sum(_sayisal(x) for x in dolu) / len(dolu) >= .6: say.add(i)
+        def satir(rm):
+            r = rm.group(0); i = [-1]
+            def h(cm):
+                i[0] += 1; return _hucre_sinif(cm.group(0), i[0] in say)
+            return re.sub(r'<t[hd]\b[^>]*>', lambda cm: _hucre_sinif(cm.group(0), (i.__setitem__(0, i[0]+1) or i[0]) in say), r)
+        return re.sub(r'<tr\b.*?</tr>', satir, s, flags=re.S)
+    return re.sub(r'(?<!sol">)<table\b.*?</table>', tablo, t, flags=re.S)
 def surumle(t):
     return re.sub(r'(href|src)="(assets/(?:css|js)/[^"?]+\.(?:css|js))(?:\?v=[0-9a-f]+)?"', lambda m: f'{m.group(1)}="{m.group(2)}?v={SURUM.get(m.group(2), "1")}"', t)
 degisen = []; bos = {}
@@ -45,6 +76,7 @@ for yol in hedef:
                r'\1\2<div class="arac dt-c-filtre">\5</div>\3\4', t, flags=re.S)
     # Marka kuralı: ikonlar tek stil, dolu (fa-solid); içi boş fa-regular kullanılmaz
     t = t.replace('fa-regular ', 'fa-solid ')
+    t = tablo_hizala(t)
     t = surumle(t)
     # "İçeriğe geç" bağlantısının hedefi
     t = re.sub(r'<main(?![^>]*\bid=)([^>]*)>', r'<main id="icerik"\1>', t, count=1)

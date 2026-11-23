@@ -252,3 +252,12 @@ em.y{color:var(--artis)}em.d{color:var(--azalis)}
   .dv-buyuk-u>.sw-sekme{grid-column:4;grid-row:1}
 }
 @media (min-width:1025px){.dv-buyuk-u>.sw-sekme{align-self:center}}
+
+/* ===== Tablo hizalama kuralı (Beyar, 2026-11-23; CLAUDE.md · Proje kuralları) =====
+   Metin sütunu başa, sayısal sütun (class="say", parca.py işaretler) sona yaslı; başlık sütunuyla aynı tarafa.
+   Aynı kutudaki alt alta tablolar aynı sütun ızgarasını kullanır (ilk sütun %40, kalanlar eşit). Ortalanmış sayı yok. */
+.sw-tablo th,.sw-tablo td,.sw-puan th,.sw-puan td{text-align:start}
+.sw-tablo .say,.sw-puan .say{text-align:end;font-variant-numeric:tabular-nums}
+.sw-tablo:has(>table~table) table{table-layout:fixed}
+.sw-tablo:has(>table~table) th:first-child{inline-size:40%}
+.sw-tablo td.say em,.sw-puan td.say em{justify-content:flex-end}
