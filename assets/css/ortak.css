@@ -1550,3 +1550,37 @@ dialog.gorsel-on::backdrop{background:rgba(10,10,10,.85)}
 .pc-ic>*{min-inline-size:0;max-inline-size:100%}
 .pc-dalga{overflow:hidden}
 .pc h3{overflow-wrap:anywhere}
+
+/* ===== Mobil revize 2 (Beyar, 21.22) ===== */
+/* iOS düğme yazısını maviye boyar: bütün düğme ve form öğeleri metin rengini ve fontu devralır */
+button,input,select,textarea{color:inherit;font-family:inherit;-webkit-tap-highlight-color:transparent}
+.dt-c-filtre .ls-cip:not(.aktif),.ls-cip:not(.aktif){color:var(--siyah)}
+.dt-eylem button{color:var(--siyah)}
+.dt-eylem button i{color:var(--marka-metin)}
+/* takım armaları şeridi: seçili halka kırpılmaz (kayan şeridin iç boşluğu) */
+*:has(>.tc-a){padding:6px 6px 4px;scroll-padding-inline:6px}
+@media (max-width:639.98px){
+  /* podcast kartı telefonda: görsel üstte, bilgi altta; süre ve dinlenme kesilmez */
+  .pc{grid-template-columns:minmax(0,1fr)!important}
+  .pc-kap{aspect-ratio:16/9;min-block-size:0;block-size:auto}
+  .pc-ic{padding:14px 16px 16px}
+  .pc-ust{display:flex;align-items:center;justify-content:space-between;gap:8px;min-inline-size:0}
+  .pc-ust .pc-seri{min-inline-size:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .pc-dalga{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px}
+  .pc-dalga>:first-child{min-inline-size:0;overflow:hidden}
+  .pc-dalga>:last-child{white-space:nowrap}
+  .pc .bilgi{flex-wrap:nowrap;overflow:hidden;white-space:nowrap}
+  .pc .bilgi>*{flex:none}
+  .pc .bilgi>:first-child{flex:0 1 auto;min-inline-size:0;overflow:hidden;text-overflow:ellipsis}
+}
+/* bölüm başlığındaki sekme (Dosyalar / Rehberler): tıklanabilir */
+.gs .sekme span{cursor:pointer;user-select:none}
+[data-sekme-icerik][hidden]{display:none!important}
+@media (max-width:639.98px){
+  /* görsel görüntüleyici telefonda gerçek tam ekran (alttan panel kuralından muaf) */
+  dialog.pn.gorsel-on{inline-size:100vw;max-inline-size:100vw;block-size:100dvh;max-block-size:100dvh;margin:0;border-radius:0;display:grid;grid-template-rows:1fr auto;align-content:center}
+  dialog.pn.gorsel-on:not([open]){display:none}
+  .gorsel-on .go-sahne{align-self:center;padding:0}
+  .gorsel-on .go-g{aspect-ratio:auto;block-size:70dvh;max-block-size:none}
+  .gorsel-on .go-alt{padding:12px 16px calc(20px + env(safe-area-inset-bottom))}
+}

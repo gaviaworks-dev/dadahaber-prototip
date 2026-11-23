@@ -112,7 +112,7 @@ document.addEventListener('click',e=>{
 });
 /* Kaydet ve takip: girişsiz de çalışır görünür (cihazda tutulur, üye olunca hesaba taşınır) */
 document.addEventListener('click',e=>{
-  const k=e.target.closest('.kaydet,.pc-kaydet'); if(k){ e.preventDefault(); e.stopPropagation(); const on=k.classList.toggle('on');
+  const k=e.target.closest('.kaydet:not(.gr-tam),.pc-kaydet'); if(k){ e.preventDefault(); e.stopPropagation(); const on=k.classList.toggle('on');
     toast(on?(oturum.acik()?'Kaydedildi · Kaydedilenler\'e eklendi':'Kaydedildi · cihazında tutuluyor, üye olunca hesabına taşınır'):'Kayıt kaldırıldı'); }
   const tk=e.target.closest('[data-takip]'); if(tk){ e.preventDefault(); const on=tk.classList.toggle('on'); tk.querySelector('span')&&(tk.querySelector('span').textContent=on?'Takip ediliyor':'Takip et');
     toast(on?'Takip ediliyor'+(oturum.acik()?'':' · üye olunca hesabına taşınır'):'Takip bırakıldı'); }
@@ -256,3 +256,36 @@ document.querySelectorAll('.dt-ako').forEach(k=>{const d=[...k.querySelectorAll(
 document.querySelectorAll('details').forEach(x=>{const p=x.parentElement; if(!p||p.dataset.akordiyon) return; const d=[...p.children].filter(c=>c.tagName==='DETAILS'); if(d.length<2) return;
   p.dataset.akordiyon='1'; if(!p.matches('.dt-ako')){let ilk=d.find(y=>y.open); d.forEach(y=>y.open=y===ilk);}
   d.forEach(y=>y.addEventListener('toggle',()=>{if(y.open) d.forEach(z=>{if(z!==y) z.open=false;});}));});
+
+/* Bölüm başlığı sekmesi (.gs .sekme): sekme adına göre aynı bölümdeki [data-sekme-icerik="Ad"] içeriğini gösterir. */
+document.querySelectorAll('.gs .sekme').forEach(s=>{const bol=s.closest('section')||s.closest('.kap'); if(!bol) return;
+  const sek=[...s.querySelectorAll(':scope>span')]; sek.forEach(x=>{x.setAttribute('role','tab'); x.tabIndex=0;});
+  const sec=x=>{sek.forEach(y=>{y.classList.toggle('a',y===x); y.setAttribute('aria-selected',y===x);});
+    bol.querySelectorAll('[data-sekme-icerik]').forEach(p=>p.hidden=p.dataset.sekmeIcerik!==x.textContent.trim());};
+  sek.forEach(x=>{x.addEventListener('click',()=>sec(x)); x.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault(); sec(x);}});});});
+
+/* Galeri (Foto Fokus, İnfografik detay): oklar, küçük resim seçimi (sayfa yenilenmez), sayaç, kaydırma ve tam ekran görüntüleyici. */
+(()=>{const pn=document.getElementById('pn-gorsel');
+  document.querySelectorAll('.gr').forEach(gr=>{const sahne=gr.querySelector('.gr-sahne'), kucuk=[...gr.querySelectorAll('.gr-serit>a')]; if(!sahne||!kucuk.length) return;
+    const url=a=>getComputedStyle(a).backgroundImage, say=sahne.querySelector('.gr-say'), top=Math.max(kucuk.length, parseInt((say?.textContent.match(/\/\s*(\d+)/)||[])[1])||kucuk.length);
+    let i=Math.max(0,kucuk.findIndex(a=>a.classList.contains('sec')));
+    const git=n=>{i=(n+kucuk.length)%kucuk.length; sahne.style.backgroundImage=url(kucuk[i]); kucuk.forEach((a,j)=>a.classList.toggle('sec',j===i));
+      if(say){const ik=say.querySelector('i'); say.textContent=' '+String(i+1).padStart(2,'0')+' / '+String(top).padStart(2,'0'); if(ik) say.prepend(ik);}
+      kucuk[i].scrollIntoView({block:'nearest',inline:'nearest',behavior:azHareket?'auto':'smooth'});};
+    const yon=getComputedStyle(gr).direction==='rtl'?-1:1;
+    gr.querySelector('.gr-ok.o')?.addEventListener('click',e=>{e.preventDefault(); git(i-yon);});
+    gr.querySelector('.gr-ok.s')?.addEventListener('click',e=>{e.preventDefault(); git(i+yon);});
+    kucuk.forEach((a,j)=>a.addEventListener('click',e=>{e.preventDefault(); git(j);}));
+    let x0=null; sahne.addEventListener('touchstart',e=>{x0=e.touches[0].clientX;},{passive:true});
+    sahne.addEventListener('touchend',e=>{if(x0===null) return; const d=e.changedTouches[0].clientX-x0; if(Math.abs(d)>40) git(i+(d<0?1:-1)*yon); x0=null;});
+    const tam=sahne.querySelector('.gr-tam'); if(tam){tam.setAttribute('role','button'); tam.tabIndex=0;
+      const ac=e=>{e.preventDefault(); e.stopPropagation(); if(!pn) return; let j=i;
+        const goster=n=>{j=(n+kucuk.length)%kucuk.length; pn.querySelector('.go-g').style.backgroundImage=url(kucuk[j]); pn.querySelector('.go-say').textContent=(j+1)+' / '+kucuk.length;
+          const cap=gr.parentElement.querySelector('.gr-alt p,.gr-acik,figcaption'); pn.querySelector('.go-cap').textContent=cap?cap.textContent.trim():''; pn.querySelectorAll('.go-ok').forEach(o=>o.hidden=false);};
+        pn._galeri=goster; goster(i); pn.showModal();};
+      tam.addEventListener('click',ac,true); tam.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' ') ac(e);});}
+  });
+  if(pn) pn.querySelectorAll('[data-go]').forEach(o=>o.addEventListener('click',e=>{if(!pn._galeri) return; e.stopImmediatePropagation();
+    const n=parseInt(pn.querySelector('.go-say').textContent)-1; pn._galeri(n+(+o.dataset.go));},true));
+  if(pn) pn.addEventListener('close',()=>{pn._galeri=null;});
+})();
