@@ -130,14 +130,14 @@ if(matchMedia('(hover: none)').matches){ document.querySelectorAll('.mm>.mm-a').
 
 /* Kayan şerit (Beyar: sığmayan öğe alt satıra inmez; okla ve sürükleyerek yatay kayar). Ortak bileşen: KAYAN listesindeki ya da
    [data-kayar] taşıyan her tek satır. Taşıyorsa uçlarda yapışkan oklar belirir; fareyle sürüklenir (sürükleme sonrası tık yutulur). */
-(()=>{const KAYAN='.dt-etk,.dt-pay,.cp-izg,.dt-meta,.dt-c-filtre,.sw-lejant,.pf-kunye,.mt-kunye,.ls-arac2,.gband .cipler,[data-kayar]';
+(()=>{const KAYAN='.dt-etk,.dt-pay,.cp-izg,.dt-meta,.cd-kilit ol,.dt-c-filtre,.sw-lejant,.pf-kunye,.mt-kunye,.ls-arac2,.gband .cipler,[data-kayar]';
   const yon=el=>getComputedStyle(el).direction==='rtl'?-1:1;
   const kur=el=>{ if(el.dataset.ks) return; el.dataset.ks='1'; el.classList.add('ks');
     const ok=(s)=>{const b=document.createElement('button'); b.type='button'; b.className='ks-ok ks-'+(s<0?'bas':'son'); b.setAttribute('aria-label',s<0?'Geri kaydır':'İleri kaydır');
       b.innerHTML='<i class="fa-solid fa-chevron-'+(s<0?'left':'right')+'"></i>'; b.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();
       el.scrollBy({left:s*yon(el)*el.clientWidth*.7,behavior:azHareket?'auto':'smooth'});}); return b;};
     const bas=ok(-1), son=ok(1); el.prepend(bas); el.append(son);
-    const durum=()=>{const t=el.scrollWidth>el.clientWidth+2, x=el.scrollLeft*yon(el);
+    const durum=()=>{const b0=bas.hidden,s0=son.hidden; bas.hidden=son.hidden=true; const t=el.scrollWidth>el.clientWidth+2, x=el.scrollLeft*yon(el); bas.hidden=b0; son.hidden=s0;
       bas.hidden=!t||x<=1; son.hidden=!t||x+el.clientWidth>=el.scrollWidth-1;};
     el.addEventListener('scroll',durum,{passive:true}); addEventListener('resize',durum); durum();
     let x0=null,s0=0,surdu=false;

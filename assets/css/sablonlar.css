@@ -468,3 +468,14 @@ span.dt-oyn{display:grid;place-items:center;flex:none}
 .sw-takvim .tk-ekle,.yy-s .tk-ekle{justify-self:start}
 .ca-o p a,.bo-s p a,.gn-degis a{color:var(--marka-metin);font-weight:700;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
 .ca-o .ca-medya .dt-video{inset-inline-end:auto;inline-size:max-content;max-inline-size:calc(100% - 24px)}
+/* Kilit anlar: yatay zaman şeridi (Beyar, A). Saat üstte, cümle altta en çok 2 satır; sığmayan okla ve sürükleyerek kayar */
+.cd-kilit ol{display:flex;align-items:flex-start;gap:10px;overflow-x:auto;scrollbar-width:none}
+.cd-kilit li{flex:1 0 124px}
+.cd-kilit li{min-inline-size:0}
+.cd-kilit li{position:relative;padding:12px 14px;border-radius:var(--k-kontrol);background:var(--beyaz);border:1px solid var(--marka-100)}
+.cd-kilit a{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden;min-block-size:3lh;padding:0;line-height:1.4}
+.cd-kilit a::after{content:"";position:absolute;inset:0;border-radius:inherit}
+.cd-kilit a time{display:block}
+.cd-kilit li:hover{border-color:var(--marka)}
+.cd-kilit ol>.ks-ok{align-self:center}
+@media (max-width:639.98px){.cd-kilit li{flex:0 0 46%}}

@@ -1390,8 +1390,8 @@ html.perde-acik body>.alt-gez:not(.ft):not(script){position:fixed}
 .ks.surukle *{pointer-events:none}
 .ks-ok{position:sticky;z-index:2;flex:none;display:grid;place-items:center;inline-size:32px;block-size:32px;margin-block:auto;border:1px solid var(--gri-100);border-radius:50%;background:var(--beyaz);color:var(--siyah);font-size:12px;cursor:pointer;box-shadow:0 0 0 10px var(--beyaz)}
 .ks-ok[hidden]{display:none}
-.ks-bas{inset-inline-start:0;margin-inline-end:4px}
-.ks-son{inset-inline-end:0;margin-inline-start:4px}
+.ks-bas{inset-inline-start:0;margin-inline-end:-32px}
+.ks-son{inset-inline-end:0;margin-inline-start:-32px}
 .ks-ok:dir(rtl) i{transform:scaleX(-1)}
 @media (pointer:coarse){.ks-ok{inline-size:var(--dokun);block-size:var(--dokun)}}
 /* Kenar "Görüş bildir": dikey yazı yalnız iç metinde; konum sayfanın yönüne göre (Arapçada sol kenar) */
