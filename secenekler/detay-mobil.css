@@ -1,0 +1,21 @@
+/* Detay sayfası · telefon alternatifleri (taslak, secenekler/). Yalnız dar ekranda devreye girer; masaüstü değişmez. */
+@media (max-width:1024px){
+  /* A · Başlık önce: başlık, spot ve künye en üstte; görsel künyenin altında */
+  .sm-a .dt-sade:first-child,.sm-c .dt-sade:first-child{padding-block-start:16px}
+  .sm-a .dt-sutun>.dt-ana,.sm-c .dt-sutun>.dt-ana{margin-block-start:20px}
+  /* B · Görsel üstünde başlık: tam genişlik dikey görsel, başlık görselin alt kısmında */
+  .sm-b .dt-ust .kap{padding-inline:0}
+  .sm-b .dt-ana.genis{display:grid}
+  .sm-b .dt-ana.genis .dt-ana-g,.sm-b .sm-ust{grid-area:1/1}
+  .sm-b .dt-ana.genis .dt-ana-g{aspect-ratio:4/5;block-size:auto;max-block-size:none;border-radius:0}
+  .sm-b .sm-ust{align-self:end;display:grid;gap:10px;justify-items:start;padding:72px var(--kenar) 20px;background:linear-gradient(180deg,transparent,rgba(12,12,12,.82));color:var(--beyaz);z-index:1}
+  .sm-b .sm-ust h1{font-size:var(--y-2xl);font-weight:800;line-height:1.1;letter-spacing:-.02em;color:var(--beyaz);text-wrap:balance}
+  .sm-b .sm-ust .cip{position:static;display:inline-flex;background:var(--marka);color:var(--siyah);border:0}
+  .sm-b .sm-ust .cip i{color:var(--siyah)}
+  .sm-b .dt-video{inset-block-start:16px;inset-block-end:auto;z-index:2}
+  .sm-b figcaption{padding-inline:var(--kenar)}
+  .sm-b .dt-bas-ic{padding-block-start:4px}
+  .sm-a .dt-sade+.dt-sade2,.sm-c .dt-sade+.dt-sade2{padding-block-start:8px}
+  /* C · Önce özet: başlık ve künyenin hemen altında Dada Özet, sonra görsel */
+  .sm-c .dt-sutun>.dt-ozet{margin-block-start:20px}
+}

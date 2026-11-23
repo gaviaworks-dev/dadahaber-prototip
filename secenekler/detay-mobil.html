@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Detay Telefon Seçenekleri · Dada Haber</title>
+<link rel="stylesheet" href="../assets/css/degiskenler.css">
+<link rel="stylesheet" href="../assets/vendor/fontawesome-6.5.2/css/all.min.css">
+<style>
+  *{box-sizing:border-box;margin:0}
+  body{font-family:"Gilroy",system-ui,sans-serif;background:var(--zemin-b,#FAFAFA);color:var(--siyah);padding:32px 24px 64px}
+  .bas{max-inline-size:1280px;margin-inline:auto;display:grid;gap:8px;margin-block-end:28px}
+  .bas small{font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--marka-metin)}
+  h1{font-size:34px;font-weight:800;letter-spacing:-.02em}
+  .bas p{font-size:17px;color:var(--gri-600);max-inline-size:70ch;line-height:1.55}
+  .izg{max-inline-size:1280px;margin-inline:auto;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+  .sec{display:grid;gap:12px;align-content:start}
+  .sec h2{font-size:20px;font-weight:800}
+  .sec h2 span{display:inline-grid;place-items:center;inline-size:30px;block-size:30px;margin-inline-end:8px;border-radius:8px;background:var(--marka);font-size:15px}
+  .sec p{font-size:15px;line-height:1.5;color:var(--gri-800)}
+  .sec ul{list-style:none;padding:0;display:grid;gap:4px;font-size:14px;color:var(--gri-600)}
+  .sec li b{color:var(--siyah)}
+  .tel{inline-size:390px;max-inline-size:100%;block-size:780px;border:10px solid #121212;border-radius:44px;overflow:hidden;background:#fff;justify-self:center}
+  .tel iframe{inline-size:100%;block-size:100%;border:0;display:block}
+  .ac{justify-self:center;display:inline-flex;gap:8px;align-items:center;block-size:44px;padding:0 18px;border-radius:12px;background:#121212;color:#fff;font-weight:800;font-size:14px;text-decoration:none}
+  .tav{border:2px solid var(--marka);border-radius:16px;padding:12px 14px;background:var(--marka-10)}
+  @media (max-width:1100px){.izg{grid-template-columns:minmax(0,1fr)}.tel{block-size:720px}}
+</style>
+</head>
+<body>
+<header class="bas">
+  <small>Dada Haber · Haber detayı · Telefon</small>
+  <h1>Haber detayı için 3 telefon alternatifi</h1>
+  <p>Üçü de aynı haberi aynı içerikle gösterir; yalnız ilk ekranda okurun neyi önce gördüğü değişir. Telefonda açmak için her seçeneğin altındaki düğmeyi kullanın. Masaüstü düzeni değişmez.</p>
+</header>
+<main class="izg">
+  <section class="sec">
+    <h2><span>A</span>Başlık önce</h2>
+    <p>Başlık, kısa özet ve künye en üstte; görsel onların altında. Okur ilk ekranda haberin ne olduğunu okur.</p>
+    <ul><li><b>Artısı:</b> sosyal medyadan gelen okur başlığı kaydırmadan görür; proje kuralındaki sıraya uyar (başlık → özet → medya).</li><li><b>Eksisi:</b> görsel ve video ilk ekranın altında kalır.</li><li><b>Referans:</b> BBC News ve Guardian mobil haber sayfaları.</li></ul>
+    <div class="tel"><iframe src="detay-mobil-a.html" title="Seçenek A" loading="lazy"></iframe></div>
+    <a class="ac" href="detay-mobil-a.html">A'yı telefonda aç <i class="fa-solid fa-arrow-right"></i></a>
+  </section>
+  <section class="sec">
+    <h2><span>B</span>Görsel üstünde başlık</h2>
+    <p>Tam genişlikte dikey görsel; başlık ve kategori görselin alt kısmında, karartma üzerinde. İlk ekran bir kapak gibi görünür.</p>
+    <ul><li><b>Artısı:</b> güçlü ilk izlenim; genç okurun alıştığı hikâye/reels diline yakın.</li><li><b>Eksisi:</b> özet ve künye ikinci ekrana iner; zayıf görselde başlık okunurluğu düşer.</li><li><b>Referans:</b> The Verge ve NYT mobil kapak haberleri.</li></ul>
+    <div class="tel"><iframe src="detay-mobil-b.html" title="Seçenek B" loading="lazy"></iframe></div>
+    <a class="ac" href="detay-mobil-b.html">B'yi telefonda aç <i class="fa-solid fa-arrow-right"></i></a>
+  </section>
+  <section class="sec">
+    <h2><span>C</span>Önce özet</h2>
+    <p>Başlık ve künyenin hemen altında Dada Özet (15 saniye / 1 dakika / tam metin); görsel özetten sonra gelir.</p>
+    <ul><li><b>Artısı:</b> ürünün farkı (Dada Özet) ilk ekranda; acelesi olan okur 15 saniyede haberi alır.</li><li><b>Eksisi:</b> ilk ekran metin ağırlıklı; görselle açılmaz.</li><li><b>Referans:</b> Axios "Smart Brevity" ve Semafor haber yapısı.</li></ul>
+    <div class="tel"><iframe src="detay-mobil-c.html" title="Seçenek C" loading="lazy"></iframe></div>
+    <a class="ac" href="detay-mobil-c.html">C'yi telefonda aç <i class="fa-solid fa-arrow-right"></i></a>
+  </section>
+</main>
+<p class="bas tav" style="margin-block-start:28px"><b>Tavsiye: A.</b> Genç okurun ilk gördüğü ekran haber detayı; başlığı ve özeti kaydırmadan görmesi gerekir. Görsel hemen altta kalır, video düğmesiyle birlikte.</p>
+</body>
+</html>
