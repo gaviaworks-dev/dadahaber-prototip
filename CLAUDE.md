@@ -131,6 +131,7 @@ Sıra Beyar'ın isteğiyle değişebilir. `DADAHABER-05-kararlar.md` içindeki B
 - Logo ve ikonlar SVG ya da Font Awesome 6.5.2 Free (depoda barındırılır).
 - Örnek içerik gerçekçi Türkçe haber metnidir; lorem ipsum yok. Başka yayın kuruluşunun logosu, filigranı ya da içeriği kullanılmaz.
 - Reklam, görsel, video ve gömülü içerik alanları önceden ayrılır; sayfa sıçramaz. Açılır pencere ve tam ekran reklam yok.
+- **Ana sayfanın son bölümü her zaman e-bülten kaydıdır** (footer'dan hemen önce; ortak parça `parcalar/bulten.html`).
 - **Kartın tamamı tıklanır.** Haber, video, podcast ve benzeri bütün kartlarda yalnızca
   başlık değil, kartın herhangi bir yeri tıklanınca detaya gidilir. Kart içindeki ayrı
   işlevli öğeler (kaydet, paylaş, takip et, kategori etiketi, yazar adı) kendi işlerini
