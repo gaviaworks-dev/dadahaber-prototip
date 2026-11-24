@@ -17,7 +17,7 @@ Parçaları ve kuralları yalnızca lead değiştirir (CLAUDE.md · Takım çal�
 import sys, re, glob, os
 KOK = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PARCALAR = {ad: open(os.path.join(KOK, 'parcalar', f'{ad}.html'), encoding='utf-8').read().split('-->', 1)[1].strip()
-            for ad in ('ust', 'son-dakika', 'footer')}
+            for ad in ('ust', 'son-dakika', 'footer', 'bulten')}
 kontrol = '--kontrol' in sys.argv
 hedef = [a for a in sys.argv[1:] if not a.startswith('--')] or sorted(glob.glob(os.path.join(KOK, '*.html')))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))

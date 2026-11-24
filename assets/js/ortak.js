@@ -501,4 +501,19 @@ const SES=(()=>{const ss=window.speechSynthesis, HIZ=[1,1.25,1.5,.75], K='dh-spi
 (()=>{const sec=ad=>{const n=s=>s.toLocaleLowerCase('tr').replace(/·.*$/,'').trim(); const b=[...document.querySelectorAll('.pn-sekme button,.pn-sekme a')].find(x=>n(x.textContent)===n(ad)); if(b){b.click(); return true;} return false;};
  document.addEventListener('click',e=>{const a=e.target.closest('[data-sekme-git]'); if(!a) return; if(sec(a.dataset.sekmeGit)){e.preventDefault(); a.closest('main')?.querySelector('.pn-sekme')?.scrollIntoView({block:'start',behavior:'smooth'});}});
  const q=new URLSearchParams(location.search).get('sekme'); if(q) sec(q.charAt(0).toLocaleUpperCase('tr')+q.slice(1));})();
+/* E-bülten kayıt bölümü (ortak parça): e-posta ve onay denetimi, bölüm içinde "Kaydın alındı" durumu (açılır pencere yok); üyeyken e-posta dolu ve abonelik satırı;
+   bölüm ekrandayken sabit öğeler (Spiker, Görüş bildir, Yukarı çık) çekilir. */
+document.querySelectorAll('[data-eb]').forEach(eb=>{const f=eb.querySelector('.eb-form'), inp=eb.querySelector('[data-eb-eposta]'), onay=eb.querySelector('[data-eb-onay]'), hata=eb.querySelector('.eb-hata'), hm=eb.querySelector('[data-eb-hata-metin]'), tm=eb.querySelector('.eb-tamam'), ab=eb.querySelector('.eb-abone');
+ const uye=document.documentElement.classList.contains('oturum'); if(uye){inp.value='ece.yilmaz@eposta.com'; ab.hidden=false;}
+ const goster=m=>{hm.textContent=m; hata.hidden=false; eb.classList.add('hatali'); inp.setAttribute('aria-invalid','true');};
+ const temizle=()=>{hata.hidden=true; eb.classList.remove('hatali'); inp.removeAttribute('aria-invalid');};
+ inp.addEventListener('input',temizle); onay.addEventListener('change',temizle);
+ f.addEventListener('submit',e=>{e.preventDefault(); const v=inp.value.trim();
+  if(!v) return goster('E-posta adresini yaz.'), inp.focus();
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) return goster('Geçerli bir e-posta adresi yaz (ör. ad@ornek.com).'), inp.focus();
+  if(!eb.querySelector('.eb-cip input:checked')) return goster('En az bir bülten seç.');
+  if(!onay.checked) return goster('Devam etmek için Açık Rıza Metni onayı gerekiyor.'), onay.focus();
+  temizle(); eb.querySelector('[data-eb-adres]').textContent=v; tm.hidden=false; eb.classList.add('tamam'); tm.querySelector('b').focus?.();});
+ let bk=0; const bak=()=>{bk=0; const r=eb.getBoundingClientRect(); document.documentElement.classList.toggle('eb-gorunur',r.top<innerHeight-40&&r.bottom>40);};
+ const iste=()=>{if(!bk) bk=setTimeout(bak,60);}; addEventListener("scroll",iste,{passive:true}); addEventListener("resize",iste); bak();});
 
