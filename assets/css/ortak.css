@@ -1955,4 +1955,4 @@ html.cz-acik .eb{padding-block-end:calc(56px + 120px)}
 .eb-abone a:hover{background:var(--marka);color:var(--siyah)}
 @media (pointer:coarse){.eb-abone a{min-block-size:var(--dokun)}}
 @media (max-width:639.98px){.eb-abone{flex-wrap:wrap}.eb-abone a{margin-inline-start:0}}
-
+.eb-sol p b{color:var(--marka);font-weight:800}
