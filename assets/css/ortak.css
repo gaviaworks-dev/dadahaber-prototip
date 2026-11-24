@@ -1888,3 +1888,4 @@ html.cal-acik .yukari{inset-block-end:120px}
 /* Telefonda detay paylaş satırı tek satırı doldurur */
 @media (max-width:639.98px){.dt-ep>.dt-pay{justify-content:space-between}}
 
+@media (max-width:639.98px){.dvz-bas .dvz-canli{display:none}.dvz-bas{min-inline-size:0}} /* telefonda Piyasalar başlık satırı taşmasın (denetim 2026-11-24) */
