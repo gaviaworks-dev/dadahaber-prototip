@@ -265,3 +265,50 @@ em.y{color:var(--artis)}em.d{color:var(--azalis)}
 .sw-tablo td.sw-tkh,.sw-puan td.sw-tkh{display:table-cell;white-space:nowrap;vertical-align:middle}
 .sw-tablo td.sw-tkh>*,.sw-puan td.sw-tkh>*{vertical-align:middle}
 .sw-tablo td.sw-tkh>.sw-arma,.sw-puan td.sw-tkh>.sw-arma{display:inline-grid;margin-inline-end:10px}
+/* ===== Revize 2026-11-24 (Beyar) · piyasa tabloları ortak =====
+   1) Ad hücresi tek satır: ikon · kod/ad · alt bilgi yan yana (önceden üç satıra yığılıyordu; satır yüksekliği ve aralık çubukları bozuluyordu).
+   2) Aralık hücresi (en düşük · çubuk · en yüksek) gerçek tablo hücresi; satırın ortasında hizalı.
+   3) Uzun listeler (kripto, hisse: binlerce satır): üstte arama + sıralama sekmeleri + sayaç, tablo kendi içinde kayar, başlık satırı sabit. */
+.sw-tablo td.sw-tkh>.dv-kod,.sw-puan td.sw-tkh>.dv-kod{display:inline-grid;inline-size:32px;block-size:32px;margin-inline-end:10px;vertical-align:middle}
+.dv-tablo td.sw-tkh>span:not(.dv-kod){display:inline-flex;align-items:baseline;gap:var(--ikon-bosluk);vertical-align:middle}
+.dv-tablo td.sw-tkh small{font-size:var(--y-sm)}
+.dv-tablo td{padding-block:10px}
+td.dv-ar{display:table-cell!important;vertical-align:middle;white-space:nowrap}
+td.dv-ar>span{display:inline-block;vertical-align:middle}
+td.dv-ar>span:not(.sw-ar){min-inline-size:9ch;text-align:end;font-variant-numeric:tabular-nums}
+td.dv-ar>.sw-ar{inline-size:clamp(56px,9vw,132px);margin-inline:10px}
+.pt-arac{display:flex;align-items:center;gap:12px;min-inline-size:0;overflow-x:auto;scrollbar-width:none;padding-block-end:4px}
+.pt-ara{flex:1 1 220px;min-inline-size:200px;max-inline-size:340px;display:flex;align-items:center;gap:var(--ikon-bosluk);block-size:40px;padding:0 12px;border-radius:var(--k-kontrol);border:1px solid var(--gri-100);background:var(--beyaz);color:var(--gri-400)}
+.pt-ara:focus-within{border-color:var(--marka);box-shadow:0 0 0 3px var(--marka-25)}
+.pt-ara input{flex:1;min-inline-size:0;border:0;outline:0;background:none;color:var(--siyah);font-size:var(--y-form)}
+.pt-ara i{color:var(--marka-metin)}
+.pt-sekme{display:flex;gap:4px;padding:4px;border-radius:var(--k-kontrol);background:var(--zemin-b);border:1px solid var(--gri-50);flex:none}
+.pt-sekme button{block-size:32px;padding:0 12px;border:0;border-radius:var(--k-ic);background:none;font:inherit;font-size:var(--y-sm);font-weight:700;color:var(--gri-600);cursor:pointer;white-space:nowrap}
+.pt-sekme button.aktif{background:var(--beyaz);color:var(--siyah);box-shadow:var(--golge-sm)}
+.pt-say{margin-inline-start:auto;flex:none;font-size:var(--y-sm);color:var(--gri-600);white-space:nowrap;font-variant-numeric:tabular-nums}
+.pt-say b{color:var(--siyah)}
+.pt-kaydir{max-block-size:560px;overflow:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:var(--gri-200) transparent;border-radius:var(--k-ic)}
+.pt-kaydir:focus-visible{outline:2px solid var(--marka);outline-offset:2px}
+.pt-kaydir thead th{position:sticky;inset-block-start:0;z-index:1;background:var(--beyaz)}
+.pt-bos td{padding-block:24px;color:var(--gri-600);text-align:center!important;white-space:normal}
+.dv-tablo tr[hidden]{display:none}
+/* Borsa · endeks kartı (v2 borsa.html'deki sekmeli endeks kutusu) */
+.dv-endeks-s{justify-self:stretch;overflow-x:auto;scrollbar-width:none}
+.dv-endeks-s button{flex:1}
+.dv-endeks{display:grid;gap:14px}
+.dv-endeks[hidden]{display:none}
+.dv-endeks-v{display:flex;align-items:baseline;gap:var(--ikon-bosluk)}
+.dv-endeks-v b{font-size:var(--y-xl);font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.dv-endeks-v small{font-size:var(--y-sm);color:var(--gri-600)}
+.dv-endeks-l{display:grid;gap:0;margin:0}
+.dv-endeks-l>div{display:flex;justify-content:space-between;gap:12px;padding-block:8px;border-block-end:1px solid var(--marka-100);font-size:var(--y-sm)}
+.dv-endeks-l dt{color:var(--gri-600)}
+.dv-endeks-l dd{margin:0;font-weight:800;font-variant-numeric:tabular-nums}
+.dv-endeks-ar{display:grid;grid-template-columns:auto minmax(40px,1fr) auto;align-items:end;gap:10px;font-variant-numeric:tabular-nums}
+.dv-endeks-ar>span:not(.sw-ar){display:grid;gap:2px;font-size:var(--y-sm)}
+.dv-endeks-ar>span:last-child{text-align:end}
+.dv-endeks-ar small{font-size:var(--y-xs);font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--gri-400)}
+.dv-endeks-ar .sw-ar{margin-block-end:6px}
+.dv-endeks-k .gd-dugme{justify-self:start}
+@media (max-width:639.98px){.pt-kaydir{max-block-size:440px}.pt-ara{min-inline-size:180px}}
+
