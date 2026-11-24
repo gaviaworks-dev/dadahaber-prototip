@@ -287,7 +287,7 @@ td.dv-ar>.sw-ar{inline-size:clamp(56px,9vw,132px);margin-inline:10px}
 .pt-sekme button.aktif{background:var(--beyaz);color:var(--siyah);box-shadow:var(--golge-sm)}
 .pt-say{margin-inline-start:auto;flex:none;font-size:var(--y-sm);color:var(--gri-600);white-space:nowrap;font-variant-numeric:tabular-nums}
 .pt-say b{color:var(--siyah)}
-.pt-kaydir{max-block-size:560px;overflow:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:var(--gri-200) transparent;border-radius:var(--k-ic)}
+.pt-kaydir{max-block-size:560px;overflow:auto;scrollbar-gutter:stable;padding-inline-end:10px;margin-inline-end:-10px;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:var(--gri-200) transparent;border-radius:var(--k-ic)}
 .pt-kaydir:focus-visible{outline:2px solid var(--marka);outline-offset:2px}
 .pt-kaydir thead th{position:sticky;inset-block-start:0;z-index:1;background:var(--beyaz)}
 .pt-bos td{padding-block:24px;color:var(--gri-600);text-align:center!important;white-space:normal}
