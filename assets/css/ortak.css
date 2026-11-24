@@ -1503,7 +1503,8 @@ dialog.gorsel-on::backdrop{background:rgba(10,10,10,.85)}
 .kenar-gorus{flex-direction:column;gap:0;padding:22px 11px;border-start-start-radius:var(--k-kontrol);border-end-start-radius:var(--k-kontrol);font-size:14px;font-weight:800;letter-spacing:.01em;box-shadow:-4px 6px 18px rgba(18,18,18,.14)}
 .kenar-gorus>span{transform:none}
 /* Revize 2026-11-24 (Beyar): Gastro'daki gibi sağ kenarda tam boy 8px marka şeridi; sekme şeride yapışık */
-@media (min-width:1025px){body:has(>.kenar-gorus)::after{content:"";position:fixed;inset-block:0;inset-inline-end:0;inline-size:8px;z-index:53;background:var(--marka);pointer-events:none}}
+@media (min-width:1025px){html:has(body>.kenar-gorus){scrollbar-width:none}html:has(body>.kenar-gorus)::-webkit-scrollbar{display:none} /* Revize 2026-11-24 (Beyar): sayfa kaydırma çubuğu şeridin önünde durmaz; şerit en dış kenarda */
+body:has(>.kenar-gorus)::after{content:"";position:fixed;inset-block:0;inset-inline-end:0;inline-size:8px;z-index:53;background:var(--marka);pointer-events:none}}
 @media print{body::after{display:none}}
 .kenar-gorus i{display:none}
 /* Haber detayı "Neden önemli / Bana etkisi / Bundan sonra": akordiyon, aynı anda tek bölüm açık (davranış ortak.js) */
@@ -1512,7 +1513,7 @@ dialog.gorsel-on::backdrop{background:rgba(10,10,10,.85)}
 .liste>.gk{display:grid;grid-template-columns:260px minmax(0,1fr);align-items:center;gap:24px;padding-block:18px;border-radius:0;background:none;box-shadow:none;border-block-end:1px solid var(--gri-50)}
 .liste>.gk:hover{transform:none;box-shadow:none}
 .liste>.gk .gm{aspect-ratio:16/10;border-radius:var(--k-kontrol)}
-.liste>.gk .gv{padding:0}
+.liste>.gk .gv{padding:0;padding-inline-end:24px} /* Revize 2026-11-24 (Beyar): Dinle satır kenarına yapışmaz */
 .liste>.gk h3{font-size:var(--y-lg);min-block-size:0;margin-block-end:10px}
 .liste>.gk .bilgi{margin-block-end:10px}
 @media (max-width:639.98px){
