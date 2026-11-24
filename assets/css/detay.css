@@ -325,3 +325,7 @@
 @media (max-width:639.98px){main:has(>.dt-ust .dt-ana-g) .dt-bas-ic .cip i{color:var(--siyah)!important}}
 .dt-teyit.incelendi{background:var(--gri-50);color:var(--gri-800)}
 @media (max-width:639.98px){main:has(>.dt-ust .dt-ana-g) .dt-bas-ic .dt-teyit.incelendi{background:rgba(255,255,255,.9);color:var(--siyah)}}
+/* Revize 2026-11-24 (Beyar): Dada Özet sayfasındaki özet kartı başlıkları kart başlığı ölçüsünde (h3, 17px) */
+.dt-ozet-bas h3{font-size:var(--y-md);font-weight:800;line-height:1.3}
+.dt-ozet-bas h3 a:hover{color:var(--marka-metin)}
+
