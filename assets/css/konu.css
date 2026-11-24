@@ -311,4 +311,8 @@ td.dv-ar>.sw-ar{inline-size:clamp(56px,9vw,132px);margin-inline:10px}
 .dv-endeks-ar .sw-ar{margin-block-end:6px}
 .dv-endeks-k .gd-dugme{justify-self:start}
 @media (max-width:639.98px){.pt-kaydir{max-block-size:440px}.pt-ara{min-inline-size:180px}}
+/* Revize 2026-11-24 (Beyar): piyasa tablolarında gerçek logo ve bayrak. Kare görsel kuralı: div/span + background-image + cover; doğrulanamayan logo yerine baş harfli yuvarlak yer tutucu (.dv-kod.harf) */
+.dv-kod.logo{background:var(--beyaz) center/cover no-repeat;border:1px solid var(--gri-50);overflow:hidden}
+.dv-kod.logo.kare{background-size:72%;background-color:var(--beyaz)}
+.dv-kod.harf{background:var(--gri-50);color:var(--gri-800);font-size:12px;font-weight:800;letter-spacing:-.02em}
 

@@ -71,6 +71,17 @@ for yol in hedef:
     # Yapı kuralı (Beyar: gereksiz satır açılmaz): Etiketler ve Paylaş tek satırda; solda etiketler (kayar), sağda paylaş
     t = re.sub(r'(?<!<div class="dt-ep">)(<div class="dt-etk[^"]*">(?:(?!<div).)*?</div>)\s*(<div class="dt-pay[^"]*">(?:(?!<div).)*?</div>)',
                r'<div class="dt-ep">\1\2</div>', t, flags=re.S)
+    # Etiket ve paylaş tek bileşen (Beyar 2026-11-24): tek başına duran dt-etk ya da dt-pay da dt-ep içine alınır; paylaşı olmayana standart paylaş eklenir
+    ad__ = os.path.basename(yol); u_ = 'https%3A%2F%2Fdadahaber.com%2F' + ad__
+    std_pay = ('<div class="dt-pay"><span>Paylaş</span>'
+        f'<a href="https://x.com/intent/post?url={u_}" class="dt-pay-d" aria-label="X\'te paylaş" title="X\'te paylaş"><i class="fa-brands fa-x-twitter"></i></a>'
+        f'<a href="https://www.facebook.com/sharer/sharer.php?u={u_}" class="dt-pay-d" aria-label="Facebook\'ta paylaş" title="Facebook\'ta paylaş"><i class="fa-brands fa-facebook-f"></i></a>'
+        f'<a href="https://wa.me/?text={u_}" class="dt-pay-d" aria-label="WhatsApp\'ta paylaş" title="WhatsApp\'ta paylaş"><i class="fa-brands fa-whatsapp"></i></a>'
+        '<button type="button" data-toast="Bağlantı kopyalandı" class="dt-pay-d" aria-label="Bağlantıyı kopyala" title="Bağlantıyı kopyala"><i class="fa-solid fa-link"></i></button></div>')
+    if 'class="dt-ep"' not in t:
+        t = re.sub(r'(<div class="dt-etk[^"]*">(?:(?!<div).)*?</div>)', lambda m: '<div class="dt-ep">' + m.group(1) + std_pay + '</div>', t, count=1, flags=re.S)
+    if 'class="dt-ep"' not in t:
+        t = re.sub(r'(<div class="dt-pay[^"]*">(?:(?!<div).)*?</div>)', r'<div class="dt-ep">\1</div>', t, count=1, flags=re.S)
     # Yapı kuralı: yorum filtresi "Yorumlar (N)" başlık satırının sağına (ayrı satır açılmaz)
     t = re.sub(r'(<section class="dt-yorum"[^>]*>\s*<div class="gs">)((?:(?!</div>).)*?)(</div>)((?:(?!<section).)*?)<div class="dt-c-filtre">((?:(?!</div>).)*?)</div>',
                r'\1\2<div class="arac dt-c-filtre">\5</div>\3\4', t, flags=re.S)
