@@ -97,6 +97,9 @@ for yol in hedef:
     # Bilgi satırı (Beyar 2026-11-24): "09.15 Güncellendi", "3 dk Okuma" baş harfleri büyük
     t = re.sub(r'(fa-bolt"></i>[^<]*?\d) güncellendi', r'\1 Güncellendi', t)
     t = re.sub(r'(fa-clock"></i>\d+ dk) okuma', r'\1 Okuma', t)
+    # Araç sayfaları (Hesabım, üyelik vb.; haber gövdesi yok) sade başlığı: daha küçük h1 ve açıklama (Beyar 2026-11-24)
+    if '<section class="dt-sade">' in t and 'dt-govde' not in t:
+        t = t.replace('<section class="dt-sade">', '<section class="dt-sade arac-bas">', 1)
     t = tablo_hizala(t)
     t = surumle(t)
     # "İçeriğe geç" bağlantısının hedefi
