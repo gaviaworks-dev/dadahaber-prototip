@@ -340,4 +340,26 @@ main>.dt-sade:first-child>.kap::before{content:"";display:block;block-size:1px;m
 .dt-pay-daha{cursor:pointer;font:inherit}
 .dt-pay-daha i{color:var(--gri-600)}
 .dt-pay-daha:hover i{color:var(--siyah)}
+/* Haberi dinle · durumlar ve mini çubuk (Beyar 2026-11-24) */
+.dt-eylem button.on{background:var(--marka);border-color:var(--marka);color:var(--siyah)}
+.dt-eylem button.on i{color:var(--siyah)}
+.dt-dalga i.dolu,.dt-dalga i:nth-child(-n+9).dolu{background:var(--marka)}
+.dt-dinle:has(.dt-dalga i.dolu) .dt-dalga i:not(.dolu){background:rgba(255,255,255,.25)}
+.dt-hiz{cursor:pointer;user-select:none}
+.dt-oyn{cursor:pointer}
+.dinle-cubuk{position:fixed;inset-inline:0;inset-block-end:20px;z-index:57;display:grid;grid-template-columns:40px minmax(0,1fr) minmax(80px,180px) auto 36px;align-items:center;gap:12px;inline-size:min(640px,calc(100vw - 32px));margin-inline:auto;padding:8px 8px 8px 8px;border-radius:var(--k-kart);background:var(--siyah);color:var(--beyaz);box-shadow:0 18px 44px rgba(18,18,18,.35);animation:dcGir .3s ease}
+.dinle-cubuk[hidden]{display:none}
+@keyframes dcGir{from{opacity:0;transform:translateY(12px)}}
+.dinle-cubuk button{display:grid;place-items:center;block-size:36px;border:0;border-radius:var(--k-ic);font:inherit;cursor:pointer}
+.dinle-cubuk .dc-oyn{inline-size:40px;block-size:40px;border-radius:var(--k-kontrol);background:var(--marka);color:var(--siyah)}
+.dinle-cubuk .dc-y{display:grid;min-inline-size:0}
+.dinle-cubuk .dc-y small{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--marka)}
+.dinle-cubuk .dc-y b{font-size:var(--y-sm);font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dinle-cubuk .dc-ilerle{display:block;block-size:4px;border-radius:4px;background:rgba(255,255,255,.2);overflow:hidden}
+.dinle-cubuk .dc-ilerle i{display:block;block-size:100%;inline-size:0;background:var(--marka);transition:inline-size .4s linear}
+.dinle-cubuk .dc-hiz{padding:0 10px;border:1px solid rgba(255,255,255,.25);background:none;color:var(--beyaz);font-size:var(--y-sm);font-weight:800}
+.dinle-cubuk .dc-kapat{inline-size:36px;background:rgba(255,255,255,.1);color:var(--beyaz)}
+@media (max-width:639.98px){.dinle-cubuk{grid-template-columns:40px minmax(0,1fr) auto 36px;inset-block-end:calc(84px + env(safe-area-inset-bottom,0px))}.dinle-cubuk .dc-ilerle{grid-column:1/-1;grid-row:2}}
+html.perde-acik body>.dinle-cubuk{position:fixed}
+html.dinleniyor .mentor{opacity:0;pointer-events:none}
 

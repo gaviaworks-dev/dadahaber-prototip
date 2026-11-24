@@ -404,4 +404,35 @@ document.querySelectorAll('[data-pt]').forEach(k=>{const tb=k.querySelector('tbo
   k.addEventListener('keydown',e=>{if(e.key==='Escape'&&acik){e.preventDefault(); durum(false);}});
   addEventListener('scroll',iste,{passive:true}); addEventListener('resize',iste);
   new MutationObserver(iste).observe(document.documentElement,{attributes:true,attributeFilter:['class']}); olc(); setTimeout(olc,600);})();
+/* Haberi dinle (Beyar 2026-11-24: "sol şeritteki ses düğmesine basınca bir şey olmuyor"): sol şeritteki Dinle, içerikteki "Haberi dinle" oynatıcısı ve
+   alttaki mini çubuk tek denetleyiciye bağlı. Tarayıcının Türkçe sesiyle başlık + spot + gövde okunur (speechSynthesis); ses yoksa zamanlayıcıyla ilerler.
+   Oynarken şerit düğmesi etkin (duraklat ikonu), dalga ilerlemeye göre dolar; oynatıcı ekrandan çıkınca altta mini çubuk görünür. */
+(()=>{const bas=document.querySelector('.dt-bas-ic h1'); const ray=document.querySelector('.dt-eylem button[aria-label="Dinle"]'), ic=document.querySelector('.dt-dinle'); if(!bas||(!ray&&!ic)) return;
+  const metin=[bas.textContent, document.querySelector('.dt-spot')?.textContent||'', ...[...document.querySelectorAll('.dt-govde p')].map(p=>p.textContent)].join('. ').replace(/\s+/g,' ').trim();
+  const ss=window.speechSynthesis, HIZ=[1,1.25,1.5,0.75]; let cal=false, poz=0, hi=0, zam=null, ut=null;
+  const sureSn=Math.max(60,Math.round(metin.length/14));
+  const cub=document.createElement('div'); cub.className='dinle-cubuk'; cub.hidden=true; cub.setAttribute('role','region'); cub.setAttribute('aria-label','Haber dinleniyor');
+  cub.innerHTML='<button type="button" class="dc-oyn" aria-label="Duraklat"><i class="fa-solid fa-pause"></i></button><span class="dc-y"><small>Dinleniyor</small><b></b></span><span class="dc-ilerle"><i></i></span><button type="button" class="dc-hiz" aria-label="Okuma hızı">1x</button><button type="button" class="dc-kapat" aria-label="Dinlemeyi kapat"><i class="fa-solid fa-xmark"></i></button>';
+  cub.querySelector('b').textContent=bas.textContent; document.body.appendChild(cub);
+  const dalga=ic?[...ic.querySelectorAll('.dt-dalga i')]:[], icOyn=ic?.querySelector('.dt-oyn'), icHiz=ic?.querySelector('.dt-hiz');
+  let icGorunur=true; if(ic&&'IntersectionObserver' in window) new IntersectionObserver(e=>{icGorunur=e[0].isIntersecting; boya();}).observe(ic); else icGorunur=false;
+  const boya=()=>{const o=Math.min(1,poz/metin.length), n=Math.round(o*dalga.length);
+    dalga.forEach((d,i)=>d.classList.toggle('dolu',i<n)); cub.querySelector('.dc-ilerle i').style.inlineSize=(o*100)+'%';
+    const ik=cal?'fa-solid fa-pause':'fa-solid fa-play';
+    if(icOyn){icOyn.querySelector('i').className=ik; icOyn.setAttribute('aria-label',cal?'Duraklat':'Dinle');}
+    cub.querySelector('.dc-oyn i').className=ik; cub.querySelector('.dc-oyn').setAttribute('aria-label',cal?'Duraklat':'Devam et');
+    if(ray){ray.classList.toggle('on',cal||poz>0); ray.setAttribute('aria-pressed',cal); ray.querySelector('i').className=cal?'fa-solid fa-pause':'fa-solid fa-headphones';}
+    const h=HIZ[hi]+'x'; cub.querySelector('.dc-hiz').textContent=h; if(icHiz) icHiz.textContent=h;
+    cub.hidden=!(cal||poz>0)||(icGorunur&&!!ic); document.documentElement.classList.toggle('dinleniyor',!cub.hidden);};
+  const bitti=()=>{cal=false; poz=0; boya();};
+  const konus=()=>{if(!ss){clearInterval(zam); zam=setInterval(()=>{poz+=metin.length/sureSn*HIZ[hi]; if(poz>=metin.length){clearInterval(zam); bitti();} boya();},1000); return;}
+    ss.cancel(); ut=new SpeechSynthesisUtterance(metin.slice(poz)); ut.lang='tr-TR'; ut.rate=HIZ[hi]; const v=ss.getVoices().find(x=>/^tr/i.test(x.lang)); if(v) ut.voice=v;
+    const b0=poz; ut.onboundary=e=>{poz=b0+e.charIndex; boya();}; ut.onend=()=>{if(cal) bitti();}; ss.speak(ut);};
+  const oynat=()=>{cal=true; konus(); boya();};
+  const durdur=()=>{cal=false; if(ss) ss.cancel(); clearInterval(zam); boya();};
+  const degis=()=>cal?durdur():oynat();
+  ray?.addEventListener('click',degis); icOyn?.addEventListener('click',degis); cub.querySelector('.dc-oyn').addEventListener('click',degis);
+  const hizla=()=>{hi=(hi+1)%HIZ.length; if(cal) konus(); boya();}; icHiz?.addEventListener('click',hizla); if(icHiz){icHiz.setAttribute('role','button'); icHiz.tabIndex=0;} cub.querySelector('.dc-hiz').addEventListener('click',hizla);
+  cub.querySelector('.dc-kapat').addEventListener('click',()=>{durdur(); poz=0; boya();});
+  addEventListener('pagehide',()=>{if(ss) ss.cancel();}); boya();})();
 
