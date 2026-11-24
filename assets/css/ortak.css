@@ -1128,7 +1128,7 @@ dialog.pn::backdrop{background:rgba(18,18,18,.55);backdrop-filter:blur(4px)}
 .pn-alt{display:flex;justify-content:flex-end;gap:8px;padding:16px 24px;border-block-start:1px solid var(--gri-50)}
 .pn-alt .fr-dugme{block-size:44px;padding-inline:18px;font-size:var(--y-sm)}
 .pn-liste{display:grid;gap:4px}
-.pn-liste a,.pn-liste button{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:var(--k-kontrol);border:0;background:none;font:inherit;font-size:var(--y-md);font-weight:700;text-align:start;cursor:pointer;color:inherit}
+.pn-liste a,.pn-liste button{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:var(--k-kontrol);border:0;background:none;font:inherit;font-size:var(--y-pn);font-weight:700;text-align:start;cursor:pointer;color:inherit}
 .pn-liste a:hover,.pn-liste button:hover{background:var(--marka-10)}
 .pn-liste i{inline-size:20px;text-align:center;color:var(--marka-metin)}
 .pn-liste .aktif{background:var(--marka-10);box-shadow:inset 3px 0 0 var(--marka)}
@@ -1628,3 +1628,5 @@ html[data-boyut] main{zoom:var(--olcek,1)}
 .fr-inp::placeholder,input::placeholder,textarea::placeholder{font-size:var(--y-form);color:var(--gri-300);opacity:1}
 /* Revize 2026-11-24 (Beyar): sağ üstteki dil, Giriş Yap, Üye Ol (ve girişli hal düğmesi, aynı banttaki ikon düğmeleri) bir tık sivri: 8px */
 .bant .act,.bant .dil,.bant .uye,.bant .act.giris,.bant .hs-uye,.dil,.uye,.act.giris,.hs-uye{border-radius:var(--k-ic)}
+/* Revize 2026-11-24: Yukarı çık düğmesi footer'ın en alt satırına (GaviaWorks) binmez; satır görünürken yukarı kalkar (ortak.js --ft-ek) */
+.yukari{translate:0 calc(-1 * var(--ft-ek,0px))}
