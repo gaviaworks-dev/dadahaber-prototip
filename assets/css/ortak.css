@@ -1131,7 +1131,7 @@ dialog.pn::backdrop{background:rgba(18,18,18,.55);backdrop-filter:blur(4px)}
 .pn-kapat:hover{border-color:var(--marka);color:var(--siyah)}
 .pn-ic{display:grid;gap:16px;padding:24px}
 .pn-ic>p{font-size:var(--y-sm);line-height:1.6;color:var(--gri-600)}
-.pn-alt{display:flex;justify-content:flex-end;gap:8px;padding:16px 24px;border-block-start:1px solid var(--gri-50)}
+.pn-alt{display:flex;justify-content:center;align-items:center;gap:8px;padding:20px 24px 24px;border-block-start:1px solid var(--gri-50)} /* Revize 2026-11-24 (Beyar): pencere alt düğmeleri ortada, alt kenara dayanmaz */
 .pn-alt .fr-dugme{block-size:44px;padding-inline:18px;font-size:var(--y-sm)}
 .pn-liste{display:grid;gap:4px}
 .pn-liste a,.pn-liste button{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:var(--k-kontrol);border:0;background:none;font:inherit;font-size:var(--y-pn);font-weight:700;text-align:start;cursor:pointer;color:inherit}
@@ -1321,6 +1321,7 @@ dialog.cekmece .pn-bas .logo-img img{inline-size:140px}
   /* pencereler telefonda alttan açılan panel */
   dialog.pn:not(.cekmece){inline-size:100%;max-inline-size:100%;max-block-size:92dvh;margin:auto 0 0;border-end-start-radius:0;border-end-end-radius:0}
   .pn-bas,.pn-ic,.pn-alt{padding-inline:16px}
+  .pn-alt{padding-block-end:calc(20px + env(safe-area-inset-bottom,0px))}
   .pn-alt{flex-wrap:wrap}
   .pn-alt .fr-dugme{flex:1}
   .fr-sosyal{grid-template-columns:repeat(3,minmax(0,1fr))}
