@@ -152,7 +152,7 @@
 .gr-sahne.dikey{aspect-ratio:4/5;background-size:cover;background-position:center top}
 .gr-say{position:absolute;inset-block-start:16px;inset-inline-start:16px;display:inline-flex;align-items:center;gap:var(--ikon-bosluk);block-size:36px;padding:0 12px;border-radius:var(--k-kontrol);background:var(--ust-zemin);border:1px solid var(--ust-cizgi);backdrop-filter:blur(6px);color:var(--beyaz);font-size:var(--y-sm);font-weight:800}
 .gr-say i{color:var(--marka)}
-.gr-ok{position:absolute;inset-block-start:50%;translate:0 -50%;display:grid;place-items:center;inline-size:52px;block-size:52px;border-radius:50%;border:1px solid var(--ust-cizgi);background:var(--ust-zemin);backdrop-filter:blur(6px);color:var(--beyaz);cursor:pointer}
+.gr-ok{position:absolute;inset-block-start:50%;translate:0 -50%;display:grid;place-items:center;inline-size:52px;block-size:52px;border-radius:var(--k-kontrol);border:1px solid var(--ust-cizgi);background:var(--ust-zemin);backdrop-filter:blur(6px);color:var(--beyaz);cursor:pointer}
 .gr-ok.o{inset-inline-start:16px}.gr-ok.s{inset-inline-end:16px}
 .gr-ok:hover{background:var(--marka);color:var(--siyah);border-color:var(--marka)}
 .gr-tam{position:absolute;inset-block-start:16px;inset-inline-end:16px}
