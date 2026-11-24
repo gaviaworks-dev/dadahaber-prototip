@@ -13,6 +13,9 @@
 .dt-yz{gap:10px!important;padding-inline-end:18px;border-inline-end:1px solid rgba(255,255,255,.2)}
 .dt-yz .av{display:grid;place-items:center;inline-size:40px;block-size:40px;border-radius:50%;background:var(--marka-25);color:var(--marka-metin);font-weight:800}
 .dt-yz b{display:block;color:var(--beyaz)}.dt-yz small{font-weight:500}
+/* Beyar 2026-11-24: yazar adı ile unvanı arası sıkı (2px), satır payı yok */
+.dt-yz b{line-height:1.2}
+.dt-yz small{display:block;line-height:1.2;margin-block-start:2px}
 .dt-bn.tam .kap{min-block-size:560px}
 .dt-bn.tam::before{background:linear-gradient(0deg,rgba(18,18,18,.92) 0%,rgba(18,18,18,.55) 50%,rgba(18,18,18,.3) 100%)}
 .dt-ana{display:grid;gap:10px;margin-block-end:36px}
