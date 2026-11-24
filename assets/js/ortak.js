@@ -67,10 +67,13 @@ document.querySelectorAll('.am .ls-cipler').forEach(serit=>{
 /* Açılır pencereler (C6): [data-acilir="ad"] → <dialog id="pn-ad">; [data-kapat] ya da arka plana tıklama kapatır.
    Kaydet ve yazar/konu takibi üyelik penceresini, Paylaş ve Yazı boyutu düğmeleri kendi pencerelerini açar. */
 /* Pencere açılıp kapanınca sayfa yerinden oynamaz (Beyar 2026-11-24: "pop up açınca yukarı çıkıyor"): kaydırma yeri saklanır, odak kaydırmasız verilir, kapanışta geri konur. */
-const modalAc=d=>{const y=scrollY, g=document.activeElement; d.showModal(); d._yer=y; d._geri=g; (d.querySelector('[autofocus]')||d.querySelector('.pn-kapat')||d).focus({preventScroll:true});
-  const tut=()=>{if(Math.abs(scrollY-y)>1) scrollTo({top:y,behavior:'instant'});}; tut(); requestAnimationFrame(tut);};
+/* Sayfa yerini koru (Beyar 2026-11-24, ikinci kez): pencere açılıp kapanırken 700ms boyunca her kaydırma eski yerine döner; yumuşak kaydırma bu sürede kapalı (odak ve top-layer değişimi sayfayı oynatmasın). */
+const yerTut=y=>{const h=document.documentElement, t0=performance.now(); h.style.scrollBehavior='auto';
+  const g=()=>{if(performance.now()-t0>700){removeEventListener('scroll',g); h.style.scrollBehavior=''; return;} if(Math.abs(scrollY-y)>1) scrollTo(0,y);};
+  addEventListener('scroll',g,{passive:true}); g(); requestAnimationFrame(g); setTimeout(()=>{removeEventListener('scroll',g); h.style.scrollBehavior=''; if(Math.abs(scrollY-y)>1) scrollTo(0,y);},720);};
+const modalAc=d=>{const y=scrollY, g=document.activeElement; document.documentElement.style.scrollBehavior='auto'; d.showModal(); d._yer=y; d._geri=g; (d.querySelector('[autofocus]')||d.querySelector('.pn-kapat')||d).focus({preventScroll:true}); yerTut(y);};
 const pnAc=ad=>{const d=document.getElementById('pn-'+ad); if(!d) return false; document.querySelectorAll('dialog.pn[open]').forEach(x=>x.close()); modalAc(d); return true;};
-document.querySelectorAll('dialog').forEach(d=>d.addEventListener('close',()=>{const y=d._yer; if(y==null) return; const g=d._geri; if(g&&g.focus) g.focus({preventScroll:true}); const tut=()=>{if(Math.abs(scrollY-y)>1) scrollTo({top:y,behavior:'instant'});}; tut(); requestAnimationFrame(tut); d._yer=null;}));
+document.querySelectorAll('dialog').forEach(d=>d.addEventListener('close',()=>{const y=d._yer; if(y==null) return; const g=d._geri; if(g&&g.focus) g.focus({preventScroll:true}); yerTut(y); d._yer=null;}));
 const toast=m=>{const k=document.querySelector('.toast-kap'); if(!k) return; const t=document.createElement('div'); t.className='toast'; t.innerHTML='<i class="fa-solid fa-check"></i>'+m; k.appendChild(t); setTimeout(()=>t.remove(),2600);};
 document.addEventListener('click',e=>{
   const a=e.target.closest('[data-acilir]'); if(a&&pnAc(a.dataset.acilir)){e.preventDefault();return;}
@@ -386,7 +389,7 @@ document.querySelectorAll('[data-pt]').forEach(k=>{const tb=k.querySelector('tbo
   am.addEventListener('click',e=>{const a=e.target.closest('a.ls-cip'); if(!a||e.ctrlKey||e.metaKey||e.shiftKey||e.button!==0) return;
     const u=new URL(a.href,location.href); if(u.origin!==location.origin&&location.protocol!=='file:') return;
     try{sessionStorage.setItem(K,JSON.stringify({y:Math.round(am.getBoundingClientRect().top),t:Date.now()}));}catch(_){}});})();
-/* Yüzen Mentör (dadagastro.com mentor.js davranışı): aç / küçült; çerez bandı ve dar ekran alt çubuklarının üstüne oturur; sayfanın sonuna gelince (footer) kenara çekilir; Esc küçültür. */
+/* Yüzen Spiker (dadagastro.com mentor.js davranışı; video açılınca yüklenir ve oynar, küçültünce durur): aç / küçült; çerez bandı ve dar ekran alt çubuklarının üstüne oturur; sayfanın sonuna gelince (footer) kenara çekilir; Esc küçültür. */
 (()=>{const k=document.getElementById('dadaMentor'); if(!k) return; const ac=k.querySelector('.mp-mini'), kc=k.querySelector('.mp-kucult'), ust=k.querySelector('.mp-ust'), gv=k.querySelector('.mp-govde');
   const ENGEL='.cz,.alt-gez,.dt-eylem.dikey'; let acik=false, bek=0;
   const olc=()=>{bek=0; const sol=k.offsetLeft, sag=sol+(acik?Math.min(360,innerWidth-32):(innerWidth>640?148:56)); let e=0;
@@ -394,7 +397,8 @@ document.querySelectorAll('[data-pt]').forEach(k=>{const tb=k.querySelector('tbo
       const r=o.getBoundingClientRect(); if(r.height>0&&r.top<innerHeight&&r.left<sag&&r.right>sol) e=Math.max(e,Math.round(innerHeight-r.top));});
     k.style.setProperty('--mp-engel',e+'px'); const en=document.documentElement.scrollHeight-innerHeight; k.classList.toggle('ft-gizle',!acik&&en>320&&en-scrollY<260);};
   const iste=()=>{if(!bek) bek=requestAnimationFrame(olc);};
-  const durum=y=>{acik=y; k.classList.toggle('mini',!y); k.dataset.state=y?'full':'mini'; ac.setAttribute('aria-expanded',y); ac.inert=y; ust.inert=!y; gv.inert=!y;
+  const vd=k.querySelector('video'), azH=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const durum=y=>{acik=y; if(vd){if(y){if(!vd.getAttribute('src')) vd.src=vd.dataset.src; if(!azH){const p=vd.play(); if(p) p.catch(()=>{});}} else vd.pause();} k.classList.toggle('mini',!y); k.dataset.state=y?'full':'mini'; ac.setAttribute('aria-expanded',y); ac.inert=y; ust.inert=!y; gv.inert=!y;
     (y?kc:ac).focus({preventScroll:true}); iste(); setTimeout(olc,520);};
   ac.addEventListener('click',()=>durum(true)); kc.addEventListener('click',()=>durum(false));
   k.addEventListener('keydown',e=>{if(e.key==='Escape'&&acik){e.preventDefault(); durum(false);}});

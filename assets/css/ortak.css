@@ -1670,13 +1670,14 @@ html[data-boyut] main{zoom:var(--olcek,1)}
 .hs-pn-alt i{color:var(--marka-metin)}
 .hs-pn-alt .hs-pn-cikis,.hs-pn-alt .hs-pn-cikis i{color:var(--azalis)}
 @media (max-width:639.98px){.hs-pn-menu{grid-template-columns:minmax(0,1fr)}.hs-pn-menu a{min-block-size:var(--dokun)}.hs-pn-kim small{white-space:normal}}
-/* ===== Yüzen Mentör (Beyar 2026-11-24: "dadagastro'daki mentor FAB'ın Dada Haber sürümü") =====
+/* ===== Yüzen Spiker (Beyar 2026-11-24: Gastro'daki mentor FAB'ın Dada Haber sürümü; "Mentör olmasın, spiker olsun", video) =====
    Yapı ve davranış dadagastro.com `#dadaMentor` (kabuk/mentor.css, mentor.js): kapalıyken sol altta 148×56 kart (ikon + "Mentör"),
    açılınca 360px koyu panel; küçült düğmesi, çerez bandı ve alt çubukların üstüne oturur, footer'a gelince kenara çekilir.
    Renk ve içerik Dada Haber'in: kehribar ışık, şehir görseli, haber örnek soruları. Durum tutulmaz: her sayfa kapalı başlar. */
 .mentor{--mp-dip:max(24px,calc(var(--mp-engel,0px) + 12px));position:fixed;inset-inline-start:16px;inset-block-end:var(--mp-dip);z-index:56;inline-size:360px;block-size:min(72vh,540px,calc(100dvh - var(--mp-dip) - 16px));display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;border-radius:var(--k-buyuk);border:1px solid rgba(255,255,255,.14);background:var(--siyah);color:var(--beyaz);box-shadow:0 28px 80px rgba(18,18,18,.46);text-align:start;transition:inline-size .5s cubic-bezier(.16,1,.3,1),block-size .5s cubic-bezier(.16,1,.3,1),border-radius .5s cubic-bezier(.16,1,.3,1),transform .45s cubic-bezier(.16,1,.3,1),opacity .35s,inset-block-end .25s,visibility 0s;animation:mpGiris .5s cubic-bezier(.16,1,.3,1)}
 @keyframes mpGiris{from{opacity:0;transform:translateY(26px) scale(.965)}to{opacity:1;transform:none}}
 .mentor .mp-medya{position:absolute;inset:0;background-size:cover;background-position:center;transform:scale(1.04);filter:saturate(.85)}
+.mentor .mp-medya video{position:absolute;inset:0;inline-size:100%;block-size:100%;object-fit:cover}
 .mentor .mp-isik{position:absolute;inset:0;background:radial-gradient(110% 60% at 30% 18%,rgba(252,182,35,.34),transparent 58%),radial-gradient(80% 50% at 100% 100%,rgba(252,182,35,.12),transparent 60%)}
 .mentor .mp-perde{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(21,20,18,.25) 0%,rgba(21,20,18,.15) 26%,rgba(21,20,18,.55) 50%,rgba(21,20,18,.9) 72%,rgba(21,20,18,.98) 100%)}
 .mentor .mp-ust{position:relative;z-index:3;display:flex;align-items:center;justify-content:space-between;padding:15px 16px;transition:opacity .25s}
@@ -1731,4 +1732,42 @@ html.oturum .mentor .mp-misafir{display:none}
 @media (prefers-reduced-motion:reduce){.mentor,.mentor *{transition-duration:.001ms!important;animation-duration:.001ms!important}}
 @media print{.mentor{display:none}}
 html.perde-acik body>.mentor:not(.ft):not(script){position:fixed;z-index:56}
+/* Revize 2026-11-24 (Beyar): pencere = üst sabit · orta kayar · alt sabit; kısa ekranda da alt düğmeler kenara dayanmaz, sayfa yumuşak kaydırmayla oynamaz */
+html:has(dialog[open]){scroll-behavior:auto}
+dialog.pn[open]:not(.gorsel-on){display:flex;flex-direction:column;overflow:hidden}
+dialog.pn[open]:not(.gorsel-on)>.pn-bas,dialog.pn[open]:not(.gorsel-on)>.pn-alt{flex:none}
+dialog.pn[open]:not(.gorsel-on)>.pn-ic{flex:1 1 auto;min-block-size:0;overflow-y:auto;overscroll-behavior:contain}
+dialog.pn[open]:not(.gorsel-on)>.pn-ic[hidden]{display:none}
+/* Spiker paneli iç düzeni (Beyar 2026-11-24: "Gastro'nunkine çok benzemiş"): haber yayını dili — TV alt bandı, YAYINDA rozeti, "Sıradaki" kayan şerit, bülten listesi */
+.mentor .sp-alt{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:stretch;border-radius:var(--k-kontrol);overflow:hidden;box-shadow:0 10px 26px rgba(0,0,0,.35)}
+.mentor .sp-canli{display:inline-flex;align-items:center;gap:6px;padding:0 10px;background:var(--anlik);color:var(--beyaz);font-size:10.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.mentor .sp-canli i{inline-size:7px;block-size:7px;border-radius:50%;background:var(--beyaz);animation:spNabiz 1.4s ease-in-out infinite}
+@keyframes spNabiz{50%{opacity:.25}}
+.mentor .sp-isim{display:grid;gap:2px;padding:9px 12px;background:var(--marka);color:var(--siyah)}
+.mentor .sp-isim b{font-size:16px;font-weight:800;line-height:1.1;letter-spacing:-.01em}
+.mentor .sp-isim small{font-size:11.5px;font-weight:600;opacity:.82;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mentor .sp-kayan{display:flex;align-items:center;gap:10px;block-size:30px;padding-inline:0 10px;border-radius:var(--k-ic);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);overflow:hidden}
+.mentor .sp-kayan-e{flex:none;align-self:stretch;display:grid;place-items:center;padding:0 9px;background:rgba(255,255,255,.12);font-size:10.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--marka)}
+.mentor .sp-kayan-ic{display:flex;white-space:nowrap;font-size:12px;font-weight:600;color:rgba(255,255,255,.88);animation:spKay 28s linear infinite;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.mentor .sp-kayan-ic span{padding-inline-end:6px}
+@keyframes spKay{to{transform:translateX(-50%)}}
+[dir=rtl] .mentor .sp-kayan-ic{animation-direction:reverse}
+.mentor .sp-liste{display:grid;gap:6px;margin:0;padding:0;list-style:none}
+.mentor .sp-liste li{display:grid;grid-template-columns:32px minmax(0,1fr) auto;align-items:center;gap:10px;padding:7px 10px 7px 7px;border-radius:var(--k-kontrol);background:rgba(21,20,18,.55);border:1px solid rgba(255,255,255,.1);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.mentor .sp-liste li.on{border-color:rgba(252,182,35,.55);background:rgba(252,182,35,.1)}
+.mentor .sp-oy{display:grid;place-items:center;inline-size:32px;block-size:32px;border-radius:var(--k-ic);background:var(--beyaz);color:var(--siyah);font-size:11px}
+.mentor li.on .sp-oy{background:var(--marka)}
+.mentor .sp-oy.kilit{background:rgba(255,255,255,.12);color:rgba(255,255,255,.7)}
+.mentor .sp-y{display:grid;min-inline-size:0}
+.mentor .sp-y b{font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mentor .sp-y small{font-size:11px;color:rgba(255,255,255,.66);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mentor .sp-sure{font-size:11px;font-weight:700;color:rgba(255,255,255,.7);font-variant-numeric:tabular-nums}
+.mentor .sp-dalga{display:flex;align-items:center;gap:2px;block-size:18px}
+.mentor .sp-dalga i{inline-size:3px;block-size:calc(var(--h) * 1%);border-radius:2px;background:var(--marka);animation:spDalga 1.1s ease-in-out infinite alternate}
+.mentor .sp-dalga i:nth-child(2n){animation-delay:-.4s}.mentor .sp-dalga i:nth-child(3n){animation-delay:-.7s}
+@keyframes spDalga{to{transform:scaleY(.35)}}
+.mentor .mp-sec i{margin-inline-end:6px;font-size:11px}
+.mentor .sp-not{display:flex;align-items:center;justify-content:center;gap:6px;margin:0;font-size:11px;font-weight:600;color:rgba(255,255,255,.6)}
+.mentor .sp-not i{color:var(--marka)}
+.mentor.mini .sp-kayan-ic,.mentor.mini .sp-dalga i,.mentor.mini .sp-canli i{animation-play-state:paused}
 
