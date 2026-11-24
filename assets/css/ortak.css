@@ -1090,6 +1090,11 @@ html.perde-acik body>header.yapiskan,body>header.yapiskan{position:sticky;inset-
 .fr-satir a{font-weight:700;color:var(--marka-metin)}
 .fr-dugme{display:flex;align-items:center;justify-content:center;gap:var(--ikon-bosluk);block-size:52px;border-radius:var(--k-kontrol);border:0;background:var(--marka);color:var(--siyah);font-size:var(--y-md);font-weight:800;cursor:pointer;transition:background .2s}
 .fr-dugme:hover{background:var(--marka-200)}
+/* Revize 2026-11-24 (Beyar: kehribar üstünde siyah kalın yazı kötü duruyor): form ana düğmesi koyu zemin + beyaz yazı, üstüne gelince kehribar. Koyu zeminli yerlerde (çerez bandı) kehribar kalır */
+.fr-dugme:not(.ikincil){background:var(--siyah);color:var(--beyaz);font-weight:700;letter-spacing:.01em;transition:background .2s,color .2s}
+.fr-dugme:not(.ikincil):hover{background:var(--marka);color:var(--siyah)}
+.cz .fr-dugme:not(.ikincil){background:var(--marka);color:var(--siyah)}
+.cz .fr-dugme:not(.ikincil):hover{background:var(--marka-200)}
 .fr-dugme.ikincil{background:var(--beyaz);border:1px solid var(--gri-100)}
 .fr-dugme.ikincil:hover{border-color:var(--marka);background:var(--marka-10)}
 .fr-ayrac{display:flex;align-items:center;gap:12px;font-size:var(--y-sm);color:var(--gri-400)}
