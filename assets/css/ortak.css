@@ -834,7 +834,8 @@ h1,h2,h3{text-wrap:pretty}
 .ft-aile.aktif{background:var(--siyah);color:var(--marka);border-color:var(--siyah)!important}
 .ft-telif{font-size:var(--y-sm);text-align:center;line-height:1.6;max-inline-size:110ch;margin:22px auto 16px;opacity:.85}
 .ft-alt{display:flex;justify-content:center;align-items:center;gap:16px;font-size:var(--y-sm);font-weight:700}
-.ft-gavia{display:inline-flex;align-items:center} /* Revize 2026-11-24: çip yok, düz metin bağlantı */
+.ft-gavia{display:inline-flex;align-items:center;gap:9px;font-weight:700;transition:color .2s} /* Revize 2026-11-24 (Beyar): dadagastro.com'daki imza gibi: </> + Gavia Works, çipsiz */
+.gw-code{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-weight:700;letter-spacing:-.04em;color:var(--marka-metin)}
 .ft-gavia:hover{color:var(--marka-metin)}
 .ft-aile.aktif .nokta{background:var(--marka)!important}
 
