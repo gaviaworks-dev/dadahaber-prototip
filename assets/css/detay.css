@@ -335,4 +335,9 @@ main>.dt-sade:first-child>.kap::before{content:"";display:block;block-size:1px;m
 .arac-bas .dt-bas-ic{gap:8px;margin-block-start:14px}
 .arac-bas .dt-bas-ic h1{font-size:var(--y-xl);line-height:1.15}
 .arac-bas .dt-spot{font-size:var(--y-md);line-height:1.55}
+/* Revize 2026-11-24 (Beyar): paylaş düğmeleri üstüne gelince yukarı kalkmaz (kayan şeritte üstü kesiliyordu); renk ve çizgiyle belirginleşir. "Diğer" (⋯) düğmesi Paylaş penceresini açar */
+.dt-pay-d:hover{transform:none!important}
+.dt-pay-daha{cursor:pointer;font:inherit}
+.dt-pay-daha i{color:var(--gri-600)}
+.dt-pay-daha:hover i{color:var(--siyah)}
 

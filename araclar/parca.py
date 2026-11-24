@@ -100,6 +100,14 @@ for yol in hedef:
     # Araç sayfaları (Hesabım, üyelik vb.; haber gövdesi yok) sade başlığı: daha küçük h1 ve açıklama (Beyar 2026-11-24)
     if '<section class="dt-sade">' in t and 'dt-govde' not in t:
         t = t.replace('<section class="dt-sade">', '<section class="dt-sade arac-bas">', 1)
+    # Paylaş satırı (Beyar 2026-11-24): satırda X, Facebook, WhatsApp, bağlantı kopyala + "diğer" (⋯) düğmesi; diğerleri Paylaş penceresinde
+    def _pay(m):
+        g = m.group(0)
+        g = re.sub(r'<a href="(?:https://t\.me|https://www\.linkedin\.com|mailto:)[^"]*" class="dt-pay-d"[^>]*>.*?</a>', '', g, flags=re.S)
+        if 'dt-pay-daha' not in g:
+            g = g[:-6] + '<button type="button" class="dt-pay-d dt-pay-daha" data-acilir="paylas" aria-label="Diğer paylaşım seçenekleri" title="Diğer seçenekler"><i class="fa-solid fa-ellipsis"></i></button></div>'
+        return g
+    t = re.sub(r'<div class="dt-pay">.*?</div>', _pay, t, flags=re.S)
     t = tablo_hizala(t)
     t = surumle(t)
     # "İçeriğe geç" bağlantısının hedefi
