@@ -757,7 +757,7 @@ details.ozet[open] .ozet-ic{animation:ac .25s ease both}
 .dvz{display:grid;gap:16px}
 .dvz-bas{display:flex;align-items:center;gap:20px}
 .dvz-et{display:inline-flex;align-items:center;gap:var(--ikon-bosluk);font-size:var(--y-sm);font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--marka-metin)}
-.dvz-canli{display:inline-flex;align-items:center;gap:var(--ikon-bosluk);font-size:var(--y-sm);font-weight:700;color:var(--gri-400)}
+.dvz-canli{display:inline-flex;align-items:center;gap:var(--ikon-bosluk);white-space:nowrap;font-size:var(--y-sm);font-weight:700;color:var(--gri-400)}
 .dvz-link{margin-inline-start:auto;display:inline-flex;align-items:center;gap:var(--ikon-bosluk);font-size:var(--y-sm);font-weight:800}
 .dvz-link i{color:var(--marka-metin);transition:transform .25s}.dvz-link:hover i{transform:translateX(3px)}
 .dvz-g{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
@@ -809,7 +809,7 @@ h1,h2,h3{text-wrap:pretty}
 .ft-logo b{background:var(--siyah)!important;color:var(--marka)}
 .ft-logo span{color:var(--siyah)}
 .ft-marka p{font-size:var(--y-sm);line-height:1.6;margin-block:16px 24px;max-inline-size:40ch;text-align:justify;text-align-last:start;hyphens:auto}
-.ft-sosyal{display:flex;flex-wrap:wrap;gap:8px;max-inline-size:300px}
+.ft-sosyal{display:flex;flex-wrap:wrap;gap:8px;max-inline-size:400px}
 .ft-sos{inline-size:44px;block-size:44px;border-radius:var(--k-kontrol);background:rgba(18,18,18,.08);display:grid;place-items:center;font-size:var(--y-md);transition:background .25s,color .25s,transform .25s}
 .ft-sos:hover{background:var(--siyah);color:var(--marka);transform:translateY(-3px)}
 .ft h4,
@@ -1230,7 +1230,7 @@ html:not(.oturum) .uye-k,html.oturum .misafir-k{display:none!important}
   .ls-cip,.cp-sec,.gd-dugme,.fr-dugme,.pn-sekme button,.sw-sekme button{min-block-size:var(--dokun)}
   /* kart ızgaraları: tablette 2 sütun */
   .g4,.g3,.t-sira,.pc-g,.kf-izg,.fb-izg{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .yeni,.oncu,.kardes,.info-v,.urun-band,.manset .izg{grid-template-columns:minmax(0,1fr)}
+  .yeni:not(.pn-bildirim),.oncu,.kardes,.info-v,.urun-band,.manset .izg{grid-template-columns:minmax(0,1fr)}
   .yeni.ters>.go{order:0}
   .gy{grid-template-columns:150px minmax(0,1fr)}
   /* ana sayfa ayırıcıları: aynı türden kutular tek satırda kayar (bilinçli şerit) */
@@ -1682,7 +1682,7 @@ html[data-boyut] main{zoom:var(--olcek,1)}
 .mentor .mp-isik{position:absolute;inset:0;background:radial-gradient(110% 60% at 30% 18%,rgba(252,182,35,.34),transparent 58%),radial-gradient(80% 50% at 100% 100%,rgba(252,182,35,.12),transparent 60%)}
 .mentor .mp-perde{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(21,20,18,.25) 0%,rgba(21,20,18,.15) 26%,rgba(21,20,18,.55) 50%,rgba(21,20,18,.9) 72%,rgba(21,20,18,.98) 100%)}
 .mentor .mp-ust{position:relative;z-index:3;display:flex;align-items:center;justify-content:space-between;padding:15px 16px;transition:opacity .25s}
-.mentor .mp-etk{display:inline-flex;align-items:center;gap:var(--ikon-bosluk);font-size:11px;font-weight:300;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.85)}
+.mentor .mp-etk{display:inline-flex;align-items:center;gap:var(--ikon-bosluk);font-size:11px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.85)}
 .mentor .mp-etk i{color:var(--marka)}
 .mentor .mp-kucult{display:grid;place-items:center;inline-size:32px;block-size:32px;padding:0;border-radius:var(--k-ic);border:1px solid rgba(255,255,255,.18);background:rgba(21,20,18,.45);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);color:rgba(255,255,255,.85);font-size:12px;cursor:pointer;transition:color .2s,border-color .2s}
 .mentor .mp-kucult:hover{color:var(--beyaz);border-color:rgba(255,255,255,.45)}
@@ -1868,4 +1868,23 @@ html.perde-acik body>.cal-bar:not(.ft):not(script),html.perde-acik body>.cal-met
 html.cal-acik .yukari{inset-block-end:120px}
 @media (max-width:639.98px){.cal-bar{grid-template-columns:auto minmax(0,1fr);inset-block-end:calc(76px + env(safe-area-inset-bottom,0px));gap:10px}.cal-kont{grid-column:1/-1;justify-content:space-between}.cal-kapak{inline-size:48px;block-size:48px}.cal-metin{inset-block-end:200px}}
 @media print{.cal-bar,.cal-metin{display:none}}
+/* ===== Responsive denetim düzeltmeleri (2026-11-24, tasks/rapor-responsive.md) ===== */
+/* Yan kart: dar ekranda görseldeki kategori çipi kaydet düğmesinin altına giriyordu → çip gizlenir (bölüm zaten belli) */
+@media (max-width:1024px){.gy .gm .cip{display:none}}
+/* Sabit öğeler Yukarı çık'ı örtmesin: çalar ve dinleme çubuğu açıkken düğme onların üstüne çıkar; telefonda açık Spiker paneli varken gizlenir */
+@media (max-width:639.98px){
+  html.cal-acik .yukari{inset-block-end:calc(236px + env(safe-area-inset-bottom,0px))}
+  html.dinleniyor .yukari{inset-block-end:calc(190px + env(safe-area-inset-bottom,0px))}
+  html:has(.mentor:not(.mini)) .yukari{opacity:0;pointer-events:none}
+  .pn-kapat{inline-size:var(--dokun);block-size:var(--dokun)}
+  .pn-alt{flex-wrap:nowrap}.pn-alt .fr-dugme{padding-inline:10px;font-size:12.5px;white-space:nowrap}
+}
+@media (min-width:640px) and (max-width:1024px){html.cal-acik .yukari{inset-block-end:120px}}
+/* Dokunmatikte küçük hedefler 44px */
+@media (pointer:coarse){
+  .dt-sekme button,.pt-sekme button,.sa-cipler button,.sa-arac>*,.sa-oy,.pn-sekme button{min-block-size:var(--dokun)}
+  .ft-satir a,.ft-kol a,.ft-alt a{display:inline-flex;align-items:center;min-block-size:var(--dokun)}
+}
+/* Telefonda detay paylaş satırı tek satırı doldurur */
+@media (max-width:639.98px){.dt-ep>.dt-pay{justify-content:space-between}}
 

@@ -481,3 +481,4 @@ span.dt-oyn{display:grid;place-items:center;flex:none}
 @media (max-width:639.98px){.cd-kilit li{flex:0 0 72%}}
 .cd-sabit.gorunur{visibility:visible;opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){.cd-sabit{transition:none}}
+.ar-grup>.gs{margin-block-end:0} /* arama grup başlığı ile kartlar arası */

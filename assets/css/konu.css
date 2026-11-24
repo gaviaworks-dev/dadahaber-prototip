@@ -315,4 +315,16 @@ td.dv-ar>.sw-ar{inline-size:clamp(56px,9vw,132px);margin-inline:10px}
 .dv-kod.logo{background:var(--beyaz) center/cover no-repeat;border:1px solid var(--gri-50);overflow:hidden}
 .dv-kod.logo.kare{background-size:72%;background-color:var(--beyaz)}
 .dv-kod.harf{background:var(--gri-50);color:var(--gri-800);font-size:12px;font-weight:800;letter-spacing:-.02em}
+/* Responsive denetim (2026-11-24): uzun piyasa tabloları dar ekranda */
+@media (max-width:1024px){
+  [data-pt] td.dv-ar,[data-pt] th:last-child{display:none}
+  [data-pt] table{min-inline-size:0}
+}
+@media (max-width:639.98px){
+  .pt-arac{display:grid;grid-template-columns:minmax(0,1fr) auto;overflow:visible}
+  .pt-ara{grid-column:1/-1;grid-row:1;max-inline-size:none;min-inline-size:0}
+  .pt-sekme{overflow-x:auto;scrollbar-width:none;min-inline-size:0}
+  .pt-say{align-self:center}
+  [data-pt] td.sw-tkh small{display:none}
+}
 
