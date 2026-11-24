@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Spiker paneli · 5 alternatif · Dada Haber</title>
+<link rel="stylesheet" href="../assets/vendor/fontawesome-6.5.2/css/all.min.css">
+<link rel="stylesheet" href="../assets/css/degiskenler.css">
+<style>
+/* Seçim sayfası (taslak): yalnızca seçilen alternatif sisteme taşınır */
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;font-family:"Gilroy",system-ui,sans-serif;background:var(--zemin-b);color:var(--siyah)}
+.sayfa{max-inline-size:1360px;margin-inline:auto;padding:40px 24px 80px}
+.ust{display:grid;gap:8px;margin-block-end:32px}
+.ust small{font-size:12.8px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--marka-metin)}
+.ust h1{margin:0;font-size:30px;font-weight:800;letter-spacing:-.02em}
+.ust p{margin:0;max-inline-size:780px;font-size:17px;line-height:1.55;color:var(--gri-600)}
+.izg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;align-items:start}
+.sec{display:grid;gap:16px;padding:20px;border-radius:24px;background:var(--beyaz);border:1px solid var(--gri-50)}
+.sec h2{margin:0;font-size:22.7px;font-weight:800;display:flex;align-items:center;gap:10px}
+.sec h2 span{display:grid;place-items:center;inline-size:32px;block-size:32px;border-radius:8px;background:var(--marka);font-size:15px}
+.sec p{margin:0;font-size:14px;line-height:1.55;color:var(--gri-600)}
+.ae{display:grid;gap:4px;margin:0;padding:0;list-style:none;font-size:13.5px;line-height:1.45}
+.ae li{display:flex;gap:8px}.ae i{margin-block-start:3px}.ae .a i{color:var(--artis)}.ae .e i{color:var(--azalis)}
+.sahne{position:relative;display:grid;place-items:center;min-block-size:600px;padding:20px;border-radius:16px;background:linear-gradient(135deg,#EDEDED,#F7F7F7);overflow:hidden}
+.mini-s{display:flex;align-items:center;gap:12px;padding:14px;border-radius:12px;background:#E9E9E9;font-size:12.8px;font-weight:700;color:var(--gri-600)}
+.tav{display:flex;align-items:center;gap:10px;padding:14px 16px;border-radius:12px;background:var(--marka-10);border:1px solid var(--marka-100);font-size:14px;line-height:1.5}
+.tav i{color:var(--marka-metin)}
+/* ortak panel parçaları */
+.sp{position:relative;overflow:hidden;border-radius:24px;background:var(--siyah);color:var(--beyaz);box-shadow:0 28px 70px rgba(18,18,18,.35);text-align:start}
+.sp video{position:absolute;inset:0;inline-size:100%;block-size:100%;object-fit:cover}
+.etk{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:300;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.88)}
+.etk i{color:var(--marka)}
+.kc{display:grid;place-items:center;inline-size:32px;block-size:32px;border-radius:8px;border:1px solid rgba(255,255,255,.2);background:rgba(18,18,18,.4);backdrop-filter:blur(4px);color:#fff;font-size:12px;cursor:pointer}
+.canli{display:inline-flex;align-items:center;gap:6px;padding:0 9px;background:var(--anlik);color:#fff;font-size:10.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.canli i,.nok{inline-size:7px;block-size:7px;border-radius:50%;background:#fff;animation:nb 1.4s ease-in-out infinite}
+@keyframes nb{50%{opacity:.25}}
+/* Kayan şerit: etiket ayrı, opak kutu; yazı yalnızca kendi kabında kayar (etiketin üstünden geçmez) */
+.kay{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:stretch;block-size:30px;border-radius:8px;overflow:hidden;background:rgba(18,18,18,.72);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(6px)}
+.kay b{display:grid;place-items:center;padding:0 9px;background:var(--marka);color:var(--siyah);font-size:10.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+.kay div{position:relative;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,#000 88%,transparent);mask-image:linear-gradient(90deg,#000 88%,transparent)}
+.kay span{position:absolute;inset-block:0;display:flex;align-items:center;white-space:nowrap;padding-inline-start:10px;font-size:12px;font-weight:600;animation:ky 26s linear infinite}
+@keyframes ky{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.dugme{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-block-size:40px;padding:0 12px;border-radius:12px;border:1px solid rgba(255,255,255,.22);background:rgba(18,18,18,.45);color:#fff;font:inherit;font-size:12.5px;font-weight:700;cursor:pointer;white-space:nowrap}
+.dugme.ana{background:#fff;border-color:#fff;color:var(--siyah)}
+.ilerle{block-size:4px;border-radius:4px;background:rgba(255,255,255,.22);overflow:hidden}.ilerle i{display:block;block-size:100%;inline-size:38%;background:var(--marka)}
+
+/* A · Yüz açık alt bant */
+.spA{inline-size:360px;block-size:540px;display:flex;flex-direction:column;justify-content:space-between}
+.spA video{object-position:50% 18%}
+.spA::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,18,18,.35) 0%,transparent 18%,transparent 52%,rgba(18,18,18,.86) 74%,rgba(18,18,18,.98) 100%);pointer-events:none}
+.spA .ust-s,.spA .alt-s{position:relative;z-index:1}
+.spA .ust-s{display:flex;justify-content:space-between;align-items:center;padding:14px 16px}
+.spA .alt-s{display:grid;gap:10px;padding:0 16px 16px}
+.bant{display:grid;grid-template-columns:auto minmax(0,1fr);border-radius:12px;overflow:hidden}
+.bant .isim{display:grid;gap:1px;padding:8px 12px;background:var(--marka);color:var(--siyah)}
+.bant .isim b{font-size:16px;font-weight:800;line-height:1.1}.bant .isim small{font-size:11.5px;font-weight:600;opacity:.8}
+.simdi{display:grid;grid-template-columns:36px minmax(0,1fr) auto;align-items:center;gap:10px}
+.simdi .oy{display:grid;place-items:center;inline-size:36px;block-size:36px;border-radius:10px;background:var(--marka);color:var(--siyah)}
+.simdi b{display:block;font-size:13px}.simdi small{font-size:11px;color:rgba(255,255,255,.66)}
+.simdi .sure{font-size:11px;font-weight:700;color:rgba(255,255,255,.7);font-variant-numeric:tabular-nums}
+.satir{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.miniA{display:inline-flex;align-items:center;gap:10px;block-size:56px;padding:0 18px 0 6px;border-radius:16px;background:var(--siyah);color:#fff;box-shadow:0 12px 30px rgba(18,18,18,.3)}
+.miniA .yuz{position:relative;inline-size:44px;block-size:44px;border-radius:50%;overflow:hidden;box-shadow:0 0 0 2px var(--marka)}
+.miniA .yuz video{position:absolute;inset:0;inline-size:100%;block-size:100%;object-fit:cover;object-position:50% 18%}
+.miniA b{font-size:14.5px;font-weight:800;white-space:nowrap}.miniA small{white-space:nowrap}.miniA .nok{background:var(--anlik)}
+
+/* B · Yatay oynatıcı */
+.spB{inline-size:100%;max-inline-size:440px;display:grid;grid-template-columns:118px minmax(0,1fr);min-block-size:300px}
+.spB .vid{position:relative;overflow:hidden}
+.spB .vid video{object-position:50% 20%}
+.spB .vid .canli{position:absolute;inset-block-start:10px;inset-inline-start:10px;block-size:22px;border-radius:6px}
+.spB .vid::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 70%,rgba(18,18,18,.6));pointer-events:none}
+.spB .ic{display:grid;align-content:start;gap:10px;padding:14px 14px 14px 12px}
+.spB .bas{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.spB .bas b{display:block;font-size:16px;font-weight:800}.spB .bas small{font-size:11.5px;color:rgba(255,255,255,.66)}
+.spB .cal{display:grid;gap:8px;padding:10px;border-radius:12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1)}
+.spB .cal-b{display:flex;justify-content:space-between;font-size:12.5px}.spB .cal-b b{font-size:13px}.spB .cal-b span{font-variant-numeric:tabular-nums;color:rgba(255,255,255,.7);font-size:11px}
+.kont{display:flex;align-items:center;justify-content:space-between}
+.kont button{display:grid;place-items:center;inline-size:32px;block-size:32px;border:0;border-radius:8px;background:none;color:rgba(255,255,255,.85);cursor:pointer;font-size:13px}
+.kont .oy{inline-size:40px;block-size:40px;border-radius:12px;background:var(--marka);color:var(--siyah)}
+.kont .hiz{inline-size:auto;padding:0 8px;border:1px solid rgba(255,255,255,.25);font-size:11px;font-weight:800}
+.cipler{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+.cipler span{flex:none;display:inline-flex;align-items:center;gap:6px;block-size:28px;padding:0 10px;border-radius:8px;border:1px solid rgba(255,255,255,.16);font-size:11.5px;font-weight:700;color:rgba(255,255,255,.85)}
+.cipler span.a{background:var(--marka);border-color:var(--marka);color:var(--siyah)}
+.spB .alt-l{display:flex;justify-content:space-between;align-items:center;font-size:11.5px;color:rgba(255,255,255,.6)}
+.spB .alt-l a{color:var(--marka);font-weight:700;text-decoration:none}
+
+/* C · Tam video + çekmece */
+.spC{inline-size:360px;block-size:540px}
+.spC video{object-position:50% 16%}
+.spC::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(18,18,18,.3) 0%,transparent 16%,transparent 66%,rgba(18,18,18,.9) 100%);pointer-events:none}
+.spC .ust-s{position:absolute;z-index:2;inset-inline:0;inset-block-start:0;display:flex;justify-content:space-between;align-items:center;padding:14px 16px}
+.spC .alt-s{position:absolute;z-index:2;inset-inline:0;inset-block-end:0;display:grid;gap:10px;padding:0 16px 16px}
+.spC .bant .isim{background:rgba(18,18,18,.72);color:#fff;backdrop-filter:blur(8px);border-inline-start:3px solid var(--marka)}
+.spC .cekme{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.spC .cekmece{position:absolute;z-index:3;inset-inline:0;inset-block-end:0;display:grid;gap:10px;padding:10px 16px 16px;border-radius:20px 20px 0 0;background:rgba(18,18,18,.94);backdrop-filter:blur(10px);transform:translateY(100%);transition:transform .45s cubic-bezier(.16,1,.3,1)}
+.spC.acik .cekmece{transform:none}
+.spC .tutamak{justify-self:center;inline-size:40px;block-size:4px;border-radius:4px;background:rgba(255,255,255,.3)}
+.liste{display:grid;gap:6px;margin:0;padding:0;list-style:none}
+.liste li{display:grid;grid-template-columns:32px minmax(0,1fr) auto;align-items:center;gap:10px;padding:7px 10px 7px 7px;border-radius:12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1)}
+.liste li.on{border-color:rgba(252,182,35,.6);background:rgba(252,182,35,.12)}
+.liste .o{display:grid;place-items:center;inline-size:32px;block-size:32px;border-radius:8px;background:#fff;color:var(--siyah);font-size:11px}
+.liste li.on .o{background:var(--marka)}.liste .o.k{background:rgba(255,255,255,.12);color:rgba(255,255,255,.7)}
+.liste b{display:block;font-size:13px}.liste small{font-size:11px;color:rgba(255,255,255,.66)}.liste .s{font-size:11px;font-weight:700;color:rgba(255,255,255,.7);font-variant-numeric:tabular-nums}
+.miniC{position:relative;inline-size:64px;block-size:64px;border-radius:50%;overflow:hidden;box-shadow:0 0 0 3px var(--marka),0 12px 30px rgba(18,18,18,.35)}
+.miniC video{position:absolute;inset:0;inline-size:100%;block-size:100%;object-fit:cover;object-position:50% 18%}
+.miniC .canli{position:absolute;inset-inline:0;inset-block-end:4px;margin:auto;inline-size:max-content;block-size:16px;border-radius:4px;font-size:8.5px;padding:0 5px}
+
+/* D · Son Dakika masası (açık zemin, sitenin Son Dakika kapsülünün dili) */
+.spD{inline-size:360px;background:var(--beyaz);color:var(--siyah);border:1px solid var(--gri-50);display:grid;gap:0}
+.spD .vid{position:relative;aspect-ratio:16/10;overflow:hidden;border-radius:20px;margin:8px 8px 0}
+.spD .vid video{object-position:50% 22%}
+.spD .vid .kap{position:absolute;inset-inline:10px;inset-block-start:10px;display:flex;justify-content:space-between;align-items:center}
+.spD .vid .kap .sd{display:inline-flex;align-items:center;gap:6px;block-size:28px;padding:0 10px;border-radius:8px;background:var(--marka);color:var(--siyah);font-size:10.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+.spD .vid .kap .sd i{inline-size:6px;block-size:6px;border-radius:50%;background:var(--siyah);animation:nb 1.4s infinite}
+.spD .vid .alt{position:absolute;inset-inline:10px;inset-block-end:10px;display:flex;align-items:center;gap:8px;padding:6px 10px 6px 6px;border-radius:12px;background:rgba(18,18,18,.62);backdrop-filter:blur(8px);color:#fff}
+.spD .vid .alt .oy{display:grid;place-items:center;inline-size:30px;block-size:30px;border-radius:8px;background:var(--marka);color:var(--siyah);font-size:11px}
+.spD .vid .alt b{font-size:12.5px}.spD .vid .alt small{display:block;font-size:10.5px;opacity:.75}
+.spD .ic{display:grid;gap:12px;padding:14px 16px 16px}
+.spD .bas{display:flex;justify-content:space-between;align-items:center}
+.spD .bas b{font-size:16px;font-weight:800}.spD .bas small{display:block;font-size:11.5px;color:var(--gri-600)}
+.spD .kc{border-color:var(--gri-100);background:var(--beyaz);color:var(--gri-600)}
+.akis{display:grid;margin:0;padding:0;list-style:none;border-inline-start:2px solid var(--gri-50)}
+.akis li{position:relative;display:grid;grid-template-columns:44px minmax(0,1fr);gap:8px;padding:7px 0 7px 12px;font-size:12.5px;line-height:1.35}
+.akis li::before{content:"";position:absolute;inset-inline-start:-6px;inset-block-start:12px;inline-size:10px;block-size:10px;border-radius:50%;background:var(--beyaz);border:2px solid var(--gri-100)}
+.akis time{font-weight:800;color:var(--marka-metin);font-variant-numeric:tabular-nums}
+.akis li.on{background:var(--marka-10);border-radius:0 10px 10px 0}
+.akis li.on::before{background:var(--marka);border-color:var(--marka);box-shadow:0 0 0 4px var(--marka-25)}
+.akis li.on span::after{content:" · okunuyor";font-weight:800;color:var(--marka-metin)}
+.spD .satir .dugme{border-color:var(--gri-100);background:var(--beyaz);color:var(--siyah)}
+.spD .satir .dugme.ana{background:var(--siyah);border-color:var(--siyah);color:#fff}
+.miniD{display:inline-flex;align-items:center;gap:10px;block-size:52px;padding:0 14px 0 6px;border-radius:14px;background:var(--beyaz);border:1px solid var(--gri-50);box-shadow:0 12px 30px rgba(18,18,18,.16);color:var(--siyah)}
+.miniD .yuz{position:relative;inline-size:40px;block-size:40px;border-radius:10px;overflow:hidden}.miniD .yuz video{position:absolute;inset:0;inline-size:100%;block-size:100%;object-fit:cover;object-position:50% 20%}
+.miniD b{font-size:13.5px}.miniD time{font-size:11px;font-weight:800;color:var(--marka-metin)}
+
+/* E · Dada Özet spikeri (15 sn / 1 dk / Tam; altyazılı) */
+.spE{inline-size:360px;background:var(--marka-10);color:var(--siyah);border:1px solid var(--marka-100);display:grid;gap:14px;padding:16px}
+.spE .bas{display:flex;align-items:center;gap:12px}
+.spE .halka{position:relative;flex:none;inline-size:76px;block-size:76px;border-radius:50%;padding:4px;background:conic-gradient(var(--marka) 0 38%,var(--marka-100) 38% 100%)}
+.spE .halka span{position:relative;display:block;inline-size:100%;block-size:100%;border-radius:50%;overflow:hidden;border:3px solid var(--marka-10)}
+.spE .halka video{position:absolute;inset:0;inline-size:100%;block-size:100%;object-fit:cover;object-position:50% 20%}
+.spE .kim b{display:flex;align-items:center;gap:6px;font-size:16px;font-weight:800}.spE .kim b i{font-size:7px;color:var(--anlik);animation:nb 1.4s infinite}
+.spE .kim small{font-size:11.5px;color:var(--gri-600)}
+.spE .kc{margin-inline-start:auto;border-color:var(--marka-100);background:var(--beyaz);color:var(--gri-600)}
+.spE .sekme{display:flex;gap:4px;padding:4px;border-radius:12px;background:var(--beyaz);border:1px solid var(--marka-100)}
+.spE .sekme button{flex:1;block-size:32px;border:0;border-radius:8px;background:none;font:inherit;font-size:12.8px;font-weight:700;color:var(--gri-600);cursor:pointer}
+.spE .sekme button.a{background:var(--marka);color:var(--siyah)}
+.spE ol{display:grid;gap:8px;margin:0;padding:0;list-style:none;counter-reset:o}
+.spE li{display:grid;grid-template-columns:26px minmax(0,1fr);gap:10px;align-items:start;font-size:13.5px;line-height:1.45;color:var(--gri-400)}
+.spE li::before{counter-increment:o;content:counter(o);display:grid;place-items:center;inline-size:26px;block-size:26px;border-radius:50%;border:1px solid var(--marka-100);background:var(--beyaz);font-size:11px;font-weight:800;color:var(--gri-600)}
+.spE li.gecti{color:var(--gri-600)}.spE li.on{color:var(--siyah);font-weight:600}
+.spE li.on::before{background:var(--marka);border-color:var(--marka);color:var(--siyah)}
+.spE li.on mark{background:linear-gradient(transparent 60%,var(--marka-50) 60%);color:inherit}
+.spE .kont{padding:8px;border-radius:12px;background:var(--siyah)}
+.spE .alt-l{display:flex;justify-content:space-between;align-items:center;font-size:11.5px;color:var(--gri-600)}
+.spE .alt-l a{font-weight:800;color:var(--marka-metin);text-decoration:none}
+.miniE{position:relative;inline-size:60px;block-size:60px;border-radius:50%;padding:3px;background:conic-gradient(var(--marka) 0 38%,var(--marka-100) 38% 100%);box-shadow:0 12px 30px rgba(18,18,18,.25)}
+.miniE span{position:relative;display:block;inline-size:100%;block-size:100%;border-radius:50%;overflow:hidden;border:2px solid #fff}.miniE video{position:absolute;inset:0;inline-size:100%;block-size:100%;object-fit:cover;object-position:50% 20%}
+
+/* FAB (kapalı hal) seçenekleri */
+.fab-izg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-block-start:40px}
+.fab-sahne{display:grid;place-items:center;min-block-size:180px;border-radius:16px;background:linear-gradient(135deg,#EDEDED,#F7F7F7)}
+.f1{display:inline-flex;align-items:center;gap:12px;block-size:64px;inline-size:300px;padding:0 14px 0 8px;border-radius:18px;background:var(--siyah);color:#fff;box-shadow:0 16px 40px rgba(18,18,18,.32);cursor:pointer}
+.yuzv{position:relative;flex:none;inline-size:48px;block-size:48px;border-radius:50%;overflow:hidden;box-shadow:0 0 0 2px var(--marka)}
+.yuzv video{position:absolute;inset:0;inline-size:100%;block-size:100%;object-fit:cover;object-position:50% 18%}
+.yuzv .nk{position:absolute;inset-block-end:2px;inset-inline-end:2px;inline-size:11px;block-size:11px;border-radius:50%;background:var(--anlik);border:2px solid var(--siyah);animation:nb 1.4s infinite}
+.f1 .y{display:grid;min-inline-size:0;flex:1}
+.f1 .y small{display:flex;align-items:center;gap:6px;font-size:10.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--marka)}
+.f1 .don{position:relative;block-size:18px;overflow:hidden}
+.f1 .don span{position:absolute;inset-inline:0;font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;animation:don 9s infinite;opacity:0}
+.f1 .don span:nth-child(2){animation-delay:3s}.f1 .don span:nth-child(3){animation-delay:6s}
+@keyframes don{0%{opacity:0;transform:translateY(100%)}4%,30%{opacity:1;transform:none}34%,100%{opacity:0;transform:translateY(-100%)}}
+.eq{display:flex;align-items:flex-end;gap:2px;block-size:16px;flex:none}
+.eq i{inline-size:3px;border-radius:2px;background:var(--marka);animation:eq .9s ease-in-out infinite alternate}
+.eq i:nth-child(1){block-size:40%}.eq i:nth-child(2){block-size:90%;animation-delay:-.3s}.eq i:nth-child(3){block-size:60%;animation-delay:-.6s}.eq i:nth-child(4){block-size:80%;animation-delay:-.15s}
+@keyframes eq{to{transform:scaleY(.3)}}
+.f2{position:relative;display:grid;place-items:center;inline-size:72px;block-size:72px;cursor:pointer}
+.f2 .hl{position:absolute;inset:0;border-radius:50%;border:2px solid var(--marka);animation:hl 2.4s ease-out infinite;opacity:0}
+.f2 .hl:nth-child(2){animation-delay:.8s}.f2 .hl:nth-child(3){animation-delay:1.6s}
+@keyframes hl{0%{transform:scale(.85);opacity:.9}100%{transform:scale(1.6);opacity:0}}
+.f2 .yuzv{inline-size:64px;block-size:64px;box-shadow:0 0 0 3px var(--marka),0 14px 34px rgba(18,18,18,.3)}
+.f2 .et{position:absolute;inset-block-end:-8px;padding:2px 7px;border-radius:6px;background:var(--anlik);color:#fff;font-size:9.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+.f2 .ip{position:absolute;inset-inline-start:84px;white-space:nowrap;padding:8px 12px;border-radius:10px;background:var(--siyah);color:#fff;font-size:12.5px;font-weight:700;opacity:0;transform:translateX(-6px);transition:.25s}
+.f2:hover .ip{opacity:1;transform:none}
+.f3{display:inline-flex;align-items:center;gap:10px;block-size:56px;inline-size:300px;padding:0 6px 0 6px;border-radius:16px;background:var(--marka);color:var(--siyah);box-shadow:0 16px 40px rgba(252,182,35,.35);cursor:pointer;overflow:hidden}
+.f3 .lg{flex:none;display:grid;place-items:center;inline-size:44px;block-size:44px;border-radius:12px;background:var(--siyah);color:var(--marka)}
+.f3 .lg svg{inline-size:26px;block-size:26px}
+.f3 .lg .d1,.f3 .lg .d2{animation:dg 1.6s ease-in-out infinite}.f3 .lg .d2{animation-delay:.3s}
+@keyframes dg{0%,100%{opacity:.25}50%{opacity:1}}
+.f3 .tk{position:relative;flex:1;block-size:20px;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 90%,transparent)}
+.f3 .tk span{position:absolute;white-space:nowrap;font-size:13px;font-weight:700;animation:ky 18s linear infinite}
+.f3 b{flex:none;display:grid;place-items:center;block-size:44px;padding:0 10px;border-radius:12px;background:rgba(18,18,18,.1);font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+@media (max-width:1180px){.fab-izg{grid-template-columns:minmax(0,1fr)}}
+
+/* Etkileşimli kontroller (örnek veriyle çalışır) */
+.sp button{font:inherit}
+.arac4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.arac4 .dugme{min-block-size:38px;padding:0 6px;font-size:11.5px;text-decoration:none}
+.dugme.a,.mk.a{background:var(--marka)!important;border-color:var(--marka)!important;color:var(--siyah)!important}
+.ab{display:inline-flex;gap:6px}
+.mk{display:grid;place-items:center;inline-size:32px;block-size:32px;border-radius:8px;border:1px solid rgba(255,255,255,.2);background:rgba(18,18,18,.35);color:inherit;cursor:pointer}
+.spE .mk{border-color:var(--marka-100);background:var(--beyaz);color:var(--gri-600)}
+.simdi .oy,.spD .alt .oy{border:0;cursor:pointer}
+.cipler span{cursor:pointer;user-select:none}.cipler span[data-kilit]{opacity:.6}
+.liste li,.akis li{cursor:pointer}
+.kc2{margin-block-end:-2px}
+.sp .altyazi{position:absolute;z-index:4;inset-inline:16px;inset-block-start:44%;margin:0;padding:8px 10px;border-radius:8px;background:rgba(18,18,18,.78);color:#fff;font-size:13px;font-weight:600;line-height:1.4;text-align:center;opacity:0;transform:translateY(6px);transition:.25s;pointer-events:none}
+.spB .altyazi{inset-block-start:auto;inset-block-end:10px;inset-inline:10px;inline-size:130px;font-size:11px}
+.sp.cc .altyazi{opacity:1;transform:none}
+.spE .ol-cc li.on mark{background:linear-gradient(transparent 60%,var(--marka-50) 60%)}
+.spE:not(.cc) li.on mark{background:none}
+.sp .cevap{position:absolute;z-index:6;inset-inline:12px;inset-block-start:56px;display:none;gap:8px;padding:12px;border-radius:14px;background:rgba(255,255,255,.97);color:var(--siyah);box-shadow:0 14px 34px rgba(0,0,0,.3);font-size:12.5px;line-height:1.45}
+.sp .cevap.g{display:grid}
+.sp .cevap .s{display:flex;align-items:center;gap:8px;font-weight:800}
+.sp .cevap .s i{display:grid;place-items:center;inline-size:26px;block-size:26px;border-radius:50%;background:var(--anlik);color:#fff;font-size:11px;animation:nb 1s infinite}
+.sp .cevap .q{color:var(--gri-600)}
+.sp .cevap .c{padding:8px 10px;border-radius:10px;background:var(--marka-10);border:1px solid var(--marka-100)}
+.sp .cevap .k{display:flex;gap:6px}.sp .cevap .k button{flex:1;block-size:30px;border-radius:8px;border:1px solid var(--gri-100);background:#fff;font-size:11.5px;font-weight:700;cursor:pointer}
+.sp.oynuyor .ilerle i{animation:il 30s linear forwards}
+@keyframes il{from{inline-size:38%}to{inline-size:100%}}
+.sp:not(.oynuyor) .eq i,.sp:not(.oynuyor) .sp-dalga i{animation-play-state:paused}
+@media (max-width:1180px){.izg{grid-template-columns:minmax(0,1fr)}.sahne{min-block-size:0}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+</head>
+<body>
+<main class="sayfa">
+<div class="ust"><small>Seçim · Spiker paneli</small><h1>Spiker Paneli İçin 5 Alternatif</h1>
+<p>Beşinde de spikerin yüzü açık kalır; "Sıradaki" etiketi ayrı, opak bir kutu, kayan başlık yalnızca kendi alanında akar (etiketin üstünden geçmez). Kapalı halleri her kartın altında. Panellerdeki düğmeler örnek veriyle çalışır: oynat/duraklat, bülten ve konu seçimi, hız, altyazı, Spiker'a sor (mikrofon) ve okunan haberi aç. Üyelik düğmesi panelde yok; üyelik gerektiğinde Spiker kendisi söyler. Seçilen alternatif sitedeki panele uygulanacak.</p></div>
+<div class="izg">
+
+<section class="sec"><h2><span>A</span>Yüz Açık Alt Bant</h2>
+<p>Bugünkü yayın dili korunur ama içerik yarıya iner: üst yarı tamamen video, altta TV alt bandı, kayan başlık, bülten/konu çipleri, çalan bülten ve araç satırı (Sor · Altyazı · Hız · Haber).</p>
+<ul class="ae"><li class="a"><i class="fa-solid fa-plus"></i>Yüz ve ifade tam görünür, panel sade.</li><li class="a"><i class="fa-solid fa-plus"></i>Şu an olandan en az değişiklik.</li><li class="e"><i class="fa-solid fa-minus"></i>Alt bölüm dolu; küçük ekranda sıkışabilir.</li></ul>
+<div class="sahne"><div class="sp spA"><video src="../assets/video/spiker.mp4" autoplay muted loop playsinline></video>
+<div class="ust-s"><span class="etk"><i class="fa-solid fa-tower-broadcast"></i>Dada Haber · Spiker</span><button class="kc" aria-label="Küçült"><i class="fa-solid fa-minus"></i></button></div>
+<div class="alt-s"><div class="bant"><span class="canli"><i></i>Yayında</span><div class="isim"><b>Dada Spiker</b><small>Gündemi sana okuyan kişisel spikerin</small></div></div>
+<div class="kay"><b>Sıradaki</b><div><span>Asgari ücret komisyonu 4 Aralık'ta toplanıyor · Merkez Bankası faizi yüzde 42,5'te sabit tuttu · Marmara'da kar uyarısı sürüyor · Asgari ücret komisyonu 4 Aralık'ta toplanıyor · Merkez Bankası faizi yüzde 42,5'te sabit tuttu · Marmara'da kar uyarısı sürüyor ·&nbsp;</span></div></div>
+<div class="cipler kc2"><span class="a" data-b="Sabah Bülteni">Sabah</span><span data-b="Takip Ettiklerin">Takip Ettiklerin</span><span data-b="Ekonomi Özeti">Ekonomi</span><span data-b="Spor Özeti">Spor</span></div><div class="simdi"><button class="oy" aria-label="Duraklat"><i class="fa-solid fa-pause"></i></button><span><b data-simdi>Sabah Bülteni</b><small>07.00 · 5 haber</small><span class="ilerle" style="display:block;margin-block-start:6px"><i></i></span></span><span class="sure">01:08 / 03:00</span></div>
+<div class="arac4"><button class="dugme" data-sor><i class="fa-solid fa-microphone"></i>Sor</button><button class="dugme" data-cc><i class="fa-solid fa-closed-captioning"></i>Altyazı</button><button class="dugme hiz">1x</button><a class="dugme" href="../haber-detay.html" data-ac><i class="fa-solid fa-arrow-up-right-from-square"></i>Haber</a></div></div><p class="altyazi">Asgari Ücret Tespit Komisyonu ilk toplantısını 4 Aralık'ta yapacak.</p><div class="cevap"></div></div></div>
+<div class="mini-s"><span class="miniA"><span class="yuz"><video src="../assets/video/spiker.mp4" autoplay muted loop playsinline></video></span><b>Spiker</b><span class="nok"></span></span>Kapalı hali: yüzlü yuvarlak küçük video + "Spiker" + canlı nokta</div>
+</section>
+
+<section class="sec"><h2><span>B</span>Yatay Oynatıcı</h2>
+<p>Podcast oynatıcısı gibi yatay kart: solda dikey video (yüz tam kadraj), sağda çalan bülten, ilerleme, kontroller ve bülten çipleri. Panel alçak; sayfanın daha az yerini kaplar.</p>
+<ul class="ae"><li class="a"><i class="fa-solid fa-plus"></i>Yüz hiçbir şeyin altında kalmaz.</li><li class="a"><i class="fa-solid fa-plus"></i>"Dinlemeye başla" işi tek bakışta: oynat, geri/ileri, hız.</li><li class="e"><i class="fa-solid fa-minus"></i>Telefonda dikey haline ayrıca karar gerekir.</li></ul>
+<div class="sahne"><div class="sp spB"><div class="vid"><video src="../assets/video/spiker.mp4" autoplay muted loop playsinline></video><span class="canli"><i></i>Yayında</span></div>
+<div class="ic"><div class="bas"><span><b>Dada Spiker</b><small>Gündemi sana okuyan kişisel spikerin</small></span><button class="kc" aria-label="Küçült"><i class="fa-solid fa-minus"></i></button></div>
+<div class="kay"><b>Sıradaki</b><div><span>Asgari ücret komisyonu 4 Aralık'ta toplanıyor · Merkez Bankası faizi sabit tuttu · Marmara'da kar uyarısı · Asgari ücret komisyonu 4 Aralık'ta toplanıyor · Merkez Bankası faizi sabit tuttu · Marmara'da kar uyarısı ·&nbsp;</span></div></div>
+<div class="cal"><div class="cal-b"><b data-simdi>Sabah Bülteni</b><span>01:08 / 03:00</span></div><span class="ilerle"><i></i></span>
+<div class="kont"><button aria-label="10 sn geri"><i class="fa-solid fa-rotate-left"></i></button><button aria-label="Önceki"><i class="fa-solid fa-backward-step"></i></button><button class="oy" aria-label="Duraklat"><i class="fa-solid fa-pause"></i></button><button aria-label="Sonraki"><i class="fa-solid fa-forward-step"></i></button><button class="hiz">1x</button></div></div>
+<div class="cipler"><span class="a" data-b="Sabah Bülteni"><i class="fa-solid fa-sun"></i>Sabah</span><span data-b="Takip Ettiklerin"><i class="fa-solid fa-star"></i>Takip Ettiklerin</span><span data-b="Ekonomi Özeti"><i class="fa-solid fa-chart-line"></i>Ekonomi</span><span data-kilit><i class="fa-solid fa-lock"></i>Akşam</span></div>
+<div class="alt-l"><span class="ab"><button class="mk" data-sor aria-label="Spiker'a sor"><i class="fa-solid fa-microphone"></i></button><button class="mk" data-cc aria-label="Altyazı"><i class="fa-solid fa-closed-captioning"></i></button></span><a href="../haber-detay.html" data-ac>Haberi aç →</a></div></div><p class="altyazi">Asgari Ücret Tespit Komisyonu ilk toplantısını 4 Aralık'ta yapacak.</p><div class="cevap"></div></div></div>
+<div class="mini-s"><span class="miniA" style="padding-inline-end:14px"><span class="yuz"><video src="../assets/video/spiker.mp4" autoplay muted loop playsinline></video></span><span><b style="display:block">Sabah Bülteni</b><small style="font-size:11px;opacity:.7">01:08 / 03:00</small></span><i class="fa-solid fa-pause" style="color:var(--marka)"></i></span>Kapalı hali: mini oynatıcı (çalan bülten + duraklat)</div>
+</section>
+
+<section class="sec"><h2><span>C</span>Tam Video + Çekmece</h2>
+<p>Panel önce yalnızca yayın: tam video, altta ince alt bant ve kayan başlık. "Bültenler" ya da yukarı kaydırma ile alttan çekmece açılır; liste ve düğmeler orada. Örnekte çekmeceyi açmak için "Bültenler"e bas.</p>
+<ul class="ae"><li class="a"><i class="fa-solid fa-plus"></i>En sinematik; yayın hissi en güçlü.</li><li class="a"><i class="fa-solid fa-plus"></i>İçerik istenince gelir, yüzü kapatmaz.</li><li class="e"><i class="fa-solid fa-minus"></i>Bülten seçmek bir adım daha.</li></ul>
+<div class="sahne"><div class="sp spC" id="spC"><video src="../assets/video/spiker.mp4" autoplay muted loop playsinline></video>
+<div class="ust-s"><span class="etk"><span class="canli" style="block-size:20px;border-radius:5px"><i></i>Yayında</span></span><button class="kc" aria-label="Küçült"><i class="fa-solid fa-minus"></i></button></div>
+<div class="alt-s"><div class="bant" style="grid-template-columns:minmax(0,1fr)"><div class="isim"><b>Dada Spiker</b><small>Gündemi sana okuyan kişisel spikerin</small></div></div>
+<div class="kay"><b>Sıradaki</b><div><span>Asgari ücret komisyonu 4 Aralık'ta toplanıyor · Merkez Bankası faizi sabit tuttu · Marmara'da kar uyarısı · Asgari ücret komisyonu 4 Aralık'ta toplanıyor · Merkez Bankası faizi sabit tuttu · Marmara'da kar uyarısı ·&nbsp;</span></div></div>
+<div class="cekme"><button class="dugme ana oy" style="flex:1" aria-label="Duraklat"><i class="fa-solid fa-pause"></i>Sabah Bülteni · 3 dk</button><button class="dugme" onclick="document.getElementById('spC').classList.add('acik')"><i class="fa-solid fa-chevron-up"></i>Bültenler</button></div></div>
+<div class="cekmece"><span class="tutamak" onclick="document.getElementById('spC').classList.remove('acik')"></span>
+<ol class="liste"><li class="on" data-b="Sabah Bülteni"><span class="o"><i class="fa-solid fa-play"></i></span><span><b>Sabah Bülteni</b><small>07.00 · 5 haber · 3 dk</small></span><span class="s">03:00</span></li><li data-b="Takip Ettiklerin"><span class="o"><i class="fa-solid fa-play"></i></span><span><b>Takip Ettiklerin</b><small>Konuların, şehrin, takımın</small></span><span class="s">02:10</span></li><li data-kilit><span class="o k"><i class="fa-solid fa-lock"></i></span><span><b>Akşam Özeti</b><small>19.00 · Pro pakette</small></span><span class="s">04:30</span></li></ol>
+<div class="satir"><button class="dugme ana" data-sor><i class="fa-solid fa-microphone"></i>Spiker'a sor</button><button class="dugme" onclick="document.getElementById('spC').classList.remove('acik')"><i class="fa-solid fa-chevron-down"></i>Kapat</button></div></div><p class="altyazi">Asgari Ücret Tespit Komisyonu ilk toplantısını 4 Aralık'ta yapacak.</p><div class="cevap"></div></div></div>
+<div class="mini-s"><span class="miniC"><video src="../assets/video/spiker.mp4" autoplay muted loop playsinline></video><span class="canli">Canlı</span></span>Kapalı hali: kehribar halkalı yuvarlak video, "Canlı" rozeti</div>
+</section>
+
+<section class="sec"><h2><span>D</span>Son Dakika Masası</h2>
+<p>Sitenin açık zeminli dilinde: üstte yuvarlak köşeli video, altında bugünün Son Dakika akışı saatleriyle; spikerin o an okuduğu satır kehribar işaretli ("okunuyor"). Son Dakika kapsülüyle aynı aile.</p>
+<ul class="ae"><li class="a"><i class="fa-solid fa-plus"></i>Projeye has: Son Dakika saat dili ve akış.</li><li class="a"><i class="fa-solid fa-plus"></i>Açık zemin; sayfanın geri kalanıyla uyumlu, ağır durmaz.</li><li class="e"><i class="fa-solid fa-minus"></i>Video küçük; "yayın" hissi A ve C'den az.</li></ul>
+<div class="sahne"><div class="sp spD"><div class="vid"><video src="../assets/video/spiker.mp4" autoplay muted loop playsinline></video><div class="kap"><span class="sd"><i></i>Son Dakika · Spiker</span><button class="kc" aria-label="Küçült" style="background:rgba(18,18,18,.45);border-color:rgba(255,255,255,.3);color:#fff"><i class="fa-solid fa-minus"></i></button></div>
+<div class="alt"><button class="oy" aria-label="Duraklat"><i class="fa-solid fa-pause"></i></button><span><b data-simdi>14.05 · Asgari ücret</b><small>Bugün 6 başlık · 01:08 / 03:00</small></span></div></div>
+<div class="ic"><div class="bas"><span><b>Bugün Ne Oldu?</b><small>23 Kasım · saat saat</small></span><span class="etk" style="color:var(--gri-600)"><i class="fa-solid fa-headphones"></i>3 dk</span></div>
+<ol class="akis"><li data-b="14.32 · Faiz kararı"><time>14.32</time><span>Merkez Bankası faizi yüzde 42,5'te sabit tuttu</span></li><li class="on" data-b="14.05 · Asgari ücret"><time>14.05</time><span>Asgari ücret komisyonu 4 Aralık'ta toplanıyor</span></li><li data-b="13.48 · Milli takım"><time>13.48</time><span>Milli takımın aday kadrosu açıklandı</span></li><li data-b="13.20 · KAAN"><time>13.20</time><span>KAAN'ın ikinci prototipi test uçuşunda</span></li></ol>
+<div class="satir"><button class="dugme ana" data-sor><i class="fa-solid fa-microphone"></i>Spiker'a sor</button><a class="dugme" href="../son-dakika.html"><i class="fa-solid fa-bolt"></i>Son Dakika</a></div></div><div class="cevap"></div></div></div>
+<div class="mini-s"><span class="miniD"><span class="yuz"><video src="../assets/video/spiker.mp4" autoplay muted loop playsinline></video></span><span><b style="display:block">Spiker</b><time>14.05 okunuyor</time></span></span>Kapalı hali: açık kart, okunan haberin saati</div>
+</section>
+
+<section class="sec"><h2><span>E</span>Dada Özet Spikeri</h2>
+<p>Dada Özet'in dili: spiker yuvarlak kadrajda, halka bültenin ilerlemesini gösterir. Üstte 15 sn · 1 dk · Tam seçimi (ne kadar dinleyeceğine okur karar verir), altta özet maddeleri; okunan cümle altyazı gibi vurgulanır.</p>
+<ul class="ae"><li class="a"><i class="fa-solid fa-plus"></i>En "Dada Haber"e has: Dada Özet'in 15 sn / 1 dk / Tam fikri sesli.</li><li class="a"><i class="fa-solid fa-plus"></i>Altyazı: sessiz ortamda da takip edilir, erişilebilir.</li><li class="e"><i class="fa-solid fa-minus"></i>Video küçük; yüz yuvarlak kadrajda.</li></ul>
+<div class="sahne"><div class="sp spE"><div class="bas"><span class="halka"><span><video src="../assets/video/spiker.mp4" autoplay muted loop playsinline></video></span></span><span class="kim"><b><i class="fa-solid fa-circle"></i>Dada Spiker</b><small><span data-simdi>Sabah Bülteni</span> · 01:08 / 03:00</small></span><button class="kc" aria-label="Küçült"><i class="fa-solid fa-minus"></i></button></div>
+<div class="sekme"><button class="a">15 sn</button><button>1 dk</button><button>Tam bülten</button></div>
+<ol><li class="gecti">Merkez Bankası politika faizini yüzde 42,5'te sabit tuttu.</li><li class="on"><span><mark>Asgari ücret komisyonu ilk kez 4 Aralık'ta</mark> toplanıyor; karar yıl sonuna kadar bekleniyor.</span></li><li>Milli takımın aday kadrosu açıklandı; kamp 8 Aralık'ta başlıyor.</li></ol>
+<div class="kont"><button aria-label="10 sn geri"><i class="fa-solid fa-rotate-left"></i></button><button aria-label="Önceki"><i class="fa-solid fa-backward-step"></i></button><button class="oy" aria-label="Duraklat"><i class="fa-solid fa-pause"></i></button><button aria-label="Sonraki"><i class="fa-solid fa-forward-step"></i></button><button class="hiz">1x</button></div>
+<div class="alt-l"><span class="ab"><button class="mk" data-sor aria-label="Spiker'a sor"><i class="fa-solid fa-microphone"></i></button><button class="mk a" data-cc aria-label="Altyazı"><i class="fa-solid fa-closed-captioning"></i></button></span><a href="../haber-detay.html" data-ac>Okunan haberi aç →</a></div><div class="cevap"></div></div></div>
+<div class="mini-s"><span class="miniE"><span><video src="../assets/video/spiker.mp4" autoplay muted loop playsinline></video></span></span>Kapalı hali: ilerleme halkalı yuvarlak video</div>
+</section>
+</div>
+<p class="tav" style="margin-block-start:24px"><i class="fa-solid fa-lightbulb"></i><span><b>Tavsiyem: E, ikinci sırada A.</b> E en çok bu projeye has: Dada Özet'in 15 sn / 1 dk / Tam fikrini sese taşıyor, altyazıyla sessiz ortamda da çalışıyor ve sayfanın açık diline uyuyor. Yayın hissi isteniyorsa A: bugünkü dili koruyup yüzü açıyor. B masaüstünde güçlü ama telefonda ikinci düzen ister; C en sinematik ama bülten bir adım arkada; D Son Dakika ailesine bağlı ama video küçük.</span></p>
+
+<div class="ust" style="margin-block:48px 0"><small>Seçim · Kapalı hal (FAB)</small><h2 style="margin:0;font-size:30px;font-weight:800;letter-spacing:-.02em">Spiker Düğmesi İçin 3 Alternatif</h2>
+<p>Kapalı düğme boş durmasın, yayın olduğunu göstersin. Üçü de canlı: yüz videosu, ses hareketi ve o an okunan başlık. Panel alternatiflerinden bağımsız seçilebilir.</p></div>
+<div class="fab-izg">
+<section class="sec"><h2><span>F1</span>Canlı Başlık</h2><p>Yüz videosu + kırmızı canlı nokta; yanında "Spiker okuyor" ve o an okunan başlık 3 saniyede bir değişir; sağda ses çubukları.</p>
+<div class="fab-sahne"><span class="f1"><span class="yuzv"><video src="../assets/video/spiker.mp4" autoplay muted loop playsinline></video><span class="nk"></span></span><span class="y"><small>Spiker okuyor</small><span class="don"><span>Asgari ücret komisyonu 4 Aralık'ta</span><span>Faiz yüzde 42,5'te sabit kaldı</span><span>Marmara'da kar uyarısı sürüyor</span></span></span><span class="eq"><i></i><i></i><i></i><i></i></span></span></div>
+<ul class="ae"><li class="a"><i class="fa-solid fa-plus"></i>En bilgilendirici; tıklamadan ne okunduğunu söyler.</li><li class="e"><i class="fa-solid fa-minus"></i>En geniş düğme (300px); telefonda yalnız yüz kalır.</li></ul></section>
+<section class="sec"><h2><span>F2</span>Ses Halkası</h2><p>Yalnızca yüz: yuvarlak video, çevresinden kehribar ses halkaları yayılır, altında "Canlı" rozeti; üstüne gelince "Spiker'ı aç" balonu.</p>
+<div class="fab-sahne"><span class="f2"><span class="hl"></span><span class="hl"></span><span class="hl"></span><span class="yuzv"><video src="../assets/video/spiker.mp4" autoplay muted loop playsinline></video></span><span class="et">Canlı</span><span class="ip">Spiker'ı aç · Sabah Bülteni</span></span></div>
+<ul class="ae"><li class="a"><i class="fa-solid fa-plus"></i>En az yer; telefon ve masaüstünde aynı.</li><li class="e"><i class="fa-solid fa-minus"></i>Ne olduğu ilk bakışta yazıyla söylenmiyor.</li></ul></section>
+<section class="sec"><h2><span>F3</span>Yayın Logosu + Şerit</h2><p>Yeni Dada Spiker işareti (konuşma balonu içinde mikrofon, yanıp sönen yayın dalgaları), kehribar düğmede kayan başlık şeridi ve "Canlı" etiketi.</p>
+<div class="fab-sahne"><span class="f3"><span class="lg"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M5 9a5 5 0 0 1 5-5h12a5 5 0 0 1 5 5v8a5 5 0 0 1-5 5h-7l-6 5v-5H10a5 5 0 0 1-5-5V9Z" fill="currentColor" opacity=".18"/><rect x="13.5" y="7.5" width="5" height="9" rx="2.5" fill="currentColor"/><path d="M11 13.5a5 5 0 0 0 10 0M16 18.5v2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path class="d1" d="M8.5 9.5a8 8 0 0 0 0 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path class="d2" d="M23.5 9.5a8 8 0 0 1 0 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span><span class="tk"><span>Asgari ücret komisyonu 4 Aralık'ta toplanıyor · Faiz yüzde 42,5'te sabit · Marmara'da kar uyarısı · Asgari ücret komisyonu 4 Aralık'ta toplanıyor · Faiz yüzde 42,5'te sabit · Marmara'da kar uyarısı ·&nbsp;</span></span><b>Canlı</b></span></div>
+<ul class="ae"><li class="a"><i class="fa-solid fa-plus"></i>Kendine ait işaret; marka renginde, en dikkat çekici.</li><li class="e"><i class="fa-solid fa-minus"></i>Kehribar düğme sayfadaki başka kehribar öğelerle yarışabilir.</li></ul></section>
+</div>
+<p class="tav" style="margin-block-start:24px"><i class="fa-solid fa-lightbulb"></i><span><b>Düğme için tavsiyem: F1</b> (telefonda F2'ye iner: yalnız ses halkalı yüz). Kapalıyken bile "şu an ne okunuyor" bilgisini verir; boşluk kalmaz.</span></p>
+</main>
+
+<script>
+/* Seçim sayfası örnek etkileşimleri: her panel kendi içinde çalışır */
+document.querySelectorAll('.sp').forEach(sp=>{sp.classList.add('oynuyor'); const vid=sp.querySelectorAll('video'), HIZ=['1x','1.25x','1.5x','0.75x'];
+  const yaz=b=>sp.querySelectorAll('[data-simdi]').forEach(x=>x.textContent=b);
+  sp.addEventListener('click',e=>{const o=e.target.closest('.oy'); if(o){const on=sp.classList.toggle('oynuyor'); sp.querySelectorAll('.oy i').forEach(i=>i.className='fa-solid '+(on?'fa-pause':'fa-play')); vid.forEach(v=>on?v.play():v.pause()); return;}
+    const h=e.target.closest('.hiz'); if(h){h.textContent=HIZ[(HIZ.indexOf(h.textContent)+1)%HIZ.length]; vid.forEach(v=>v.playbackRate=parseFloat(h.textContent)); return;}
+    const c=e.target.closest('[data-cc]'); if(c){c.classList.toggle('a', sp.classList.toggle('cc')); return;}
+    const s=e.target.closest('.sekme button'); if(s){s.parentElement.querySelectorAll('button').forEach(x=>x.classList.toggle('a',x===s)); yaz('Sabah Bülteni · '+s.textContent); return;}
+    const k=e.target.closest('[data-kilit]'); if(k){const cv=sp.querySelector('.cevap'); cv.innerHTML='<span class="s"><i class="fa-solid fa-crown" style="animation:none;background:var(--marka);color:var(--siyah)"></i>Akşam Özeti Pro pakette</span><span class="c">Akşam Özeti 19.00\'da Pro üyelere açılır. Pro paket yakında; açıldığında sana haber vereyim mi?</span><span class="k"><button data-kapa>Haber ver</button><button data-kapa>Şimdi değil</button></span>'; cv.classList.add('g'); return;}
+    const b=e.target.closest('[data-b]'); if(b){b.parentElement.querySelectorAll('[data-b]').forEach(x=>x.classList.toggle(x.tagName==='SPAN'?'a':'on',x===b)); yaz(b.dataset.b); sp.classList.add('oynuyor'); sp.querySelectorAll('.oy i').forEach(i=>i.className='fa-solid fa-pause'); vid.forEach(v=>v.play()); return;}
+    const q=e.target.closest('[data-sor]'); if(q){const cv=sp.querySelector('.cevap'); cv.innerHTML='<span class="s"><i class="fa-solid fa-microphone"></i>Dinliyorum…</span><span class="q">“Asgari ücret ne zaman açıklanacak?”</span>'; cv.classList.add('g');
+      setTimeout(()=>{cv.innerHTML='<span class="s"><i class="fa-solid fa-microphone" style="animation:none;background:var(--siyah)"></i>Spiker yanıtladı</span><span class="q">“Asgari ücret ne zaman açıklanacak?”</span><span class="c">Komisyon 4 Aralık\'ta ilk kez toplanıyor; kararın yılın son haftasında açıklanması bekleniyor. Yeni tutar 1 Ocak 2027\'den itibaren geçerli.</span><span class="k"><button data-kapa>Haberi aç</button><button data-kapa>Kapat</button></span>';},1600); return;}
+    if(e.target.closest('[data-kapa]')){sp.querySelector('.cevap').classList.remove('g');}
+    if(e.target.closest('a[href="#"]')) e.preventDefault();});});
+</script>
+</body>
+</html>
