@@ -124,7 +124,7 @@
 /* ===== C12 · Medya oynatıcılı detay ===== */
 .oy-video{position:relative;aspect-ratio:16/9;border-radius:var(--k-buyuk);background:var(--siyah) center/cover;overflow:hidden;display:grid;place-items:center}
 .oy-video::before{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(18,18,18,.7),rgba(18,18,18,.15) 50%)}
-.oy-oynat{position:relative;display:grid;place-items:center;inline-size:84px;block-size:84px;border-radius:50%;border:0;background:var(--marka);color:var(--siyah);font-size:var(--y-xl);box-shadow:0 10px 30px rgba(252,182,35,.4);cursor:pointer;transition:transform .25s}
+.oy-oynat{position:relative;display:grid;place-items:center;inline-size:84px;block-size:84px;border-radius:50%;border:0;background:var(--marka);color:var(--siyah);font-size:var(--y-xl);box-shadow:0 10px 30px rgba(var(--marka-rgb),.4);cursor:pointer;transition:transform .25s}
 .oy-oynat i{margin-inline-start:5px}
 .oy-video:hover .oy-oynat{transform:scale(1.06)}
 .oy-cubuk{position:absolute;inset-inline:20px;inset-block-end:16px;display:flex;align-items:center;gap:14px;color:var(--beyaz);font-size:var(--y-sm);font-weight:700;font-variant-numeric:tabular-nums}

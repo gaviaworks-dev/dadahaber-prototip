@@ -66,7 +66,7 @@
 .sw-serit-e i{inline-size:8px;block-size:8px;border-radius:50%;background:var(--azalis);animation:nabiz 1.4s infinite}
 .sw-serit-ic{flex:1;display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;min-inline-size:0}
 .sw-serit .sw-mac{flex:none;inline-size:260px;padding:10px 14px;gap:6px;background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12)}
-.sw-serit .sw-mac.canli{background:rgba(252,182,35,.12);border-color:rgba(252,182,35,.4)}
+.sw-serit .sw-mac.canli{background:rgba(var(--marka-rgb),.12);border-color:rgba(var(--marka-rgb),.4)}
 .sw-serit .sw-mac-u small{color:var(--gri-200)}
 .sw-serit .sw-durum{color:var(--gri-200)}
 .sw-serit .sw-durum.canli{color:var(--azalis-koyu)}

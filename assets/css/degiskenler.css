@@ -4,7 +4,9 @@
 @font-face{font-family:"Gilroy";src:url("../font/gilroy/Gilroy-Medium.woff2") format("woff2");font-weight:400 600;font-display:swap}
 @font-face{font-family:"Gilroy";src:url("../font/gilroy/Gilroy-ExtraBold.woff2") format("woff2");font-weight:700 800;font-display:swap}
 :root{
-  --marka:#FCB623;--marka-metin:#7A5F01;--marka-25:#FFF4C2;--marka-10:#FFFBEA;--marka-200:#FFD740;--marka-100:#FFE373;--marka-koyu:#523F00;--beyaz:#FFFFFF;
+  /* Marka rengi #FECC17 (Beyar 2026-11-24; logo rengi). Skala #FECC17'den türetildi: secenekler/logo-renk.html */
+  --marka:#FECC17;--marka-rgb:254,204,23;--marka-metin:#7A620B;--marka-25:#FFF2C5;--marka-10:#FFFBEC;--marka-200:#FED645;--marka-100:#FEE074;--marka-400:#E5B815;--marka-koyu:#514107;
+  --marka-ust:var(--marka-400); /* KURAL (Beyar 2026-11-24): marka zeminli düğmelerin üstüne gelme hali koyulaşır, açılmaz */--beyaz:#FFFFFF;
   /* Namaz vakti gökyüzü çizelgesi ve koyu zemin üstü artış/azalış */--gok-gece:#1B2A4A;--gok-safak:#5B7BB5;--gok-aksam:#E39A4A;--artis-koyu:#5BD16B;--azalis-koyu:#FF6B6B;
   --siyah:#121212;--gri-10:#FAFAFA;--gri-50:#EFEFEF;--gri-100:#DEDEDE;--gri-200:#BDBDBD;--gri-300:#9D9D9D;--gri-400:#6B6B6B;--gri-600:#494949;--gri-800:#242424;
   --zemin-a:#FFFFFF;--zemin-b:#F9F9F9;--cizgi:#DEDEDE;--anlik:#C8102E;--artis:#19750A;--azalis:#C8102E;
