@@ -221,6 +221,47 @@ body{margin:0;font-family:"Gilroy",system-ui,sans-serif;background:var(--zemin-b
 .sp.oynuyor .ilerle i{animation:il 30s linear forwards}
 @keyframes il{from{inline-size:38%}to{inline-size:100%}}
 .sp:not(.oynuyor) .eq i,.sp:not(.oynuyor) .sp-dalga i{animation-play-state:paused}
+
+/* ===== Sesli Spiker çalar (bütün alternatiflerde ortak) =====
+   Spotify gibi alttan kalıcı çalar: panel kapansa da ses sürer. Dinlerken video değil, sesin kendi görünümü: Dada Spiker ses işareti + canlı dalga + okunan cümle. */
+.cal-bar{position:fixed;z-index:90;inset-inline:0;inset-block-end:16px;margin-inline:auto;inline-size:min(880px,calc(100vw - 24px));display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:16px;padding:10px 14px 10px 10px;border-radius:20px;background:rgba(18,18,18,.94);backdrop-filter:blur(14px);color:#fff;box-shadow:0 24px 60px rgba(18,18,18,.45);transform:translateY(140%);transition:transform .45s cubic-bezier(.16,1,.3,1)}
+.cal-bar.gor{transform:none}
+.kapak{position:relative;display:grid;place-items:center;inline-size:64px;block-size:64px;border-radius:16px;background:radial-gradient(120% 120% at 20% 10%,#FFD740,#FCB623 45%,#A37F01);overflow:hidden;color:var(--siyah)}
+.kapak b{position:relative;z-index:1;font-size:18px;font-weight:800;letter-spacing:-.04em}
+.kapak i{position:absolute;inset:0;border-radius:inherit;border:2px solid rgba(18,18,18,.35);animation:kp 2.2s ease-out infinite;opacity:0}
+.kapak i:nth-of-type(2){animation-delay:.7s}.kapak i:nth-of-type(3){animation-delay:1.4s}
+@keyframes kp{0%{transform:scale(.4);opacity:.8}100%{transform:scale(1.4);opacity:0}}
+.cal-bar:not(.calis) .kapak i{animation-play-state:paused;opacity:0}
+.cal-orta{display:grid;gap:6px;min-inline-size:0}
+.cal-ust{display:flex;align-items:center;gap:8px;min-inline-size:0}
+.cal-ust .bl{flex:none;display:inline-flex;align-items:center;gap:6px;block-size:20px;padding:0 7px;border-radius:5px;background:var(--anlik);font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+.cal-ust .bl i{inline-size:6px;block-size:6px;border-radius:50%;background:#fff;animation:nb 1.4s infinite}
+.cal-ust b{font-size:13.5px;font-weight:800;white-space:nowrap}
+.cal-ust small{font-size:12px;color:rgba(255,255,255,.6);white-space:nowrap}
+.cal-cumle{font-size:14px;line-height:1.4;color:rgba(255,255,255,.7);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cal-cumle mark{background:none;color:#fff;font-weight:700;box-shadow:inset 0 -3px 0 var(--marka)}
+.cal-ilerle{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:10px;font-size:11px;font-variant-numeric:tabular-nums;color:rgba(255,255,255,.6)}
+.cal-iz{position:relative;block-size:4px;border-radius:4px;background:rgba(255,255,255,.18);cursor:pointer}
+.cal-iz i{position:absolute;inset-block:0;inset-inline-start:0;border-radius:4px;background:var(--marka);inline-size:0;transition:inline-size .3s linear}
+.cal-iz em{position:absolute;inset-block:0;inset-inline-start:0;display:flex;align-items:center;gap:2px;inline-size:100%;pointer-events:none}
+.cal-kont{display:flex;align-items:center;gap:4px}
+.cal-kont button{display:grid;place-items:center;inline-size:38px;block-size:38px;border:0;border-radius:10px;background:none;color:rgba(255,255,255,.85);font-size:14px;cursor:pointer}
+.cal-kont button:hover{background:rgba(255,255,255,.1);color:#fff}
+.cal-kont .ana{inline-size:48px;block-size:48px;border-radius:14px;background:var(--marka);color:var(--siyah);font-size:16px}
+.cal-kont .ana:hover{background:var(--marka-200);color:var(--siyah)}
+.cal-kont .hz{inline-size:auto;padding:0 9px;border:1px solid rgba(255,255,255,.22);font-size:11.5px;font-weight:800}
+.cal-kont .ac{color:var(--marka)}
+.metin-k{position:fixed;z-index:89;inset-inline:0;inset-block-end:110px;margin-inline:auto;inline-size:min(880px,calc(100vw - 24px));max-block-size:44vh;overflow:auto;display:none;gap:4px;padding:16px;border-radius:20px;background:rgba(18,18,18,.94);backdrop-filter:blur(14px);color:#fff;box-shadow:0 24px 60px rgba(18,18,18,.4)}
+.metin-k.gor{display:grid}
+.metin-k h3{margin:0 0 6px;font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--marka)}
+.metin-k button{display:grid;grid-template-columns:28px minmax(0,1fr);gap:10px;align-items:start;padding:8px 10px;border:0;border-radius:10px;background:none;color:rgba(255,255,255,.62);font:inherit;font-size:14px;line-height:1.45;text-align:start;cursor:pointer}
+.metin-k button b{font-size:11px;color:rgba(255,255,255,.4);padding-block-start:3px;font-variant-numeric:tabular-nums}
+.metin-k button.on{background:rgba(252,182,35,.12);color:#fff}.metin-k button.on b{color:var(--marka)}
+.metin-k button.gecti{color:rgba(255,255,255,.4)}
+.ses-not{display:flex;align-items:center;gap:10px;margin-block-start:16px;padding:14px 16px;border-radius:12px;background:var(--beyaz);border:1px dashed var(--gri-200);font-size:13.5px;line-height:1.5;color:var(--gri-600)}
+.ses-not button{flex:none;display:inline-flex;align-items:center;gap:8px;block-size:40px;padding:0 14px;border-radius:12px;border:0;background:var(--siyah);color:#fff;font:inherit;font-size:13px;font-weight:700;cursor:pointer}
+body{padding-block-end:120px}
+@media (max-width:700px){.cal-bar{grid-template-columns:auto minmax(0,1fr);inset-block-end:8px}.cal-kont{grid-column:1/-1;justify-content:space-between}.kapak{inline-size:52px;block-size:52px}}
 @media (max-width:1180px){.izg{grid-template-columns:minmax(0,1fr)}.sahne{min-block-size:0}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important}}
 </style>
@@ -294,6 +335,16 @@ body{margin:0;font-family:"Gilroy",system-ui,sans-serif;background:var(--zemin-b
 </div>
 <p class="tav" style="margin-block-start:24px"><i class="fa-solid fa-lightbulb"></i><span><b>Tavsiyem: E, ikinci sırada A.</b> E en çok bu projeye has: Dada Özet'in 15 sn / 1 dk / Tam fikrini sese taşıyor, altyazıyla sessiz ortamda da çalışıyor ve sayfanın açık diline uyuyor. Yayın hissi isteniyorsa A: bugünkü dili koruyup yüzü açıyor. B masaüstünde güçlü ama telefonda ikinci düzen ister; C en sinematik ama bülten bir adım arkada; D Son Dakika ailesine bağlı ama video küçük.</span></p>
 
+
+<p class="ses-not"><button type="button" data-ses-basla><i class="fa-solid fa-headphones"></i>Spiker'ı sesli dinle</button><span><b>Sesli dinleme beş alternatifte ortak.</b> Panellerdeki oynat düğmesi ya da bir bülten seçimi gerçek sesle okur; alttaki çalar panel kapansa da çalmayı sürdürür (Spotify gibi). Ses şimdilik bilgisayarın Türkçe sesi; ElevenLabs bağlanınca aynı çalar onun sesini çalar.</span></p>
+<div class="metin-k" id="metinK" aria-label="Bülten metni"><h3>Bülten metni</h3></div>
+<div class="cal-bar" id="calBar" role="region" aria-label="Spiker çalar">
+<div class="kapak" aria-hidden="true"><i></i><i></i><i></i><b>DS</b></div>
+<div class="cal-orta"><div class="cal-ust"><span class="bl"><i></i>Spiker</span><b id="calBulten">Sabah Bülteni</b><small id="calSira">1 / 5</small></div>
+<div class="cal-cumle" id="calCumle">Hazır</div>
+<div class="cal-ilerle"><span id="calGecen">00:00</span><span class="cal-iz" id="calIz"><i id="calDolu"></i></span><span id="calToplam">03:00</span></div></div>
+<div class="cal-kont"><button type="button" data-k="geri" aria-label="Önceki haber"><i class="fa-solid fa-backward-step"></i></button><button type="button" class="ana" data-k="oyna" aria-label="Oynat"><i class="fa-solid fa-play"></i></button><button type="button" data-k="ileri" aria-label="Sonraki haber"><i class="fa-solid fa-forward-step"></i></button><button type="button" class="hz" data-k="hiz" aria-label="Okuma hızı">1x</button><button type="button" data-k="metin" aria-label="Bülten metni"><i class="fa-solid fa-align-left"></i></button><button type="button" data-k="kapat" aria-label="Çaları kapat"><i class="fa-solid fa-xmark"></i></button></div>
+</div>
 <div class="ust" style="margin-block:48px 0"><small>Seçim · Kapalı hal (FAB)</small><h2 style="margin:0;font-size:30px;font-weight:800;letter-spacing:-.02em">Spiker Düğmesi İçin 3 Alternatif</h2>
 <p>Kapalı düğme boş durmasın, yayın olduğunu göstersin. Üçü de canlı: yüz videosu, ses hareketi ve o an okunan başlık. Panel alternatiflerinden bağımsız seçilebilir.</p></div>
 <div class="fab-izg">
@@ -324,6 +375,53 @@ document.querySelectorAll('.sp').forEach(sp=>{sp.classList.add('oynuyor'); const
       setTimeout(()=>{cv.innerHTML='<span class="s"><i class="fa-solid fa-microphone" style="animation:none;background:var(--siyah)"></i>Spiker yanıtladı</span><span class="q">“Asgari ücret ne zaman açıklanacak?”</span><span class="c">Komisyon 4 Aralık\'ta ilk kez toplanıyor; kararın yılın son haftasında açıklanması bekleniyor. Yeni tutar 1 Ocak 2027\'den itibaren geçerli.</span><span class="k"><button data-kapa>Haberi aç</button><button data-kapa>Kapat</button></span>';},1600); return;}
     if(e.target.closest('[data-kapa]')){sp.querySelector('.cevap').classList.remove('g');}
     if(e.target.closest('a[href="#"]')) e.preventDefault();});});
+</script>
+
+<script>
+/* Sesli Spiker: bülten kuyruğu, gerçek ses (speechSynthesis tr-TR). Ses kaynağı tek yerde: ileride ElevenLabs ses dosyası buraya bağlanır. */
+const BULTEN={
+ 'Sabah Bülteni':['Günaydın, Dada Haber Sabah Bülteni\'ne hoş geldin. Bugün öne çıkan beş başlık var.','Merkez Bankası politika faizini yüzde 42,5\'te sabit tuttu; bir sonraki karar 18 Aralık\'ta açıklanacak.','Asgari Ücret Tespit Komisyonu ilk toplantısını 4 Aralık\'ta yapacak; kararın yıl sonuna kadar açıklanması bekleniyor.','Meteoroloji, Marmara için turuncu kodlu kar uyarısı yaptı; İstanbul\'da okullar yarın da tatil.','Milli takımın aday kadrosu açıklandı; kamp 8 Aralık\'ta Antalya\'da başlıyor. Dada Haber\'i dinlediğin için teşekkürler.'],
+ 'Takip Ettiklerin':['Takip ettiğin konulardan derledim.','Ekonomi: Dolar güne 34,52 liradan başladı, borsa yüzde 0,4 düştü.','Beşiktaş deplasmanda üç puanı iki golle aldı.','İstanbul\'da Kirazlı–Halkalı metrosu yarın açılıyor.'],
+ 'Ekonomi Özeti':['Ekonomi özeti.','Merkez Bankası faizi sabit tuttu.','Dolar 34,52, euro 36,21 liradan işlem görüyor.','Borsa İstanbul günü yüzde 0,4 düşüşle tamamladı.'],
+ 'Spor Özeti':['Spor özeti.','Süper Lig\'de 14. hafta derbiyle başlıyor.','Basketbolda Avrupa kupalarında üç galibiyet geldi.','Voleybol Kadın Milli Takımı finalde.']
+};
+const SES=(()=>{const ss=window.speechSynthesis, bar=document.getElementById('calBar'), mk=document.getElementById('metinK'); const HIZ=[1,1.25,1.5,.75];
+ let ad='Sabah Bülteni', kuyruk=BULTEN[ad], i=0, cal=false, hi=0, kar=0, zam=null, t0=0, gecen=0;
+ const sure=s=>Math.round(s.length/14); const toplam=()=>kuyruk.reduce((a,s)=>a+sure(s),0);
+ const fmt=s=>String(Math.floor(s/60)).padStart(2,'0')+':'+String(Math.floor(s%60)).padStart(2,'0');
+ const ses=()=>ss?ss.getVoices().find(v=>/^tr/i.test(v.lang)):null;
+ const ciz=()=>{const s=kuyruk[i]||''; const k=Math.min(kar,s.length); const sonBosluk=s.indexOf(' ',k+1);
+  const ust=sonBosluk<0?s.length:sonBosluk; document.getElementById('calCumle').innerHTML=s?(s.slice(0,k).replace(/</g,'&lt;')+'<mark>'+s.slice(k,ust).replace(/</g,'&lt;')+'</mark>'+s.slice(ust).replace(/</g,'&lt;')):'Hazır';
+  document.getElementById('calBulten').textContent=ad; document.getElementById('calSira').textContent=(i+1)+' / '+kuyruk.length;
+  const once=kuyruk.slice(0,i).reduce((a,x)=>a+sure(x),0)+sure(s)*(s.length?k/s.length:0), T=toplam();
+  document.getElementById('calGecen').textContent=fmt(once); document.getElementById('calToplam').textContent=fmt(T); document.getElementById('calDolu').style.inlineSize=(T?once/T*100:0)+'%';
+  bar.classList.toggle('calis',cal); bar.querySelector('[data-k="oyna"] i').className='fa-solid '+(cal?'fa-pause':'fa-play'); bar.querySelector('[data-k="oyna"]').setAttribute('aria-label',cal?'Duraklat':'Oynat');
+  bar.querySelector('[data-k="hiz"]').textContent=HIZ[hi]+'x';
+  mk.querySelectorAll('button').forEach((b,n)=>{b.classList.toggle('on',n===i); b.classList.toggle('gecti',n<i);});
+  document.querySelectorAll('.sp .oy i').forEach(x=>x.className='fa-solid '+(cal?'fa-pause':'fa-play'));
+  document.querySelectorAll('[data-simdi]').forEach(x=>x.textContent=ad);};
+ const listele=()=>{mk.innerHTML='<h3>'+ad+' · metin</h3>'+kuyruk.map((s,n)=>'<button type="button" data-n="'+n+'"><b>'+String(n+1).padStart(2,'0')+'</b><span>'+s.replace(/</g,'&lt;')+'</span></button>').join('');};
+ const konus=()=>{clearInterval(zam); kar=0; const s=kuyruk[i]; if(!s){cal=false; i=0; ciz(); return;}
+  if(ss){ss.cancel(); const u=new SpeechSynthesisUtterance(s); u.lang='tr-TR'; u.rate=HIZ[hi]; const v=ses(); if(v) u.voice=v;
+   u.onboundary=e=>{kar=e.charIndex; ciz();}; u.onend=()=>{if(!cal) return; i++; if(i<kuyruk.length) konus(); else {cal=false; i=0; kar=0; ciz();}}; ss.speak(u);}
+  else {t0=Date.now(); zam=setInterval(()=>{kar=Math.min(s.length,kar+Math.round(14*HIZ[hi]/4)); ciz(); if(kar>=s.length){clearInterval(zam); i++; if(i<kuyruk.length) konus(); else {cal=false;i=0;kar=0;ciz();}}},250);}
+  ciz();};
+ const oyna=()=>{cal=true; bar.classList.add('gor'); konus();};
+ const durdur=()=>{cal=false; if(ss) ss.cancel(); clearInterval(zam); ciz();};
+ const sec=(b)=>{if(!BULTEN[b]) return; ad=b; kuyruk=BULTEN[b]; i=0; listele(); oyna();};
+ bar.addEventListener('click',e=>{const k=e.target.closest('[data-k]')?.dataset.k; if(!k) return;
+  if(k==='oyna') cal?durdur():oyna(); if(k==='ileri'){i=Math.min(kuyruk.length-1,i+1); if(cal) konus(); else {kar=0;ciz();}} if(k==='geri'){i=Math.max(0,i-1); if(cal) konus(); else {kar=0;ciz();}}
+  if(k==='hiz'){hi=(hi+1)%HIZ.length; if(cal) konus(); else ciz();} if(k==='metin'){mk.classList.toggle('gor'); e.target.closest('button').classList.toggle('ac');}
+  if(k==='kapat'){durdur(); bar.classList.remove('gor'); mk.classList.remove('gor');}});
+ document.getElementById('calIz').addEventListener('click',e=>{const r=e.currentTarget.getBoundingClientRect(), o=(e.clientX-r.left)/r.width; let T=toplam()*o, n=0; while(n<kuyruk.length-1&&T>sure(kuyruk[n])){T-=sure(kuyruk[n]); n++;} i=n; if(cal) konus(); else {kar=0;ciz();}});
+ mk.addEventListener('click',e=>{const b=e.target.closest('[data-n]'); if(b){i=+b.dataset.n; oyna();}});
+ if(ss&&ss.onvoiceschanged!==undefined) ss.onvoiceschanged=()=>{};
+ listele(); ciz(); addEventListener('pagehide',()=>ss&&ss.cancel());
+ return {oyna,durdur,sec,get cal(){return cal}, degis(){cal?durdur():oyna();}};})();
+document.querySelector('[data-ses-basla]').addEventListener('click',()=>SES.oyna());
+/* Panellerdeki oynat ve bülten seçimleri sesli çaları yönetir (paneller kendi görsel durumlarını yukarıdaki betikte değiştirir) */
+document.addEventListener('click',e=>{if(!e.target.closest('.sp')) return; if(e.target.closest('.oy')){SES.degis(); return;}
+ const b=e.target.closest('[data-b]'); if(b){const ad=BULTEN[b.dataset.b]?b.dataset.b:(/Ekonomi|Faiz/.test(b.dataset.b)?'Ekonomi Özeti':/Spor|Milli/.test(b.dataset.b)?'Spor Özeti':'Sabah Bülteni'); SES.sec(ad);}},true);
 </script>
 </body>
 </html>
