@@ -66,6 +66,10 @@
 .dt-etk{display:flex;align-items:center;gap:8px;padding-block-start:20px;border-block-start:1px solid var(--gri-50);white-space:nowrap;overflow:hidden}
 .dt-etk>span{display:inline-flex;align-items:center;gap:var(--ikon-bosluk);font-size:var(--y-sm);font-weight:800;margin-inline-end:6px}
 .dt-etk>span i{color:var(--marka-metin)}
+/* Revize 2026-11-24 (Beyar): etiket çipleri ve paylaş düğmeleri bir kademe küçük (32/36px); dokunmatikte 44px korunur */
+.dt-etk .ls-cip{block-size:32px;padding:0 12px;font-weight:600}
+.dt-pay-d{inline-size:36px;block-size:36px;font-size:var(--y-sm)}
+@media (pointer:coarse){.dt-etk .ls-cip{block-size:var(--dokun)}.dt-pay-d{inline-size:var(--dokun);block-size:var(--dokun)}}
 .dt-yan{position:sticky;inset-block-start:calc(var(--ust-boy,113px) + 92px);display:grid;gap:20px}
 .dt-yk{padding:22px;border-radius:var(--k-kart);background:var(--beyaz);border:1px solid var(--gri-50);box-shadow:var(--golge-sm)}
 .dt-yk h2{display:flex;align-items:center;gap:var(--ikon-bosluk);font-size:var(--y-md);font-weight:800;margin-block-end:14px}
@@ -110,7 +114,7 @@
 /* Paylaşım satırı (Gastro) */
 .dt-pay{display:flex;align-items:center;gap:8px;padding-block:16px;border-block:1px solid var(--gri-50)}
 .dt-pay>span{font-size:var(--y-sm);font-weight:800;margin-inline-end:6px}
-.dt-pay-d{display:grid;place-items:center;inline-size:42px;block-size:42px;border-radius:50%;border:1px solid var(--gri-100);background:var(--beyaz);color:var(--gri-800);font-size:var(--y-md);transition:background .2s,color .2s,border-color .2s,transform .2s}
+.dt-pay-d{display:grid;place-items:center;inline-size:42px;block-size:42px;border-radius:var(--k-kontrol);border:1px solid var(--gri-100);background:var(--beyaz);color:var(--gri-800);font-size:var(--y-md);transition:background .2s,color .2s,border-color .2s,transform .2s}
 .dt-pay-d:hover{background:var(--marka);border-color:var(--marka);color:var(--siyah);transform:translateY(-2px)}
 /* Yorumlar (Gastro tarif detayı) */
 .dt-yorum{display:grid;gap:18px;margin-block-start:12px}
@@ -154,9 +158,10 @@
 .dt-kaynak li>a{display:grid;place-items:center;inline-size:36px;block-size:36px;border-radius:var(--k-kontrol);color:var(--gri-600)}
 .dt-kaynak li>a:hover{background:var(--marka-10);color:var(--marka-metin)}
 /* B · tek hiza ekseni (Beyar: dikey düğmeler sola yaslı, başlık ve içerik aynı ortalanmış kolonda) */
-.dt-hiza{display:grid;grid-template-columns:48px minmax(0,1fr) 48px;column-gap:40px;align-items:start}
-.dt-hiza>.dt-eylem{grid-column:1;grid-row:1}
-.dt-sutun{grid-column:2;grid-row:1;justify-self:center;inline-size:min(100%,760px)}
+/* Revize 2026-11-24 (Beyar): eylem şeridi içeriğe yakın; kolonun hemen başında, 32px ara */
+.dt-hiza{display:grid;grid-template-columns:minmax(0,1fr) 48px minmax(0,760px) 48px minmax(0,1fr);column-gap:32px;align-items:start}
+.dt-hiza>.dt-eylem{grid-column:2;grid-row:1}
+.dt-sutun{grid-column:3;grid-row:1;justify-self:stretch;inline-size:100%}
 .dt-sutun .dt-bas-ic{max-inline-size:none}
 .dt-sutun .dt-spot{max-inline-size:none}
 .dt-sade .dt-hiza .dt-sutun{padding-block-start:4px}
