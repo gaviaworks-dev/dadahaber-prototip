@@ -66,7 +66,11 @@ document.querySelectorAll('.am .ls-cipler').forEach(serit=>{
 
 /* Açılır pencereler (C6): [data-acilir="ad"] → <dialog id="pn-ad">; [data-kapat] ya da arka plana tıklama kapatır.
    Kaydet ve yazar/konu takibi üyelik penceresini, Paylaş ve Yazı boyutu düğmeleri kendi pencerelerini açar. */
-const pnAc=ad=>{const d=document.getElementById('pn-'+ad); if(!d) return false; document.querySelectorAll('dialog.pn[open]').forEach(x=>x.close()); d.showModal(); return true;};
+/* Pencere açılıp kapanınca sayfa yerinden oynamaz (Beyar 2026-11-24: "pop up açınca yukarı çıkıyor"): kaydırma yeri saklanır, odak kaydırmasız verilir, kapanışta geri konur. */
+const modalAc=d=>{const y=scrollY, g=document.activeElement; d.showModal(); d._yer=y; d._geri=g; (d.querySelector('[autofocus]')||d.querySelector('.pn-kapat')||d).focus({preventScroll:true});
+  const tut=()=>{if(Math.abs(scrollY-y)>1) scrollTo({top:y,behavior:'instant'});}; tut(); requestAnimationFrame(tut);};
+const pnAc=ad=>{const d=document.getElementById('pn-'+ad); if(!d) return false; document.querySelectorAll('dialog.pn[open]').forEach(x=>x.close()); modalAc(d); return true;};
+document.querySelectorAll('dialog').forEach(d=>d.addEventListener('close',()=>{const y=d._yer; if(y==null) return; const g=d._geri; if(g&&g.focus) g.focus({preventScroll:true}); const tut=()=>{if(Math.abs(scrollY-y)>1) scrollTo({top:y,behavior:'instant'});}; tut(); requestAnimationFrame(tut); d._yer=null;}));
 const toast=m=>{const k=document.querySelector('.toast-kap'); if(!k) return; const t=document.createElement('div'); t.className='toast'; t.innerHTML='<i class="fa-solid fa-check"></i>'+m; k.appendChild(t); setTimeout(()=>t.remove(),2600);};
 document.addEventListener('click',e=>{
   const a=e.target.closest('[data-acilir]'); if(a&&pnAc(a.dataset.acilir)){e.preventDefault();return;}
@@ -224,7 +228,7 @@ document.querySelectorAll('[data-yazdir]').forEach(b=>b.addEventListener('click'
     d.querySelector('.go-cap').textContent=cap; d.querySelector('.go-say').textContent=(i+1)+' / '+liste.length;
     d.querySelectorAll('.go-ok').forEach(o=>o.hidden=liste.length<2);};
   liste.forEach((g,n)=>{g.classList.add('go-ac'); g.setAttribute('role','button'); g.setAttribute('tabindex','0'); g.setAttribute('aria-label','Görseli büyüt');
-    const ac=()=>{goster(n); d.showModal();}; g.addEventListener('click',ac); g.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault(); ac();}});});
+    const ac=()=>{goster(n); modalAc(d);}; g.addEventListener('click',ac); g.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault(); ac();}});});
   d.querySelectorAll('[data-go]').forEach(o=>o.addEventListener('click',()=>goster(i+(+o.dataset.go)*(getComputedStyle(d).direction==='rtl'?-1:1))));
   d.addEventListener('keydown',e=>{if(e.key==='ArrowRight')goster(i+1); if(e.key==='ArrowLeft')goster(i-1);});
 })();
@@ -245,8 +249,17 @@ document.querySelectorAll('.ft-kol').forEach((k,i)=>{const h=k.querySelector('h2
   h.addEventListener('click',ac); h.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault(); ac();}});});
 
 /* Akordiyon (Yasin Bey): haber detayındaki açılır bölümlerde aynı anda tek bölüm açık; açılışta yalnız ilki açık. */
-document.querySelectorAll('.dt-ako').forEach(k=>{const d=[...k.querySelectorAll(':scope>details')]; d.forEach((x,i)=>{x.open=i===0;
-  x.addEventListener('toggle',()=>{if(x.open) d.forEach(y=>{if(y!==x) y.open=false;});});});});
+/* Akordiyon animasyonu (Beyar 2026-11-24: açılış takılıyordu): açılan bölüm yumuşakça uzar, aynı anda kapanan kısalır; yükseklik tek karede atlamaz. Hareket azaltma tercihinde anında. */
+const akoAnim=(x,ac)=>{if(x._an){x._an.cancel(); x._an=null;} const sm=x.querySelector(':scope>summary'); if(!sm||azHareket){x.open=ac; return;}
+  const cs=getComputedStyle(x), kenar=parseFloat(cs.borderTopWidth)+parseFloat(cs.borderBottomWidth)+parseFloat(cs.paddingTop)+parseFloat(cs.paddingBottom);
+  const bas=x.offsetHeight; if(ac) x.open=true; const son=ac?x.offsetHeight:sm.offsetHeight+kenar; if(bas===son){x.open=ac; return;}
+  x.dataset.anim='1'; x.style.overflow='hidden';
+  const a=x._an=x.animate({height:[bas+'px',son+'px']},{duration:260,easing:'cubic-bezier(.22,.61,.36,1)'});
+  a.onfinish=()=>{if(!ac) x.open=false; x.style.overflow=''; delete x.dataset.anim; x._an=null;}; a.oncancel=()=>{x.style.overflow=''; delete x.dataset.anim;};};
+const akoGrup=d=>d.forEach(y=>{const sm=y.querySelector(':scope>summary'); if(!sm||sm.dataset.akoHazir) return; sm.dataset.akoHazir='1';
+  sm.addEventListener('click',e=>{e.preventDefault(); const ac=y._an?!y._acilis:!y.open; y._acilis=ac;
+    akoAnim(y,ac); if(ac) d.forEach(z=>{if(z!==y&&z.open){z._acilis=false; akoAnim(z,false);}});});});
+document.querySelectorAll('.dt-ako').forEach(k=>{const d=[...k.querySelectorAll(':scope>details')]; d.forEach((x,i)=>{x.open=i===0;}); akoGrup(d);});
 
 /* Izgara / liste görünümü (Yasin Bey): liste düğmesi kartları yatay satıra çevirir; tercih sayfalar arasında hatırlanır. */
 (()=>{let tercih=null; try{tercih=localStorage.getItem('dh-gorunum');}catch(_){}
@@ -260,7 +273,7 @@ document.querySelectorAll('.dt-ako').forEach(k=>{const d=[...k.querySelectorAll(
 /* Akordiyon genel kuralı (Yasin Bey): aynı kapta yan yana iki ve daha fazla açılır bölüm varsa aynı anda tek bölüm açık. */
 document.querySelectorAll('details').forEach(x=>{const p=x.parentElement; if(!p||p.dataset.akordiyon) return; const d=[...p.children].filter(c=>c.tagName==='DETAILS'); if(d.length<2) return;
   p.dataset.akordiyon='1'; if(!p.matches('.dt-ako')){let ilk=d.find(y=>y.open); d.forEach(y=>y.open=y===ilk);}
-  d.forEach(y=>y.addEventListener('toggle',()=>{if(y.open) d.forEach(z=>{if(z!==y) z.open=false;});}));});
+  akoGrup(d);});
 
 /* Bölüm başlığı sekmesi (.gs .sekme): sekme adına göre aynı bölümdeki [data-sekme-icerik="Ad"] içeriğini gösterir. */
 document.querySelectorAll('.gs .sekme').forEach(s=>{const bol=s.closest('section')||s.closest('.kap'); if(!bol) return;
@@ -287,7 +300,7 @@ document.querySelectorAll('.gs .sekme').forEach(s=>{const bol=s.closest('section
       const ac=e=>{e.preventDefault(); e.stopPropagation(); if(!pn) return; let j=i;
         const goster=n=>{j=(n+kucuk.length)%kucuk.length; pn.querySelector('.go-g').style.backgroundImage=url(kucuk[j]); pn.querySelector('.go-say').textContent=(j+1)+' / '+kucuk.length;
           const cap=gr.parentElement.querySelector('.gr-alt p,.gr-acik,figcaption'); pn.querySelector('.go-cap').textContent=cap?cap.textContent.trim():''; pn.querySelectorAll('.go-ok').forEach(o=>o.hidden=false);};
-        pn._galeri=goster; goster(i); pn.showModal();};
+        pn._galeri=goster; goster(i); modalAc(pn);};
       tam.addEventListener('click',ac,true); tam.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' ') ac(e);});}
   });
   if(pn) pn.querySelectorAll('[data-go]').forEach(o=>o.addEventListener('click',e=>{if(!pn._galeri) return; e.stopImmediatePropagation();
@@ -348,3 +361,7 @@ document.querySelectorAll('.gs .sekme').forEach(s=>{const bol=s.closest('section
 /* Footer akordiyonu: aynı anda en fazla bir bölüm açık (Beyar kuralı) */
 document.addEventListener('click',e=>{const h=e.target.closest('.ft-kol h2'); if(!h) return; const k=h.parentElement;
   if(k.classList.contains('acik')) document.querySelectorAll('.ft-kol.acik').forEach(x=>{if(x!==k){x.classList.remove('acik'); x.querySelector('h2')?.setAttribute('aria-expanded','false');}});});
+/* Yukarı çık düğmesi footer'ın en alt satırı görünürken o satırın üstüne kalkar (Beyar 2026-11-24: GaviaWorks'ün üstüne biniyordu) */
+(()=>{const y=document.querySelector('.yukari'), a=document.querySelector('.ft-alt'); if(!y||!a) return; let bek=0;
+  const f=()=>{bek=0; const ust=innerHeight-a.getBoundingClientRect().top; y.style.setProperty('--ft-ek',(ust>0?Math.max(0,ust-8):0)+'px');};
+  const iste=()=>{if(!bek) bek=requestAnimationFrame(f);}; addEventListener('scroll',iste,{passive:true}); addEventListener('resize',iste); f();})();
