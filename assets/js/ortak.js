@@ -365,3 +365,16 @@ document.addEventListener('click',e=>{const h=e.target.closest('.ft-kol h2'); if
 (()=>{const y=document.querySelector('.yukari'), a=document.querySelector('.ft-alt'); if(!y||!a) return; let bek=0;
   const f=()=>{bek=0; const ust=innerHeight-a.getBoundingClientRect().top; y.style.setProperty('--ft-ek',(ust>0?Math.max(0,ust-8):0)+'px');};
   const iste=()=>{if(!bek) bek=requestAnimationFrame(f);}; addEventListener('scroll',iste,{passive:true}); addEventListener('resize',iste); f();})();
+/* Piyasa tabloları (Beyar 2026-11-24): binlerce satırlık listede arama (kod ya da ad) ve sıralama sekmeleri; sayaç güncellenir, sonuç yoksa boş satır. */
+document.querySelectorAll('[data-pt]').forEach(k=>{const tb=k.querySelector('tbody'); if(!tb) return; const inp=k.querySelector('.pt-ara input'), say=k.querySelector('.pt-say b'), bos=k.querySelector('.pt-bos');
+  const sat=[...tb.querySelectorAll('tr:not(.pt-bos)')], norm=s=>s.toLocaleLowerCase('tr').replace(/\s+/g,' ').trim();
+  const sayi=s=>{const m=(s||'').replace(/\./g,'').replace(',','.').match(/-?[\d.]+/); return m?parseFloat(m[0]):0;};
+  sat.forEach((r,i)=>{r._s=i; r._m=norm(r.cells[0].textContent); const em=r.querySelector('td em'); r._d=em?sayi(em.textContent)*(em.classList.contains('d')?-1:1):0;
+    const hc=[...r.cells].find(c=>/\b(mn|mr|B)\s*$/.test(c.textContent.trim())); r._h=hc?sayi(hc.textContent)*(/mr/.test(hc.textContent)?1000:1):0;});
+  const suz=()=>{const q=norm(inp?inp.value:''); let n=0; sat.forEach(r=>{const g=!q||r._m.includes(q); r.hidden=!g; if(g) n++;}); if(say) say.textContent=n.toLocaleString('tr'); if(bos) bos.hidden=n>0;};
+  if(inp) inp.addEventListener('input',suz);
+  const sek=[...k.querySelectorAll('.pt-sekme button')];
+  sek.forEach(b=>b.addEventListener('click',()=>{sek.forEach(x=>{const on=x===b; x.classList.toggle('aktif',on); x.setAttribute('aria-selected',on);});
+    const t=b.dataset.sirala, f={artan:(a,c)=>c._d-a._d, azalan:(a,c)=>a._d-c._d, hacim:(a,c)=>c._h-a._h}[t]||((a,c)=>a._s-c._s);
+    [...sat].sort(f).forEach(r=>tb.insertBefore(r,bos||null)); const kd=k.querySelector('.pt-kaydir'); if(kd) kd.scrollTop=0;}));});
+
