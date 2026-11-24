@@ -76,20 +76,21 @@ for yol in hedef:
                r'\1\2<div class="arac dt-c-filtre">\5</div>\3\4', t, flags=re.S)
     # Marka kuralı: ikonlar tek stil, dolu (fa-solid); içi boş fa-regular kullanılmaz
     t = t.replace('fa-regular ', 'fa-solid ')
-    # Teyit işareti (Yasin Bey: "teyit hiçbir yerde yok"): kaynağı olan haber detayında künyenin altında görünür
-    # Görüş yazısında teyit işareti olmaz (yazının kendisi doğrulanmış gibi okunur); doğrulama incelemesinde "İncelendi" yazar
+    # Teyit işareti: Beyar 2026-11-24 "haber detayında teyitli olmayacak" → "Teyitli · N kaynak" hiçbir detayda yok.
+    # Yalnızca doğrulama incelemesinde (dada-dogrula-*) "İncelendi · N kaynak" (gri) kalır; kaynaklar bölümü yerinde durur.
     ad_ = os.path.basename(yol)
-    if ad_ in ('kose-yazisi.html',):
+    if not ad_.startswith('dada-dogrula-'):
         t = re.sub(r'<a class="dt-teyit"[^>]*>.*?</a>', '', t, flags=re.S)
-    elif ad_.startswith('dada-dogrula-'):
-        t = re.sub(r'(<a class="dt-teyit"[^>]*>)<i class="fa-solid fa-circle-check"></i>Teyitli', r'\1<i class="fa-solid fa-magnifying-glass"></i>İncelendi', t)
-    if 'class="dt-bas-ic"' in t and 'class="dt-teyit"' not in t and ad_ not in ('kose-yazisi.html',):
+    else:
+        t = t.replace('<a class="dt-teyit" ', '<a class="dt-teyit incelendi" ')
+    # Akış girişlerindeki "Teyitli" rozeti de yok (canlı, dakika dakika, son dakika, bugün ne oldu); teyit veride tutulur
+    t = re.sub(r'\s*<span class="ty-rozet teyitli">Teyitli</span>', '', t)
+    if ad_.startswith('dada-dogrula-') and 'class="dt-bas-ic"' in t and 'class="dt-teyit' not in t:
         n = len(re.findall(r'class="dt-k-ik"', t))
         if n:
             kb = re.search(r'<section class="dt-kaynak[^"]*"[^>]*aria-labelledby="([^"]+)"', t)
             hedef = f'#{kb.group(1)}' if kb else '#icerik'
-            isaret = (f'<a class="dt-teyit incelendi" href="{hedef}"><i class="fa-solid fa-magnifying-glass"></i>İncelendi · {n} kaynak</a>' if ad_.startswith('dada-dogrula-')
-                      else f'<a class="dt-teyit" href="{hedef}"><i class="fa-solid fa-circle-check"></i>Teyitli · {n} kaynak</a>')
+            isaret = f'<a class="dt-teyit incelendi" href="{hedef}"><i class="fa-solid fa-magnifying-glass"></i>İncelendi · {n} kaynak</a>'
             t = re.sub(r'(<div class="dt-bas-ic">.*?<div class="dt-meta">.*?</div>)', lambda m: m.group(1) + isaret, t, count=1, flags=re.S)
     t = tablo_hizala(t)
     t = surumle(t)
