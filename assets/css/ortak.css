@@ -1150,7 +1150,8 @@ dialog.pn::backdrop{background:rgba(18,18,18,.55);backdrop-filter:blur(4px)}
 .cz p a{color:var(--marka);text-decoration:underline;text-underline-offset:2px}
 .cz .fr-dugme{block-size:40px;padding-inline:16px;font-size:var(--y-sm);white-space:nowrap}
 .cz .fr-dugme.ikincil{background:transparent;color:var(--beyaz);border-color:rgba(255,255,255,.3)}
-html.perde-acik body>dialog,html.perde-acik body>.cz{position:fixed}
+/* Revize 2026-11-24 (Beyar): perde açıkken genel `body>*:not(.ft):not(script){position:relative}` kuralı pencereyi sayfanın başına itiyordu; pencere her zaman ekranın ortasında (aynı özgüllükle ezilir) */
+html.perde-acik body>dialog:not(.ft):not(script),html.perde-acik body>.cz:not(.ft):not(script){position:fixed}
 .toast{display:inline-flex;align-items:center;gap:12px;padding:12px 16px;border-radius:var(--k-kart);background:var(--siyah);color:var(--beyaz);font-size:var(--y-sm);font-weight:700;box-shadow:var(--golge-md)}
 .toast i{color:var(--marka)}
 .toast a{color:var(--marka);text-decoration:underline;text-underline-offset:2px;margin-inline-start:8px}
@@ -1770,4 +1771,10 @@ dialog.pn[open]:not(.gorsel-on)>.pn-ic[hidden]{display:none}
 .mentor .sp-not{display:flex;align-items:center;justify-content:center;gap:6px;margin:0;font-size:11px;font-weight:600;color:rgba(255,255,255,.6)}
 .mentor .sp-not i{color:var(--marka)}
 .mentor.mini .sp-kayan-ic,.mentor.mini .sp-dalga i,.mentor.mini .sp-canli i{animation-play-state:paused}
+/* Revize 2026-11-24 (Beyar): "Sıradaki" etiketinin üstünden haber geçmez: etiket opak ve önde, yazı kendi kabında kırpılır */
+.mentor .sp-kayan{position:relative;isolation:isolate}
+.mentor .sp-kayan-e{position:relative;z-index:2;background:var(--marka);color:var(--siyah)}
+.mentor .sp-kayan-ic{position:relative;z-index:1;flex:1;min-inline-size:0;overflow:hidden}
+.mentor .sp-kayan-ic{animation:none}
+.mentor .sp-kayan-ic span{display:inline-block;animation:spKay 28s linear infinite}
 
