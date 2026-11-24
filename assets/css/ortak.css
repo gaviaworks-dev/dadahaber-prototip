@@ -1180,6 +1180,11 @@ html.perde-acik body>.cz:not(.ft):not(script),html.perde-acik body>.toast-kap:no
 .hs-uye i{font-size:10px;opacity:.7}
 .hs-uye:hover{background:rgba(255,255,255,.18)}
 html.oturum .hs-uye{display:inline-flex}
+/* Beyar 2026-11-24: bantta hesap düğmesi bandın düğme ölçüsünde (32px), dil düğmesinden 8px ayrık */
+.bant .hs-uye{block-size:32px;margin-inline-start:8px;padding-inline:4px 12px}
+.bant .hs-uye .av{inline-size:24px;block-size:24px;font-size:12px}
+/* Beyar 2026-11-24: masaüstünde sayfa en üstte/en altta esnemez; yapışkan üst bölüm kopmaz */
+@media (min-width:1025px){html{overscroll-behavior-y:none}}
 html.oturum .act.giris,html.oturum .uye{display:none!important}
 .pn-av{display:grid;place-items:center;inline-size:40px;block-size:40px;border-radius:50%;background:var(--marka);color:var(--siyah);font-weight:800}
 .pn-bildirim{position:relative;text-decoration:none;color:inherit}
