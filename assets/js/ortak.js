@@ -386,4 +386,18 @@ document.querySelectorAll('[data-pt]').forEach(k=>{const tb=k.querySelector('tbo
   am.addEventListener('click',e=>{const a=e.target.closest('a.ls-cip'); if(!a||e.ctrlKey||e.metaKey||e.shiftKey||e.button!==0) return;
     const u=new URL(a.href,location.href); if(u.origin!==location.origin&&location.protocol!=='file:') return;
     try{sessionStorage.setItem(K,JSON.stringify({y:Math.round(am.getBoundingClientRect().top),t:Date.now()}));}catch(_){}});})();
+/* Yüzen Mentör (dadagastro.com mentor.js davranışı): aç / küçült; çerez bandı ve dar ekran alt çubuklarının üstüne oturur; sayfanın sonuna gelince (footer) kenara çekilir; Esc küçültür. */
+(()=>{const k=document.getElementById('dadaMentor'); if(!k) return; const ac=k.querySelector('.mp-mini'), kc=k.querySelector('.mp-kucult'), ust=k.querySelector('.mp-ust'), gv=k.querySelector('.mp-govde');
+  const ENGEL='.cz,.alt-gez,.dt-eylem.dikey'; let acik=false, bek=0;
+  const olc=()=>{bek=0; const sol=k.offsetLeft, sag=sol+(acik?Math.min(360,innerWidth-32):(innerWidth>640?148:56)); let e=0;
+    document.querySelectorAll(ENGEL).forEach(o=>{if(o.hidden||!o.getClientRects().length) return; const cs=getComputedStyle(o); if(cs.position!=='fixed'||cs.display==='none'||cs.visibility==='hidden') return;
+      const r=o.getBoundingClientRect(); if(r.height>0&&r.top<innerHeight&&r.left<sag&&r.right>sol) e=Math.max(e,Math.round(innerHeight-r.top));});
+    k.style.setProperty('--mp-engel',e+'px'); const en=document.documentElement.scrollHeight-innerHeight; k.classList.toggle('ft-gizle',!acik&&en>320&&en-scrollY<260);};
+  const iste=()=>{if(!bek) bek=requestAnimationFrame(olc);};
+  const durum=y=>{acik=y; k.classList.toggle('mini',!y); k.dataset.state=y?'full':'mini'; ac.setAttribute('aria-expanded',y); ac.inert=y; ust.inert=!y; gv.inert=!y;
+    (y?kc:ac).focus({preventScroll:true}); iste(); setTimeout(olc,520);};
+  ac.addEventListener('click',()=>durum(true)); kc.addEventListener('click',()=>durum(false));
+  k.addEventListener('keydown',e=>{if(e.key==='Escape'&&acik){e.preventDefault(); durum(false);}});
+  addEventListener('scroll',iste,{passive:true}); addEventListener('resize',iste);
+  new MutationObserver(iste).observe(document.documentElement,{attributes:true,attributeFilter:['class']}); olc(); setTimeout(olc,600);})();
 
