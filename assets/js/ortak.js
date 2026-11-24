@@ -377,4 +377,13 @@ document.querySelectorAll('[data-pt]').forEach(k=>{const tb=k.querySelector('tbo
   sek.forEach(b=>b.addEventListener('click',()=>{sek.forEach(x=>{const on=x===b; x.classList.toggle('aktif',on); x.setAttribute('aria-selected',on);});
     const t=b.dataset.sirala, f={artan:(a,c)=>c._d-a._d, azalan:(a,c)=>a._d-c._d, hacim:(a,c)=>c._h-a._h}[t]||((a,c)=>a._s-c._s);
     [...sat].sort(f).forEach(r=>tb.insertBefore(r,bos||null)); const kd=k.querySelector('.pt-kaydir'); if(kd) kd.scrollTop=0;}));});
+/* Alt menü çipleri (Beyar 2026-11-24: "sekmeye tıklayınca neden banner'a çekiyor"): çip başka sayfaya gider ama yeni sayfa alt menü ekranda aynı yerde
+   duracak şekilde açılır; okura yalnız alttaki içerik değişmiş görünür. Tam yığın sürümde bu geçiş sayfa yenilemeden içerik değişimiyle yapılır. */
+(()=>{const am=document.querySelector('.am'); if(!am) return; const K='dh-am';
+  const dogal=()=>{const eski=am.style.position; am.style.position='static'; const y=am.getBoundingClientRect().top+scrollY; am.style.position=eski; return y;};
+  try{const v=JSON.parse(sessionStorage.getItem(K)||'null'); sessionStorage.removeItem(K);
+    if(v&&Date.now()-v.t<15000&&v.y>=0){const git=()=>{const h=Math.max(0,dogal()-v.y); if(h>0) scrollTo({top:h,behavior:'instant'});}; git(); requestAnimationFrame(git); addEventListener('load',git,{once:true});}}catch(_){}
+  am.addEventListener('click',e=>{const a=e.target.closest('a.ls-cip'); if(!a||e.ctrlKey||e.metaKey||e.shiftKey||e.button!==0) return;
+    const u=new URL(a.href,location.href); if(u.origin!==location.origin&&location.protocol!=='file:') return;
+    try{sessionStorage.setItem(K,JSON.stringify({y:Math.round(am.getBoundingClientRect().top),t:Date.now()}));}catch(_){}});})();
 
