@@ -890,7 +890,7 @@ h1,h2,h3{text-wrap:pretty}
 /* Gerçek Dada Haber logosu (Beyar; v2'den, PNG; SVG açık kalem). Görünen genişlik 180px */
 .logo-img{inline-size:auto}
 .logo-img img{display:block;inline-size:180px;block-size:auto}
-/* Logo A (Beyar 2026-11-24): header, menü paneli ve footer'da yalnız "dada" (SVG). Açık zeminde koyu dada-koyu.svg, koyu zeminde sarı dada.svg; yüksekliğe göre ölçeklenir */
+/* Logo A (Beyar 2026-11-24): header, menü paneli ve footer'da yalnız "dada" (SVG). Header ve menü panelinde sarı dada.svg, footer'da koyu dada-koyu.svg (Beyar); yüksekliğe göre ölçeklenir */
 .logo-img.logo-dada img,dialog.cekmece .pn-bas .logo-img.logo-dada img{inline-size:auto;block-size:var(--logo-boy)}
 /* Footer alt satırı: telif başa, GaviaWorks sona yaslı (Beyar) */
 .ft-alt{justify-content:space-between}
