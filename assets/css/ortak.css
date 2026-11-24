@@ -1948,4 +1948,10 @@ html.cz-acik .eb{padding-block-end:calc(56px + 120px)}
   html.cz-acik .eb{padding-block-end:calc(36px + 200px)}
 }
 @media print{.eb{display:none}}
+/* Revize 2026-11-24 (Beyar): "Bütün bültenler" ile "Bültenlerini yönet" ayrışsın: abonelik satırı ince çizgiyle ayrılmış kendi kutusu, yönet bağlantısı çerçeveli düğme; "Bütün bültenler" düz metin bağlantı kalır */
+.eb-abone{margin-block-start:4px;padding:10px 10px 10px 14px;border-radius:var(--k-kontrol);background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12)}
+.eb-abone a{min-block-size:36px;padding:0 12px;border-radius:var(--k-ic);border:1px solid rgba(252,182,35,.55);color:var(--marka);transition:background .2s,color .2s}
+.eb-abone a:hover{background:var(--marka);color:var(--siyah)}
+@media (pointer:coarse){.eb-abone a{min-block-size:var(--dokun)}}
+@media (max-width:639.98px){.eb-abone{flex-wrap:wrap}.eb-abone a{margin-inline-start:0}}
 
