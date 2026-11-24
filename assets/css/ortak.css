@@ -1924,7 +1924,8 @@ html.cal-acik .yukari{inset-block-end:120px}
 .eb-onay input{flex:none;inline-size:18px;block-size:18px;margin:2px 0 0;accent-color:var(--marka)}
 .eb-onay a,.eb-abone a,.eb-tamam a{color:var(--marka);font-weight:700}
 .eb-abone{display:flex;align-items:center;gap:var(--ikon-bosluk);margin:0;font-size:var(--y-sm);color:rgba(255,255,255,.8)}
-.eb-abone i{color:var(--artis-acik,#5BD38A)}
+.eb-abone>i{color:var(--artis-acik,#5BD38A)} /* yeşil yalnız onay ikonu; düğmedeki ok bağlantı rengini alır */
+.eb-abone a i{color:inherit}
 .eb-abone a{display:inline-flex;align-items:center;gap:6px;margin-inline-start:auto;white-space:nowrap}
 .eb-tamam{display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;align-items:start;padding:20px;border-radius:var(--k-kart);background:rgba(255,255,255,.06);border:1px solid rgba(252,182,35,.4)}
 .eb-tamam-ik{display:grid;place-items:center;inline-size:48px;block-size:48px;border-radius:50%;background:var(--marka);color:var(--siyah);font-size:20px}
