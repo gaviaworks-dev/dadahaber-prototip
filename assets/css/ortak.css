@@ -1432,7 +1432,9 @@ input.fr-inp{font:inherit;font-size:var(--y-md);inline-size:100%}
 .gr-puan button.aktif i{color:var(--marka-metin)}
 .fr-dosya{display:flex;align-items:center;gap:10px;min-block-size:56px;padding:0 16px;border:1px dashed var(--gri-200);border-radius:var(--k-kontrol);background:var(--zemin-b);cursor:pointer}
 .fr-dosya[hidden],.fr-dosya-on[hidden]{display:none}
-.fr-dosya i{color:var(--marka-metin);font-size:18px}
+.fr-dosya i{color:var(--marka-metin);font-size:var(--y-md)}
+.fr-dosya b{font-size:var(--y-form);font-weight:600;color:var(--gri-800)} /* Revize 2026-11-24 (Beyar): dosya seçme alanı yazısı form alanı ölçüsünde */
+.fr-dosya{min-block-size:48px}
 .fr-dosya small{margin-inline-start:auto;color:var(--gri-400);font-size:var(--y-sm)}
 .fr-dosya-on{display:grid;grid-template-columns:56px minmax(0,1fr) auto;align-items:center;gap:12px;padding:8px;border:1px solid var(--gri-100);border-radius:var(--k-kontrol)}
 .fr-dosya-on .fr-dosya-g{inline-size:56px;block-size:56px;border-radius:var(--k-ic);background:var(--gri-50) center/cover no-repeat}
