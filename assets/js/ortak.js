@@ -391,8 +391,8 @@ document.querySelectorAll('[data-pt]').forEach(k=>{const tb=k.querySelector('tbo
     try{sessionStorage.setItem(K,JSON.stringify({y:Math.round(am.getBoundingClientRect().top),t:Date.now()}));}catch(_){}});})();
 /* Yüzen Spiker (dadagastro.com mentor.js davranışı; video açılınca yüklenir ve oynar, küçültünce durur): aç / küçült; çerez bandı ve dar ekran alt çubuklarının üstüne oturur; sayfanın sonuna gelince (footer) kenara çekilir; Esc küçültür. */
 (()=>{const k=document.getElementById('dadaMentor'); if(!k) return; const ac=k.querySelector('.mp-mini'), kc=k.querySelector('.mp-kucult'), ust=k.querySelector('.mp-ust'), gv=k.querySelector('.mp-govde');
-  const ENGEL='.cz,.alt-gez,.dt-eylem.dikey'; let acik=false, bek=0;
-  const olc=()=>{bek=0; const sol=k.offsetLeft, sag=sol+(acik?Math.min(360,innerWidth-32):(innerWidth>640?148:56)); let e=0;
+  const ENGEL='.cz,.alt-gez,.dt-eylem.dikey,.cal-bar.gor,.dinle-cubuk:not([hidden])'; let acik=false, bek=0;
+  const olc=()=>{bek=0; const sol=k.offsetLeft, sag=sol+(acik?Math.min(360,innerWidth-32):(innerWidth>640?64:56)); let e=0;
     document.querySelectorAll(ENGEL).forEach(o=>{if(o.hidden||!o.getClientRects().length) return; const cs=getComputedStyle(o); if(cs.position!=='fixed'||cs.display==='none'||cs.visibility==='hidden') return;
       const r=o.getBoundingClientRect(); if(r.height>0&&r.top<innerHeight&&r.left<sag&&r.right>sol) e=Math.max(e,Math.round(innerHeight-r.top));});
     k.style.setProperty('--mp-engel',e+'px'); const en=document.documentElement.scrollHeight-innerHeight; k.classList.toggle('ft-gizle',!acik&&en>320&&en-scrollY<260);};
@@ -428,11 +428,71 @@ document.querySelectorAll('[data-pt]').forEach(k=>{const tb=k.querySelector('tbo
   const konus=()=>{if(!ss){clearInterval(zam); zam=setInterval(()=>{poz+=metin.length/sureSn*HIZ[hi]; if(poz>=metin.length){clearInterval(zam); bitti();} boya();},1000); return;}
     ss.cancel(); ut=new SpeechSynthesisUtterance(metin.slice(poz)); ut.lang='tr-TR'; ut.rate=HIZ[hi]; const v=ss.getVoices().find(x=>/^tr/i.test(x.lang)); if(v) ut.voice=v;
     const b0=poz; ut.onboundary=e=>{poz=b0+e.charIndex; boya();}; ut.onend=()=>{if(cal) bitti();}; ss.speak(ut);};
-  const oynat=()=>{cal=true; konus(); boya();};
+  const oynat=()=>{document.dispatchEvent(new Event('dh-dinle')); cal=true; konus(); boya();};
   const durdur=()=>{cal=false; if(ss) ss.cancel(); clearInterval(zam); boya();};
+  document.addEventListener('dh-ses',()=>{if(cal){cal=false; clearInterval(zam); boya();}});
   const degis=()=>cal?durdur():oynat();
   ray?.addEventListener('click',degis); icOyn?.addEventListener('click',degis); cub.querySelector('.dc-oyn').addEventListener('click',degis);
   const hizla=()=>{hi=(hi+1)%HIZ.length; if(cal) konus(); boya();}; icHiz?.addEventListener('click',hizla); if(icHiz){icHiz.setAttribute('role','button'); icHiz.tabIndex=0;} cub.querySelector('.dc-hiz').addEventListener('click',hizla);
   cub.querySelector('.dc-kapat').addEventListener('click',()=>{durdur(); poz=0; boya();});
   addEventListener('pagehide',()=>{if(ss) ss.cancel();}); boya();})();
+/* ===== Sesli Spiker (Beyar 2026-11-24): bülten kuyruğu gerçek sesle okunur; alttaki kalıcı çalar panel kapansa da çalar (Spotify gibi).
+   Ses kaynağı tek yerde (SES.kaynak): şimdilik tarayıcının Türkçe sesi (speechSynthesis), ElevenLabs bağlanınca ses dosyası buradan çalınır.
+   Sayfa değişince kaldığı bülten ve haber hatırlanır (sessionStorage), çalar duraklatılmış halde yeniden görünür. ===== */
+const BULTEN={
+ 'Sabah Bülteni':["Günaydın, Dada Haber Sabah Bülteni'ne hoş geldin. Bugün öne çıkan beş başlık var.","Merkez Bankası politika faizini yüzde 42,5'te sabit tuttu; bir sonraki karar 18 Aralık'ta açıklanacak.","Asgari Ücret Tespit Komisyonu ilk toplantısını 4 Aralık'ta yapacak; kararın yıl sonuna kadar açıklanması bekleniyor.","Meteoroloji, Marmara için turuncu kodlu kar uyarısı yaptı; İstanbul'da okullar yarın da tatil.","Milli takımın aday kadrosu açıklandı; kamp 8 Aralık'ta Antalya'da başlıyor. Dada Haber'i dinlediğin için teşekkürler."],
+ 'Takip Ettiklerin':["Takip ettiğin konulardan derledim.","Ekonomi: Dolar güne 34,52 liradan başladı, borsa yüzde 0,4 düştü.","Beşiktaş deplasmanda üç puanı iki golle aldı.","İstanbul'da Kirazlı–Halkalı metrosu yarın açılıyor."],
+ 'Ekonomi Özeti':["Ekonomi özeti.","Merkez Bankası faizi yüzde 42,5'te sabit tuttu.","Dolar 34,52, euro 36,21 liradan işlem görüyor.","Borsa İstanbul günü yüzde 0,4 düşüşle tamamladı."],
+ 'Spor Özeti':["Spor özeti.","Süper Lig'de 14. hafta derbiyle başlıyor.","Basketbolda Avrupa kupalarında üç galibiyet geldi.","Voleybol Kadın Milli Takımı finalde."]};
+const SES=(()=>{const ss=window.speechSynthesis, HIZ=[1,1.25,1.5,.75], K='dh-spiker';
+ const bar=document.createElement('div'); bar.className='cal-bar'; bar.setAttribute('role','region'); bar.setAttribute('aria-label','Spiker çalar');
+ bar.innerHTML='<div class="cal-kapak" aria-hidden="true"><i></i><i></i><i></i><b>DS</b></div><div class="cal-orta"><div class="cal-ust"><span class="bl"><i></i>Spiker</span><b data-ses-ad></b><small data-ses-sira></small></div><div class="cal-cumle" data-ses-cumle></div><div class="cal-ilerle"><span data-ses-gecen>00:00</span><span class="cal-iz"><i data-ses-dolu></i></span><span data-ses-toplam>00:00</span></div></div><div class="cal-kont"><button type="button" data-ses="geri" aria-label="Önceki haber"><i class="fa-solid fa-backward-step"></i></button><button type="button" class="ana" data-ses="degis" aria-label="Oynat"><i class="fa-solid fa-play"></i></button><button type="button" data-ses="ileri" aria-label="Sonraki haber"><i class="fa-solid fa-forward-step"></i></button><button type="button" class="hz" data-ses="hiz" aria-label="Okuma hızı">1x</button><button type="button" data-ses="metin" aria-label="Bülten metni"><i class="fa-solid fa-align-left"></i></button><button type="button" data-ses="kapat" aria-label="Çaları kapat"><i class="fa-solid fa-xmark"></i></button></div>';
+ const mk=document.createElement('div'); mk.className='cal-metin'; mk.setAttribute('aria-label','Bülten metni');
+ document.body.append(mk,bar);
+ let ad='Sabah Bülteni', kuyruk=BULTEN[ad], i=0, cal=false, hi=0, kar=0, zam=null;
+ const sure=x=>Math.max(3,Math.round(x.length/14)), toplam=()=>kuyruk.reduce((a,x)=>a+sure(x),0);
+ const fmt=x=>String(Math.floor(x/60)).padStart(2,'0')+':'+String(Math.floor(x%60)).padStart(2,'0');
+ const kac=x=>x.replace(/[&<]/g,c=>c==='&'?'&amp;':'&lt;');
+ const sakla=()=>{try{sessionStorage.setItem(K,JSON.stringify({ad,i,hi,acik:bar.classList.contains('gor')}));}catch(_){}};
+ const ciz=()=>{const x=kuyruk[i]||'', k=Math.min(kar,x.length), u=x.indexOf(' ',k+1)<0?x.length:x.indexOf(' ',k+1);
+  document.querySelectorAll('[data-ses-cumle]').forEach(e=>e.innerHTML=x?kac(x.slice(0,k))+'<mark>'+kac(x.slice(k,u))+'</mark>'+kac(x.slice(u)):'');
+  document.querySelectorAll('[data-ses-cumle-duz]').forEach(e=>e.textContent=cal?x:'');
+  const once=kuyruk.slice(0,i).reduce((a,y)=>a+sure(y),0)+sure(x)*(x.length?k/x.length:0), T=toplam();
+  document.querySelectorAll('[data-ses-ad]').forEach(e=>e.textContent=ad); document.querySelectorAll('[data-ses-sira]').forEach(e=>e.textContent=(i+1)+' / '+kuyruk.length);
+  document.querySelectorAll('[data-ses-gecen]').forEach(e=>e.textContent=fmt(once)); document.querySelectorAll('[data-ses-toplam]').forEach(e=>e.textContent=fmt(T));
+  document.querySelectorAll('[data-ses-sure]').forEach(e=>e.textContent=fmt(once)+' / '+fmt(T)); document.querySelectorAll('[data-ses-dolu]').forEach(e=>e.style.inlineSize=(T?once/T*100:0)+'%');
+  document.querySelectorAll('[data-ses="degis"]').forEach(b=>{b.querySelector('i').className='fa-solid '+(cal?'fa-pause':'fa-play'); b.setAttribute('aria-label',cal?'Duraklat':'Oynat');});
+  document.querySelectorAll('[data-ses="hiz"]').forEach(b=>b.textContent=HIZ[hi]+'x');
+  document.querySelectorAll('[data-bulten]').forEach(b=>b.classList.toggle('a',b.dataset.bulten===ad));
+  mk.querySelectorAll('[data-n]').forEach(b=>{const n=+b.dataset.n; b.classList.toggle('on',n===i); b.classList.toggle('gecti',n<i);});
+  bar.classList.toggle('calis',cal); document.documentElement.classList.toggle('cal-acik',bar.classList.contains('gor'));};
+ const listele=()=>{mk.innerHTML='<h2>'+kac(ad)+' · metin</h2>'+kuyruk.map((x,n)=>'<button type="button" data-n="'+n+'"><b>'+String(n+1).padStart(2,'0')+'</b><span>'+kac(x)+'</span></button>').join('');};
+ const sonraki=()=>{i++; if(i<kuyruk.length) konus(); else {cal=false; i=0; kar=0; ciz(); sakla();}};
+ /* Ses kaynağı: tarayıcı sesi. ElevenLabs gelince bu fonksiyon cümlenin ses dosyasını <audio> ile çalar, ilerlemeyi timeupdate'ten verir. */
+ const konus=()=>{clearInterval(zam); kar=0; const x=kuyruk[i]; if(!x) return;
+  if(ss){ss.cancel(); const u=new SpeechSynthesisUtterance(x); u.lang='tr-TR'; u.rate=HIZ[hi]; const v=ss.getVoices().find(y=>/^tr/i.test(y.lang)); if(v) u.voice=v;
+   u.onboundary=e=>{kar=e.charIndex; ciz();}; u.onend=()=>{if(cal) sonraki();}; ss.speak(u);}
+  else zam=setInterval(()=>{kar=Math.min(x.length,kar+Math.round(14*HIZ[hi]/4)); ciz(); if(kar>=x.length){clearInterval(zam); if(cal) sonraki();}},250);
+  ciz(); sakla();};
+ const oyna=()=>{document.dispatchEvent(new Event('dh-ses')); cal=true; bar.classList.add('gor'); konus();};
+ const durdur=()=>{cal=false; if(ss) ss.cancel(); clearInterval(zam); ciz(); sakla();};
+ const degis=()=>cal?durdur():oyna();
+ const sec=b=>{if(!BULTEN[b]) return; ad=b; kuyruk=BULTEN[b]; i=0; listele(); oyna();};
+ document.addEventListener('dh-dinle',()=>{if(cal){cal=false; clearInterval(zam); ciz();}});
+ document.addEventListener('click',e=>{const s_=e.target.closest('[data-ses]'), bl=e.target.closest('[data-bulten]'); if(!s_&&!bl) return; e.preventDefault();
+  if(bl){sec(bl.dataset.bulten); return;} const k=s_.dataset.ses;
+  if(k==='degis') degis(); else if(k==='ileri'){i=Math.min(kuyruk.length-1,i+1); cal?konus():(kar=0,ciz());} else if(k==='geri'){i=Math.max(0,i-1); cal?konus():(kar=0,ciz());}
+  else if(k==='hiz'){hi=(hi+1)%HIZ.length; cal?konus():ciz();} else if(k==='metin'){mk.classList.toggle('gor'); s_.classList.toggle('ac');}
+  else if(k==='kapat'){durdur(); bar.classList.remove('gor'); mk.classList.remove('gor'); ciz(); sakla();}});
+ bar.querySelector('.cal-iz').addEventListener('click',e=>{const r=e.currentTarget.getBoundingClientRect(); let o=(e.clientX-r.left)/r.width; if(getComputedStyle(bar).direction==='rtl') o=1-o; let T=toplam()*o, n=0; while(n<kuyruk.length-1&&T>sure(kuyruk[n])){T-=sure(kuyruk[n]); n++;} i=n; cal?konus():(kar=0,ciz());});
+ mk.addEventListener('click',e=>{const b=e.target.closest('[data-n]'); if(b){i=+b.dataset.n; oyna();}});
+ try{const v=JSON.parse(sessionStorage.getItem(K)||'null'); if(v&&BULTEN[v.ad]){ad=v.ad; kuyruk=BULTEN[ad]; i=Math.min(v.i||0,kuyruk.length-1); hi=v.hi||0; if(v.acik) bar.classList.add('gor');}}catch(_){}
+ listele(); ciz(); addEventListener('pagehide',()=>{if(ss) ss.cancel();});
+ return {oyna,durdur,degis,sec};})();
+/* Spiker paneli: altyazı ve "Spiker'a sor" (örnek yanıt) */
+(()=>{const k=document.getElementById('dadaMentor'); if(!k) return; const cv=k.querySelector('.sa-cevap');
+ k.addEventListener('click',e=>{const c=e.target.closest('[data-cc]'); if(c){c.classList.toggle('a',k.classList.toggle('cc')); return;}
+  const q=e.target.closest('[data-sor]'); if(q&&cv){cv.innerHTML='<span class="s"><i class="fa-solid fa-microphone"></i>Dinliyorum…</span><span class="q">“Asgari ücret ne zaman açıklanacak?”</span>'; cv.classList.add('g');
+   setTimeout(()=>{cv.innerHTML='<span class="s"><i class="fa-solid fa-microphone" style="animation:none;background:var(--siyah)"></i>Spiker yanıtladı</span><span class="q">“Asgari ücret ne zaman açıklanacak?”</span><span class="c">Komisyon 4 Aralık’ta ilk kez toplanıyor; kararın yılın son haftasında açıklanması bekleniyor. Yeni tutar 1 Ocak 2027’den itibaren geçerli.</span><span class="k"><a href="haber-detay.html">Haberi aç</a><button type="button" data-cv-kapat>Kapat</button></span>';},1500); return;}
+  if(e.target.closest('[data-cv-kapat]')&&cv) cv.classList.remove('g');});})();
 

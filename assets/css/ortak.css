@@ -1777,4 +1777,95 @@ dialog.pn[open]:not(.gorsel-on)>.pn-ic[hidden]{display:none}
 .mentor .sp-kayan-ic{position:relative;z-index:1;flex:1;min-inline-size:0;overflow:hidden}
 .mentor .sp-kayan-ic{animation:none}
 .mentor .sp-kayan-ic span{display:inline-block;animation:spKay 28s linear infinite}
+/* ===== Spiker · A "Yüz Açık Alt Bant" + F2 "Ses Halkası" düğmesi (Beyar 2026-11-24, secenekler/spiker.html'den seçildi) ===== */
+.mentor .mp-medya{background:none;transform:none;filter:none}
+.mentor .mp-medya video{object-position:50% 18%}
+.mentor .mp-perde{background:linear-gradient(180deg,rgba(18,18,18,.35) 0%,transparent 18%,transparent 46%,rgba(18,18,18,.86) 68%,rgba(18,18,18,.98) 100%)}
+.mentor .mp-govde{gap:10px}
+.sa-bant{display:grid;grid-template-columns:auto minmax(0,1fr);border-radius:var(--k-kontrol);overflow:hidden;box-shadow:0 10px 26px rgba(0,0,0,.35)}
+.sa-canli{display:inline-flex;align-items:center;gap:6px;padding:0 10px;background:var(--anlik);color:var(--beyaz);font-size:10.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.sa-canli i{inline-size:7px;block-size:7px;border-radius:50%;background:var(--beyaz);animation:spNabiz 1.4s ease-in-out infinite}
+.sa-isim{display:grid;gap:1px;padding:8px 12px;background:var(--marka);color:var(--siyah)}
+.sa-isim b{font-size:16px;font-weight:800;line-height:1.1}.sa-isim small{font-size:11.5px;font-weight:600;opacity:.8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sa-kay{display:grid;grid-template-columns:auto minmax(0,1fr);block-size:30px;border-radius:var(--k-ic);overflow:hidden;background:rgba(18,18,18,.72);border:1px solid rgba(255,255,255,.12)}
+.sa-kay>b{display:grid;place-items:center;padding:0 9px;background:var(--marka);color:var(--siyah);font-size:10.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+.sa-kay>div{position:relative;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,#000 88%,transparent);mask-image:linear-gradient(90deg,#000 88%,transparent)}
+.sa-kay span{position:absolute;inset-block:0;display:flex;align-items:center;white-space:nowrap;padding-inline-start:10px;font-size:12px;font-weight:600;color:rgba(255,255,255,.9);animation:saKay 30s linear infinite}
+@keyframes saKay{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+[dir=rtl] .sa-kay span{animation-direction:reverse}
+.sa-cipler{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+.sa-cipler button{flex:none;block-size:28px;padding:0 10px;border-radius:var(--k-ic);border:1px solid rgba(255,255,255,.18);background:rgba(18,18,18,.4);color:rgba(255,255,255,.88);font:inherit;font-size:11.5px;font-weight:700;cursor:pointer}
+.sa-cipler button.a{background:var(--marka);border-color:var(--marka);color:var(--siyah)}
+.sa-simdi{display:grid;grid-template-columns:38px minmax(0,1fr) auto;align-items:center;gap:10px}
+.sa-oy{display:grid;place-items:center;inline-size:38px;block-size:38px;border:0;border-radius:10px;background:var(--marka);color:var(--siyah);cursor:pointer}
+.sa-y{display:grid;gap:2px;min-inline-size:0}.sa-y b{font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.sa-y small{font-size:11px;color:rgba(255,255,255,.66)}
+.sa-ilerle{display:block;block-size:4px;margin-block-start:4px;border-radius:4px;background:rgba(255,255,255,.22);overflow:hidden}.sa-ilerle i{display:block;block-size:100%;inline-size:0;background:var(--marka);transition:inline-size .3s linear}
+.sa-sure{font-size:11px;font-weight:700;color:rgba(255,255,255,.7);font-variant-numeric:tabular-nums;white-space:nowrap}
+.sa-arac{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.sa-arac>*{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-block-size:38px;padding:0 6px;border-radius:var(--k-kontrol);border:1px solid rgba(255,255,255,.22);background:rgba(18,18,18,.45);color:var(--beyaz);font:inherit;font-size:11.5px;font-weight:700;white-space:nowrap;cursor:pointer}
+.sa-arac>*:hover{border-color:var(--marka);color:var(--marka)}
+.sa-arac>.a{background:var(--marka);border-color:var(--marka);color:var(--siyah)}
+.sa-altyazi{position:absolute;z-index:4;inset-inline:16px;inset-block-start:40%;margin:0;padding:8px 10px;border-radius:var(--k-ic);background:rgba(18,18,18,.8);color:var(--beyaz);font-size:13px;font-weight:600;line-height:1.4;text-align:center;opacity:0;transform:translateY(6px);transition:.25s;pointer-events:none}
+.mentor.cc:not(.mini) .sa-altyazi:not(:empty){opacity:1;transform:none}
+.sa-cevap{position:absolute;z-index:6;inset-inline:12px;inset-block-start:56px;display:none;gap:8px;padding:12px;border-radius:14px;background:var(--beyaz);color:var(--siyah);box-shadow:0 14px 34px rgba(0,0,0,.3);font-size:12.5px;line-height:1.45}
+.sa-cevap.g{display:grid}
+.sa-cevap .s{display:flex;align-items:center;gap:8px;font-weight:800}
+.sa-cevap .s i{display:grid;place-items:center;inline-size:26px;block-size:26px;border-radius:50%;background:var(--anlik);color:var(--beyaz);font-size:11px;animation:spNabiz 1s infinite}
+.sa-cevap .q{color:var(--gri-600)}.sa-cevap .c{padding:8px 10px;border-radius:10px;background:var(--marka-10);border:1px solid var(--marka-100)}
+.sa-cevap .k{display:flex;gap:6px}.sa-cevap .k>*{flex:1;display:grid;place-items:center;block-size:30px;border-radius:8px;border:1px solid var(--gri-100);background:var(--beyaz);font:inherit;font-size:11.5px;font-weight:700;color:var(--siyah);cursor:pointer}
+.mentor.mini .sa-cevap,.mentor.mini .sa-altyazi{display:none}
+/* F2 · kapalı hal: yuvarlak yüz, kehribar ses halkaları, Canlı rozeti, üstüne gelince balon */
+.mentor.mini{inline-size:64px;block-size:64px;border-radius:50%;overflow:visible;border:0;background:transparent;box-shadow:none}
+.mentor.mini .mp-medya{opacity:1;border-radius:50%;overflow:hidden;box-shadow:0 0 0 3px var(--marka),0 14px 34px rgba(18,18,18,.3)}
+.mentor.mini .mp-perde{opacity:0}
+.mentor .mp-mini{border-radius:50%}
+.mentor.mini .mp-mini{padding:0;justify-content:center;overflow:visible}
+.mentor .mp-hl{position:absolute;inset:0;border-radius:50%;border:2px solid var(--marka);opacity:0;pointer-events:none}
+.mentor.mini .mp-hl{animation:mpHalka 2.4s ease-out infinite}
+.mentor.mini .mp-hl:nth-child(2){animation-delay:.8s}.mentor.mini .mp-hl:nth-child(3){animation-delay:1.6s}
+@keyframes mpHalka{0%{transform:scale(.9);opacity:.9}100%{transform:scale(1.6);opacity:0}}
+.mentor .mp-canli{position:absolute;inset-block-end:-8px;inset-inline:0;margin-inline:auto;inline-size:max-content;padding:2px 7px;border-radius:6px;background:var(--anlik);color:var(--beyaz);font-size:9.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;opacity:0}
+.mentor.mini .mp-canli{opacity:1}
+.mentor .mp-ipucu{position:absolute;inset-inline-start:calc(100% + 14px);inset-block-start:50%;translate:0 -50%;white-space:nowrap;padding:8px 12px;border-radius:10px;background:var(--siyah);color:var(--beyaz);font-size:12.5px;font-weight:700;opacity:0;transform:translateX(-6px);transition:.25s;pointer-events:none}
+.mentor.mini .mp-mini:hover .mp-ipucu,.mentor.mini .mp-mini:focus-visible .mp-ipucu{opacity:1;transform:none}
+.mentor .mp-ik,.mentor .mp-mini-y{display:none}
+@media (max-width:639.98px){.mentor.mini{inline-size:56px;block-size:56px}.mentor .mp-ipucu{display:none}}
+@media (prefers-reduced-motion:reduce){.mentor.mini .mp-hl{animation:none}}
+/* ===== Sesli Spiker çalar (Spotify gibi alttan kalıcı; panel kapansa da çalar). Kaynak tek yerde (ortak.js SES): şimdilik tarayıcının Türkçe sesi, sonra ElevenLabs ===== */
+.cal-bar{position:fixed;z-index:58;inset-inline:0;inset-block-end:16px;margin-inline:auto;inline-size:min(880px,calc(100vw - 24px));display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:16px;padding:10px 14px 10px 10px;border-radius:20px;background:rgba(18,18,18,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);color:var(--beyaz);box-shadow:0 24px 60px rgba(18,18,18,.45);transform:translateY(140%);visibility:hidden;transition:transform .45s cubic-bezier(.16,1,.3,1),visibility 0s .45s}
+.cal-bar.gor{transform:none;visibility:visible;transition-delay:0s}
+.cal-kapak{position:relative;display:grid;place-items:center;inline-size:60px;block-size:60px;border-radius:16px;background:radial-gradient(120% 120% at 20% 10%,var(--marka-200),var(--marka) 45%,var(--marka-metin));overflow:hidden;color:var(--siyah)}
+.cal-kapak b{position:relative;z-index:1;font-size:18px;font-weight:800;letter-spacing:-.04em}
+.cal-kapak i{position:absolute;inset:0;border-radius:inherit;border:2px solid rgba(18,18,18,.35);opacity:0}
+.cal-bar.calis .cal-kapak i{animation:calHalka 2.2s ease-out infinite}.cal-bar.calis .cal-kapak i:nth-of-type(2){animation-delay:.7s}.cal-bar.calis .cal-kapak i:nth-of-type(3){animation-delay:1.4s}
+@keyframes calHalka{0%{transform:scale(.4);opacity:.8}100%{transform:scale(1.4);opacity:0}}
+.cal-orta{display:grid;gap:6px;min-inline-size:0}
+.cal-ust{display:flex;align-items:center;gap:8px;min-inline-size:0}
+.cal-ust .bl{flex:none;display:inline-flex;align-items:center;gap:6px;block-size:20px;padding:0 7px;border-radius:5px;background:var(--anlik);font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+.cal-ust .bl i{inline-size:6px;block-size:6px;border-radius:50%;background:var(--beyaz)}
+.cal-bar.calis .cal-ust .bl i{animation:spNabiz 1.4s infinite}
+.cal-ust b{font-size:13.5px;font-weight:800;white-space:nowrap}.cal-ust small{font-size:12px;color:rgba(255,255,255,.6);white-space:nowrap}
+.cal-cumle{font-size:14px;line-height:1.4;color:rgba(255,255,255,.7);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cal-cumle mark{background:none;color:var(--beyaz);font-weight:700;box-shadow:inset 0 -3px 0 var(--marka)}
+.cal-ilerle{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:10px;font-size:11px;font-variant-numeric:tabular-nums;color:rgba(255,255,255,.6)}
+.cal-iz{position:relative;block-size:4px;border-radius:4px;background:rgba(255,255,255,.18);cursor:pointer}
+.cal-iz i{position:absolute;inset-block:0;inset-inline-start:0;border-radius:4px;background:var(--marka);inline-size:0;transition:inline-size .3s linear}
+.cal-kont{display:flex;align-items:center;gap:4px}
+.cal-kont button{display:grid;place-items:center;inline-size:38px;block-size:38px;border:0;border-radius:10px;background:none;color:rgba(255,255,255,.85);font:inherit;font-size:14px;cursor:pointer}
+.cal-kont button:hover{background:rgba(255,255,255,.1);color:var(--beyaz)}
+.cal-kont .ana{inline-size:48px;block-size:48px;border-radius:14px;background:var(--marka);color:var(--siyah);font-size:16px}
+.cal-kont .ana:hover{background:var(--marka-200);color:var(--siyah)}
+.cal-kont .hz{inline-size:auto;padding:0 9px;border:1px solid rgba(255,255,255,.22);font-size:11.5px;font-weight:800}
+.cal-kont .ac{color:var(--marka)}
+.cal-metin{position:fixed;z-index:58;inset-inline:0;inset-block-end:110px;margin-inline:auto;inline-size:min(880px,calc(100vw - 24px));max-block-size:44vh;overflow:auto;display:none;gap:4px;padding:16px;border-radius:20px;background:rgba(18,18,18,.94);backdrop-filter:blur(14px);color:var(--beyaz);box-shadow:0 24px 60px rgba(18,18,18,.4)}
+.cal-metin.gor{display:grid}
+.cal-metin h2{margin:0 0 6px;font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--marka)}
+.cal-metin button{display:grid;grid-template-columns:28px minmax(0,1fr);gap:10px;align-items:start;padding:8px 10px;border:0;border-radius:10px;background:none;color:rgba(255,255,255,.62);font:inherit;font-size:14px;line-height:1.45;text-align:start;cursor:pointer}
+.cal-metin button b{font-size:11px;color:rgba(255,255,255,.4);padding-block-start:3px;font-variant-numeric:tabular-nums}
+.cal-metin button.on{background:rgba(252,182,35,.12);color:var(--beyaz)}.cal-metin button.on b{color:var(--marka)}
+.cal-metin button.gecti{color:rgba(255,255,255,.4)}
+html.perde-acik body>.cal-bar:not(.ft):not(script),html.perde-acik body>.cal-metin:not(.ft):not(script){position:fixed}
+html.cal-acik .yukari{inset-block-end:120px}
+@media (max-width:639.98px){.cal-bar{grid-template-columns:auto minmax(0,1fr);inset-block-end:calc(76px + env(safe-area-inset-bottom,0px));gap:10px}.cal-kont{grid-column:1/-1;justify-content:space-between}.cal-kapak{inline-size:48px;block-size:48px}.cal-metin{inset-block-end:200px}}
+@media print{.cal-bar,.cal-metin{display:none}}
 
