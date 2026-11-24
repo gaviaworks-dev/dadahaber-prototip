@@ -2,7 +2,12 @@
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('gorundu');io.unobserve(e.target)}}),{rootMargin:'0px 0px -8% 0px'});
 document.querySelectorAll('.belir').forEach(el=>io.observe(el));
 // Süper Lig T2: kutucuğa tıklayınca seçili takım ve panel güncellenir (önizlemede haberler örnek)
-document.querySelectorAll('.tc-a').forEach(a=>a.addEventListener('click',e=>{const h=a.getAttribute('href'); if(h&&h!=='#') return; e.preventDefault();document.querySelectorAll('.tc-a').forEach(x=>x.classList.remove('sec'));a.classList.add('sec');a.closest('.kap').querySelectorAll('.tk-adi').forEach(s=>s.textContent=a.dataset.ad);}));
+/* Süper Lig takım sekmeleri (Beyar 2026-11-24): armaya tıklayınca sayfa değişmez, altındaki önizleme o takımın haberlerine geçer; bölüm düğmesi seçili takımın sayfasına (4 büyük) ya da Süper Lig'e gider. Ok tuşlarıyla gezilir. */
+(()=>{const ray=document.querySelector('.tc-ray[role=tablist]'); if(!ray) return; const s=[...ray.querySelectorAll('.tc-a')], bol=ray.closest('section')||document, git=bol.querySelector('[data-tc-git]');
+  const sec=a=>{s.forEach(x=>{const on=x===a; x.classList.toggle('sec',on); x.setAttribute('aria-selected',on); x.tabIndex=on?0:-1;});
+    bol.querySelectorAll('[data-tc-panel]').forEach(p=>p.hidden=p.dataset.tcPanel!==a.dataset.ad); if(git) git.setAttribute('href',a.dataset.sayfa||'super-lig.html');};
+  s.forEach((a,n)=>{a.tabIndex=a.classList.contains('sec')?0:-1; a.addEventListener('click',()=>sec(a));
+    a.addEventListener('keydown',e=>{const rtl=getComputedStyle(ray).direction==='rtl'; let k={ArrowRight:rtl?-1:1,ArrowLeft:rtl?1:-1}[e.key]; if(e.key==='Home') k=-n; if(e.key==='End') k=s.length-1-n; if(k===undefined) return; e.preventDefault(); const h=s[(n+k+s.length)%s.length]; h.focus(); sec(h);});});})();
 document.querySelectorAll('.tk-serit .tk').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();
   document.querySelectorAll('.tk-serit .tk').forEach(x=>x.classList.remove('sec'));a.classList.add('sec');
   const p=a.closest('.kap').querySelector('.tk-panel'); if(!p) return;
