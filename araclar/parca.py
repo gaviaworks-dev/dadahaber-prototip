@@ -92,6 +92,8 @@ for yol in hedef:
             hedef = f'#{kb.group(1)}' if kb else '#icerik'
             isaret = f'<a class="dt-teyit incelendi" href="{hedef}"><i class="fa-solid fa-magnifying-glass"></i>İncelendi · {n} kaynak</a>'
             t = re.sub(r'(<div class="dt-bas-ic">.*?<div class="dt-meta">.*?</div>)', lambda m: m.group(1) + isaret, t, count=1, flags=re.S)
+    # Yorum başlığı (Beyar 2026-11-24): ana sayfadaki üst etiket + başlık bütünü; etiket konu, başlık cümle. Sayı süzgeç çipinde.
+    t = re.sub(r'(<span class="ust"><i class="fa-solid fa-comments"></i>)Okur yorumları(</span><h2 id="[^"]+">)Yorumlar \(\d+\)(</h2>)', r'\1Yorumlar\2Okurlar Ne Diyor?\3', t)
     t = tablo_hizala(t)
     t = surumle(t)
     # "İçeriğe geç" bağlantısının hedefi

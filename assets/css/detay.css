@@ -115,6 +115,7 @@
 /* Yorumlar (Gastro tarif detayı) */
 .dt-yorum{display:grid;gap:18px;margin-block-start:12px}
 .dt-yorum .gs{margin:0}
+.dt-yorum .gs h2{font-size:var(--y-lg)} /* Revize 2026-11-24 (Beyar): okuma kolonunda bölüm başlığı bir kademe küçük; üst etiket + başlık ana sayfadaki gibi tek bütün */
 .dt-giris{display:grid;grid-template-columns:48px minmax(0,1fr);gap:16px;padding:20px 22px;border-radius:var(--k-kart);border:1px solid var(--gri-50);background:var(--beyaz);box-shadow:var(--golge-sm)}
 .dt-giris-ik{display:grid;place-items:center;inline-size:48px;block-size:48px;border-radius:var(--k-kontrol);background:var(--marka-25);color:var(--marka-metin);font-size:var(--y-md)}
 .dt-giris b{font-size:var(--y-md);font-weight:800}
