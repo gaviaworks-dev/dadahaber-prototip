@@ -1641,7 +1641,9 @@ html[data-boyut] main{zoom:var(--olcek,1)}
 /* Revize 2026-11-24 (Beyar: "hesap menüsü çok düz ve sade"): profil başlığı + sayaçlar + ikon kutulu iki sütunlu menü + alt satır */
 .hs-pn{inline-size:min(92vw,600px)}
 .hs-pn-bas{position:relative;background:radial-gradient(120% 140% at 100% 0,var(--marka-50) 0,transparent 55%),linear-gradient(180deg,var(--marka-10),var(--beyaz));border-block-end:1px solid var(--marka-100)}
-.hs-pn-kim{display:flex;align-items:center;gap:14px;min-inline-size:0}
+.hs-pn-kim{display:flex;align-items:center;gap:14px;min-inline-size:0;flex:1}
+/* Kapat düğmesi her pencerede başlık satırının sonunda (Beyar 2026-11-24) */
+.pn-bas>.pn-kapat{margin-inline-start:auto;flex:none}
 .hs-pn-kim>div{display:grid;gap:2px;min-inline-size:0}
 .hs-pn-kim h2{font-size:var(--y-lg);font-weight:800;line-height:1.15}
 .hs-pn-kim small{font-size:var(--y-sm);color:var(--gri-600);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
