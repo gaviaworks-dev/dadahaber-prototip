@@ -745,7 +745,8 @@ details.ozet[open] .ozet-ic{animation:ac .25s ease both}
 
 /* Süper Lig · TC (Beyar): kutusuz arma rayı + büyük kart düzeni */
 .tc-ray{display:flex;justify-content:space-between;margin-block-end:24px;padding-block-end:20px;border-block-end:1px solid var(--gri-50)}
-.tc-a{display:grid;justify-items:center;gap:6px;cursor:pointer}
+.tc-a{display:grid;justify-items:center;gap:6px;cursor:pointer;padding:0;border:0;background:none;font:inherit;color:inherit}
+[data-tc-panel][hidden]{display:none}
 .tc-a .arma{inline-size:56px;block-size:56px;font-size:var(--y-sm);border-width:3px;transition:transform .3s,box-shadow .3s}
 .tc-a:hover .arma{transform:scale(1.08)}
 .tc-a small{font-size:var(--y-sm);font-weight:800;color:var(--gri-400);transition:color .2s}
@@ -833,7 +834,8 @@ h1,h2,h3{text-wrap:pretty}
 .ft-aile.aktif{background:var(--siyah);color:var(--marka);border-color:var(--siyah)!important}
 .ft-telif{font-size:var(--y-sm);text-align:center;line-height:1.6;max-inline-size:110ch;margin:22px auto 16px;opacity:.85}
 .ft-alt{display:flex;justify-content:center;align-items:center;gap:16px;font-size:var(--y-sm);font-weight:700}
-.ft-gavia{display:inline-flex;align-items:center;gap:var(--ikon-bosluk);padding:4px 10px;border-radius:var(--k-kontrol);background:rgba(18,18,18,.08)}
+.ft-gavia{display:inline-flex;align-items:center} /* Revize 2026-11-24: çip yok, düz metin bağlantı */
+.ft-gavia:hover{color:var(--marka-metin)}
 .ft-aile.aktif .nokta{background:var(--marka)!important}
 
 /* Zebra (Beyar, Gastro gibi, baştan): manşetten sonraki ana bloklar sırayla beyaz / var(--zemin-b) */
@@ -878,7 +880,7 @@ h1,h2,h3{text-wrap:pretty}
 /* Dada ailesi: büyük başlık + yalnızca favicon (Beyar) */
 .ft-ailesi2{display:flex;align-items:center;justify-content:center;gap:28px;padding-block:28px;border-block-end:1px solid rgba(18,18,18,.15)}
 .ft-ailesi2 h4,
-.ft-ailesi2 h2{font-size:var(--y-lg);font-weight:800;margin:0;white-space:nowrap}
+.ft-ailesi2 h2{font-size:var(--y-md);font-weight:800;margin:0;white-space:nowrap} /* Revize 2026-11-24: footer sütun başlıklarıyla aynı */
 .ft-favler{display:flex;align-items:center;gap:14px}
 .ft-fav{inline-size:56px;block-size:56px;border-radius:var(--k-kart);background:var(--beyaz);display:grid;place-items:center;box-shadow:0 2px 8px rgba(18,18,18,.08);transition:transform .25s,box-shadow .25s}
 .ft-fav:hover{transform:translateY(-3px);box-shadow:0 8px 18px rgba(18,18,18,.14)}
@@ -957,7 +959,7 @@ html.perde-acik body>*:not(.ft):not(script):last-of-type{box-shadow:0 18px 30px 
 .ft-ust,.ft-satir,.ft-ailesi2{border-color:var(--marka-100)}
 .ft-satir>a{border-color:var(--marka-100)}
 .ft-fav{box-shadow:none;border:1px solid var(--marka-100)}
-.ft-gavia{background:var(--beyaz);border:1px solid var(--marka-100);color:var(--gri-600)}
+.ft-gavia{color:var(--gri-400)}
 
 /* Yazarlar · Y1 (Beyar): Gastro "Tarifin ustaları" uyarlaması; yalnızca avatar, ad, unvan; kartın tamamı yazar detayına gider */
 .ray-kap.otomatik>.yz-ray,.yz-ray.oto-iz{display:grid;grid-auto-flow:column;grid-template-columns:none!important;grid-auto-columns:calc((100% - 5*20px)/6)!important;column-gap:20px!important}
@@ -1624,3 +1626,5 @@ html[data-boyut] main{zoom:var(--olcek,1)}
 /* KURAL · form alanları (Beyar 2026-11-24): giriş, metin alanı, seçim ve placeholder yazısı tek ölçüde (--y-form); görüş, giriş/kayıt, arama, yorum, bülten hepsi */
 .fr-inp,input.fr-inp,.fr-metin,input:not([type=checkbox]):not([type=radio]):not([type=range]),textarea,select{font-size:var(--y-form)}
 .fr-inp::placeholder,input::placeholder,textarea::placeholder{font-size:var(--y-form);color:var(--gri-300);opacity:1}
+/* Revize 2026-11-24 (Beyar): sağ üstteki dil, Giriş Yap, Üye Ol (ve girişli hal düğmesi, aynı banttaki ikon düğmeleri) bir tık sivri: 8px */
+.bant .act,.bant .dil,.bant .uye,.bant .act.giris,.bant .hs-uye,.dil,.uye,.act.giris,.hs-uye{border-radius:var(--k-ic)}
