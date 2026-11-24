@@ -259,7 +259,7 @@
 
 /* ===== C17 · Arama ve Dada'ya Sor ===== */
 .ar-kutu{display:grid;gap:12px;padding:20px;border-radius:var(--k-buyuk);background:var(--beyaz);border:1px solid var(--gri-50);box-shadow:var(--golge-sm)}
-.ar-kutu .fr-inp{block-size:60px;font-size:var(--y-lg)}
+.ar-kutu .fr-inp{block-size:60px;font-size:var(--y-md)} /* arama sayfasının büyük kutusu: formdan bir kademe büyük */
 .ar-grup{display:grid;gap:14px}
 .ar-grup>h2{display:flex;align-items:center;gap:var(--ikon-bosluk);font-size:var(--y-lg);font-weight:500;-webkit-text-stroke:.6px currentColor}
 .ar-grup>h2 i{color:var(--marka-metin)}

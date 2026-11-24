@@ -1621,3 +1621,6 @@ html[data-boyut] main{zoom:var(--olcek,1)}
   .dt-govde p,.dt-c p,.sw-uyari p,.ft-marka p,.mg-bas p,.mt-bol p,.ca-o p,.ar-yanit p,.dt-ako details p,.gv p{text-align:justify!important;text-align-last:start;hyphens:auto;-webkit-hyphens:auto}
 }
 .dt-govde p,.ca-o p,.mt-bol p,.dt-ako details p{text-align:justify;text-align-last:start;hyphens:auto;-webkit-hyphens:auto}
+/* KURAL · form alanları (Beyar 2026-11-24): giriş, metin alanı, seçim ve placeholder yazısı tek ölçüde (--y-form); görüş, giriş/kayıt, arama, yorum, bülten hepsi */
+.fr-inp,input.fr-inp,.fr-metin,input:not([type=checkbox]):not([type=radio]):not([type=range]),textarea,select{font-size:var(--y-form)}
+.fr-inp::placeholder,input::placeholder,textarea::placeholder{font-size:var(--y-form);color:var(--gri-300);opacity:1}

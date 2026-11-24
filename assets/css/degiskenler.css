@@ -13,6 +13,7 @@
   --ikon-bosluk:8px; /* KURAL: ikon ile metin arası her yerde en az bu kadar; bitişik ikon-metin yasak */--k-kart:16px;--k-buyuk:24px;--k-ic:8px;
   --y-xs:9.6px;--y-sm:12.8px;--y-md:17px;--y-lg:22.7px;--y-xl:30.2px;--y-2xl:40.3px;
   --bolum:48px;--kart-arasi:16px;--kap:1280px;
+  --y-form:14px; /* KURAL (Beyar 2026-11-24): form alanı yazısı ve placeholder; arayüz grubu. Telefonda 16px (iOS odakta yakınlaştırmasın) */
   --golge-sm:0 1px 2px rgba(33,30,22,.04),0 2px 6px rgba(33,30,22,.05);--golge-md:0 6px 22px rgba(33,30,22,.09);
 }
 :root{--ust-zemin:rgba(18,18,18,.55);--ust-cizgi:rgba(255,255,255,.22)}
@@ -22,4 +23,4 @@
    --ust-boy: yapışkan üst bölümün yüksekliği (alt menü ve yapışkan kutular bunun altına oturur). */
 :root{--ust-boy:113px;--kenar:16px;--dokun:44px}
 @media (max-width:1024px){:root{--y-xs:10.9px;--y-sm:13.6px;--y-md:17px;--y-lg:21.3px;--y-xl:26.6px;--y-2xl:33.2px;--bolum:40px;--kenar:24px;--ust-boy:112px}}
-@media (max-width:639.98px){:root{--y-xs:10.4px;--y-sm:13.3px;--y-md:16px;--y-lg:19.2px;--y-xl:23px;--y-2xl:27.6px;--bolum:32px;--kenar:16px;--ust-boy:100px}}
+@media (max-width:639.98px){:root{--y-form:16px;--y-xs:10.4px;--y-sm:13.3px;--y-md:16px;--y-lg:19.2px;--y-xl:23px;--y-2xl:27.6px;--bolum:32px;--kenar:16px;--ust-boy:100px}}
