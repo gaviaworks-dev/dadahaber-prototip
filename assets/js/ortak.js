@@ -517,3 +517,49 @@ document.querySelectorAll('[data-eb]').forEach(eb=>{const f=eb.querySelector('.e
  let bk=0; const bak=()=>{bk=0; const r=eb.getBoundingClientRect(); document.documentElement.classList.toggle('eb-gorunur',r.top<innerHeight-40&&r.bottom>40);};
  const iste=()=>{if(!bk) bk=setTimeout(bak,60);}; addEventListener("scroll",iste,{passive:true}); addEventListener("resize",iste); bak();});
 
+
+/* Sayfalama (Beyar 2026-11-25) · ortak bileşen. HTML kalıbı araclar/sayfalama.py ile aynıdır (aynı algoritma).
+   Seçili sayfa adresteki ?sayfa= değerinden okunur (data-sekme varsa yalnız o sekme adresteyken). Düğmeler adresi
+   günceller (history), bileşen yeniden çizilir, liste o sayfanın kayıtlarını gösterir ve liste başına kayar.
+   Prototip notu: kayıtlar örnek veridir; sayfa değişince listedeki kartlar sayfa numarasına göre sıra değiştirir,
+   son sayfada kalan kayıt sayısı kadar kart görünür (toplam kayıt .ls-sayi'dan). Sunucuda bu kısım gerçek sorgudur. */
+(function(){
+ const basla=()=>{
+  const navlar=[...document.querySelectorAll('nav.ls-sayfa[data-toplam]')]; if(!navlar.length) return;
+  const ogeler=(T,c)=>T<=7?Array.from({length:T},(_,i)=>i+1):c<=4?[1,2,3,4,5,0,T]:c>=T-3?[1,0,T-4,T-3,T-2,T-1,T]:[1,0,c-1,c,c+1,0,T];
+  const dosya=()=>location.pathname.split('/').pop()||'index.html';
+  const adres=(nav,n)=>{const p=new URLSearchParams(location.search); if(nav.dataset.sekme) p.set('sekme',nav.dataset.sekme); p.set('sayfa',n); return dosya()+'?'+p.toString();};
+  const secili=nav=>{const T=+nav.dataset.toplam||1, q=new URLSearchParams(location.search);
+   if(nav.dataset.sekme && (q.get('sekme')||'').toLocaleLowerCase('tr')!==nav.dataset.sekme) return 1;
+   const n=parseInt(q.get('sayfa'),10); return Math.min(Math.max(1,isNaN(n)?1:n),T);};
+  const ok=(nav,n,etiket,ikon,pasif)=>pasif?`<a class="sf-ok pasif" role="link" aria-disabled="true" aria-label="${etiket}"><i class="fa-solid ${ikon}"></i></a>`
+   :`<a class="sf-ok" href="${adres(nav,n)}" aria-label="${etiket}"><i class="fa-solid ${ikon}"></i></a>`;
+  const ciz=(nav,c)=>{const T=+nav.dataset.toplam||1; if(T<=1){nav.hidden=true; nav.innerHTML=''; return;}
+   const no=ogeler(T,c).map(n=>n===0?'<span class="sf-ara" aria-hidden="true">…</span>':n===c?`<a class="aktif" href="${adres(nav,n)}" aria-current="page">${n}</a>`:`<a href="${adres(nav,n)}">${n}</a>`).join('');
+   nav.innerHTML=ok(nav,1,'İlk sayfa','fa-angles-left',c===1)+ok(nav,c-1,'Önceki sayfa','fa-chevron-left',c===1)
+    +`<span class="sf-no">${no}</span><span class="sf-ozet"><span class="sr">Sayfa </span>${c} / ${T}</span>`
+    +ok(nav,c+1,'Sonraki sayfa','fa-chevron-right',c===T)+ok(nav,T,'Son sayfa','fa-angles-right',c===T);};
+  /* Kayıtlar: sayfalamadan önceki kardeş bloklardaki kartlar (article ya da a); başlık, bant ve uyarılar yerinde kalır */
+  const kayit=nav=>{ if(nav._k) return nav._k; const dugum=[];
+   for(let e=nav.previousElementSibling;e;e=e.previousElementSibling){ const k=[...e.children].filter(x=>x.matches('article,a')); if(k.length>1) dugum.unshift(...k); }
+   const yer=dugum.map(d=>{const m=document.createComment('sf'); d.before(m); return m;});
+   const say=parseInt(((nav.parentElement.querySelector('.ls-sayi b')||{}).textContent||'').replace(/\D/g,''),10);
+   return nav._k={dugum,yer,say};};
+  const goster=(nav,c)=>{const {dugum,yer,say}=kayit(nav), n=dugum.length; if(n<2) return; const T=+nav.dataset.toplam||1;
+   const kay=((c-1)*3)%n; const sira=dugum.map((_,i)=>dugum[(i+kay)%n]);
+   const gorunur=(c===T && say && Math.ceil(say/n)===T)?say-(T-1)*n:n;
+   sira.forEach((d,i)=>{yer[i].after(d); d.style.display=i>=gorunur?"none":"";});};
+  const guncelle=()=>navlar.forEach(nav=>{const c=secili(nav); ciz(nav,c); goster(nav,c);});
+  const kaydir=nav=>{const hedef=nav.parentElement, ust=(document.querySelector('header.yapiskan')||{}).offsetHeight||0;
+   const y=hedef.getBoundingClientRect().top+scrollY-ust-16, az=matchMedia('(prefers-reduced-motion: reduce)').matches;
+   scrollTo({top:Math.max(0,y),behavior:az?'instant':'smooth'});};
+  navlar.forEach(nav=>nav.addEventListener('click',e=>{const a=e.target.closest('a[href]'); if(!a||!nav.contains(a)||e.metaKey||e.ctrlKey||e.shiftKey) return;
+   e.preventDefault(); history.pushState({sf:1},'',a.getAttribute('href')); guncelle(); kaydir(nav);
+   const odak=nav.querySelector('a.aktif')||nav.querySelector('.sf-ozet'); if(odak&&odak.focus) odak.focus({preventScroll:true});}));
+  addEventListener('popstate',()=>{guncelle(); const nav=navlar.find(n=>secili(n)>1)||navlar[0]; kaydir(nav);});
+  guncelle();
+  const ilk=navlar.find(n=>secili(n)>1); if(ilk) requestAnimationFrame(()=>{const ust=(document.querySelector('header.yapiskan')||{}).offsetHeight||0;
+   scrollTo({top:Math.max(0,ilk.parentElement.getBoundingClientRect().top+scrollY-ust-16),behavior:'instant'});});
+ };
+ document.readyState==='loading'?document.addEventListener('DOMContentLoaded',basla):basla();
+})();
