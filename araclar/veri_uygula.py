@@ -25,6 +25,11 @@ KOK = os.path.abspath(ARGS[0]) if ARGS else os.path.dirname(BETIK)
 VERI_YOLU = os.path.join(BETIK, 'ornek_veri.json')
 for a in sys.argv[1:]:
     if a.startswith('--veri='): VERI_YOLU = a.split('=', 1)[1]
+# Geçerli alt konular: araclar/kategori.json ağacı (ana başlık, sütun öğeleri, şerit ekleri) eksi servis sayfaları (Beyar 2026-11-25)
+_KJ = json.load(open(os.path.join(BETIK, 'kategori.json'), encoding='utf-8'))
+ALT_GECERLI = {b['ad'] for b in _KJ['basliklar']} | {o['ad'] for b in _KJ['basliklar'] for s in b['sutunlar'] for o in s['ogeler']} \
+    | {o['ad'] for b in _KJ['basliklar'] for v in b.get('serit_ek', {}).values() for o in v}
+ALT_GECERLI -= set(_KJ['servis_alt_konular']['ogeler'])
 
 AY_K = ['Oca', 'Şub', 'Mar', 'Nis', 'May', 'Haz', 'Tem', 'Ağu', 'Eyl', 'Eki', 'Kas', 'Ara']
 AY_U = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık']
@@ -590,6 +595,8 @@ def dogrula(S, kok):
         if h.get('yazar') and h['yazar'] not in S.yazar: hata.append(f'yazar sözlükte yok: {h["yazar"]} ({h["baslik"]})')
         # ek_alan: taşınan bölümler yazarın alanına dahil (Beyar 2026-11-25)
         elif h.get('yazar') and h['bolum'] not in [S.yazar[h['yazar']]['alan']] + S.yazar[h['yazar']].get('ek_alan', []): hata.append(f'yazar bölüm dışı: {h["yazar"]} / {h["bolum"]} ({h["baslik"]})')
+        # alt konu araclar/kategori.json ağacında olmalı; servis sayfası alt konu olamaz (Beyar 2026-11-25)
+        if h.get('alt_konu') and h['alt_konu'] not in ALT_GECERLI: hata.append(f'alt konu geçersiz ya da servis: {h["alt_konu"]} ({h["baslik"]})')
     # son dakika: şimdiden önce, şerit listede
     SD = S.V['son_dakika']
     for o in SD['liste']:

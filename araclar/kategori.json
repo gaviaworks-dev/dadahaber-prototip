@@ -930,6 +930,19 @@
    "kesfet.html"
   ]
  },
+ "servis_alt_konular": {
+  "not": "Servis sayfası olan alt kategoriler (Beyar 2026-11-25): menüde durur ama haber alt konusu olamaz; örnek veride haber bunlara atanmaz (veri_uygula.py --dogrula denetler).",
+  "ogeler": [
+   "Canlı Skor",
+   "Puan Durumu",
+   "Fikstür",
+   "Takımlar",
+   "Piyasa Ekranı",
+   "Ekonomik Takvim",
+   "Sınav Takvimi",
+   "Gündem Takvimi"
+  ]
+ },
  "servis_il": {
   "sayfalar": [
    "hava-durumu.html",
