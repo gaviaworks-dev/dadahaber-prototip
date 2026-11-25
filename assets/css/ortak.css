@@ -2010,7 +2010,7 @@ button.ls-sira{color:var(--siyah);font-weight:500;white-space:nowrap}
    üstüne gelince baş harf halkası marka rengiyle belirir, ad altı çizilir. Kartın geri kalanı haberi açmaya devam eder. */
 .yz-bag{display:inline-flex;align-items:center;gap:inherit;min-inline-size:0;color:inherit;text-decoration:none}
 .yz-bag .av{transition:box-shadow .2s}
-.yz-bag:hover .av,.yz-bag:focus-visible .av{box-shadow:0 0 0 2px var(--marka)}
+.yz-bag:hover .av,.yz-bag:focus-visible .av{box-shadow:inset 0 0 0 2px var(--marka)}   /* içe çizilir: kayan künye satırı ve kart kenarı halkayı kesmez (Beyar 2026-11-25) */
 .yz-bag:hover b,.yz-bag:focus-visible b{text-decoration:underline;text-underline-offset:3px}
 
 /* ===== Tür etiketi (.tur-k / .tur-b) · Beyar 2026-11-25 karar 1 (DADAHABER-10) =====
