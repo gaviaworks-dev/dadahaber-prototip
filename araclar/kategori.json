@@ -852,7 +852,16 @@
   "video-kategori.html": "video.html?kategori=finans",
   "foto-fokus-kategori.html": "foto-fokus.html?kategori=sehir",
   "infografik-kategori.html": "infografik.html?kategori=finans-ve-ekonomi",
-  "podcast-kategori.html": "podcast.html?program=ekonomi-masasi"
+  "podcast-kategori.html": "podcast.html?program=ekonomi-masasi",
+  "haber-dinle-gundem.html": "haber-dinle.html?kategori=gundem",
+  "haber-dinle-finans.html": "haber-dinle.html?kategori=finans",
+  "haber-dinle-spor.html": "haber-dinle.html?kategori=spor",
+  "haber-dinle-dunya.html": "haber-dinle.html?kategori=dunya",
+  "haber-dinle-kadin.html": "haber-dinle.html?kategori=kadin",
+  "haber-dinle-savunma.html": "haber-dinle.html?kategori=savunma",
+  "haber-dinle-kampus.html": "haber-dinle.html?kategori=kampus",
+  "haber-dinle-teknoloji.html": "haber-dinle.html?kategori=teknoloji",
+  "haber-dinle-kategori.html": "haber-dinle.html?kategori=gundem"
  },
  "kart_etiketi": {
   "Türkiye": "Gündem",
@@ -920,7 +929,16 @@
   "haber-dinle.html": {
    "ana": {
     "param": "kategori",
-    "not": "Mevcut kategori sayfaları (haber-dinle-*.html) korunur"
+    "ogeler": [
+     "Gündem",
+     "Finans",
+     "Spor",
+     "Dünya",
+     "Kadın",
+     "Savunma",
+     "Kampüs",
+     "Teknoloji"
+    ]
    },
    "ikinci": {
     "param": "kusak",

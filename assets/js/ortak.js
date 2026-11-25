@@ -570,11 +570,14 @@ document.querySelectorAll('[data-eb]').forEach(eb=>{const f=eb.querySelector('.e
   const goster=(kap,c,T,son)=>{const {dugum,yer,say}=kayit(kap,son), n=dugum.length; if(n<2) return;
    const suz=aktif(), sk=Object.entries(suz);
    if(sk.length){ const uy=sirala(dugum,siraModu()).filter(d=>sk.every(([p,v])=>d.dataset[p]===v)), dis=dugum.filter(d=>!uy.includes(d));
-    [...uy,...dis].forEach((d,i)=>{yer[i].after(d); d.style.display=i<uy.length?"":"none";}); sayiYaz(kap,uy.length,true); return; }
+    [...uy,...dis].forEach((d,i)=>{yer[i].after(d); d.style.display=i<uy.length?"":"none";}); sayiYaz(kap,uy.length,true); gunler(kap); return; }
    sayiYaz(kap,0,false);
    const taban=sirala(dugum,siraModu()); const kay=((c-1)*3)%n; const sira=taban.map((_,i)=>taban[(i+kay)%n]);
    const gorunur=(c===T && say && Math.ceil(say/n)===T)?say-(T-1)*n:n;
-   sira.forEach((d,i)=>{yer[i].after(d); d.style.display=i>=gorunur?"none":"";});};
+   sira.forEach((d,i)=>{yer[i].after(d); d.style.display=i>=gorunur?"none":"";}); gunler(kap);};
+  /* Zaman akışında gün başlığı (.za-gun) altında görünen satır kalmazsa başlık da gizlenir */
+  const gunler=kap=>{if(!kap.matches('[data-suz-liste]')) return; kap.querySelectorAll(':scope>.za-gun').forEach(g=>{let x=g.nextElementSibling, var_=false;
+   while(x&&!x.matches('.za-gun')){ if(!(x.nodeType===1&&x.style.display==='none')&&x.matches('.za-s')) {var_=true;break;} x=x.nextElementSibling; } g.style.display=var_?'':'none';});};
   /* Süzgeç çipleri: [data-suz] kabındaki çip, adresteki değerle eşleşince seçili; bağlantı diğer süzgeçleri korur */
   const cipler=()=>{const q=new URLSearchParams(location.search);
    document.querySelectorAll('[data-suz]').forEach(k=>{const p=k.dataset.suz; k.querySelectorAll('a.ls-cip').forEach(a=>{
