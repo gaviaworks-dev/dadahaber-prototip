@@ -359,5 +359,6 @@ Tek kaynak `araclar/kategori.json`. Menü 150 öğe (önceki 163).
 | Yönlendirme | `video-kategori.html`, `foto-fokus-kategori.html`, `infografik-kategori.html`, `podcast-kategori.html` | medya sayfası + adres süzgeci |
 
 | Yönlendirme | `haber-dinle-{gundem,finans,spor,dunya,kadin,savunma,kampus,teknoloji}.html`, `haber-dinle-kategori.html` | `haber-dinle.html?kategori=…` (kapanış kararı 1) |
+| Yönlendirme | `gelecek.html` | `teknoloji.html` (Beyar 2026-11-25: Keşfet › Gelecek kaldırıldı) |
 
-Yönlendirme sayfaları (26) `<meta name="dada-yonlendirme">` taşır; parca.py, dizin ve kontrol betikleri onları ayrı sayar.
+Yönlendirme sayfaları (27) `<meta name="dada-yonlendirme">` taşır; parca.py, dizin ve kontrol betikleri onları ayrı sayar.
