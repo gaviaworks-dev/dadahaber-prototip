@@ -358,4 +358,6 @@ Tek kaynak `araclar/kategori.json`. Menü 150 öğe (önceki 163).
 | Yönlendirme | `otomobil.html` | `otomotiv.html` |
 | Yönlendirme | `video-kategori.html`, `foto-fokus-kategori.html`, `infografik-kategori.html`, `podcast-kategori.html` | medya sayfası + adres süzgeci |
 
-Yönlendirme sayfaları (17) `<meta name="dada-yonlendirme">` taşır; parca.py, dizin ve kontrol betikleri onları ayrı sayar.
+| Yönlendirme | `haber-dinle-{gundem,finans,spor,dunya,kadin,savunma,kampus,teknoloji}.html`, `haber-dinle-kategori.html` | `haber-dinle.html?kategori=…` (kapanış kararı 1) |
+
+Yönlendirme sayfaları (26) `<meta name="dada-yonlendirme">` taşır; parca.py, dizin ve kontrol betikleri onları ayrı sayar.
