@@ -1,0 +1,1006 @@
+{
+ "_aciklama": "Kategori ve medya yapısı · TEK KAYNAK (Beyar 2026-11-25). docs/kaynak/DADAHABER-10-kategori-ve-medya-yapisi.md belgesinin karşılığıdır; belge değişince önce bu dosya güncellenir. araclar/kategori.py okur, parca.py her çalıştırmada uygular: mega menü (parcalar/ust.html), telefon menüsü (parcalar/footer.html cm-liste), alt menü şeritleri, eski adreslerin yönlendirilmesi, kart etiketleri, servis il seçimi.",
+ "kaynak": "docs/kaynak/DADAHABER-10-kategori-ve-medya-yapisi.md",
+ "basliklar": [
+  {
+   "ad": "Gündem",
+   "adres": "gundem.html",
+   "ikon": "fa-newspaper",
+   "gorsel": "assets/gorsel/p117.jpg",
+   "aciklama": "Siyaset, toplum, hukuk, çevre ve yerel haberler.",
+   "sutunlar": [
+    {
+     "ad": "Temel Kategoriler",
+     "ogeler": [
+      {
+       "ad": "Siyaset",
+       "adres": "siyaset.html"
+      },
+      {
+       "ad": "Toplum",
+       "adres": "toplum.html"
+      },
+      {
+       "ad": "Hukuk",
+       "adres": "hukuk.html"
+      },
+      {
+       "ad": "Güvenlik",
+       "adres": "guvenlik.html"
+      },
+      {
+       "ad": "Çevre ve Afet",
+       "adres": "cevre-ve-afet.html"
+      }
+     ]
+    },
+    {
+     "ad": "Yerel Haberler",
+     "ogeler": [
+      {
+       "ad": "Yerel Haberler",
+       "adres": "yerel-haberler.html"
+      },
+      {
+       "ad": "İstanbul",
+       "adres": "istanbul.html"
+      },
+      {
+       "ad": "Ankara",
+       "adres": "ankara.html"
+      },
+      {
+       "ad": "İzmir",
+       "adres": "izmir.html"
+      },
+      {
+       "ad": "Şehirler",
+       "adres": "sehirler.html"
+      }
+     ]
+    },
+    {
+     "ad": "Özgün İçerikler",
+     "ogeler": [
+      {
+       "ad": "Özel Haber",
+       "adres": "ozel-haber.html"
+      },
+      {
+       "ad": "Araştırma",
+       "adres": "arastirma.html"
+      }
+     ]
+    }
+   ],
+   "serit": "baslik"
+  },
+  {
+   "ad": "Spor",
+   "adres": "spor.html",
+   "ikon": "fa-futbol",
+   "gorsel": "assets/gorsel/p155.jpg",
+   "aciklama": "Branşlar, canlı skorlar, puan durumu ve fikstür.",
+   "sutunlar": [
+    {
+     "ad": "Branşlar",
+     "ogeler": [
+      {
+       "ad": "Futbol",
+       "adres": "futbol.html"
+      },
+      {
+       "ad": "Basketbol",
+       "adres": "basketbol.html"
+      },
+      {
+       "ad": "Voleybol",
+       "adres": "voleybol.html"
+      },
+      {
+       "ad": "Motor Sporları",
+       "adres": "motor-sporlari.html"
+      },
+      {
+       "ad": "Bisiklet",
+       "adres": "bisiklet.html"
+      },
+      {
+       "ad": "Tenis",
+       "adres": "tenis.html"
+      },
+      {
+       "ad": "Atletizm",
+       "adres": "atletizm.html"
+      },
+      {
+       "ad": "Olimpiyatlar",
+       "adres": "olimpiyatlar.html"
+      },
+      {
+       "ad": "E-Spor",
+       "adres": "e-spor.html"
+      }
+     ]
+    },
+    {
+     "ad": "Servisler",
+     "ogeler": [
+      {
+       "ad": "Canlı Skor",
+       "adres": "canli-skor.html"
+      },
+      {
+       "ad": "Puan Durumu",
+       "adres": "puan-durumu.html"
+      },
+      {
+       "ad": "Fikstür",
+       "adres": "fikstur.html"
+      },
+      {
+       "ad": "Takımlar",
+       "adres": "takimlar.html"
+      },
+      {
+       "ad": "Transfer",
+       "adres": "transfer.html"
+      },
+      {
+       "ad": "Millî Takım",
+       "adres": "milli-takim.html"
+      }
+     ]
+    },
+    {
+     "ad": "Takımlar",
+     "ogeler": [
+      {
+       "ad": "Galatasaray",
+       "adres": "galatasaray.html"
+      },
+      {
+       "ad": "Fenerbahçe",
+       "adres": "fenerbahce.html"
+      },
+      {
+       "ad": "Beşiktaş",
+       "adres": "besiktas.html"
+      },
+      {
+       "ad": "Trabzonspor",
+       "adres": "trabzonspor.html"
+      },
+      {
+       "ad": "Süper Lig",
+       "adres": "super-lig.html"
+      },
+      {
+       "ad": "Avrupa Ligleri",
+       "adres": "avrupa-ligleri.html"
+      }
+     ]
+    }
+   ],
+   "serit": "baslik"
+  },
+  {
+   "ad": "Finans",
+   "adres": "finans.html",
+   "ikon": "fa-chart-line",
+   "gorsel": "assets/gorsel/p183.jpg",
+   "aciklama": "Piyasalar, kişisel finans, sektörler ve iş dünyası.",
+   "sutunlar": [
+    {
+     "ad": "Piyasalar",
+     "ogeler": [
+      {
+       "ad": "Piyasa Ekranı",
+       "adres": "piyasa-ekrani.html"
+      },
+      {
+       "ad": "Döviz",
+       "adres": "doviz.html"
+      },
+      {
+       "ad": "Altın",
+       "adres": "altin.html"
+      },
+      {
+       "ad": "Borsa",
+       "adres": "borsa.html"
+      },
+      {
+       "ad": "Kripto Para",
+       "adres": "kripto-para.html"
+      },
+      {
+       "ad": "Akaryakıt Fiyatları",
+       "adres": "akaryakit-fiyatlari.html"
+      },
+      {
+       "ad": "Faiz Oranları",
+       "adres": "faiz-oranlari.html"
+      },
+      {
+       "ad": "Ekonomik Takvim",
+       "adres": "ekonomik-takvim.html"
+      }
+     ]
+    },
+    {
+     "ad": "Ekonomi",
+     "ogeler": [
+      {
+       "ad": "Türkiye Ekonomisi",
+       "adres": "turkiye-ekonomisi.html"
+      },
+      {
+       "ad": "Dünya Ekonomisi",
+       "adres": "dunya-ekonomisi.html"
+      },
+      {
+       "ad": "Bankacılık",
+       "adres": "bankacilik.html"
+      },
+      {
+       "ad": "Kişisel Finans",
+       "adres": "kisisel-finans.html"
+      },
+      {
+       "ad": "Enflasyon",
+       "adres": "enflasyon.html"
+      }
+     ]
+    },
+    {
+     "ad": "Sektörler",
+     "ogeler": [
+      {
+       "ad": "İş Dünyası",
+       "adres": "is-dunyasi.html"
+      },
+      {
+       "ad": "Şirketler",
+       "adres": "sirketler.html"
+      },
+      {
+       "ad": "Girişimcilik",
+       "adres": "girisimcilik.html"
+      },
+      {
+       "ad": "Çalışma Hayatı",
+       "adres": "calisma-hayati.html"
+      },
+      {
+       "ad": "Enerji",
+       "adres": "enerji.html"
+      },
+      {
+       "ad": "Tarım",
+       "adres": "tarim.html"
+      },
+      {
+       "ad": "Sanayi",
+       "adres": "sanayi.html"
+      },
+      {
+       "ad": "Gayrimenkul",
+       "adres": "gayrimenkul.html"
+      },
+      {
+       "ad": "Otomotiv",
+       "adres": "otomotiv.html"
+      }
+     ]
+    }
+   ],
+   "serit": "baslik"
+  },
+  {
+   "ad": "Kadın",
+   "adres": "kadin.html",
+   "ikon": "fa-venus",
+   "gorsel": "assets/gorsel/p203.jpg",
+   "aciklama": "Kadın gündemi, sağlık, hak ve yaşam içerikleri.",
+   "sutunlar": [
+    {
+     "ad": "Gündem",
+     "ogeler": [
+      {
+       "ad": "Kadın Gündemi",
+       "adres": "kadin-gundemi.html"
+      },
+      {
+       "ad": "Kadın Hakları",
+       "adres": "kadin-haklari.html"
+      },
+      {
+       "ad": "Toplumsal Cinsiyet",
+       "adres": "toplumsal-cinsiyet.html"
+      },
+      {
+       "ad": "Kadın ve Hukuk",
+       "adres": "kadin-ve-hukuk.html"
+      },
+      {
+       "ad": "Kadın ve Çalışma Hayatı",
+       "adres": "kadin-ve-calisma-hayati.html"
+      },
+      {
+       "ad": "Başarı Hikâyeleri",
+       "adres": "basari-hikayeleri.html"
+      }
+     ]
+    },
+    {
+     "ad": "Sağlık",
+     "ogeler": [
+      {
+       "ad": "Kadın Sağlığı",
+       "adres": "kadin-sagligi.html"
+      },
+      {
+       "ad": "Hamilelik",
+       "adres": "hamilelik.html"
+      },
+      {
+       "ad": "Anne ve Çocuk",
+       "adres": "anne-ve-cocuk.html"
+      }
+     ]
+    },
+    {
+     "ad": "Yaşam",
+     "ogeler": [
+      {
+       "ad": "Moda",
+       "adres": "moda.html"
+      },
+      {
+       "ad": "Güzellik",
+       "adres": "guzellik.html"
+      },
+      {
+       "ad": "Ev ve Yaşam",
+       "adres": "ev-ve-yasam.html"
+      },
+      {
+       "ad": "Astroloji",
+       "adres": "astroloji.html"
+      },
+      {
+       "ad": "Kadın Yazarlar",
+       "adres": "kadin-yazarlar.html"
+      }
+     ]
+    }
+   ],
+   "serit": "baslik"
+  },
+  {
+   "ad": "Savunma",
+   "adres": "savunma.html",
+   "ikon": "fa-shield-halved",
+   "gorsel": "assets/gorsel/p195.jpg",
+   "aciklama": "Savunma sanayii, millî projeler ve güvenlik gündemi.",
+   "sutunlar": [
+    {
+     "ad": "Savunma Sanayii",
+     "ogeler": [
+      {
+       "ad": "Millî Projeler",
+       "adres": "milli-projeler.html"
+      },
+      {
+       "ad": "İHA ve SİHA",
+       "adres": "iha-ve-siha.html"
+      },
+      {
+       "ad": "Hava Platformları",
+       "adres": "hava-platformlari.html"
+      },
+      {
+       "ad": "Deniz Platformları",
+       "adres": "deniz-platformlari.html"
+      },
+      {
+       "ad": "Kara Sistemleri",
+       "adres": "kara-sistemleri.html"
+      },
+      {
+       "ad": "Füze ve Roket Sistemleri",
+       "adres": "fuze-ve-roket-sistemleri.html"
+      }
+     ]
+    },
+    {
+     "ad": "Güvenlik",
+     "ogeler": [
+      {
+       "ad": "Millî Güvenlik",
+       "adres": "milli-guvenlik.html"
+      },
+      {
+       "ad": "Askerî Operasyonlar",
+       "adres": "askeri-operasyonlar.html"
+      },
+      {
+       "ad": "Sınır Güvenliği",
+       "adres": "sinir-guvenligi.html"
+      },
+      {
+       "ad": "Terörle Mücadele",
+       "adres": "terorle-mucadele.html"
+      },
+      {
+       "ad": "Uluslararası Güvenlik",
+       "adres": "uluslararasi-guvenlik.html"
+      },
+      {
+       "ad": "NATO",
+       "adres": "nato.html"
+      }
+     ]
+    },
+    {
+     "ad": "İçerikler",
+     "ogeler": [
+      {
+       "ad": "Savunma Teknolojileri",
+       "adres": "savunma-teknolojileri.html"
+      },
+      {
+       "ad": "İhracat ve Anlaşmalar",
+       "adres": "ihracat-ve-anlasmalar.html"
+      }
+     ]
+    }
+   ],
+   "serit": "baslik"
+  },
+  {
+   "ad": "Dünya",
+   "adres": "dunya.html",
+   "ikon": "fa-earth-europe",
+   "gorsel": "assets/gorsel/p122.jpg",
+   "aciklama": "Bölgeler, diplomasi ve küresel gelişmeler.",
+   "sutunlar": [
+    {
+     "ad": "Bölgeler",
+     "ogeler": [
+      {
+       "ad": "Avrupa",
+       "adres": "avrupa.html"
+      },
+      {
+       "ad": "Orta Doğu",
+       "adres": "orta-dogu.html"
+      },
+      {
+       "ad": "Amerika",
+       "adres": "amerika.html"
+      },
+      {
+       "ad": "Asya Pasifik",
+       "adres": "asya-pasifik.html"
+      },
+      {
+       "ad": "Afrika",
+       "adres": "afrika.html"
+      },
+      {
+       "ad": "Balkanlar",
+       "adres": "balkanlar.html"
+      },
+      {
+       "ad": "Kafkasya",
+       "adres": "kafkasya.html"
+      },
+      {
+       "ad": "Türk Dünyası",
+       "adres": "turk-dunyasi.html"
+      }
+     ]
+    },
+    {
+     "ad": "Konular",
+     "ogeler": [
+      {
+       "ad": "Diplomasi",
+       "adres": "diplomasi.html"
+      },
+      {
+       "ad": "Küresel Siyaset",
+       "adres": "kuresel-siyaset.html"
+      },
+      {
+       "ad": "Savaş ve Çatışmalar",
+       "adres": "savas-ve-catismalar.html"
+      },
+      {
+       "ad": "Göç",
+       "adres": "goc.html"
+      },
+      {
+       "ad": "Uluslararası Kuruluşlar",
+       "adres": "uluslararasi-kuruluslar.html"
+      }
+     ]
+    }
+   ],
+   "serit": "baslik"
+  },
+  {
+   "ad": "Kampüs",
+   "adres": "kampus.html",
+   "ikon": "fa-graduation-cap",
+   "gorsel": "assets/gorsel/p178.jpg",
+   "aciklama": "Sınav, burs, staj ve üniversite hayatı.",
+   "sutunlar": [
+    {
+     "ad": "Sınav ve Eğitim",
+     "ogeler": [
+      {
+       "ad": "Eğitim ve Sınavlar",
+       "adres": "egitim-ve-sinavlar.html"
+      },
+      {
+       "ad": "YKS",
+       "adres": "yks.html"
+      },
+      {
+       "ad": "KPSS",
+       "adres": "kpss.html"
+      },
+      {
+       "ad": "ALES ve YDS",
+       "adres": "ales-ve-yds.html"
+      },
+      {
+       "ad": "Sınav Takvimi",
+       "adres": "sinav-takvimi.html"
+      }
+     ]
+    },
+    {
+     "ad": "Üniversite",
+     "ogeler": [
+      {
+       "ad": "Üniversiteler",
+       "adres": "universiteler.html"
+      },
+      {
+       "ad": "Burslar",
+       "adres": "burslar.html"
+      },
+      {
+       "ad": "Yurtlar",
+       "adres": "yurtlar.html"
+      },
+      {
+       "ad": "Öğrenci Toplulukları",
+       "adres": "ogrenci-topluluklari.html"
+      }
+     ]
+    },
+    {
+     "ad": "Kariyer",
+     "ogeler": [
+      {
+       "ad": "Staj",
+       "adres": "staj.html"
+      },
+      {
+       "ad": "Kariyer",
+       "adres": "kariyer.html"
+      },
+      {
+       "ad": "Gençlerin Gündemi",
+       "adres": "genclerin-gundemi.html"
+      }
+     ]
+    }
+   ],
+   "serit": "baslik"
+  },
+  {
+   "ad": "Keşfet",
+   "adres": "kesfet.html",
+   "ikon": "fa-compass",
+   "gorsel": "assets/gorsel/p188.jpg",
+   "aciklama": "Ana menüde yer almayan bütün kategoriler, formatlar ve anlık gelişmeler.",
+   "sutunlar": [
+    {
+     "ad": "Anlık",
+     "ogeler": [
+      {
+       "ad": "Son Dakika",
+       "adres": "son-dakika.html"
+      },
+      {
+       "ad": "Canlı Gündem",
+       "adres": "canli-gundem.html"
+      },
+      {
+       "ad": "Canlı Yayın",
+       "adres": "canli-yayin.html"
+      },
+      {
+       "ad": "Dakika Dakika",
+       "adres": "dakika-dakika.html"
+      },
+      {
+       "ad": "Bugün Ne Oldu?",
+       "adres": "bugun-ne-oldu.html"
+      },
+      {
+       "ad": "Gündem Takvimi",
+       "adres": "gundem-takvimi.html"
+      },
+      {
+       "ad": "Güncellenen Haberler",
+       "adres": "guncellenen-haberler.html"
+      }
+     ]
+    },
+    {
+     "ad": "Teknoloji ve Bilim",
+     "ogeler": [
+      {
+       "ad": "Teknoloji",
+       "adres": "teknoloji.html"
+      },
+      {
+       "ad": "Yapay Zekâ",
+       "adres": "yapay-zeka.html"
+      },
+      {
+       "ad": "Bilim",
+       "adres": "bilim.html"
+      },
+      {
+       "ad": "Uzay",
+       "adres": "uzay.html"
+      },
+      {
+       "ad": "Siber Güvenlik",
+       "adres": "siber-guvenlik.html"
+      },
+      {
+       "ad": "Oyun",
+       "adres": "oyun.html"
+      },
+      {
+       "ad": "Gelecek",
+       "adres": "gelecek.html"
+      },
+      {
+       "ad": "İklim",
+       "adres": "iklim.html"
+      }
+     ]
+    },
+    {
+     "ad": "Sağlık ve Yaşam",
+     "ogeler": [
+      {
+       "ad": "Sağlık",
+       "adres": "saglik.html"
+      },
+      {
+       "ad": "Halk Sağlığı",
+       "adres": "halk-sagligi.html"
+      },
+      {
+       "ad": "Beslenme",
+       "adres": "beslenme.html"
+      },
+      {
+       "ad": "Ruh Sağlığı",
+       "adres": "ruh-sagligi.html"
+      },
+      {
+       "ad": "Seyahat",
+       "adres": "seyahat.html"
+      },
+      {
+       "ad": "Gastronomi",
+       "adres": "gastronomi.html"
+      }
+     ]
+    },
+    {
+     "ad": "Kültür ve Sanat",
+     "ogeler": [
+      {
+       "ad": "Kültür ve Yaşam",
+       "adres": "kultur-ve-yasam.html"
+      },
+      {
+       "ad": "Sinema",
+       "adres": "sinema.html"
+      },
+      {
+       "ad": "Dizi",
+       "adres": "dizi.html"
+      },
+      {
+       "ad": "Müzik",
+       "adres": "muzik.html"
+      },
+      {
+       "ad": "Kitap",
+       "adres": "kitap.html"
+      },
+      {
+       "ad": "Tiyatro",
+       "adres": "tiyatro.html"
+      },
+      {
+       "ad": "Sergi",
+       "adres": "sergi.html"
+      }
+     ]
+    },
+    {
+     "ad": "Keşfet Formatları",
+     "ogeler": [
+      {
+       "ad": "Dada Özet",
+       "adres": "dada-ozet.html"
+      },
+      {
+       "ad": "Günün 5'i",
+       "adres": "gunun-5-i.html"
+      },
+      {
+       "ad": "Dada Bağlam",
+       "adres": "dada-baglam.html"
+      },
+      {
+       "ad": "Dada Doğrula",
+       "adres": "dada-dogrula.html"
+      },
+      {
+       "ad": "Farklı Bakışlar",
+       "adres": "farkli-bakislar.html"
+      },
+      {
+       "ad": "Veri ve Harita",
+       "adres": "veri-ve-harita.html"
+      },
+      {
+       "ad": "Sakin Akış",
+       "adres": "sakin-akis.html"
+      }
+     ]
+    },
+    {
+     "ad": "Medya ve Arşiv",
+     "ogeler": [
+      {
+       "ad": "Video Haber",
+       "adres": "video.html"
+      },
+      {
+       "ad": "Foto Fokus",
+       "adres": "foto-fokus.html"
+      },
+      {
+       "ad": "İnfografik",
+       "adres": "infografik.html"
+      },
+      {
+       "ad": "Podcast",
+       "adres": "podcast.html"
+      },
+      {
+       "ad": "Haber Dinle",
+       "adres": "haber-dinle.html"
+      },
+      {
+       "ad": "Yazarlar",
+       "adres": "yazarlar.html"
+      },
+      {
+       "ad": "Arşiv",
+       "adres": "arsiv.html"
+      }
+     ]
+    }
+   ],
+   "genis": true,
+   "serit": "sutun",
+   "serit_disi": [
+    "Medya ve Arşiv"
+   ],
+   "serit_etiketi": {
+    "Keşfet Formatları": "Keşfet"
+   },
+   "serit_ek": {
+    "Keşfet Formatları": [
+     {
+      "ad": "Bana Etkisi",
+      "adres": "bana-etkisi.html",
+      "not": "Belgede yok; açık konu, Yasin Bey'e sorulacak (Beyar 2026-11-25)"
+     }
+    ]
+   },
+   "serit_kok": {
+    "Keşfet Formatları": [
+     "kesfet.html",
+     "bana-etkisi.html"
+    ]
+   }
+  }
+ ],
+ "yonlendirme": {
+  "turkiye.html": "gundem.html",
+  "egitim.html": "egitim-ve-sinavlar.html",
+  "cevre.html": "cevre-ve-afet.html",
+  "afet.html": "cevre-ve-afet.html",
+  "81-il.html": "sehirler.html",
+  "gundem-analizi.html": "gundem.html?tur=analiz",
+  "ekonomi-analizi.html": "finans.html?tur=analiz",
+  "savunma-analizi.html": "savunma.html?tur=analiz",
+  "dunya-analizi.html": "dunya.html?tur=analiz",
+  "uzman-gorusleri.html": "savunma.html?tur=uzman-gorusu",
+  "savunma-videolari.html": "video.html?kategori=savunma",
+  "savunma-sanayii.html": "savunma.html",
+  "otomobil.html": "otomotiv.html",
+  "video-kategori.html": "video.html?kategori=finans",
+  "foto-fokus-kategori.html": "foto-fokus.html?kategori=sehir",
+  "infografik-kategori.html": "infografik.html?kategori=finans-ve-ekonomi",
+  "podcast-kategori.html": "podcast.html?program=ekonomi-masasi"
+ },
+ "kart_etiketi": {
+  "Türkiye": "Gündem",
+  "Eğitim": "Eğitim ve Sınavlar",
+  "Çevre": "Çevre ve Afet",
+  "Afet": "Çevre ve Afet",
+  "81 İl": "Şehirler",
+  "Savunma Sanayii": "Savunma",
+  "Otomobil": "Otomotiv",
+  "Gündem Analizi": "Gündem",
+  "Ekonomi Analizi": "Finans",
+  "Savunma Analizi": "Savunma",
+  "Dünya Analizi": "Dünya",
+  "Uzman Görüşleri": "Savunma",
+  "Savunma Videoları": "Savunma"
+ },
+ "turler": {
+  "analiz": {
+   "ad": "Analiz",
+   "ikon": "fa-magnifying-glass-chart"
+  },
+  "gorus": {
+   "ad": "Görüş",
+   "ikon": "fa-pen-nib"
+  },
+  "uzman-gorusu": {
+   "ad": "Uzman Görüşü",
+   "ikon": "fa-user-tie"
+  }
+ },
+ "tur_kaynagi": {
+  "Gündem Analizi": "analiz",
+  "Ekonomi Analizi": "analiz",
+  "Savunma Analizi": "analiz",
+  "Dünya Analizi": "analiz",
+  "Uzman Görüşleri": "uzman-gorusu"
+ },
+ "servis_il": {
+  "sayfalar": [
+   "hava-durumu.html",
+   "namaz-vakitleri.html",
+   "trafik-ulasim.html",
+   "afet-acil-durum.html"
+  ],
+  "pencere": "sehir",
+  "not": "Beyar karar 3: 81 İl çipi ve Bütün iller konum seçme penceresini açar"
+ },
+ "medya": {
+  "haber-dinle.html": {
+   "ana": {
+    "param": "kategori",
+    "not": "Mevcut kategori sayfaları (haber-dinle-*.html) korunur"
+   },
+   "ikinci": {
+    "param": "kusak",
+    "ad": "Yayın kuşağı",
+    "ogeler": [
+     "Sabah Özeti",
+     "Gün Ortası",
+     "Akşam Bülteni",
+     "Hafta Özeti"
+    ]
+   }
+  },
+  "video.html": {
+   "ana": {
+    "param": "kategori",
+    "ogeler": [
+     "Gündem",
+     "Finans",
+     "Spor",
+     "Dünya",
+     "Kadın",
+     "Savunma",
+     "Kampüs",
+     "Teknoloji"
+    ]
+   },
+   "ikinci": {
+    "param": "tur",
+    "ad": "Tür",
+    "ogeler": [
+     "Anlık Gelişme",
+     "Sahadan",
+     "Açıklayıcı Video",
+     "Röportaj"
+    ]
+   }
+  },
+  "foto-fokus.html": {
+   "ana": {
+    "param": "kategori",
+    "ogeler": [
+     "Şehir",
+     "Toplum",
+     "Doğa ve İklim",
+     "Kültür ve Sanat",
+     "Spor",
+     "Savunma",
+     "Dünya"
+    ]
+   }
+  },
+  "infografik.html": {
+   "ana": {
+    "param": "kategori",
+    "ogeler": [
+     "Finans ve Ekonomi",
+     "Toplum ve Demografi",
+     "Enerji ve İklim",
+     "Savunma ve Teknoloji",
+     "Spor",
+     "Eğitim ve Kampüs",
+     "Dünya"
+    ]
+   }
+  },
+  "podcast.html": {
+   "ana": {
+    "param": "program",
+    "ogeler": [
+     "Ekonomi Masası",
+     "Strateji ve Savunma Masası",
+     "Teknoloji Sohbetleri",
+     "Saha ve Tribün",
+     "Kampüs ve Gelecek",
+     "Kültür Ajandası",
+     "Gündem Odası"
+    ]
+   },
+   "ikinci": {
+    "param": "periyot",
+    "ad": "Yayın periyodu",
+    "ogeler": [
+     "Haftalık Yayınlar",
+     "Aylık Dosya",
+     "Özel Seri"
+    ]
+   },
+   "periyot": {
+    "Gündem Odası": "Haftalık",
+    "Ekonomi Masası": "Haftalık",
+    "Teknoloji Sohbetleri": "Haftalık",
+    "Saha ve Tribün": "Haftalık",
+    "Strateji ve Savunma Masası": "Aylık Dosya",
+    "Kültür Ajandası": "Aylık Dosya",
+    "Kampüs ve Gelecek": "Özel Seri"
+   }
+  }
+ }
+}

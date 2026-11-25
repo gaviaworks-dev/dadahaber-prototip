@@ -16,6 +16,10 @@ Ayrıca araclar/baglanti_kurallari.py ile "#" bağlantıları bağlamına göre 
 Parçaları ve kuralları yalnızca lead değiştirir (CLAUDE.md · Takım çalışması)."""
 import sys, re, glob, os
 KOK = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+# Kategori ve medya yapısı tek kaynak (Beyar 2026-11-25): mega menü ve telefon menüsü araclar/kategori.json'dan üretilir
+import kategori as KT
+if '--kontrol' not in sys.argv: KT.parcalari_uret()
 PARCALAR = {ad: open(os.path.join(KOK, 'parcalar', f'{ad}.html'), encoding='utf-8').read().split('-->', 1)[1].strip()
             for ad in ('ust', 'son-dakika', 'footer', 'bulten')}
 kontrol = '--kontrol' in sys.argv
@@ -67,10 +71,13 @@ degisen = []; bos = {}
 for yol in hedef:
     yol = yol if os.path.isabs(yol) else os.path.join(KOK, yol)
     t = open(yol, encoding='utf-8').read(); once = t
+    if 'name="dada-yonlendirme"' in t: continue   # yönlendirme sayfası (kaldırılan/birleşen adres): dokunulmaz
     for ad, icerik in PARCALAR.items():
         t = re.sub(rf'<!--P:{ad}-->.*?<!--/P:{ad}-->', lambda m: f'<!--P:{ad}-->\n{icerik}\n<!--/P:{ad}-->', t, flags=re.S)
     # Bağlantı kuralları (araclar/baglanti_kurallari.py): sayfa içeriğindeki "#" bağlantıları gerçek hedefe
     t = BK.uygula(t, os.path.basename(yol))
+    # Kategori yapısı (Beyar 2026-11-25): eski adresler hedefe, alt menü şeritleri, kart etiketleri, servis il seçimi
+    t = KT.uygula(t, os.path.basename(yol))
     # Sayfalama tek bileşen (Beyar 2026-11-25): her <nav class="ls-sayfa"> araclar/sayfalama.py kalıbına getirilir
     t = SF.uygula(t, os.path.basename(yol))
     # Liste sıralama seçicisi tek bileşen (Beyar 2026-11-25): araclar/siralama.py
