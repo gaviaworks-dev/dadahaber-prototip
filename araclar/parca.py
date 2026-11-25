@@ -23,6 +23,7 @@ hedef = [a for a in sys.argv[1:] if not a.startswith('--')] or sorted(glob.glob(
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import baglanti_kurallari as BK
 import sayfalama as SF
+import siralama as SR
 import hashlib
 # Önbellek kırma: CSS ve JS bağlantılarına içerik özetinden sürüm eklenir (?v=…); dosya değişince sürüm değişir, tarayıcı yenisini alır
 SURUM = {}
@@ -71,6 +72,8 @@ for yol in hedef:
     t = BK.uygula(t, os.path.basename(yol))
     # Sayfalama tek bileşen (Beyar 2026-11-25): her <nav class="ls-sayfa"> araclar/sayfalama.py kalıbına getirilir
     t = SF.uygula(t, os.path.basename(yol))
+    # Liste sıralama seçicisi tek bileşen (Beyar 2026-11-25): araclar/siralama.py
+    t = SR.uygula(t)
     # Yapı kuralı (Beyar: gereksiz satır açılmaz): Etiketler ve Paylaş tek satırda; solda etiketler (kayar), sağda paylaş
     t = re.sub(r'(?<!<div class="dt-ep">)(<div class="dt-etk[^"]*">(?:(?!<div).)*?</div>)\s*(<div class="dt-pay[^"]*">(?:(?!<div).)*?</div>)',
                r'<div class="dt-ep">\1\2</div>', t, flags=re.S)

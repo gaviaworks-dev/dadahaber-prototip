@@ -527,7 +527,7 @@ document.querySelectorAll('[data-eb]').forEach(eb=>{const f=eb.querySelector('.e
    son sayfada kalan kayıt sayısı kadar kart görünür (toplam kayıt .ls-sayi'dan). Sunucuda bu kısım gerçek sorgudur. */
 (function(){
  const basla=()=>{
-  const navlar=[...document.querySelectorAll('nav.ls-sayfa[data-toplam]')]; if(!navlar.length) return;
+  const navlar=[...document.querySelectorAll('nav.ls-sayfa[data-toplam]')]; if(!navlar.length&&!document.querySelector('.ls-sira-k')) return;
   /* Seçili sayfanın çevresinde sabit 5'li kayan pencere; ilk/son numara ve '…' yok (en başa / en sona görür) */
   const ogeler=(T,c)=>{const P=5; if(T<=P) return Array.from({length:T},(_,i)=>i+1); const b=Math.min(Math.max(1,c-2),T-P+1); return Array.from({length:P},(_,i)=>b+i);};
   const dosya=()=>location.pathname.split('/').pop()||'index.html';
@@ -543,17 +543,43 @@ document.querySelectorAll('[data-eb]').forEach(eb=>{const f=eb.querySelector('.e
     +`<span class="sf-no">${no}</span><span class="sf-ozet"><span class="sr">Sayfa </span>${c} / ${T}</span>`
     +ok(nav,c+1,'Sonraki sayfa','fa-chevron-right',c===T)+ok(nav,T,'Son sayfa','fa-angles-right',c===T)
     +`</div><span class="sf-toplam">${T.toLocaleString('tr-TR')} sayfa</span>`;};
-  /* Kayıtlar: sayfalamadan önceki kardeş bloklardaki kartlar (article ya da a); başlık, bant ve uyarılar yerinde kalır */
-  const kayit=nav=>{ if(nav._k) return nav._k; const dugum=[];
-   for(let e=nav.previousElementSibling;e;e=e.previousElementSibling){ const k=[...e.children].filter(x=>x.matches('article,a')); if(k.length>1) dugum.unshift(...k); }
+  /* Kayıtlar: liste kabındaki (sayfalamadan önceki) bloklarda duran kartlar (article ya da a); başlık, bant ve uyarılar yerinde kalır */
+  const kayit=(kap,son)=>{ if(kap._k) return kap._k; const dugum=[];
+   for(const e of kap.children){ if(e===son) break; const k=[...e.children].filter(x=>x.matches('article,a')); if(k.length>1) dugum.push(...k); }
    const yer=dugum.map(d=>{const m=document.createComment('sf'); d.before(m); return m;});
-   const say=parseInt(((nav.parentElement.querySelector('.ls-sayi b')||{}).textContent||'').replace(/\D/g,''),10);
-   return nav._k={dugum,yer,say};};
-  const goster=(nav,c)=>{const {dugum,yer,say}=kayit(nav), n=dugum.length; if(n<2) return; const T=+nav.dataset.toplam||1;
-   const kay=((c-1)*3)%n; const sira=dugum.map((_,i)=>dugum[(i+kay)%n]);
+   const say=parseInt(((kap.querySelector('.ls-sayi b')||{}).textContent||'').replace(/\D/g,''),10);
+   return kap._k={dugum,yer,say};};
+  /* Sıralama (Beyar 2026-11-25): ?sira= yeni | okunan | eski. Taban sıra sayfadaki örnek sıradır (en yeni). */
+  const siraModu=()=>{const m=new URLSearchParams(location.search).get('sira'); return m==='okunan'||m==='eski'?m:'yeni';};
+  const deger=x=>{const g=x.querySelector('.fa-eye'); if(!g||!g.parentElement) return null; const t=g.parentElement.textContent.trim(); const v=parseFloat(t.replace(/\./g,'').replace(',','.')); if(isNaN(v)) return null; return v*(/Mn/.test(t)?1e6:/B/.test(t)?1e3:1);};
+  const sirala=(dugum,mod)=>{ if(mod==='eski') return [...dugum].reverse(); if(mod!=='okunan') return dugum;
+   const d=dugum.map((x,i)=>({x,i,v:deger(x)})); if(d.filter(o=>o.v!=null).length>=d.length/2) return d.sort((a,b)=>((b.v??-1)-(a.v??-1))||a.i-b.i).map(o=>o.x);
+   return [...dugum.filter((_,i)=>i%2===1),...dugum.filter((_,i)=>i%2===0)];};
+  const goster=(kap,c,T,son)=>{const {dugum,yer,say}=kayit(kap,son), n=dugum.length; if(n<2) return;
+   const taban=sirala(dugum,siraModu()); const kay=((c-1)*3)%n; const sira=taban.map((_,i)=>taban[(i+kay)%n]);
    const gorunur=(c===T && say && Math.ceil(say/n)===T)?say-(T-1)*n:n;
    sira.forEach((d,i)=>{yer[i].after(d); d.style.display=i>=gorunur?"none":"";});};
-  const guncelle=()=>navlar.forEach(nav=>{const c=secili(nav); ciz(nav,c); goster(nav,c);});
+  const menuOf=k=>k._m||(k._m=k.querySelector('.ls-sira-menu'));
+  const etiketle=()=>{const mod=siraModu(); document.querySelectorAll('.ls-sira-k').forEach(k=>{const m=menuOf(k); if(!m) return; m.querySelectorAll('[data-sira]').forEach(o=>o.setAttribute('aria-checked',String(o.dataset.sira===mod)));
+   const s=m.querySelector(`[data-sira="${mod}"]`), b=k.querySelector('.ls-sira b'); if(s&&b) b.textContent=s.textContent.trim();});};
+  const siraKap=[...document.querySelectorAll('.ls-sira-k')].map(k=>k.closest('.ls-sonuc,.ar-grup')).filter(k=>k&&!navlar.some(n=>n.parentElement===k));
+  const guncelle=()=>{navlar.forEach(nav=>{const c=secili(nav); ciz(nav,c); goster(nav.parentElement,c,+nav.dataset.toplam||1,nav);}); siraKap.forEach(k=>goster(k,1,1,null)); etiketle();};
+  /* Sıralama seçicisi: düğme menüyü açar (sabit konum; araç çubuğu dar ekranda kaydırılır, menü kırpılmaz) */
+  document.querySelectorAll('.ls-sira-k').forEach(k=>{const b=k.querySelector('.ls-sira'), m=menuOf(k); if(!b||!m) return;
+   const yerles=()=>{const r=b.getBoundingClientRect(), rtl=getComputedStyle(b).direction==='rtl'; m.style.position='fixed'; m.style.insetBlockStart=Math.round(r.bottom+8)+'px'; m.style.insetInlineEnd=Math.round(rtl?r.left:innerWidth-r.right)+'px';};
+   const kapat=()=>{if(m.hidden) return; m.hidden=true; b.setAttribute('aria-expanded','false');};
+   /* Menü açılınca sayfanın en üst katmanına (body) taşınır: liste panelinin katmanı yüzünden sabit kenar sekmelerinin altında kalmaz */
+   const ac=klavye=>{if(m.parentElement!==document.body) document.body.appendChild(m); yerles(); m.hidden=false; b.setAttribute('aria-expanded','true'); if(klavye) (m.querySelector('[aria-checked="true"]')||m.querySelector('button')).focus({preventScroll:true});};
+   b.addEventListener('click',e=>{e.stopPropagation(); m.hidden?ac(e.detail===0):kapat();});
+   m.addEventListener('click',e=>{const o=e.target.closest('[data-sira]'); if(!o) return; e.stopPropagation(); const p=new URLSearchParams(location.search);
+    o.dataset.sira==='yeni'?p.delete('sira'):p.set('sira',o.dataset.sira); p.delete('sayfa'); const q=p.toString(); history.pushState({sf:1},'',dosya()+(q?'?'+q:''));
+    kapat(); guncelle(); if(e.detail===0) b.focus({preventScroll:true});});
+   m.addEventListener('keydown',e=>{const ds=[...m.querySelectorAll('button')], i=ds.indexOf(document.activeElement);
+    if(e.key==='Escape'){e.preventDefault(); kapat(); b.focus();} else if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault(); ds[(i+(e.key==='ArrowDown'?1:ds.length-1))%ds.length].focus();}});
+   document.addEventListener('click',e=>{if(!k.contains(e.target)&&!m.contains(e.target)) kapat();});
+   /* Kaydırmada kapanmaz, düğmenin altında kalır (sayfadaki kendiliğinden kayan raylar menüyü kapatmasın) */
+   addEventListener('scroll',()=>{if(!m.hidden) yerles();},{passive:true}); const ser=b.closest('.ls-arac2'); if(ser) ser.addEventListener('scroll',()=>{if(!m.hidden) yerles();},{passive:true});
+   addEventListener('resize',kapat);});
   const kaydir=nav=>{const hedef=nav.parentElement, ust=(document.querySelector('header.yapiskan')||{}).offsetHeight||0;
    const y=hedef.getBoundingClientRect().top+scrollY-ust-16, az=matchMedia('(prefers-reduced-motion: reduce)').matches;
    scrollTo({top:Math.max(0,y),behavior:az?'instant':'smooth'});};

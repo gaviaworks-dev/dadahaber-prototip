@@ -1988,3 +1988,19 @@ html.cz-acik .eb{padding-block-end:calc(56px + 120px)}
   .ls-sayfa .sf-no,.ls-sayfa .sf-toplam{display:none}
   .ls-sayfa .sf-ozet{display:grid}
 }
+
+/* ===== Liste sıralama seçicisi (.ls-sira-k) · ortak bileşen (Beyar 2026-11-25) =====
+   HTML: araclar/siralama.py; davranış: ortak.js "Sayfalama". Menü değerleri mevcut sistemden: pencere listesi yazısı
+   (--y-pn), iç içe köşe (dış 16 = iç 12 + 4 boşluk), gri çizgi, orta gölge. */
+.ls-sira-k{display:inline-flex;flex:none}
+button.ls-sira{color:var(--siyah);font-weight:500;white-space:nowrap}
+.ls-sira .fa-chevron-down{transition:transform .2s}
+.ls-sira[aria-expanded="true"] .fa-chevron-down{transform:rotate(180deg)}
+.ls-sira-menu{z-index:55;display:grid;min-inline-size:200px;padding:4px;background:var(--beyaz);border:1px solid var(--gri-100);border-radius:var(--k-kart);box-shadow:var(--golge-md)}
+.ls-sira-menu[hidden]{display:none}
+.ls-sira-menu button{display:flex;align-items:center;justify-content:space-between;gap:var(--ikon-bosluk);block-size:40px;padding:0 12px;border:0;border-radius:var(--k-kontrol);background:none;color:var(--gri-800);font:inherit;font-size:var(--y-pn);font-weight:500;white-space:nowrap;text-align:start;cursor:pointer}
+.ls-sira-menu button:hover,.ls-sira-menu button:focus-visible{background:var(--gri-10)}
+.ls-sira-menu button i{visibility:hidden;color:var(--marka-metin)}
+.ls-sira-menu button[aria-checked="true"]{font-weight:800;color:var(--siyah)}
+.ls-sira-menu button[aria-checked="true"] i{visibility:visible}
+@media (max-width:1024px){.ls-sira-menu button{block-size:var(--dokun)}}
