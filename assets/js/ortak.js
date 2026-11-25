@@ -527,7 +527,11 @@ document.querySelectorAll('[data-eb]').forEach(eb=>{const f=eb.querySelector('.e
    son sayfada kalan kayıt sayısı kadar kart görünür (toplam kayıt .ls-sayi'dan). Sunucuda bu kısım gerçek sorgudur. */
 (function(){
  const basla=()=>{
-  const navlar=[...document.querySelectorAll('nav.ls-sayfa[data-toplam]')]; if(!navlar.length&&!document.querySelector('.ls-sira-k')) return;
+  const navlar=[...document.querySelectorAll('nav.ls-sayfa[data-toplam]')]; if(!navlar.length&&!document.querySelector('.ls-sira-k,[data-suz-liste],[data-suz]')) return;
+  /* Süzgeç (Beyar 2026-11-25, DADAHABER-10): adresteki kategori, tur, kusak, program, periyot değerleri kartların data-* alanlarıyla eşleşir.
+     Süzgeç açıkken sayfalama gizlenir, sayı "N … bu süzgeçte" olur; eşleşme yoksa boş durum satırı. Sunucuda bu gerçek sorgudur. */
+  const SUZ=['kategori','tur','kusak','program','periyot'];
+  const aktif=()=>{const q=new URLSearchParams(location.search), o={}; SUZ.forEach(p=>{const v=q.get(p); if(v) o[p]=v;}); return o;};
   /* Seçili sayfanın çevresinde sabit 5'li kayan pencere; ilk/son numara ve '…' yok (en başa / en sona görür) */
   const ogeler=(T,c)=>{const P=5; if(T<=P) return Array.from({length:T},(_,i)=>i+1); const b=Math.min(Math.max(1,c-2),T-P+1); return Array.from({length:P},(_,i)=>b+i);};
   const dosya=()=>location.pathname.split('/').pop()||'index.html';
@@ -537,7 +541,7 @@ document.querySelectorAll('[data-eb]').forEach(eb=>{const f=eb.querySelector('.e
    const n=parseInt(q.get('sayfa'),10); return Math.min(Math.max(1,isNaN(n)?1:n),T);};
   const ok=(nav,n,etiket,ikon,pasif)=>pasif?`<a class="sf-ok pasif" role="link" aria-disabled="true" aria-label="${etiket}"><i class="fa-solid ${ikon}"></i></a>`
    :`<a class="sf-ok" href="${adres(nav,n)}" aria-label="${etiket}"><i class="fa-solid ${ikon}"></i></a>`;
-  const ciz=(nav,c)=>{const T=+nav.dataset.toplam||1; if(T<=1){nav.hidden=true; nav.innerHTML=''; return;}
+  const ciz=(nav,c)=>{const T=Object.keys(aktif()).length?1:(+nav.dataset.toplam||1); if(T<=1){nav.hidden=true; nav.innerHTML=''; return;} nav.hidden=false;
    const no=ogeler(T,c).map(n=>n===c?`<a class="aktif" href="${adres(nav,n)}" aria-current="page">${n}</a>`:`<a href="${adres(nav,n)}">${n}</a>`).join('');
    nav.innerHTML='<div class="sf-satir">'+ok(nav,1,'İlk sayfa','fa-angles-left',c===1)+ok(nav,c-1,'Önceki sayfa','fa-chevron-left',c===1)
     +`<span class="sf-no">${no}</span><span class="sf-ozet"><span class="sr">Sayfa </span>${c} / ${T}</span>`
@@ -545,7 +549,8 @@ document.querySelectorAll('[data-eb]').forEach(eb=>{const f=eb.querySelector('.e
     +`</div><span class="sf-toplam">${T.toLocaleString('tr-TR')} sayfa</span>`;};
   /* Kayıtlar: liste kabındaki (sayfalamadan önceki) bloklarda duran kartlar (article ya da a); başlık, bant ve uyarılar yerinde kalır */
   const kayit=(kap,son)=>{ if(kap._k) return kap._k; const dugum=[];
-   for(const e of kap.children){ if(e===son) break; const k=[...e.children].filter(x=>x.matches('article,a')); if(k.length>1) dugum.push(...k); }
+   if(kap.matches('[data-suz-liste]')) dugum.push(...[...kap.children].filter(x=>x.matches('article,a')));
+   else for(const e of kap.children){ if(e===son) break; const k=[...e.children].filter(x=>x.matches('article,a')); if(k.length>1) dugum.push(...k); }
    const yer=dugum.map(d=>{const m=document.createComment('sf'); d.before(m); return m;});
    const say=parseInt(((kap.querySelector('.ls-sayi b')||{}).textContent||'').replace(/\D/g,''),10);
    return kap._k={dugum,yer,say};};
@@ -555,15 +560,41 @@ document.querySelectorAll('[data-eb]').forEach(eb=>{const f=eb.querySelector('.e
   const sirala=(dugum,mod)=>{ if(mod==='eski') return [...dugum].reverse(); if(mod!=='okunan') return dugum;
    const d=dugum.map((x,i)=>({x,i,v:deger(x)})); if(d.filter(o=>o.v!=null).length>=d.length/2) return d.sort((a,b)=>((b.v??-1)-(a.v??-1))||a.i-b.i).map(o=>o.x);
    return [...dugum.filter((_,i)=>i%2===1),...dugum.filter((_,i)=>i%2===0)];};
+  const temizAdres=(cikar)=>{const q=new URLSearchParams(location.search); cikar.forEach(p=>q.delete(p)); q.delete('sayfa'); const s=q.toString(); return dosya()+(s?'?'+s:'');};
+  const sayiYaz=(kap,n,suz)=>{const el=kap.querySelector('.ls-sayi'); if(el){ if(el._ilk==null) el._ilk=el.innerHTML;
+    const birim=((el.querySelector('b')||{}).textContent||'').replace(/^[\d.,\s]+/,'');
+    el.innerHTML=suz?`<b>${n.toLocaleString('tr-TR')} ${birim}</b> bu süzgeçte`:el._ilk;}
+   let bos=kap._bos; if(suz&&!n){ if(!bos){bos=kap._bos=document.createElement('p'); bos.className='ls-bos'; bos.setAttribute('role','status');}
+    bos.innerHTML=`<i class="fa-solid fa-filter-circle-xmark"></i>Bu süzgeçte şu an içerik yok. <a href="${temizAdres(SUZ)}">Tümünü gör</a>`;
+    const son=kap.querySelector(':scope>nav.ls-sayfa'); son?son.before(bos):kap.append(bos);} else if(bos) bos.remove();};
   const goster=(kap,c,T,son)=>{const {dugum,yer,say}=kayit(kap,son), n=dugum.length; if(n<2) return;
+   const suz=aktif(), sk=Object.entries(suz);
+   if(sk.length){ const uy=sirala(dugum,siraModu()).filter(d=>sk.every(([p,v])=>d.dataset[p]===v)), dis=dugum.filter(d=>!uy.includes(d));
+    [...uy,...dis].forEach((d,i)=>{yer[i].after(d); d.style.display=i<uy.length?"":"none";}); sayiYaz(kap,uy.length,true); return; }
+   sayiYaz(kap,0,false);
    const taban=sirala(dugum,siraModu()); const kay=((c-1)*3)%n; const sira=taban.map((_,i)=>taban[(i+kay)%n]);
    const gorunur=(c===T && say && Math.ceil(say/n)===T)?say-(T-1)*n:n;
    sira.forEach((d,i)=>{yer[i].after(d); d.style.display=i>=gorunur?"none":"";});};
+  /* Süzgeç çipleri: [data-suz] kabındaki çip, adresteki değerle eşleşince seçili; bağlantı diğer süzgeçleri korur */
+  const cipler=()=>{const q=new URLSearchParams(location.search);
+   document.querySelectorAll('[data-suz]').forEach(k=>{const p=k.dataset.suz; k.querySelectorAll('a.ls-cip').forEach(a=>{
+    if(a._v==null) a._v=new URL(a.getAttribute('href'),location.href).searchParams.get(p)||'';
+    const h=new URLSearchParams(location.search); h.delete('sayfa'); a._v?h.set(p,a._v):h.delete(p); const s=h.toString(); a.setAttribute('href',dosya()+(s?'?'+s:''));
+    const on=a._v===(q.get(p)||''); a.classList.toggle('aktif',on); on?a.setAttribute('aria-current','true'):a.removeAttribute('aria-current');});});
+   /* Kategori sayfasında tür süzgeci (eski analiz/uzman adresleri): araç çubuğunda kaldırılabilir çip */
+   document.querySelectorAll('.ls-suz[data-suz-gecici]').forEach(x=>x.remove()); const tur=q.get('tur');
+   if(tur&&!document.querySelector('[data-suz="tur"]')){ const ar=document.querySelector('.ls-sonuc .ls-arac2'), r=document.querySelector(`[data-tur="${tur}"] .tur-k`);
+    if(ar){ const g=document.createElement('span'); g.className='ls-suz'; g.setAttribute('data-suz-gecici',''); g.setAttribute('role','group'); g.setAttribute('aria-label','Tür');
+     g.innerHTML=`<a class="ls-cip aktif" href="${temizAdres(['tur'])}" aria-label="Tür süzgecini kaldır">${r?r.textContent:tur}<i class="fa-solid fa-xmark"></i></a>`;
+     const sy=ar.querySelector('.ls-sayi'); sy?sy.after(g):ar.prepend(g);}}};
+  document.addEventListener('click',e=>{const a=e.target.closest('[data-suz] a.ls-cip,[data-suz-gecici] a.ls-cip'); if(!a||e.metaKey||e.ctrlKey||e.shiftKey) return;
+   e.preventDefault(); history.pushState({sf:1},'',a.getAttribute('href')); guncelle();});
   const menuOf=k=>k._m||(k._m=k.querySelector('.ls-sira-menu'));
   const etiketle=()=>{const mod=siraModu(); document.querySelectorAll('.ls-sira-k').forEach(k=>{const m=menuOf(k); if(!m) return; m.querySelectorAll('[data-sira]').forEach(o=>o.setAttribute('aria-checked',String(o.dataset.sira===mod)));
    const s=m.querySelector(`[data-sira="${mod}"]`), b=k.querySelector('.ls-sira b'); if(s&&b) b.textContent=s.textContent.trim();});};
   const siraKap=[...document.querySelectorAll('.ls-sira-k')].map(k=>k.closest('.ls-sonuc,.ar-grup')).filter(k=>k&&!navlar.some(n=>n.parentElement===k));
-  const guncelle=()=>{navlar.forEach(nav=>{const c=secili(nav); ciz(nav,c); goster(nav.parentElement,c,+nav.dataset.toplam||1,nav);}); siraKap.forEach(k=>goster(k,1,1,null)); etiketle();};
+  const suzKap=[...document.querySelectorAll('[data-suz-liste]')];
+  const guncelle=()=>{navlar.forEach(nav=>{const c=secili(nav); ciz(nav,c); goster(nav.parentElement,c,+nav.dataset.toplam||1,nav);}); siraKap.forEach(k=>goster(k,1,1,null)); suzKap.forEach(k=>goster(k,1,1,null)); etiketle(); cipler();};
   /* Sıralama seçicisi: düğme menüyü açar (sabit konum; araç çubuğu dar ekranda kaydırılır, menü kırpılmaz) */
   document.querySelectorAll('.ls-sira-k').forEach(k=>{const b=k.querySelector('.ls-sira'), m=menuOf(k); if(!b||!m) return;
    const yerles=()=>{const r=b.getBoundingClientRect(), rtl=getComputedStyle(b).direction==='rtl'; m.style.position='fixed'; m.style.insetBlockStart=Math.round(r.bottom+8)+'px'; m.style.insetInlineEnd=Math.round(rtl?r.left:innerWidth-r.right)+'px';};

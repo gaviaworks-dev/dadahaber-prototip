@@ -881,6 +881,22 @@
   "uzman-gorusu": {
    "ad": "Uzman Görüşü",
    "ikon": "fa-user-tie"
+  },
+  "anlik-gelisme": {
+   "ad": "Anlık Gelişme",
+   "ikon": "fa-bolt"
+  },
+  "sahadan": {
+   "ad": "Sahadan",
+   "ikon": "fa-location-dot"
+  },
+  "aciklayici-video": {
+   "ad": "Açıklayıcı Video",
+   "ikon": "fa-circle-info"
+  },
+  "roportaj": {
+   "ad": "Röportaj",
+   "ikon": "fa-microphone"
   }
  },
  "tur_kaynagi": {
@@ -909,12 +925,8 @@
    "ikinci": {
     "param": "kusak",
     "ad": "Yayın kuşağı",
-    "ogeler": [
-     "Sabah Özeti",
-     "Gün Ortası",
-     "Akşam Bülteni",
-     "Hafta Özeti"
-    ]
+    "kaynak": "kusaklar",
+    "yer": "bolum"
    }
   },
   "video.html": {
@@ -935,11 +947,13 @@
     "param": "tur",
     "ad": "Tür",
     "ogeler": [
-     "Anlık Gelişme",
-     "Sahadan",
-     "Açıklayıcı Video",
-     "Röportaj"
-    ]
+     "anlik-gelisme",
+     "sahadan",
+     "aciklayici-video",
+     "roportaj"
+    ],
+    "kaynak": "turler",
+    "yer": "arac"
    }
   },
   "foto-fokus.html": {
@@ -986,21 +1000,57 @@
    "ikinci": {
     "param": "periyot",
     "ad": "Yayın periyodu",
-    "ogeler": [
-     "Haftalık Yayınlar",
-     "Aylık Dosya",
-     "Özel Seri"
-    ]
+    "kaynak": "periyotlar",
+    "yer": "arac"
    },
    "periyot": {
-    "Gündem Odası": "Haftalık",
-    "Ekonomi Masası": "Haftalık",
-    "Teknoloji Sohbetleri": "Haftalık",
-    "Saha ve Tribün": "Haftalık",
-    "Strateji ve Savunma Masası": "Aylık Dosya",
-    "Kültür Ajandası": "Aylık Dosya",
-    "Kampüs ve Gelecek": "Özel Seri"
+    "Gündem Odası": "haftalik",
+    "Ekonomi Masası": "haftalik",
+    "Teknoloji Sohbetleri": "haftalik",
+    "Saha ve Tribün": "haftalik",
+    "Strateji ve Savunma Masası": "aylik-dosya",
+    "Kültür Ajandası": "aylik-dosya",
+    "Kampüs ve Gelecek": "ozel-seri"
    }
+  }
+ },
+ "kusaklar": {
+  "sabah-ozeti": {
+   "ad": "Sabah Özeti",
+   "ikon": "fa-sun",
+   "saat": "07.00"
+  },
+  "gun-ortasi": {
+   "ad": "Gün Ortası",
+   "ikon": "fa-cloud-sun",
+   "saat": "12.30"
+  },
+  "aksam-bulteni": {
+   "ad": "Akşam Bülteni",
+   "ikon": "fa-moon",
+   "saat": "18.00"
+  },
+  "hafta-ozeti": {
+   "ad": "Hafta Özeti",
+   "ikon": "fa-calendar-week",
+   "saat": "Pazar 10.00"
+  }
+ },
+ "periyotlar": {
+  "haftalik": {
+   "ad": "Haftalık",
+   "serit": "Haftalık Yayınlar",
+   "ikon": "fa-calendar-week"
+  },
+  "aylik-dosya": {
+   "ad": "Aylık Dosya",
+   "serit": "Aylık Dosya",
+   "ikon": "fa-folder-open"
+  },
+  "ozel-seri": {
+   "ad": "Özel Seri",
+   "serit": "Özel Seri",
+   "ikon": "fa-star"
   }
  }
 }

@@ -2012,3 +2012,21 @@ button.ls-sira{color:var(--siyah);font-weight:500;white-space:nowrap}
 .yz-bag .av{transition:box-shadow .2s}
 .yz-bag:hover .av,.yz-bag:focus-visible .av{box-shadow:0 0 0 2px var(--marka)}
 .yz-bag:hover b,.yz-bag:focus-visible b{text-decoration:underline;text-underline-offset:3px}
+
+/* ===== Tür etiketi (.tur-k / .tur-b) · Beyar 2026-11-25 karar 1 (DADAHABER-10) =====
+   Kart türü ("Analiz", "Görüş", "Uzman Görüşü", video türleri, podcast periyodu) görselin köşesinde M1/E1 ailesinden cam kapsül;
+   görselsiz kartta ve liste görünümünde bilgi satırının ilk öğesi. Köşeler: sol üst kategori, sağ üst kaydet, sol alt süre/kare sayısı, sağ alt tür. */
+.tur-k{position:absolute;inset-block-end:12px;inset-inline-end:12px;z-index:2;display:inline-flex;align-items:center;gap:var(--ikon-bosluk);block-size:34px;padding:0 12px;border-radius:var(--k-kontrol);background:var(--ust-zemin);border:1px solid var(--ust-cizgi);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);color:var(--beyaz);font-size:var(--y-sm);font-weight:800;white-space:nowrap}
+.tur-k i{color:var(--marka)}
+.tur-b{display:none!important;font-weight:800}
+.tur-b i{color:var(--marka-metin)}
+.liste .tur-k{display:none}
+.liste .tur-b,article:not(:has(.gm)) .tur-b{display:inline-flex!important}
+
+/* ===== Süzgeç çip grubu (.ls-suz) ve boş durum (.ls-bos) · Beyar 2026-11-25 karar 2 =====
+   Medya sayfalarında ikinci süzgeç araç çubuğunda (sayı · çipler · görünüm · sıralama), ek satır yok. Çipler sayfanın mevcut .ls-cip'i. */
+.ls-suz{display:inline-flex;align-items:center;gap:8px;flex:none}
+.ls-suz .ls-cip i{margin-inline-start:var(--ikon-bosluk)}
+.ls-bos{display:flex;align-items:center;justify-content:center;gap:var(--ikon-bosluk);padding-block:32px;margin:0;color:var(--gri-600);font-size:var(--y-sm);text-align:center}
+.ls-bos i{color:var(--marka-metin)}
+.ls-bos a{font-weight:800;color:var(--marka-metin);text-decoration:underline;text-underline-offset:3px}

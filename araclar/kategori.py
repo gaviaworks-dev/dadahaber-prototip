@@ -78,6 +78,55 @@ def _serit(t, dosya):
         return f'{m.group(1)}{escape(et)}{m.group(3)}{cip}{m.group(5)}'
     return re.sub(r'(<div class="am"><div class="kap am-ic"><span class="am-etk">)([^<]*)(</span>.*?<div class="ls-cipler">)(.*?)(</div>)', r, t, count=1, flags=re.S)
 
+# ---------------------------------------------------------------- tür etiketi ve medya süzgeçleri (Beyar 2026-11-25)
+_TR = str.maketrans('çğıöşüâîûÇĞİIÖŞÜÂÎÛ', 'cgiosuaiuCGIIOSUAIU')
+def kisa(ad): return re.sub(r'[^a-z0-9]+', '-', ad.translate(_TR).lower()).strip('-')
+ROZET = dict(K['turler'])
+ROZET.update({k: {'ad': v['ad'], 'ikon': v['ikon']} for k, v in K.get('periyotlar', {}).items()})
+
+def _rozet(anahtar, sinif):
+    r = ROZET.get(anahtar)
+    return f'<span class="{sinif}"><i class="fa-solid {r["ikon"]}"></i>{escape(r["ad"])}</span>' if r else ''
+
+def _turler(t):
+    """Kart türü (data-tur) ve podcast periyodu (data-periyot) kapsül olarak görünür: görselin köşesinde .tur-k;
+    görselsiz kartta ve liste görünümünde bilgi satırının ilk öğesi .tur-b (Beyar karar 1). Köşe yazısı kartı "Görüş"tür."""
+    def kart(m):
+        k = m.group(0)
+        bas = re.match(r'<article\b[^>]*>', k).group(0)
+        if 'data-tur=' not in bas and re.search(r'<h3><a href="kose-yazisi\.html"', k):
+            yb = bas[:-1] + ' data-tur="gorus">'; k = yb + k[len(bas):]; bas = yb
+        k = re.sub(r'<span class="tur-[kb]"><i class="[^"]*"></i>[^<]*</span>', '', k)
+        tur = re.search(r'data-tur="([^"]+)"', bas); per = re.search(r'data-periyot="([^"]+)"', bas)
+        if tur:
+            if '<div class="gm' in k: k = re.sub(r'(<div class="gm[^"]*">.*?)(</div><div class="gv">)', lambda x: x.group(1) + _rozet(tur.group(1), 'tur-k') + x.group(2), k, count=1, flags=re.S)
+            if '<div class="bilgi">' in k: k = k.replace('<div class="bilgi">', '<div class="bilgi">' + _rozet(tur.group(1), 'tur-b'), 1)
+        if per and '<div class="pc-kap"' in k:
+            k = re.sub(r'(<div class="pc-kap"[^>]*>.*?)(</div><div class="pc-ic">)', lambda x: x.group(1) + _rozet(per.group(1), 'tur-k') + x.group(2), k, count=1, flags=re.S)
+        return k
+    return re.sub(r'<article class="(?:gk|pc)\b[^"]*"[^>]*>.*?</article>', kart, t, flags=re.S)
+
+def _medya(t, dosya):
+    m = K['medya'].get(dosya)
+    if not m: return t
+    ana = m['ana']
+    if ana.get('ogeler'):
+        cip = f'<a href="{dosya}" class="ls-cip aktif">Tümü</a>' + ''.join(f'<a href="{dosya}?{ana["param"]}={kisa(o)}" class="ls-cip">{escape(o)}</a>' for o in ana['ogeler'])
+        t = re.sub(r'(<div class="am"><div class="kap am-ic"><span class="am-etk">[^<]*</span>.*?)<div class="ls-cipler"[^>]*>.*?</div>',
+                   lambda x: x.group(1) + f'<div class="ls-cipler" data-suz="{ana["param"]}">{cip}</div>', t, count=1, flags=re.S)
+    ik = m.get('ikinci')
+    if ik:
+        kay = K[ik['kaynak']]; anahtar = ik.get('ogeler') or list(kay)
+        def ad(a): return kay[a].get('serit', kay[a]['ad'])
+        grup = (f'<span class="ls-suz" role="group" aria-label="{escape(ik["ad"])}" data-suz="{ik["param"]}"><a href="{dosya}" class="ls-cip aktif">Tümü</a>'
+                + ''.join(f'<a href="{dosya}?{ik["param"]}={a}" class="ls-cip">{escape(ad(a))}</a>' for a in anahtar) + '</span>')
+        t = re.sub(r'<span class="ls-suz"[^>]*>(?:<a [^>]*>[^<]*</a>)*</span>', '', t)
+        if ik['yer'] == 'arac':
+            t = re.sub(r'(<div class="ls-arac2[^"]*">(?:<button[^>]*>.*?</button>)?<span class="ls-sayi">.*?</span>)', lambda x: x.group(1) + grup, t, count=1, flags=re.S)
+        else:   # Haber Dinle: "Bugünün sesli haberleri" başlığının araç yuvası
+            t = re.sub(r'(<h2>Bugünün sesli haberleri</h2></div><div class="sw-bas-s">).*?(</div></div>)', lambda x: x.group(1) + grup + x.group(2), t, count=1, flags=re.S)
+    return t
+
 # ---------------------------------------------------------------- uygulama
 def uygula(t, dosya):
     if 'name="dada-yonlendirme"' in t: return t
@@ -97,4 +146,6 @@ def uygula(t, dosya):
     # Kart kategori etiketleri: kaldırılan/birleşen alt kategoriler yeni adlarıyla
     KE = K['kart_etiketi']
     t = re.sub(r'(<span class="cip"><i class="[^"]+"></i>)(' + '|'.join(re.escape(k) for k in KE) + r')(</span>)', lambda m: m.group(1) + escape(KE[m.group(2)]) + m.group(3), t)
+    t = _medya(t, dosya)
+    t = _turler(t)
     return t
