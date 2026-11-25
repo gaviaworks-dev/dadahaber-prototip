@@ -10,21 +10,26 @@ Girdi öğesi:  <nav class="ls-sayfa" aria-label="Sayfalar" data-toplam="12" [da
   data-sekme   sayfalama bir sekmenin içindeyse o sekme (adres ?sekme=…&sayfa=N olur)
 
 Kurallar:
-  · Sıra: en başa, önceki, numaralar, sonraki, en sona; ortalı, tek satır.
-  · Numaralar en çok 7 kutu. Toplam ≤ 7 ise hepsi, "…" yok. Fazlaysa 1 … 4 5 6 … 12 biçimi; "…" yalnız sayfa atlanınca.
+  · Sıra: en başa, önceki, numaralar, sonraki, en sona; ortalı, tek satır. Altında soluk toplam: "18 sayfa".
+  · Numaralar (Beyar 2026-11-25 sadeleştirme): seçili sayfanın çevresinde 5 numaralık kayan pencere; ilk/son
+    numara ve "…" yok (o işi en başa / en sona görür). Kutu sayısı sabit: başta 1–5, sonda T-4…T. Toplam ≤ 5 ise hepsi.
   · İlk sayfada en başa/önceki, son sayfada sonraki/en sona pasif (gizlenmez, yer değiştirmez).
   · Toplam 1 ise sayfalama görünmez (hidden).
-  · Telefonda numaralar yerine "3 / 12" (.sf-ozet); CSS ile."""
+  · Telefonda numaralar yerine "3 / 12" (.sf-ozet); toplam satırı telefonda gizli. CSS ile."""
 import re
 from html import escape
 
+PENCERE = 5
+
 def ogeler(toplam, secili):
-    """Görünecek numara kutuları; 0 = '…' (atlanan sayfalar). En çok 7 kutu."""
+    """Görünecek numaralar: seçili sayfanın çevresinde sabit 5'li kayan pencere (toplam ≤ 5 ise hepsi)."""
     T, c = toplam, secili
-    if T <= 7: return list(range(1, T + 1))
-    if c <= 4: return [1, 2, 3, 4, 5, 0, T]
-    if c >= T - 3: return [1, 0, T - 4, T - 3, T - 2, T - 1, T]
-    return [1, 0, c - 1, c, c + 1, 0, T]
+    if T <= PENCERE: return list(range(1, T + 1))
+    bas = min(max(1, c - PENCERE // 2), T - PENCERE + 1)
+    return list(range(bas, bas + PENCERE))
+
+def _say(n):
+    return f'{n:,}'.replace(',', '.')
 
 def _adres(dosya, n, sekme):
     return f'{dosya}?sekme={escape(sekme)}&amp;sayfa={n}' if sekme else f'{dosya}?sayfa={n}'
@@ -36,15 +41,15 @@ def _ok(dosya, n, sekme, etiket, ikon, pasif):
 
 def ic(dosya, toplam, secili=1, sekme=None):
     T = max(1, int(toplam)); c = min(max(1, int(secili)), T)
-    no = ''.join('<span class="sf-ara" aria-hidden="true">…</span>' if n == 0 else
-                 (f'<a class="aktif" href="{_adres(dosya, n, sekme)}" aria-current="page">{n}</a>' if n == c else
-                  f'<a href="{_adres(dosya, n, sekme)}">{n}</a>') for n in ogeler(T, c))
-    return (_ok(dosya, 1, sekme, 'İlk sayfa', 'fa-angles-left', c == 1)
+    no = ''.join(f'<a class="aktif" href="{_adres(dosya, n, sekme)}" aria-current="page">{n}</a>' if n == c else
+                 f'<a href="{_adres(dosya, n, sekme)}">{n}</a>' for n in ogeler(T, c))
+    return ('<div class="sf-satir">' + _ok(dosya, 1, sekme, 'İlk sayfa', 'fa-angles-left', c == 1)
             + _ok(dosya, c - 1, sekme, 'Önceki sayfa', 'fa-chevron-left', c == 1)
             + f'<span class="sf-no">{no}</span>'
             + f'<span class="sf-ozet"><span class="sr">Sayfa </span>{c} / {T}</span>'
             + _ok(dosya, c + 1, sekme, 'Sonraki sayfa', 'fa-chevron-right', c == T)
-            + _ok(dosya, T, sekme, 'Son sayfa', 'fa-angles-right', c == T))
+            + _ok(dosya, T, sekme, 'Son sayfa', 'fa-angles-right', c == T)
+            + f'</div><span class="sf-toplam">{_say(T)} sayfa</span>')
 
 def nav(dosya, toplam, secili=1, sekme=None):
     T = max(1, int(toplam))
@@ -67,6 +72,6 @@ def uygula(t, dosya):
     return re.sub(r'<nav class="ls-sayfa"([^>]*)>(.*?)</nav>', bir, t, flags=re.S)
 
 if __name__ == '__main__':
-    for T in (1, 2, 4, 7, 8, 12, 346):
+    for T in (1, 2, 4, 5, 6, 12, 346):
         for c in sorted({1, 2, 4, 5, 6, T - 3, T - 1, T} & set(range(1, T + 1))):
-            print(T, c, ' '.join('…' if n == 0 else (f'[{n}]' if n == c else str(n)) for n in ogeler(T, c)))
+            print(T, c, ' '.join(f'[{n}]' if n == c else str(n) for n in ogeler(T, c)))

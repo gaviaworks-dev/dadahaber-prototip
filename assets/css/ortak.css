@@ -1966,12 +1966,14 @@ html.cz-acik .eb{padding-block-end:calc(56px + 120px)}
 
 /* ===== Sayfalama (.ls-sayfa) · ortak bileşen (Beyar 2026-11-25) =====
    HTML tek kaynak: araclar/sayfalama.py (parca.py uygular); davranış: assets/js/ortak.js "Sayfalama".
-   Sıra: en başa · önceki · numaralar (en çok 7) · sonraki · en sona; ortalı, tek satır. Pasif oklar yerinde kalır.
-   Telefonda numaralar yerine "3 / 12". Değerler mevcut sistemden: kontrol köşesi, gri çizgi, marka zemin, 42px / dokunma 44px. */
-.ls-sayfa{display:flex;flex-wrap:nowrap;justify-content:center;align-items:center;gap:8px;margin-block-start:20px}
+   Sıra: en başa · önceki · 5 numaralık kayan pencere · sonraki · en sona; ortalı, tek satır; altında soluk "18 sayfa".
+   Pasif oklar yerinde kalır. Telefonda numaralar yerine "3 / 12" (toplam satırı gizli).
+   Değerler mevcut sistemden: kontrol köşesi, gri çizgi, marka zemin, 42px / dokunma 44px. */
+.ls-sayfa{display:flex;flex-direction:column;align-items:center;gap:8px;margin-block-start:20px}
 .ls-sayfa[hidden]{display:none}
-.ls-sayfa .sf-no{display:flex;flex-wrap:nowrap;align-items:center;gap:8px}
-.ls-sayfa a,.ls-sayfa .sf-ara,.ls-sayfa .sf-ozet{display:grid;place-items:center;flex:none;min-inline-size:42px;block-size:42px;padding:0 10px;border-radius:var(--k-kontrol);font-size:var(--y-sm);font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.ls-sayfa .sf-satir,.ls-sayfa .sf-no{display:flex;flex-wrap:nowrap;justify-content:center;align-items:center;gap:8px}
+.ls-sayfa .sf-toplam{font-size:var(--y-sm);font-weight:500;color:var(--gri-400);font-variant-numeric:tabular-nums}
+.ls-sayfa a,.ls-sayfa .sf-ozet{display:grid;place-items:center;flex:none;min-inline-size:42px;block-size:42px;padding:0 10px;border-radius:var(--k-kontrol);font-size:var(--y-sm);font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
 .ls-sayfa a{border:1px solid var(--gri-100);background:var(--beyaz);color:var(--siyah);transition:border-color .2s,background .2s}
 .ls-sayfa a[href]:hover,.ls-sayfa a[href]:focus-visible{border-color:var(--marka)}
 .ls-sayfa a.aktif{background:var(--marka);border-color:var(--marka);color:var(--siyah)}
@@ -1979,10 +1981,10 @@ html.cz-acik .eb{padding-block-end:calc(56px + 120px)}
 .ls-sayfa .sf-ozet{display:none;padding-inline:12px}
 [dir="rtl"] .ls-sayfa .sf-ok i{transform:scaleX(-1)}
 @media (max-width:1024px){
-  .ls-sayfa a,.ls-sayfa .sf-ara,.ls-sayfa .sf-ozet{min-inline-size:var(--dokun);block-size:var(--dokun)}
+  .ls-sayfa a,.ls-sayfa .sf-ozet{min-inline-size:var(--dokun);block-size:var(--dokun)}
 }
 @media (max-width:639.98px){
-  .ls-sayfa{gap:6px}
-  .ls-sayfa .sf-no{display:none}
+  .ls-sayfa .sf-satir{gap:6px}
+  .ls-sayfa .sf-no,.ls-sayfa .sf-toplam{display:none}
   .ls-sayfa .sf-ozet{display:grid}
 }

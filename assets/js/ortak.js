@@ -526,7 +526,8 @@ document.querySelectorAll('[data-eb]').forEach(eb=>{const f=eb.querySelector('.e
 (function(){
  const basla=()=>{
   const navlar=[...document.querySelectorAll('nav.ls-sayfa[data-toplam]')]; if(!navlar.length) return;
-  const ogeler=(T,c)=>T<=7?Array.from({length:T},(_,i)=>i+1):c<=4?[1,2,3,4,5,0,T]:c>=T-3?[1,0,T-4,T-3,T-2,T-1,T]:[1,0,c-1,c,c+1,0,T];
+  /* Seçili sayfanın çevresinde sabit 5'li kayan pencere; ilk/son numara ve '…' yok (en başa / en sona görür) */
+  const ogeler=(T,c)=>{const P=5; if(T<=P) return Array.from({length:T},(_,i)=>i+1); const b=Math.min(Math.max(1,c-2),T-P+1); return Array.from({length:P},(_,i)=>b+i);};
   const dosya=()=>location.pathname.split('/').pop()||'index.html';
   const adres=(nav,n)=>{const p=new URLSearchParams(location.search); if(nav.dataset.sekme) p.set('sekme',nav.dataset.sekme); p.set('sayfa',n); return dosya()+'?'+p.toString();};
   const secili=nav=>{const T=+nav.dataset.toplam||1, q=new URLSearchParams(location.search);
@@ -535,10 +536,11 @@ document.querySelectorAll('[data-eb]').forEach(eb=>{const f=eb.querySelector('.e
   const ok=(nav,n,etiket,ikon,pasif)=>pasif?`<a class="sf-ok pasif" role="link" aria-disabled="true" aria-label="${etiket}"><i class="fa-solid ${ikon}"></i></a>`
    :`<a class="sf-ok" href="${adres(nav,n)}" aria-label="${etiket}"><i class="fa-solid ${ikon}"></i></a>`;
   const ciz=(nav,c)=>{const T=+nav.dataset.toplam||1; if(T<=1){nav.hidden=true; nav.innerHTML=''; return;}
-   const no=ogeler(T,c).map(n=>n===0?'<span class="sf-ara" aria-hidden="true">…</span>':n===c?`<a class="aktif" href="${adres(nav,n)}" aria-current="page">${n}</a>`:`<a href="${adres(nav,n)}">${n}</a>`).join('');
-   nav.innerHTML=ok(nav,1,'İlk sayfa','fa-angles-left',c===1)+ok(nav,c-1,'Önceki sayfa','fa-chevron-left',c===1)
+   const no=ogeler(T,c).map(n=>n===c?`<a class="aktif" href="${adres(nav,n)}" aria-current="page">${n}</a>`:`<a href="${adres(nav,n)}">${n}</a>`).join('');
+   nav.innerHTML='<div class="sf-satir">'+ok(nav,1,'İlk sayfa','fa-angles-left',c===1)+ok(nav,c-1,'Önceki sayfa','fa-chevron-left',c===1)
     +`<span class="sf-no">${no}</span><span class="sf-ozet"><span class="sr">Sayfa </span>${c} / ${T}</span>`
-    +ok(nav,c+1,'Sonraki sayfa','fa-chevron-right',c===T)+ok(nav,T,'Son sayfa','fa-angles-right',c===T);};
+    +ok(nav,c+1,'Sonraki sayfa','fa-chevron-right',c===T)+ok(nav,T,'Son sayfa','fa-angles-right',c===T)
+    +`</div><span class="sf-toplam">${T.toLocaleString('tr-TR')} sayfa</span>`;};
   /* Kayıtlar: sayfalamadan önceki kardeş bloklardaki kartlar (article ya da a); başlık, bant ve uyarılar yerinde kalır */
   const kayit=nav=>{ if(nav._k) return nav._k; const dugum=[];
    for(let e=nav.previousElementSibling;e;e=e.previousElementSibling){ const k=[...e.children].filter(x=>x.matches('article,a')); if(k.length>1) dugum.unshift(...k); }
