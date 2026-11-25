@@ -672,10 +672,6 @@
        "adres": "oyun.html"
       },
       {
-       "ad": "Gelecek",
-       "adres": "gelecek.html"
-      },
-      {
        "ad": "İklim",
        "adres": "iklim.html"
       }
@@ -861,7 +857,8 @@
   "haber-dinle-savunma.html": "haber-dinle.html?kategori=savunma",
   "haber-dinle-kampus.html": "haber-dinle.html?kategori=kampus",
   "haber-dinle-teknoloji.html": "haber-dinle.html?kategori=teknoloji",
-  "haber-dinle-kategori.html": "haber-dinle.html?kategori=gundem"
+  "haber-dinle-kategori.html": "haber-dinle.html?kategori=gundem",
+  "gelecek.html": "teknoloji.html"
  },
  "kart_etiketi": {
   "Türkiye": "Gündem",
@@ -876,7 +873,8 @@
   "Savunma Analizi": "Savunma",
   "Dünya Analizi": "Dünya",
   "Uzman Görüşleri": "Savunma",
-  "Savunma Videoları": "Savunma"
+  "Savunma Videoları": "Savunma",
+  "Gelecek": "Teknoloji"
  },
  "turler": {
   "analiz": {
