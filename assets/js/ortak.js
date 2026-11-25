@@ -74,13 +74,15 @@ const yerTut=y=>{const h=document.documentElement, t0=performance.now(); h.style
 const modalAc=d=>{const y=scrollY, g=document.activeElement; document.documentElement.style.scrollBehavior='auto'; d.showModal(); d._yer=y; d._geri=g; (d.querySelector('[autofocus]')||d.querySelector('.pn-kapat')||d).focus({preventScroll:true}); yerTut(y);};
 const pnAc=ad=>{const d=document.getElementById('pn-'+ad); if(!d) return false; document.querySelectorAll('dialog.pn[open]').forEach(x=>x.close()); modalAc(d); return true;};
 document.querySelectorAll('dialog').forEach(d=>d.addEventListener('close',()=>{const y=d._yer; if(y==null) return; const g=d._geri; if(g&&g.focus) g.focus({preventScroll:true}); yerTut(y); d._yer=null;}));
-const toast=m=>{const k=document.querySelector('.toast-kap'); if(!k) return; const t=document.createElement('div'); t.className='toast'; t.innerHTML='<i class="fa-solid fa-check"></i>'+m; k.appendChild(t); setTimeout(()=>t.remove(),2600);};
+/* Aynı bildirim tek tıkta iki kez çıkmaz (Beyar 2026-11-25): aynı metin 600 ms içinde tekrar gelirse yok sayılır */
+let toastSon='',toastZ=0;
+const toast=m=>{const k=document.querySelector('.toast-kap'); if(!k) return; const z=Date.now(); if(m===toastSon&&z-toastZ<600) return; toastSon=m; toastZ=z; const t=document.createElement('div'); t.className='toast'; t.innerHTML='<i class="fa-solid fa-check"></i>'+m; k.appendChild(t); setTimeout(()=>t.remove(),2600);};
 document.addEventListener('click',e=>{
   const a=e.target.closest('[data-acilir]'); if(a&&pnAc(a.dataset.acilir)){e.preventDefault();return;}
   const ty=e.target.closest('[data-toast]'); if(ty) toast(ty.dataset.toast);
   const k=e.target.closest('[data-kapat]'); if(k){const d=k.closest('dialog'); if(d) d.close();}
   const b=e.target.closest('.dt-eylem button,.dt-pay-d'); if(b){const l=b.getAttribute('aria-label')||'';
-    if(/Paylaş|kopyala/i.test(l)){e.preventDefault(); if(/kopyala/i.test(l)) toast('Bağlantı kopyalandı'); else pnAc('paylas');}
+    if(/Paylaş|kopyala/i.test(l)){e.preventDefault(); if(/kopyala/i.test(l)){ try{navigator.clipboard&&navigator.clipboard.writeText(location.href);}catch(_){} if(!b.dataset.toast) toast('Bağlantı kopyalandı'); } else pnAc('paylas');}
     else if(/Yazı boyutu/i.test(l)) pnAc('gorunum'); else if(/Kaydet/i.test(l)){ b.classList.toggle('on'); toast(b.classList.contains('on')?'Kaydedildi':'Kayıt kaldırıldı'); }}
 });
 document.querySelectorAll('dialog.pn').forEach(d=>d.addEventListener('click',e=>{if(e.target===d) d.close();}));
