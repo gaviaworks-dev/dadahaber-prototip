@@ -192,6 +192,16 @@
 .kf-kart h3{font-size:var(--y-md);font-weight:800}
 .kf-kart p{font-size:var(--y-sm);line-height:1.5;color:var(--gri-600);margin-block:4px 8px}
 .kf-kart small{font-size:var(--y-sm);font-weight:700;color:var(--marka-metin)}
+/* Telefonda Keşfet = Günün 5'i (Beyar 2026-11-25; masaüstü/tablet tarafı varsayım, onaylanmadı): alt menüdeki Keşfet düğmesi
+   kesfet.html'i açar; telefonda yalnız Günün 5'i görünür (parcalar/gunun-5.html, tek kaynak). Format şeridi, açılış panelindeki
+   öne çıkan ve Keşfet merkezi gizlenir. Tablet ve masaüstünde .kf-tel gizli, sayfa değişmez. */
+.kf-tel{display:none}
+.kf-tel-arsiv{justify-self:start;margin-block-start:16px}
+@media (max-width:639.98px){
+  .kf-tel{display:block}
+  .pnl:has(>.kf-tel)>.am,.pnl:has(>.kf-tel)>.pnl-ic:not(.kf-tel){display:none}
+  main:has(.kf-tel) .bn-one,main:has(.kf-tel) .bn-sag,main:has(.kf-tel) .bn-gorev{display:none}
+}
 .kr{display:grid;border-inline-start:2px solid var(--marka-100);margin-inline-start:8px}
 .kr-o{position:relative;display:grid;grid-template-columns:140px minmax(0,1fr);gap:16px;padding:0 0 24px 28px}
 .kr-o::before{content:"";position:absolute;inset-inline-start:-7px;inset-block-start:4px;inline-size:12px;block-size:12px;border-radius:50%;background:var(--marka)}

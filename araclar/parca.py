@@ -21,7 +21,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import kategori as KT
 if '--kontrol' not in sys.argv: KT.parcalari_uret()
 PARCALAR = {ad: open(os.path.join(KOK, 'parcalar', f'{ad}.html'), encoding='utf-8').read().split('-->', 1)[1].strip()
-            for ad in ('ust', 'son-dakika', 'footer', 'bulten')}
+            for ad in ('ust', 'son-dakika', 'footer', 'bulten', 'gunun-5')}
 kontrol = '--kontrol' in sys.argv
 hedef = [a for a in sys.argv[1:] if not a.startswith('--')] or sorted(glob.glob(os.path.join(KOK, '*.html')))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
