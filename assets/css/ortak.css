@@ -2004,3 +2004,11 @@ button.ls-sira{color:var(--siyah);font-weight:500;white-space:nowrap}
 .ls-sira-menu button[aria-checked="true"]{font-weight:800;color:var(--siyah)}
 .ls-sira-menu button[aria-checked="true"] i{visibility:visible}
 @media (max-width:1024px){.ls-sira-menu button{block-size:var(--dokun)}}
+
+/* ===== Yazar bağlantısı (.yz-bag) · Beyar 2026-11-25 ("yazarlara tıklanmıyor") =====
+   Kart imzası, detay künyesi ve manşet satırında baş harf + ad tek bağlantı (araclar/yazar_bag.py). Görünüm değişmez;
+   üstüne gelince baş harf halkası marka rengiyle belirir, ad altı çizilir. Kartın geri kalanı haberi açmaya devam eder. */
+.yz-bag{display:inline-flex;align-items:center;gap:inherit;min-inline-size:0;color:inherit;text-decoration:none}
+.yz-bag .av{transition:box-shadow .2s}
+.yz-bag:hover .av,.yz-bag:focus-visible .av{box-shadow:0 0 0 2px var(--marka)}
+.yz-bag:hover b,.yz-bag:focus-visible b{text-decoration:underline;text-underline-offset:3px}

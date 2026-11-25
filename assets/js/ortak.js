@@ -593,3 +593,15 @@ document.querySelectorAll('[data-eb]').forEach(eb=>{const f=eb.querySelector('.e
  };
  document.readyState==='loading'?document.addEventListener('DOMContentLoaded',basla):basla();
 })();
+
+/* Yazar sayfası (Beyar 2026-11-25): yazar.html?ad=… adresteki yazarı gösterir. Örnek veri #yazar-veri (araclar/yazar_bag.py);
+   sunucuda gerçek yazar kaydıdır. Ad, baş harf, unvan, sayfa başlığı ve yazarın kendi imza bağlantıları güncellenir. */
+(()=>{const v=document.getElementById('yazar-veri'), pf=document.querySelector('.pf'); if(!v||!pf) return;
+ const k=new URLSearchParams(location.search).get('ad'); if(!k) return; let Y; try{Y=JSON.parse(v.textContent);}catch(_){return;}
+ const y=Y.find(o=>o.k===k), h1=pf.querySelector('h1'); if(!y||!h1) return; const eski=h1.textContent.trim(); if(eski===y.ad) return;
+ const ek=(Y.find(o=>o.ad===eski)||{}).k, harf=s=>s.split(/\s+/).map(w=>w.charAt(0)).join('').slice(0,2).toLocaleUpperCase('tr');
+ const w=document.createTreeWalker(document.querySelector('main')||document.body,NodeFilter.SHOW_TEXT), ds=[]; while(w.nextNode()) ds.push(w.currentNode);
+ ds.forEach(n=>{if(n.nodeValue.includes(eski)) n.nodeValue=n.nodeValue.split(eski).join(y.ad);}); document.title=document.title.split(eski).join(y.ad);
+ const pav=pf.querySelector('.pf-av'); if(pav) pav.textContent=harf(y.ad); const g=pf.querySelector('.bn-gorev'); if(g&&y.u) g.textContent=y.u;
+ if(ek) document.querySelectorAll(`a[href$="ad=${ek}"]`).forEach(a=>{a.setAttribute('href','yazar.html?ad='+y.k); const av=a.querySelector('.av'); if(av) av.textContent=y.ad.charAt(0).toLocaleUpperCase('tr');});
+})();

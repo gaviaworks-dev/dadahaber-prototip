@@ -24,6 +24,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import baglanti_kurallari as BK
 import sayfalama as SF
 import siralama as SR
+import yazar_bag as YB
 import hashlib
 # Önbellek kırma: CSS ve JS bağlantılarına içerik özetinden sürüm eklenir (?v=…); dosya değişince sürüm değişir, tarayıcı yenisini alır
 SURUM = {}
@@ -74,6 +75,8 @@ for yol in hedef:
     t = SF.uygula(t, os.path.basename(yol))
     # Liste sıralama seçicisi tek bileşen (Beyar 2026-11-25): araclar/siralama.py
     t = SR.uygula(t)
+    # Yazar adları yazar sayfasına bağlanır (Beyar 2026-11-25): araclar/yazar_bag.py
+    t = YB.uygula(t, os.path.basename(yol))
     # Yapı kuralı (Beyar: gereksiz satır açılmaz): Etiketler ve Paylaş tek satırda; solda etiketler (kayar), sağda paylaş
     t = re.sub(r'(?<!<div class="dt-ep">)(<div class="dt-etk[^"]*">(?:(?!<div).)*?</div>)\s*(<div class="dt-pay[^"]*">(?:(?!<div).)*?</div>)',
                r'<div class="dt-ep">\1\2</div>', t, flags=re.S)
