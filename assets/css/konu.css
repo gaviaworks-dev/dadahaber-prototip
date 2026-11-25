@@ -238,6 +238,7 @@ em.y{color:var(--artis)}em.d{color:var(--azalis)}
   .dv-graf{inline-size:100%;max-inline-size:100%}
   .sw-bas-s{flex:1 1 auto;min-inline-size:0;overflow-x:auto;scrollbar-width:none}
   .sw-bas-s>*{flex:none}
+  .sw-bas-s>:first-child{margin-inline-start:auto}   /* bölüm başı düğmeleri sona yaslı (Beyar 2026-11-25); taşarsa auto boşluk sıfırlanır, şerit kaymaya devam eder */
 }
 @media (max-width:1024px){.dv-kur{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-inline-size:100%}}
 
