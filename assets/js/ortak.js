@@ -536,12 +536,19 @@ document.querySelectorAll('[data-eb]').forEach(eb=>{const f=eb.querySelector('.e
   const ogeler=(T,c)=>{const P=5; if(T<=P) return Array.from({length:T},(_,i)=>i+1); const b=Math.min(Math.max(1,c-2),T-P+1); return Array.from({length:P},(_,i)=>b+i);};
   const dosya=()=>location.pathname.split('/').pop()||'index.html';
   const adres=(nav,n)=>{const p=new URLSearchParams(location.search); if(nav.dataset.sekme) p.set('sekme',nav.dataset.sekme); p.set('sayfa',n); return dosya()+'?'+p.toString();};
-  const secili=nav=>{const T=+nav.dataset.toplam||1, q=new URLSearchParams(location.search);
+  const secili=nav=>{const T=toplamSayfa(nav), q=new URLSearchParams(location.search);
    if(nav.dataset.sekme && (q.get('sekme')||'').toLocaleLowerCase('tr')!==nav.dataset.sekme) return 1;
    const n=parseInt(q.get('sayfa'),10); return Math.min(Math.max(1,isNaN(n)?1:n),T);};
   const ok=(nav,n,etiket,ikon,pasif)=>pasif?`<a class="sf-ok pasif" role="link" aria-disabled="true" aria-label="${etiket}"><i class="fa-solid ${ikon}"></i></a>`
    :`<a class="sf-ok" href="${adres(nav,n)}" aria-label="${etiket}"><i class="fa-solid ${ikon}"></i></a>`;
-  const ciz=(nav,c)=>{const T=Object.keys(aktif()).length?1:(+nav.dataset.toplam||1); if(T<=1){nav.hidden=true; nav.innerHTML=''; return;} nav.hidden=false;
+  /* Süzgeç eşleşmesi: çip grubunda data-suz-bos varsa (kategori tür süzgecinde "haber") o değer, alanı boş kartla eşleşir */
+  const bosDeger=p=>{const k=document.querySelector(`[data-suz="${p}"][data-suz-bos]`); return k?k.dataset.suzBos:null;};
+  const eslesir=(d,sk)=>sk.every(([p,v])=>v===bosDeger(p)?!d.dataset[p]:d.dataset[p]===v);
+  /* Süzgeç açıkken sayfalama süzgeci korur (Beyar 2026-11-25): toplam kayıt, sayfadaki eşleşme oranıyla kestirilir (prototip; sunucuda gerçek sorgu) */
+  const suzToplam=(nav)=>{const sk=Object.entries(aktif()), kap=nav.parentElement, {dugum,say}=kayit(kap,nav), n=dugum.length;
+   const m=dugum.filter(d=>eslesir(d,sk)).length; const F=(say&&n)?Math.max(m,Math.round(say*m/n)):m; return {m,n,F,T:Math.max(1,Math.ceil(F/Math.max(n,1)))};};
+  const toplamSayfa=nav=>Object.keys(aktif()).length?suzToplam(nav).T:(+nav.dataset.toplam||1);
+  const ciz=(nav,c)=>{const T=toplamSayfa(nav); if(T<=1){nav.hidden=true; nav.innerHTML=''; return;} nav.hidden=false;
    const no=ogeler(T,c).map(n=>n===c?`<a class="aktif" href="${adres(nav,n)}" aria-current="page">${n}</a>`:`<a href="${adres(nav,n)}">${n}</a>`).join('');
    nav.innerHTML='<div class="sf-satir">'+ok(nav,1,'İlk sayfa','fa-angles-left',c===1)+ok(nav,c-1,'Önceki sayfa','fa-chevron-left',c===1)
     +`<span class="sf-no">${no}</span><span class="sf-ozet"><span class="sr">Sayfa </span>${c} / ${T}</span>`
@@ -569,8 +576,10 @@ document.querySelectorAll('[data-eb]').forEach(eb=>{const f=eb.querySelector('.e
     const son=kap.querySelector(':scope>nav.ls-sayfa'); son?son.before(bos):kap.append(bos);} else if(bos) bos.remove();};
   const goster=(kap,c,T,son)=>{const {dugum,yer,say}=kayit(kap,son), n=dugum.length; if(n<2) return;
    const suz=aktif(), sk=Object.entries(suz);
-   if(sk.length){ const uy=sirala(dugum,siraModu()).filter(d=>sk.every(([p,v])=>d.dataset[p]===v)), dis=dugum.filter(d=>!uy.includes(d));
-    [...uy,...dis].forEach((d,i)=>{yer[i].after(d); d.style.display=i<uy.length?"":"none";}); sayiYaz(kap,uy.length,true); gunler(kap); return; }
+   if(sk.length){ const es=sirala(dugum,siraModu()).filter(d=>eslesir(d,sk)), dis=dugum.filter(d=>!es.includes(d)), m=es.length;
+    const {F,T:Tf}=son?suzToplam(son):{F:m,T:1}; const kay=m?((c-1)*3)%m:0, uy=es.map((_,i)=>es[(i+kay)%m]);
+    const gor=(c===Tf&&Tf>1)?Math.max(1,Math.min(m,F-(Tf-1)*n)):m;
+    [...uy,...dis].forEach((d,i)=>{yer[i].after(d); d.style.display=i<gor?"":"none";}); sayiYaz(kap,F,true); gunler(kap); return; }
    sayiYaz(kap,0,false);
    const taban=sirala(dugum,siraModu()); const kay=((c-1)*3)%n; const sira=taban.map((_,i)=>taban[(i+kay)%n]);
    const gorunur=(c===T && say && Math.ceil(say/n)===T)?say-(T-1)*n:n;

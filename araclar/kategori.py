@@ -127,22 +127,36 @@ def _medya(t, dosya):
             t = re.sub(r'(<h2>Bugünün sesli haberleri</h2></div><div class="sw-bas-s">).*?(</div></div>)', lambda x: x.group(1) + grup + x.group(2), t, count=1, flags=re.S)
     return t
 
+def _kategori_sayfalari():
+    """Tür süzgecinin göründüğü kategori sayfaları: ana başlıklar ve sütun öğeleri; kapsam dışı sütunlar/sayfalar hariç (tur_suzgeci)."""
+    TS = K['tur_suzgeci']; dis = TS.get('kapsam_disi_sutunlar', {}); s = set()
+    for b in K['basliklar']:
+        s.add(b['adres'])
+        for su in b['sutunlar']:
+            if su['ad'] in dis.get(b['ad'], []): continue
+            s.update(o['adres'] for o in su['ogeler'])
+    return s - set(TS.get('kapsam_disi_sayfalar', [])) - set(K['medya'])
+KATEGORI_SAYFALARI = _kategori_sayfalari()
+
 def _tur_suz(t, dosya):
-    """Kategori sayfalarında tür süzgeci (Beyar 2026-11-25): listede içeriği olan türler araç çubuğunda çip grubu
-    (Tümü + türler). Yalnız türler listeyi gerçekten ayırıyorsa (türsüz kart var ya da en az iki tür) görünür."""
-    if dosya in K['medya']: return t
-    t = re.sub(r'<span class="ls-suz" role="group" aria-label="Tür" data-suz="tur">(?:<a [^>]*>[^<]*</a>)*</span>', '', t)
+    """Kategori sayfalarında tür süzgeci (Beyar 2026-11-25, ikinci talimat): araç çubuğunda her zaman çip grubu.
+    Tümü + Haber (türü işaretlenmemiş kart, tur_suzgeci.varsayilan) + listede içeriği olan türler. İçeriği olmayan tür çipi açılmaz."""
+    if dosya in K['medya']: return t   # medya sayfalarının kendi ikinci süzgeci var (_medya)
+    t = re.sub(r'<span class="ls-suz" role="group" aria-label="Tür" data-suz="tur"(?: data-suz-bos="[^"]*")?>(?:<a [^>]*>[^<]*</a>)*</span>', '', t)
+    if dosya not in KATEGORI_SAYFALARI: return t
     i = t.find('class="kap ls-sonuc"')
     if i < 0 or '<div class="ls-arac2' not in t[i:]: return t
     j = t.find('<nav class="ls-sayfa"', i); j = j if j > 0 else t.find('</section>', i)
     bas = re.findall(r'<article class="(?:gk|pc)\b[^"]*"[^>]*>', t[i:j])
-    turler = []
+    if not bas: return t
+    V = K['tur_suzgeci']['varsayilan']
+    turler = [V['anahtar']] if any('data-tur=' not in b for b in bas) else []
     for b in bas:
         m = re.search(r'data-tur="([^"]+)"', b)
         if m and m.group(1) in K['turler'] and m.group(1) not in turler: turler.append(m.group(1))
-    if not turler or (len(turler) == 1 and all('data-tur=' in b for b in bas)): return t
-    grup = (f'<span class="ls-suz" role="group" aria-label="Tür" data-suz="tur"><a href="{dosya}" class="ls-cip aktif">Tümü</a>'
-            + ''.join(f'<a href="{dosya}?tur={k}" class="ls-cip">{escape(K["turler"][k]["ad"])}</a>' for k in turler) + '</span>')
+    ad = lambda k: V['ad'] if k == V['anahtar'] else K['turler'][k]['ad']
+    grup = (f'<span class="ls-suz" role="group" aria-label="Tür" data-suz="tur" data-suz-bos="{V["anahtar"]}"><a href="{dosya}" class="ls-cip aktif">Tümü</a>'
+            + ''.join(f'<a href="{dosya}?tur={k}" class="ls-cip">{escape(ad(k))}</a>' for k in turler) + '</span>')
     return t[:i] + re.sub(r'(<div class="ls-arac2[^"]*">(?:<button[^>]*>.*?</button>)?<span class="ls-sayi">.*?</span>)', lambda x: x.group(1) + grup, t[i:], count=1, flags=re.S)
 
 # ---------------------------------------------------------------- uygulama

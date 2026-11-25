@@ -913,6 +913,23 @@
   "Dünya Analizi": "analiz",
   "Uzman Görüşleri": "uzman-gorusu"
  },
+ "tur_suzgeci": {
+  "not": "Kategori sayfalarında tür süzgeci (Beyar 2026-11-25): araç çubuğunda her zaman çip grubu. Tümü + Haber (türü işaretlenmemiş kart) + listede içeriği olan türler; içeriği olmayan tür çipi açılmaz. Adres ?tur=, sayfalama süzgeci korur.",
+  "varsayilan": {
+   "anahtar": "haber",
+   "ad": "Haber"
+  },
+  "kapsam_disi_sutunlar": {
+   "Keşfet": [
+    "Anlık",
+    "Keşfet Formatları",
+    "Medya ve Arşiv"
+   ]
+  },
+  "kapsam_disi_sayfalar": [
+   "kesfet.html"
+  ]
+ },
  "servis_il": {
   "sayfalar": [
    "hava-durumu.html",
