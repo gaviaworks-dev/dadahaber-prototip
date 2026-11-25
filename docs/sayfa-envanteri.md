@@ -337,3 +337,25 @@ Seçim gerektiren kalemler tek tek değil, şablon ailesi olarak sorulur: bir ce
 Bu 17 sayfa, "alt sayfada konuya özel bileşen" kuralına zaten seçilmiş bileşenlerle uyar; Dalga 2 ya da 3'e eklenebilir. Beyar itiraz ederse 1. aileye taşınır.
 
 **Genel toplam:** seçime bağlı 154 kalem = soruyla açılacak 137 + sorusuz türetilecek 17.
+
+## Kategori ve medya yapısı güncellemesi (2026-11-25, DADAHABER-10)
+
+Tek kaynak `araclar/kategori.json`. Menü 150 öğe (önceki 163).
+
+| Durum | Sayfa | Hedef / not |
+|---|---|---|
+| Yeni | `cevre-ve-afet.html` | Çevre + Afet birleşti |
+| Yeni | `sehirler.html` | 81 İl yerine; yalnız haber üretilen iller (10) |
+| Taşındı | `beslenme.html`, `ruh-sagligi.html` | Kadın → Keşfet › Sağlık ve Yaşam |
+| Yönlendirme | `turkiye.html` | `gundem.html` |
+| Yönlendirme | `egitim.html` | `egitim-ve-sinavlar.html` |
+| Yönlendirme | `cevre.html`, `afet.html` | `cevre-ve-afet.html` |
+| Yönlendirme | `81-il.html` | `sehirler.html` (servis sayfalarında "81 İl" şehir seçme penceresini açar) |
+| Yönlendirme | `gundem-analizi.html`, `ekonomi-analizi.html`, `savunma-analizi.html`, `dunya-analizi.html` | ana kategori `?tur=analiz` |
+| Yönlendirme | `uzman-gorusleri.html` | `savunma.html?tur=uzman-gorusu` |
+| Yönlendirme | `savunma-videolari.html` | `video.html?kategori=savunma` |
+| Yönlendirme | `savunma-sanayii.html` | `savunma.html` |
+| Yönlendirme | `otomobil.html` | `otomotiv.html` |
+| Yönlendirme | `video-kategori.html`, `foto-fokus-kategori.html`, `infografik-kategori.html`, `podcast-kategori.html` | medya sayfası + adres süzgeci |
+
+Yönlendirme sayfaları (17) `<meta name="dada-yonlendirme">` taşır; parca.py, dizin ve kontrol betikleri onları ayrı sayar.
