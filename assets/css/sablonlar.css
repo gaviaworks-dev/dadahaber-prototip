@@ -143,8 +143,9 @@
 .oy-sira b{font-size:var(--y-md);font-weight:500;line-height:1.3}
 .oy-sira small{font-size:var(--y-sm);color:var(--gri-400);font-variant-numeric:tabular-nums}
 .oy-desifre{display:grid;gap:12px;padding:20px 22px;border-radius:var(--k-kart);background:var(--zemin-b);border:1px solid var(--gri-50)}
-.oy-desifre p{font-size:var(--y-md);line-height:1.65}
-.oy-desifre time{font-weight:800;color:var(--marka-metin);margin-inline-end:8px;font-variant-numeric:tabular-nums}
+.oy-desifre p{font-size:var(--y-md);line-height:1.65;display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:12px;align-items:baseline}
+.oy-desifre time{font-weight:800;color:var(--marka-metin);font-variant-numeric:tabular-nums}
+/* Beyar 2026-11-25 (N35): zaman damgası kendi sütununda; metnin ikinci satırı zaman damgasının altına değil metnin başına hizalı */
 
 /* ===== C13 · Görüntüleyici (Foto Fokus galeri, İnfografik) ===== */
 .gr{display:grid;gap:12px}
