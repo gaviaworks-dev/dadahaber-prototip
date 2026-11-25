@@ -588,7 +588,8 @@ def dogrula(S, kok):
     for h in S.V['haberler']:
         if (h['tarih'], dk(h['saat'])) > (S.simdi_t, S.simdi_s): hata.append(f'haber gelecekte: {h["baslik"]}')
         if h.get('yazar') and h['yazar'] not in S.yazar: hata.append(f'yazar sözlükte yok: {h["yazar"]} ({h["baslik"]})')
-        elif h.get('yazar') and S.yazar[h['yazar']]['alan'] != h['bolum']: hata.append(f'yazar bölüm dışı: {h["yazar"]} / {h["bolum"]} ({h["baslik"]})')
+        # ek_alan: taşınan bölümler yazarın alanına dahil (Beyar 2026-11-25)
+        elif h.get('yazar') and h['bolum'] not in [S.yazar[h['yazar']]['alan']] + S.yazar[h['yazar']].get('ek_alan', []): hata.append(f'yazar bölüm dışı: {h["yazar"]} / {h["bolum"]} ({h["baslik"]})')
     # son dakika: şimdiden önce, şerit listede
     SD = S.V['son_dakika']
     for o in SD['liste']:
