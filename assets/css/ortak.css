@@ -2030,3 +2030,5 @@ button.ls-sira{color:var(--siyah);font-weight:500;white-space:nowrap}
 .ls-bos{display:flex;align-items:center;justify-content:center;gap:var(--ikon-bosluk);padding-block:32px;margin:0;color:var(--gri-600);font-size:var(--y-sm);text-align:center}
 .ls-bos i{color:var(--marka-metin)}
 .ls-bos a{font-weight:800;color:var(--marka-metin);text-decoration:underline;text-underline-offset:3px}
+/* "Dada Özet", "Dada Bağlam", "Dada Doğrula" menüde ve telefon menüsünde tek ad olarak okunur (Beyar 2026-11-25): kalın "Dada" ile ad arasında yalnız sözcük boşluğu */
+.menu .mega .dada-ad b,.cm-alt .dada-ad b{margin-inline-end:0}

@@ -16,7 +16,7 @@ YON = K['yonlendirme']
 
 def _menu_ad(ad):
     """Menü ve telefon menüsünde "Dada" ön eki kalın yazılır (mevcut biçim)."""
-    return f'<b>Dada</b> {escape(ad[5:])}' if ad.startswith('Dada ') else escape(ad)
+    return f'<span class="dada-ad"><b>Dada</b> {escape(ad[5:])}</span>' if ad.startswith('Dada ') else escape(ad)   # tek yazı parçası: "Dada Özet" bölünmez (2026-11-25)
 
 # ---------------------------------------------------------------- ortak parçalar
 def _mega():
@@ -127,6 +127,24 @@ def _medya(t, dosya):
             t = re.sub(r'(<h2>Bugünün sesli haberleri</h2></div><div class="sw-bas-s">).*?(</div></div>)', lambda x: x.group(1) + grup + x.group(2), t, count=1, flags=re.S)
     return t
 
+def _tur_suz(t, dosya):
+    """Kategori sayfalarında tür süzgeci (Beyar 2026-11-25): listede içeriği olan türler araç çubuğunda çip grubu
+    (Tümü + türler). Yalnız türler listeyi gerçekten ayırıyorsa (türsüz kart var ya da en az iki tür) görünür."""
+    if dosya in K['medya']: return t
+    t = re.sub(r'<span class="ls-suz" role="group" aria-label="Tür" data-suz="tur">(?:<a [^>]*>[^<]*</a>)*</span>', '', t)
+    i = t.find('class="kap ls-sonuc"')
+    if i < 0 or '<div class="ls-arac2' not in t[i:]: return t
+    j = t.find('<nav class="ls-sayfa"', i); j = j if j > 0 else t.find('</section>', i)
+    bas = re.findall(r'<article class="(?:gk|pc)\b[^"]*"[^>]*>', t[i:j])
+    turler = []
+    for b in bas:
+        m = re.search(r'data-tur="([^"]+)"', b)
+        if m and m.group(1) in K['turler'] and m.group(1) not in turler: turler.append(m.group(1))
+    if not turler or (len(turler) == 1 and all('data-tur=' in b for b in bas)): return t
+    grup = (f'<span class="ls-suz" role="group" aria-label="Tür" data-suz="tur"><a href="{dosya}" class="ls-cip aktif">Tümü</a>'
+            + ''.join(f'<a href="{dosya}?tur={k}" class="ls-cip">{escape(K["turler"][k]["ad"])}</a>' for k in turler) + '</span>')
+    return t[:i] + re.sub(r'(<div class="ls-arac2[^"]*">(?:<button[^>]*>.*?</button>)?<span class="ls-sayi">.*?</span>)', lambda x: x.group(1) + grup, t[i:], count=1, flags=re.S)
+
 # ---------------------------------------------------------------- uygulama
 def uygula(t, dosya):
     if 'name="dada-yonlendirme"' in t: return t
@@ -145,7 +163,11 @@ def uygula(t, dosya):
     t = _serit(t, dosya)
     # Kart kategori etiketleri: kaldırılan/birleşen alt kategoriler yeni adlarıyla
     KE = K['kart_etiketi']
-    t = re.sub(r'(<span class="cip"><i class="[^"]+"></i>)(' + '|'.join(re.escape(k) for k in KE) + r')(</span>)', lambda m: m.group(1) + escape(KE[m.group(2)]) + m.group(3), t)
+    ad = '|'.join(re.escape(k) for k in KE)
+    # kart çipi, zaman akışı kategorisi (za-kat) ve açılış paneli konu etiketi (bn-y); tablolardaki ülke adı "Türkiye"ye dokunulmaz
+    t = re.sub(r'(<span class="(?:cip|za-kat)"><i class="[^"]+"></i>)(' + ad + r')(</span>)', lambda m: m.group(1) + escape(KE[m.group(2)]) + m.group(3), t)
+    t = re.sub(r'(class="bn-y(?: aktif)?"><small>)(' + ad + r')(</small>)', lambda m: m.group(1) + escape(KE[m.group(2)]) + m.group(3), t)
     t = _medya(t, dosya)
     t = _turler(t)
+    t = _tur_suz(t, dosya)
     return t
