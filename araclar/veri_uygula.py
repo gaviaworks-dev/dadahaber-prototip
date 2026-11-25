@@ -15,6 +15,8 @@ Kullanım:
   python3 -I araclar/veri_uygula.py <kök> --sozluk-tamamla  # sitede olup sözlükte olmayan başlıkları sözlüğe ekler
 İdempotenttir: ikinci çalıştırmada değişiklik olmaz."""
 import sys, os, re, json, glob, html, hashlib, collections
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import yazar_bag as YB   # yazar kartı adresi yazar.html?ad=… (Beyar 2026-11-25)
 
 BETIK = os.path.dirname(os.path.abspath(__file__))
 ARGS = [a for a in sys.argv[1:] if not a.startswith('--')]
@@ -223,7 +225,7 @@ def yazar_unvan(t, S, rapor, dosya):
         dizin = sorted((y for y in S.V['yazarlar'] if y.get('dizin')), key=lambda y: y['dizin'])
         def izg(m):
             n = len(re.findall(r'<a class="yz1"', m.group(2)))
-            ic = ''.join(f'<a class="yz1" href="yazar.html" aria-label="{y["ad"]}, {y["unvan"]}: yazar sayfası"><span class="yz1-av">{bas_harf(y["ad"])}</span><h3>{y["ad"]}</h3><small>{y["unvan"]}</small></a>' for y in dizin[:n])
+            ic = ''.join(f'<a class="yz1" href="{YB.adres(y["ad"])}" aria-label="{y["ad"]}, {y["unvan"]}: yazar sayfası"><span class="yz1-av">{bas_harf(y["ad"])}</span><h3>{y["ad"]}</h3><small>{y["unvan"]}</small></a>' for y in dizin[:n])
             return m.group(1) + ic + m.group(3)
         t = re.sub(r'(<div class="[^"]*">)((?:<a class="yz1"[^>]*>.*?</a>)+)(</div>)', izg, t, count=1, flags=re.S)
         t = re.sub(r'<b>\d+ yazar</b>', f'<b>{len(S.V["yazarlar"])} yazar</b>', t)
